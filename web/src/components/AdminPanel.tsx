@@ -512,95 +512,6 @@ export const AdminPanel: React.FC = () => {
       )}
 
       {/* SECTION 2: PAYMENTS VERIFICATION INBOX */}
-      {activeAdminTab === 'payments' && (
-        <div className="space-y-4">
-          <div className="flex items-center justify-between">
-            <h3 className="font-extrabold text-[#2D2A26] text-sm flex items-center gap-2">
-              <DollarSign className="w-4 h-4 text-emerald-600" />
-              To'lov cheklari so'rovlari
-            </h3>
-            <span className="text-xs font-bold text-[#8C8479]">
-              Jami: {paymentProofs.length} ta chek
-            </span>
-          </div>
-
-          {paymentProofs.length === 0 ? (
-            <div className="bg-white p-8 rounded-3xl border border-dashed border-[#EFE8DC] text-center text-xs text-[#8C8479] space-y-2">
-              <CheckCircle className="w-8 h-8 text-emerald-400 mx-auto" />
-              <p className="font-bold text-[#2D2A26]">Barcha to'lov so'rovlari ko'rib chiqilgan!</p>
-              <p>Hozircha kutilayotgan yangi to'lov cheklari yo'q.</p>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              {paymentProofs.map(proof => (
-                <div
-                  key={proof.id}
-                  className="bg-white p-4 rounded-3xl border border-[#EFE8DC] shadow-xs space-y-3 relative"
-                >
-                  <div className="flex items-center justify-between text-xs">
-                    <div>
-                      <span className="font-extrabold text-[#2D2A26] text-sm block">
-                        {proof.summa.toLocaleString()} so'm
-                      </span>
-                      <span className="text-[10px] text-[#8C8479]">
-                        ID: {proof.id} • {new Date(proof.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                      </span>
-                    </div>
-                    <span
-                      className={`font-extrabold px-3 py-1 rounded-full text-[10px] ${
-                        proof.holat === 'tasdiqlangan'
-                          ? 'bg-emerald-100 text-emerald-800'
-                          : proof.holat === 'rad_etilgan'
-                          ? 'bg-rose-100 text-rose-800'
-                          : 'bg-amber-100 text-amber-800 animate-pulse'
-                      }`}
-                    >
-                      {proof.holat}
-                    </span>
-                  </div>
-
-                  {proof.screenshot_preview_url && (
-                    <div className="relative group rounded-2xl overflow-hidden border border-[#EFE8DC] bg-gray-50 h-36">
-                      <img
-                        src={proof.screenshot_preview_url}
-                        alt="Proof"
-                        className="w-full h-full object-cover"
-                      />
-                      <button
-                        onClick={() => setSelectedProofPreview(proof.screenshot_preview_url!)}
-                        className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xs font-bold gap-1"
-                      >
-                        <Eye className="w-4 h-4" /> Kattalashtirish
-                      </button>
-                    </div>
-                  )}
-
-                  {proof.holat === 'kutilmoqda' && (
-                    <div className="flex gap-2 pt-1">
-                      <button
-                        onClick={() => verifyPaymentProof(proof.id, 'tasdiqlangan')}
-                        className="flex-1 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs rounded-xl flex items-center justify-center gap-1 shadow-xs"
-                      >
-                        <CheckCircle className="w-4 h-4" />
-                        ✅ Tasdiqlash
-                      </button>
-                      <button
-                        onClick={() => verifyPaymentProof(proof.id, 'rad_etilgan')}
-                        className="flex-1 py-2.5 bg-rose-600 hover:bg-rose-700 text-white font-extrabold text-xs rounded-xl flex items-center justify-center gap-1"
-                      >
-                        <XCircle className="w-4 h-4" />
-                        ❌ Rad etish
-                      </button>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      )}
-
-      {/* SECTION 3: RECIPES MANAGER */}
       {activeAdminTab === 'recipes' && (
         <div className="space-y-4">
           <div className="flex items-center justify-between gap-2">
@@ -622,6 +533,41 @@ export const AdminPanel: React.FC = () => {
               Yangi retsept
             </button>
           </div>
+
+          {/* Uploaded Images Inspector Box */}
+          {(() => {
+            const uploadedRecipes = recipes.filter(r => r.rasm_url.startsWith('data:') || r.rasm_url.startsWith('http') || r.rasm_url.startsWith('/assets/'));
+            if (uploadedRecipes.length === 0) return null;
+
+            return (
+              <div className="p-4 bg-amber-50 rounded-2xl border border-amber-200 space-y-3">
+                <div className="flex items-center justify-between">
+                  <h4 className="font-extrabold text-amber-950 text-xs flex items-center gap-1.5">
+                    <span>🖼️</span> Yuklangan Rasmlar Inspektori ({uploadedRecipes.length} ta retsept)
+                  </h4>
+                  <span className="text-[10px] text-amber-800 font-bold bg-amber-200/60 px-2 py-0.5 rounded-full">
+                    Avto-siqilgan WebP/JPEG
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  {uploadedRecipes.map(rec => {
+                    const isData = rec.rasm_url.startsWith('data:');
+                    const approxKb = isData ? Math.round((rec.rasm_url.length * 0.75 / 1024) * 10) / 10 : 45;
+                    return (
+                      <div key={rec.id} className="p-2.5 bg-white rounded-xl border border-amber-200 flex items-center gap-3">
+                        <img src={rec.rasm_url} alt={rec.nomi} className="w-12 h-12 rounded-lg object-contain bg-stone-100 flex-shrink-0" />
+                        <div className="min-w-0 flex-1 text-[11px]">
+                          <h5 className="font-bold text-gray-900 truncate">{rec.nomi}</h5>
+                          <p className="text-[10px] text-gray-500 font-medium">Hajmi: <strong className="text-emerald-600">{approxKb || 45} KB</strong> ({isData ? 'Siqilgan Base64' : 'URL rasm'})</p>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            );
+          })()}
 
           <div className="space-y-2">
             {recipes
@@ -679,68 +625,6 @@ export const AdminPanel: React.FC = () => {
         </div>
       )}
 
-      {/* SECTION 4: TALES MANAGER */}
-      {activeAdminTab === 'tales' && (
-        <div className="space-y-4">
-          <div className="flex items-center justify-between">
-            <h3 className="font-extrabold text-[#2D2A26] text-sm flex items-center gap-2">
-              <BookOpen className="w-4 h-4 text-purple-600" />
-              Sehrli Ertaklar Bazasi
-            </h3>
-            <button
-              onClick={() => setShowTaleModal(true)}
-              className="px-3.5 py-2 bg-purple-600 hover:bg-purple-700 text-white text-xs font-extrabold rounded-2xl flex items-center gap-1 shadow-xs transition-colors"
-            >
-              <Plus className="w-4 h-4" />
-              Yangi Ertak
-            </button>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            {tales.map(tale => (
-              <div
-                key={tale.id}
-                className="bg-white p-4 rounded-3xl border border-[#EFE8DC] space-y-3 shadow-2xs"
-              >
-                <div className="flex items-center gap-3">
-                  <img
-                    src={tale.muqova_rasm_url}
-                    alt={tale.sarlavha}
-                    className="w-14 h-14 rounded-2xl object-cover border border-[#EFE8DC]"
-                  />
-                  <div>
-                    <h4 className="font-black text-[#2D2A26] text-sm">{tale.sarlavha}</h4>
-                    <p className="text-[11px] text-[#7C746B]">
-                      👶 {tale.yosh_toifasi} yosh • 📄 {tale.sahifalar.length} sahifa
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-center justify-between pt-1 border-t border-[#F3ECE0]">
-                  <button
-                    onClick={() => toggleTaleStatus(tale.id)}
-                    className={`px-2.5 py-1 rounded-full text-[10px] font-extrabold ${
-                      tale.holat === 'nashr'
-                        ? 'bg-purple-100 text-purple-800'
-                        : 'bg-gray-100 text-gray-600'
-                    }`}
-                  >
-                    {tale.holat}
-                  </button>
-
-                  <button
-                    onClick={() => deleteTale(tale.id)}
-                    className="px-2 py-1 text-rose-600 hover:bg-rose-50 rounded-xl text-xs font-bold flex items-center gap-1"
-                  >
-                    <Trash2 className="w-3.5 h-3.5" /> O'chirish
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-
       {/* SECTION 5: LIFEHACKS & RIDDLES */}
       {activeAdminTab === 'lifehacks' && (
         <div className="space-y-6">
@@ -768,39 +652,6 @@ export const AdminPanel: React.FC = () => {
                   </div>
                   <button
                     onClick={() => deleteLifehack(lh.id)}
-                    className="p-1.5 text-rose-600 hover:bg-rose-50 rounded-xl"
-                  >
-                    <Trash2 className="w-3.5 h-3.5" />
-                  </button>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Riddles Box */}
-          <div className="space-y-3 pt-2 border-t border-[#EFE8DC]">
-            <div className="flex items-center justify-between">
-              <h3 className="font-extrabold text-[#2D2A26] text-sm flex items-center gap-2">
-                <HelpCircle className="w-4 h-4 text-blue-500" />
-                Mantiqiy Topishmoqlar ({riddles.length})
-              </h3>
-              <button
-                onClick={() => setShowRiddleModal(true)}
-                className="px-3.5 py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-extrabold rounded-2xl flex items-center gap-1"
-              >
-                <Plus className="w-3.5 h-3.5" /> Topishmoq qo'shish
-              </button>
-            </div>
-
-            <div className="space-y-2">
-              {riddles.map(riddle => (
-                <div key={riddle.id} className="bg-white p-3 rounded-2xl border border-[#EFE8DC] flex items-center justify-between text-xs">
-                  <div>
-                    <p className="font-bold text-[#2D2A26]">❓ {riddle.savol}</p>
-                    <p className="text-[10px] text-emerald-700 font-bold mt-0.5">✅ Javob: {riddle.javob}</p>
-                  </div>
-                  <button
-                    onClick={() => deleteRiddle(riddle.id)}
                     className="p-1.5 text-rose-600 hover:bg-rose-50 rounded-xl"
                   >
                     <Trash2 className="w-3.5 h-3.5" />
@@ -1054,80 +905,7 @@ export const AdminPanel: React.FC = () => {
         </div>
       )}
 
-      {/* RIDDLE MODAL */}
-      {showRiddleModal && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 flex items-center justify-center p-4">
-          <div className="bg-white p-5 rounded-3xl max-w-md w-full space-y-4 shadow-2xl text-xs">
-            <div className="flex items-center justify-between border-b pb-2">
-              <h3 className="font-black text-sm text-[#2D2A26]">Yangi Topishmoq Qo'shish</h3>
-              <button onClick={() => setShowRiddleModal(false)} className="p-1 text-gray-400">
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-
-            <form onSubmit={handleSaveRiddle} className="space-y-3">
-              <div>
-                <label className="font-bold text-[#2D2A26] block mb-1">Topishmoq savoli *</label>
-                <input
-                  type="text"
-                  required
-                  placeholder="Uzun bo'yli, qizil qalpoqli..."
-                  value={riddleQuestion}
-                  onChange={e => setRiddleQuestion(e.target.value)}
-                  className="w-full px-3 py-2 border rounded-xl"
-                />
-              </div>
-              <div>
-                <label className="font-bold text-[#2D2A26] block mb-1">To'g'ri javob *</label>
-                <input
-                  type="text"
-                  required
-                  placeholder="Sabzi"
-                  value={riddleAnswer}
-                  onChange={e => setRiddleAnswer(e.target.value)}
-                  className="w-full px-3 py-2 border rounded-xl"
-                />
-              </div>
-              <div>
-                <label className="font-bold text-[#2D2A26] block mb-1">Variantlar (Vergul bilan ajrating)</label>
-                <input
-                  type="text"
-                  placeholder="Sabzi, Kartoshka, Bodring"
-                  value={riddleOptions}
-                  onChange={e => setRiddleOptions(e.target.value)}
-                  className="w-full px-3 py-2 border rounded-xl"
-                />
-              </div>
-              <button
-                type="submit"
-                className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-extrabold rounded-xl"
-              >
-                Topishmoqni Saqlash
-              </button>
-            </form>
-          </div>
-        </div>
-      )}
-
-      {/* SCREENSHOT ZOOM MODAL */}
-      {selectedProofPreview && (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="relative max-w-lg w-full bg-white p-2 rounded-3xl overflow-hidden shadow-2xl">
-            <button
-              onClick={() => setSelectedProofPreview(null)}
-              className="absolute top-4 right-4 p-2 bg-black/60 text-white rounded-full hover:bg-black"
-            >
-              <X className="w-5 h-5" />
-            </button>
-            <img
-              src={selectedProofPreview}
-              alt="Full Proof"
-              className="w-full max-h-[80vh] object-contain rounded-2xl"
-            />
-          </div>
-        </div>
-      )}
-
+      
     </div>
   );
 };
