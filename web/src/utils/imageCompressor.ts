@@ -49,15 +49,39 @@ export const compressImage = (file: File, maxWidth = 800, quality = 0.75): Promi
 };
 
 /**
- * Upload a compressed data-URL image to Supabase Storage and return
- * the public URL. Falls back to returning the data URL if upload fails.
+ * Upload a compressed data-URL image to Catbox.moe (Primary: 100% Free, Unlimited Bandwidth, Permanent).
+ * Fallback: Supabase Storage, and lastly Data URL.
  */
 export const uploadImageToSupabase = async (
   dataUrl: string,
   recipeId: string
 ): Promise<string> => {
+  const blob = dataUrlToBlob(dataUrl);
+
+  // 1. Primary: Upload to Catbox.moe (Free, Unlimited, Permanent)
   try {
-    const blob = dataUrlToBlob(dataUrl);
+    const formData = new FormData();
+    formData.append('reqtype', 'fileupload');
+    formData.append('fileToUpload', blob, `${recipeId}_${Date.now()}.jpg`);
+
+    const res = await fetch('https://catbox.moe/user/api.php', {
+      method: 'POST',
+      body: formData,
+    });
+
+    if (res.ok) {
+      const catboxUrl = (await res.text()).trim();
+      if (catboxUrl.startsWith('http')) {
+        console.log('✅ Uploaded to Catbox CDN (Unlimited Free):', catboxUrl);
+        return catboxUrl;
+      }
+    }
+  } catch (err) {
+    console.warn('Catbox upload failed, falling back to Supabase Storage:', err);
+  }
+
+  // 2. Fallback: Upload to Supabase Storage
+  try {
     const ext = blob.type === 'image/png' ? 'png' : 'jpg';
     const path = `${recipeId}_${Date.now()}.${ext}`;
 
@@ -68,18 +92,19 @@ export const uploadImageToSupabase = async (
         upsert: true,
       });
 
-    if (error) {
-      console.warn('Supabase upload failed, using data URL:', error.message);
-      return dataUrl;
+    if (!error) {
+      const { data: urlData } = supabase.storage
+        .from(BUCKET)
+        .getPublicUrl(path);
+
+      console.log('✅ Uploaded to Supabase Storage:', urlData.publicUrl);
+      return urlData.publicUrl;
     }
-
-    const { data: urlData } = supabase.storage
-      .from(BUCKET)
-      .getPublicUrl(path);
-
-    return urlData.publicUrl;
+    console.warn('Supabase upload error:', error.message);
   } catch (err) {
-    console.warn('Upload error, using data URL:', err);
-    return dataUrl;
+    console.warn('Supabase storage fallback error:', err);
   }
+
+  // 3. Final Fallback: Base64 data URL
+  return dataUrl;
 };
