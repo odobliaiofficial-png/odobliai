@@ -64,7 +64,7 @@ export const AdminPanel: React.FC = () => {
   } = useApp();
 
   // Security Lock Gate
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(true);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [pinInput, setPinInput] = useState<string>('');
   const [pinError, setPinError] = useState<boolean>(false);
 
@@ -113,7 +113,7 @@ export const AdminPanel: React.FC = () => {
   // PIN Unlock Verification
   const handlePinSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (pinInput === '1234' || pinInput === '7777') {
+    if (pinInput === '1977') {
       setIsAuthenticated(true);
       setPinError(false);
     } else {
@@ -270,7 +270,7 @@ export const AdminPanel: React.FC = () => {
           <div>
             <h3 className="text-lg font-black text-[#2D2A26]">Admin Kirish Himoyasi</h3>
             <p className="text-xs text-[#7C746B] mt-1">
-              Boshqaruv paneliga kirish uchun PIN-kodni kiriting (Standart: 1234)
+              Boshqaruv paneliga kirish uchun maxfiy PIN-kodni kiriting
             </p>
           </div>
 
