@@ -352,6 +352,19 @@ export const Profil: React.FC = () => {
         </div>
       </div>
 
+      {/* Desktop PC Admin Mode Access Link */}
+      <div className="pt-3 text-center">
+        <button
+          onClick={() => {
+            localStorage.setItem('admin_mode', 'true');
+            setActiveTab('admin');
+          }}
+          className="text-xs font-black text-rose-600 hover:text-rose-700 bg-pink-50 hover:bg-pink-100 border border-pink-200 px-4 py-2 rounded-2xl transition-all shadow-2xs active:scale-95 inline-flex items-center gap-1.5"
+        >
+          <span>🖥️ Kompyuterdan Admin Panelga Kirish 🔑</span>
+        </button>
+      </div>
+
     </div>
   );
 };

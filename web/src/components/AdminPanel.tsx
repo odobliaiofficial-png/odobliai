@@ -150,6 +150,7 @@ export const AdminPanel: React.FC = () => {
     if (pinInput === '1977') {
       setIsAuthenticated(true);
       setPinError(false);
+      localStorage.setItem('admin_mode', 'true');
     } else {
       setPinError(true);
     }
