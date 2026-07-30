@@ -38,6 +38,18 @@ import {
   Save
 } from 'lucide-react';
 
+const FOLDER_CATEGORIES = [
+  { id: 'all', title: "Barcha Retseptlar", emoji: "🍽️", color: "from-amber-500 to-rose-500", desc: "Barcha sara pazandalik taomlari" },
+  { id: 'Milliy Quyuq Taomlar', title: "Milliy Quyuq Taomlar", emoji: "🍲", color: "from-orange-500 to-amber-600", desc: "Palov, Norin, Qozon kabob..." },
+  { id: 'Sho\'rvalar va Suyuq Taomlar', title: "Sho'rvalar va Suyuq Taomlar", emoji: "🥣", color: "from-red-500 to-pink-600", desc: "Sho'rva, Mastava, Chuchvara..." },
+  { id: 'Xamir Ovqatlar va Somsa', title: "Xamir Ovqatlar va Somsa", emoji: "🥟", color: "from-[#DB2777] to-purple-600", desc: "Somsa, Manti, Lag'mon, Xonim..." },
+  { id: 'Salatlar va Gazaklar', title: "Salatlar va Gazaklar", emoji: "🥗", color: "from-emerald-500 to-teal-600", desc: "Achchiq-chuchuk, Bahor salati..." },
+  { id: 'Shirinliklar va Pishiriqlar', title: "Shirinliklar va Pishiriqlar", emoji: "🍰", color: "from-pink-500 to-rose-600", desc: "Pahlava, Chak-chak, Tortlar..." },
+  { id: 'Ichimliklar va Kompotlar', title: "Ichimliklar va Kompotlar", emoji: "🍹", color: "from-cyan-500 to-blue-600", desc: "Choy, Kompot, Sharbatlar..." },
+  { id: 'Bolalar va Parhez Taomlar', title: "Bolalar va Parhez", emoji: "👶", color: "from-purple-500 to-indigo-600", desc: "Parhez va bolalar taomlari..." },
+  { id: 'Tezkor 15-daqiqalik Taomlar', title: "Tezkor Taomlar", emoji: "⚡", color: "from-[#F59E0B] to-amber-500", desc: "Tez va oson pishar ovqatlar..." },
+];
+
 export const PazandaAI: React.FC = () => {
   const {
     ingredients,
@@ -230,8 +242,9 @@ export const PazandaAI: React.FC = () => {
 
 const [customMinutesInput, setCustomMinutesInput] = useState<string>('20');
 
-  // Tab mode: 'match' | 'catalog' | 'bozorlik' | 'timer'
-  const [viewMode, setViewMode] = useState<'match' | 'catalog' | 'bozorlik' | 'timer'>('match');
+  // Tab mode: 'catalog' (Retseptlar) | 'match' (Masalliqlardan) | 'bozorlik' | 'timer'
+  const [viewMode, setViewMode] = useState<'match' | 'catalog' | 'bozorlik' | 'timer'>('catalog');
+  const [selectedFolderCategory, setSelectedFolderCategory] = useState<string | null>(null);
 
   // Search queries
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -509,18 +522,26 @@ const [customMinutesInput, setCustomMinutesInput] = useState<string>('20');
     }
   }, [activeRecipe, showMatchedRecipesModal, showDishSelectModal]);
 
-  // Catalog Recipes
+  // Catalog Recipes with Folder Category filtering
   const catalogRecipes = useMemo(() => {
-    const published = recipes.filter(r => r.holat === 'nashr');
+    let published = recipes.filter(r => r.holat === 'nashr');
+
+    if (selectedFolderCategory && selectedFolderCategory !== 'all') {
+      published = published.filter(r => {
+        const cat = r.kategoriya || 'Milliy Quyuq Taomlar';
+        return cat.toLowerCase().trim() === selectedFolderCategory.toLowerCase().trim();
+      });
+    }
+
     if (!searchQuery.trim()) return published;
 
     const q = searchQuery.toLowerCase().trim();
-    return published.filter(r =>
+    return recipes.filter(r =>
       r.nomi.toLowerCase().includes(q) ||
       r.tarif_matni.toLowerCase().includes(q) ||
       r.masalliqlar_matni.toLowerCase().includes(q)
     );
-  }, [recipes, searchQuery]);
+  }, [recipes, searchQuery, selectedFolderCategory]);
 
   // Parsed ingredient items for active recipe modal
   const recipeIngredientItems = useMemo(() => {
@@ -673,18 +694,6 @@ const [customMinutesInput, setCustomMinutesInput] = useState<string>('20');
       {/* Main Navigation Modes (4 Tabs) */}
       <div className="card-pink p-1 rounded-2xl grid grid-cols-4 gap-1 bg-white">
         <button
-          onClick={() => setViewMode('match')}
-          className={`py-2 rounded-xl text-[11px] font-bold transition-all flex flex-col items-center justify-center gap-0.5 min-h-[44px] ${
-            viewMode === 'match'
-              ? 'bg-[#DB2777] text-white shadow-xs'
-              : 'text-[#9D4C6C] hover:bg-pink-50'
-          }`}
-        >
-          <Utensils className="w-4 h-4" />
-          <span className="truncate">{t("Masalliqlardan")}</span>
-        </button>
-
-        <button
           onClick={() => setViewMode('catalog')}
           className={`py-2 rounded-xl text-[11px] font-extrabold transition-all flex flex-col items-center justify-center gap-0.5 min-h-[46px] ${
             viewMode === 'catalog'
@@ -694,6 +703,21 @@ const [customMinutesInput, setCustomMinutesInput] = useState<string>('20');
         >
           <Book className="w-4 h-4" />
           <span className="truncate">{t("Retseptlar")} ({recipes.length})</span>
+        </button>
+
+        <button
+          onClick={() => setViewMode('match')}
+          className={`py-2 rounded-xl text-[11px] font-black transition-all flex flex-col items-center justify-center gap-0.5 min-h-[46px] relative overflow-hidden ${
+            viewMode === 'match'
+              ? 'bg-gradient-to-r from-amber-500 via-pink-600 to-rose-600 text-white shadow-md ring-2 ring-pink-300'
+              : 'bg-gradient-to-r from-amber-50 to-pink-50 text-[#DB2777] border border-amber-200 hover:bg-pink-100'
+          }`}
+        >
+          <div className="flex items-center gap-1">
+            <Sparkles className="w-3.5 h-3.5 text-amber-300 animate-pulse" />
+            <span className="truncate">{t("Masalliqlardan")}</span>
+          </div>
+          <span className="text-[8px] bg-amber-400 text-amber-950 px-1.5 py-0.2 rounded-full font-black uppercase tracking-wider">✨ Qidirish</span>
         </button>
 
         <button
@@ -1025,7 +1049,7 @@ const [customMinutesInput, setCustomMinutesInput] = useState<string>('20');
         </div>
       )}
 
-      {/* MODE 2: CATALOG SEARCH AND BROWSE ALL 18 RECIPES */}
+      {/* MODE 1 (MAIN): CATALOG WITH GRID CATEGORY FOLDERS & SEARCH */}
       {viewMode === 'catalog' && (
         <div className="space-y-4">
           
@@ -1037,93 +1061,237 @@ const [customMinutesInput, setCustomMinutesInput] = useState<string>('20');
               value={searchQuery}
               onChange={e => setSearchQuery(e.target.value)}
               placeholder={t("Retsept yoki masalliq nomini yozing...")}
-              className="w-full pl-10 pr-4 py-3 rounded-2xl bg-white border border-[#EFE8DC] text-xs focus:outline-none focus:border-[#FF6B4A] shadow-2xs"
+              className="w-full pl-10 pr-9 py-3 rounded-2xl bg-white border border-[#EFE8DC] text-xs focus:outline-none focus:border-[#DB2777] shadow-2xs font-bold text-[#2E121D]"
             />
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery('')}
+                className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-gray-400 hover:text-gray-600 rounded-full"
+              >
+                <X className="w-3.5 h-3.5" />
+              </button>
+            )}
           </div>
 
-          <p className="text-xs font-bold text-[#6B6359] px-1">
-            {t("Jami retseptlar")}: <span className="text-[#FF6B4A] font-black">{catalogRecipes.length} ta</span>
-          </p>
-
-          {/* Recipes Catalog Cards Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-            {catalogRecipes.map(recipe => (
-              <motion.div
-                key={recipe.id}
-                whileHover={{ y: -2 }}
-                whileTap={{ scale: 0.985 }}
-                onClick={() => setActiveRecipe(recipe)}
-                className="card-3d p-2.5 cursor-pointer flex flex-col justify-between group relative"
+          {/* FOLDERS GRID MODE (When no folder is selected & no active search query) */}
+          {selectedFolderCategory === null && !searchQuery.trim() ? (
+            <div className="space-y-4">
+              
+              {/* Glowing Highlighted Banner for Masalliqlardan Search */}
+              <div
+                onClick={() => setViewMode('match')}
+                className="p-3.5 rounded-2xl bg-gradient-to-r from-amber-500 via-pink-600 to-rose-600 text-white shadow-lg cursor-pointer flex items-center justify-between group hover:scale-[1.01] transition-all relative overflow-hidden ring-2 ring-pink-400/50"
               >
-                <div>
-                  <div className="relative overflow-hidden rounded-lg mb-2">
-                    {(!recipe.rasm_url.startsWith('/') && !recipe.rasm_url.startsWith('http') && !recipe.rasm_url.startsWith('data:') && recipe.rasm_url.length <= 10) ? (
-                      <div className="w-full h-32 bg-gradient-to-br from-amber-100 via-orange-100 to-pink-100 flex items-center justify-center rounded-xl group-hover:scale-105 transition-transform duration-300 shadow-2xs">
-                        <span className="text-5xl filter drop-shadow-sm">{recipe.rasm_url}</span>
-                      </div>
-                    ) : (
-                      <div className="w-full h-32 bg-stone-900/5 rounded-xl overflow-hidden flex items-center justify-center border border-[#EFE8DC]">
-                        <img
-                          src={recipe.rasm_url}
-                          alt={recipe.nomi}
-                          onError={(e) => {
-                            e.currentTarget.style.display = 'none';
-                            const parent = e.currentTarget.parentElement;
-                            if (parent && !parent.querySelector('.emoji-fallback')) {
-                              const fallback = document.createElement('div');
-                              fallback.className = "emoji-fallback w-full h-32 bg-gradient-to-br from-amber-100 via-orange-100 to-pink-100 flex items-center justify-center rounded-xl";
-                              fallback.innerHTML = `<span class="text-4xl">🍲</span>`;
-                              parent.appendChild(fallback);
-                            }
-                          }}
-                          referrerPolicy="no-referrer"
-                          className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
-                        />
-                      </div>
-                    )}
-                    <span className="absolute top-1.5 right-1.5 bg-black/60 backdrop-blur text-white text-[9px] font-bold px-1.5 py-0.2 rounded-md flex items-center gap-1">
-                      <Clock className="w-2.5 h-2.5 text-amber-300" />
-                      {recipe.tayyorlash_vaqti_daq} {t("daq")}
-                    </span>
-
-                    {isAdmin && (
-                      <button
-                        onClick={(e) => handleOpenAdminEdit(recipe, e)}
-                        className="absolute bottom-1.5 right-1.5 bg-amber-500 text-white font-extrabold text-[9px] px-2 py-0.5 rounded-md flex items-center gap-1 shadow-sm border border-amber-300 z-10 active:scale-90"
-                        title="Tahrirlash"
-                      >
-                        <Pencil className="w-2.5 h-2.5" />
-                        Tahrir
-                      </button>
-                    )}
-
-                    <button
-                      onClick={(e) => toggleFavorite(recipe.id, e)}
-                      className="absolute top-1.5 left-1.5 p-1 rounded-full bg-white/90 backdrop-blur text-gray-600 hover:text-red-500 transition-colors shadow-2xs"
-                    >
-                      <Heart className={`w-3 h-3 ${favoriteRecipeIds.includes(recipe.id) ? 'fill-red-500 text-red-500' : ''}`} />
-                    </button>
+                <div className="flex items-center gap-3 relative z-10">
+                  <div className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur flex items-center justify-center text-xl shadow-xs">
+                    ✨
                   </div>
+                  <div>
+                    <h4 className="font-black text-xs sm:text-sm text-white tracking-tight flex items-center gap-1.5">
+                      <span>Masalliqlardan Taom Qidirish</span>
+                      <span className="bg-amber-300 text-amber-950 font-black text-[9px] px-1.5 py-0.2 rounded-full uppercase tracking-wider">Tezkor</span>
+                    </h4>
+                    <p className="text-[10px] text-pink-100 mt-0.5">
+                      Muzlatgichingizda bor masalliqlarni tanlang, mos taomlarni darhol topamiz!
+                    </p>
+                  </div>
+                </div>
+                <span className="text-xs font-black text-white bg-white/20 px-2.5 py-1 rounded-xl group-hover:translate-x-1 transition-transform shrink-0">
+                  Ochish →
+                </span>
+              </div>
 
-                  <h4 className="font-extrabold text-[#2D2A26] text-xs">
-                    {t(recipe.nomi)}
-                  </h4>
-                  <p className="text-[10px] text-[#7C746B] mt-0.5 line-clamp-2 leading-snug">
-                    {t(recipe.tarif_matni)}
+              {/* Folders Section Header */}
+              <div className="flex items-center justify-between px-1">
+                <div>
+                  <h3 className="font-black text-[#2E121D] text-sm">
+                    📂 Retseptlar Papkalari
+                  </h3>
+                  <p className="text-[10px] text-[#7C746B]">
+                    Kategoriyani tanlab, kerakli taomlarni toping
                   </p>
                 </div>
+                <button
+                  onClick={() => setSelectedFolderCategory('all')}
+                  className="text-[11px] font-extrabold text-[#DB2777] bg-white hover:bg-pink-50 px-2.5 py-1 rounded-xl border border-pink-200 shadow-2xs transition-colors flex items-center gap-1"
+                >
+                  <span>Barchasi ({recipes.length})</span>
+                  <ChevronRight className="w-3.5 h-3.5" />
+                </button>
+              </div>
 
-                <div className="mt-2 pt-1.5 border-t border-[#F5EFE6] flex items-center justify-between">
-                  <span className="text-[9px] text-[#8C8479] font-extrabold bg-[#FAF6EF] px-1.5 py-0.2 rounded-md border border-[#EFE8DC] capitalize">
-                    {t(recipe.qiyinlik)}
-                  </span>
-                  <span className="text-[11px] text-[#FF6B4A] font-black group-hover:underline">
-                    {t("Retseptni ko'rish")} →
+              {/* Grid of Folder Cards */}
+              <div className="grid grid-cols-2 gap-2.5">
+                {FOLDER_CATEGORIES.map(folder => {
+                  const count = folder.id === 'all'
+                    ? recipes.length
+                    : recipes.filter(r => r.kategoriya?.toLowerCase().trim() === folder.id.toLowerCase().trim() || (!r.kategoriya && folder.id === 'Milliy Quyuq Taomlar')).length;
+
+                  return (
+                    <motion.div
+                      key={folder.id}
+                      whileHover={{ y: -3 }}
+                      whileTap={{ scale: 0.97 }}
+                      onClick={() => setSelectedFolderCategory(folder.id)}
+                      className="p-3 rounded-2xl bg-white border border-[#EFE8DC] hover:border-pink-300 shadow-xs cursor-pointer flex flex-col justify-between space-y-2.5 relative overflow-hidden group transition-all"
+                    >
+                      <div className="flex items-start justify-between">
+                        <div className={`w-11 h-11 rounded-2xl bg-gradient-to-br ${folder.color} flex items-center justify-center text-2xl shadow-xs group-hover:scale-105 transition-transform`}>
+                          {folder.emoji}
+                        </div>
+                        <span className="text-[10px] font-extrabold text-[#DB2777] bg-pink-50 px-2 py-0.5 rounded-full border border-pink-100">
+                          {count} ta
+                        </span>
+                      </div>
+
+                      <div>
+                        <h4 className="font-extrabold text-[#2E121D] text-xs leading-tight group-hover:text-[#DB2777] transition-colors line-clamp-1">
+                          {folder.title}
+                        </h4>
+                        <p className="text-[9px] text-[#7C746B] mt-0.5 line-clamp-1">
+                          {folder.desc}
+                        </p>
+                      </div>
+
+                      <div className="pt-1 flex items-center justify-between text-[10px] font-extrabold text-[#9D4C6C]">
+                        <span>Papka</span>
+                        <span className="group-hover:translate-x-1 transition-transform">→</span>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </div>
+          ) : (
+            /* SELECTED FOLDER / ACTIVE SEARCH RECIPES GRID VIEW */
+            <div className="space-y-3">
+              {/* Navigation Header with Back Button */}
+              <div className="flex items-center justify-between bg-white p-2.5 rounded-2xl border border-[#EFE8DC] shadow-2xs">
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => {
+                      setSelectedFolderCategory(null);
+                      setSearchQuery('');
+                    }}
+                    className="px-2.5 py-1 rounded-xl bg-pink-50 text-[#DB2777] hover:bg-pink-100 transition-colors flex items-center gap-1 text-xs font-bold shrink-0"
+                  >
+                    <ArrowLeft className="w-4 h-4" />
+                    <span>Papkalar</span>
+                  </button>
+                  <div className="h-4 w-[1px] bg-gray-200" />
+                  <span className="font-black text-xs text-[#2E121D] truncate">
+                    {searchQuery ? `🔍 "${searchQuery}"` : (selectedFolderCategory === 'all' ? '🍽️ Barcha Retseptlar' : `📂 ${selectedFolderCategory}`)} ({catalogRecipes.length})
                   </span>
                 </div>
-              </motion.div>
-            ))}
-          </div>
+
+                <button
+                  onClick={() => {
+                    setSelectedFolderCategory(null);
+                    setSearchQuery('');
+                  }}
+                  className="text-[10px] font-extrabold text-[#DB2777] hover:underline shrink-0"
+                >
+                  Chiqish ✕
+                </button>
+              </div>
+
+              {/* Empty State when no recipes found in category */}
+              {catalogRecipes.length === 0 ? (
+                <div className="bg-white p-6 rounded-2xl border border-dashed border-[#EFE8DC] text-center space-y-2">
+                  <span className="text-4xl block">🍲</span>
+                  <p className="text-xs font-bold text-[#6B6359]">
+                    {t("Ushbu papkada hozircha retseptlar mavjud emas.")}
+                  </p>
+                  <button
+                    onClick={() => setSelectedFolderCategory(null)}
+                    className="px-3 py-1.5 bg-[#DB2777] text-white text-xs font-bold rounded-xl"
+                  >
+                    Boshqa papkani tanlash
+                  </button>
+                </div>
+              ) : (
+                /* Recipes Catalog Cards Grid */
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                  {catalogRecipes.map(recipe => (
+                    <motion.div
+                      key={recipe.id}
+                      whileHover={{ y: -2 }}
+                      whileTap={{ scale: 0.985 }}
+                      onClick={() => setActiveRecipe(recipe)}
+                      className="card-3d p-2.5 cursor-pointer flex flex-col justify-between group relative bg-white rounded-2xl border border-[#EFE8DC]"
+                    >
+                      <div>
+                        <div className="relative overflow-hidden rounded-lg mb-2">
+                          {(!recipe.rasm_url.startsWith('/') && !recipe.rasm_url.startsWith('http') && !recipe.rasm_url.startsWith('data:') && recipe.rasm_url.length <= 10) ? (
+                            <div className="w-full h-32 bg-gradient-to-br from-amber-100 via-orange-100 to-pink-100 flex items-center justify-center rounded-xl group-hover:scale-105 transition-transform duration-300 shadow-2xs">
+                              <span className="text-5xl filter drop-shadow-sm">{recipe.rasm_url}</span>
+                            </div>
+                          ) : (
+                            <div className="w-full h-32 bg-stone-900/5 rounded-xl overflow-hidden flex items-center justify-center border border-[#EFE8DC]">
+                              <img
+                                src={recipe.rasm_url}
+                                alt={recipe.nomi}
+                                onError={(e) => {
+                                  e.currentTarget.style.display = 'none';
+                                  const parent = e.currentTarget.parentElement;
+                                  if (parent && !parent.querySelector('.emoji-fallback')) {
+                                    const fallback = document.createElement('div');
+                                    fallback.className = "emoji-fallback w-full h-32 bg-gradient-to-br from-amber-100 via-orange-100 to-pink-100 flex items-center justify-center rounded-xl";
+                                    fallback.innerHTML = `<span class="text-4xl">🍲</span>`;
+                                    parent.appendChild(fallback);
+                                  }
+                                }}
+                                referrerPolicy="no-referrer"
+                                className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                              />
+                            </div>
+                          )}
+                          <span className="absolute top-1.5 right-1.5 bg-black/60 backdrop-blur text-white text-[9px] font-bold px-1.5 py-0.2 rounded-md flex items-center gap-1">
+                            <Clock className="w-2.5 h-2.5 text-amber-300" />
+                            {recipe.tayyorlash_vaqti_daq} {t("daq")}
+                          </span>
+
+                          {isAdmin && (
+                            <button
+                              onClick={(e) => handleOpenAdminEdit(recipe, e)}
+                              className="absolute bottom-1.5 right-1.5 bg-amber-500 text-white font-extrabold text-[9px] px-2 py-0.5 rounded-md flex items-center gap-1 shadow-sm border border-amber-300 z-10 active:scale-90"
+                              title="Tahrirlash"
+                            >
+                              <Pencil className="w-2.5 h-2.5" />
+                              Tahrir
+                            </button>
+                          )}
+
+                          <button
+                            onClick={(e) => toggleFavorite(recipe.id, e)}
+                            className="absolute top-1.5 left-1.5 p-1 rounded-full bg-white/90 backdrop-blur text-gray-600 hover:text-red-500 transition-colors shadow-2xs"
+                          >
+                            <Heart className={`w-3 h-3 ${favoriteRecipeIds.includes(recipe.id) ? 'fill-red-500 text-red-500' : ''}`} />
+                          </button>
+                        </div>
+
+                        <h4 className="font-extrabold text-[#2D2A26] text-xs">
+                          {t(recipe.nomi)}
+                        </h4>
+                        <p className="text-[10px] text-[#7C746B] mt-0.5 line-clamp-2 leading-snug">
+                          {t(recipe.tarif_matni)}
+                        </p>
+                      </div>
+
+                      <div className="mt-2 pt-1.5 border-t border-[#F5EFE6] flex items-center justify-between">
+                        <span className="text-[9px] text-[#8C8479] font-extrabold bg-[#FAF6EF] px-1.5 py-0.2 rounded-md border border-[#EFE8DC] capitalize">
+                          {t(recipe.qiyinlik)}
+                        </span>
+                        <span className="text-[11px] text-[#FF6B4A] font-black group-hover:underline">
+                          {t("Retseptni ko'rish")} →
+                        </span>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
 
         </div>
       )}

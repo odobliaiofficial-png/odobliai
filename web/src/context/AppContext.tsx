@@ -233,7 +233,15 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     return saved && typeof saved === 'object' ? { ...defaultProgress, ...saved } : defaultProgress;
   });
   const [script, setScriptState] = useState<ScriptType>(() => loadStorage('script', 'lotin'));
-  const [activeTab, setActiveTab] = useState<ActiveTab>('home');
+  const [activeTab, setActiveTab] = useState<ActiveTab>(() => {
+    if (typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('admin') === 'true' || urlParams.get('mode') === 'admin' || window.location.hash.includes('admin')) {
+        return 'admin';
+      }
+    }
+    return 'home';
+  });
   const [selectedAgeFilter, setSelectedAgeFilter] = useState<string>('Barchasi');
 
   // Admin Security verification (Telegram ID: 8544023815 or PC Browser Admin mode)
@@ -258,19 +266,40 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     const custom = saved.filter(i => !systemIds.has(i.id));
     return [...initialIngredients, ...custom];
   });
+
   const [recipes, setRecipes] = useState<Recipe[]>(() => {
     const saved = loadStorage<Recipe[]>('recipes', []);
-    if (!Array.isArray(saved) || saved.length === 0) return initialRecipes;
+    const cachedEdits = loadStorage<Record<string, any>>('supabase_recipe_edits_cache', {});
+
+    const applyEdit = (r: Recipe) => {
+      const edit = cachedEdits[r.id];
+      if (!edit) return r;
+      return {
+        ...r,
+        rasm_url: edit.rasm_url || r.rasm_url,
+        nomi: edit.nomi || r.nomi,
+        kategoriya: edit.kategoriya || r.kategoriya,
+        tayyorlash_vaqti_daq: edit.tayyorlash_vaqti_daq || r.tayyorlash_vaqti_daq,
+        qiyinlik: edit.qiyinlik || r.qiyinlik,
+        tarif_matni: edit.tarif_matni || r.tarif_matni,
+        masalliqlar_matni: edit.masalliqlar_matni || r.masalliqlar_matni,
+        korsatmalari: edit.korsatmalari ? (Array.isArray(edit.korsatmalari) ? edit.korsatmalari : edit.korsatmalari.split('\n').filter(Boolean)) : r.korsatmalari,
+      };
+    };
+
+    if (!Array.isArray(saved) || saved.length === 0) {
+      return initialRecipes.map(applyEdit);
+    }
     
     // Create map of saved modified recipes
-    const savedMap = new Map(saved.map(r => [r.id, r]));
+    const savedMap = new Map(saved.map(r => [r.id, applyEdit(r)]));
     
     // Merge: for every system recipe in initialRecipes, use saved edited version if exists
-    const merged = initialRecipes.map(initialRec => savedMap.get(initialRec.id) || initialRec);
+    const merged = initialRecipes.map(initialRec => savedMap.get(initialRec.id) || applyEdit(initialRec));
     
     // Include any new custom recipes
     const initialIds = new Set(initialRecipes.map(r => r.id));
-    const customNew = saved.filter(r => !initialIds.has(r.id));
+    const customNew = saved.filter(r => !initialIds.has(r.id)).map(applyEdit);
     
     return [...merged, ...customNew];
   });
@@ -279,6 +308,11 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   useEffect(() => {
     supabase.from('recipe_edits').select('*').then(({ data, error }) => {
       if (error || !data || data.length === 0) return;
+      
+      const editsObj: Record<string, any> = {};
+      data.forEach((e: any) => { editsObj[e.recipe_id] = e; });
+      saveStorage('supabase_recipe_edits_cache', editsObj);
+
       const editsMap = new Map(data.map((e: any) => [e.recipe_id, e]));
       setRecipes(prev => prev.map(r => {
         const edit = editsMap.get(r.id);
@@ -292,7 +326,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
           qiyinlik: edit.qiyinlik || r.qiyinlik,
           tarif_matni: edit.tarif_matni || r.tarif_matni,
           masalliqlar_matni: edit.masalliqlar_matni || r.masalliqlar_matni,
-          korsatmalari: edit.korsatmalari ? edit.korsatmalari.split('\n').filter(Boolean) : r.korsatmalari,
+          korsatmalari: edit.korsatmalari ? (Array.isArray(edit.korsatmalari) ? edit.korsatmalari : edit.korsatmalari.split('\n').filter(Boolean)) : r.korsatmalari,
         };
       }));
     });
@@ -744,7 +778,26 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   const updateRecipe = (recipe: Recipe) => {
-    setRecipes(prev => prev.map(r => r.id === recipe.id ? recipe : r));
+    setRecipes(prev => {
+      const next = prev.map(r => r.id === recipe.id ? recipe : r);
+      saveStorage('recipes', next);
+      return next;
+    });
+
+    const cached = loadStorage<Record<string, any>>('supabase_recipe_edits_cache', {});
+    cached[recipe.id] = {
+      recipe_id: recipe.id,
+      rasm_url: recipe.rasm_url,
+      nomi: recipe.nomi,
+      kategoriya: recipe.kategoriya,
+      tayyorlash_vaqti_daq: recipe.tayyorlash_vaqti_daq,
+      qiyinlik: recipe.qiyinlik,
+      tarif_matni: recipe.tarif_matni,
+      masalliqlar_matni: recipe.masalliqlar_matni,
+      korsatmalari: Array.isArray(recipe.korsatmalari) ? recipe.korsatmalari.join('\n') : recipe.korsatmalari,
+    };
+    saveStorage('supabase_recipe_edits_cache', cached);
+
     // Persist to Supabase so all users see the change
     supabase.from('recipe_edits').upsert({
       recipe_id: recipe.id,
