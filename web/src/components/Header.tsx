@@ -42,7 +42,7 @@ export const Header: React.FC = () => {
             <div>
               <div className="flex items-center gap-1.5">
                 <h1 className="font-extrabold text-[#831843] text-lg tracking-tight leading-none">
-                  odobli.ai
+                  Pazanda AI
                 </h1>
                 {user.is_premium ? (
                   <span className="badge-gold text-[10px] font-extrabold px-2 py-0.5 rounded-full shadow-xs">

@@ -61,7 +61,7 @@ export const PaymentModal: React.FC = () => {
             <div className="bg-gradient-to-r from-[#BE185D] to-[#DB2777] p-4 rounded-2xl text-white space-y-2 shadow-md">
               <div className="flex items-center justify-between text-xs text-amber-300 font-semibold">
                 <span>UZCARD / HUMO</span>
-                <span>Odobli.ai Rasmiy</span>
+                <span>Pazanda AI Rasmiy</span>
               </div>
               <div className="flex items-center justify-between">
                 <p className="font-mono text-lg font-black tracking-widest text-amber-100">
@@ -77,7 +77,7 @@ export const PaymentModal: React.FC = () => {
                 </button>
               </div>
               <p className="text-[11px] text-pink-100">
-                {t("Qabul qiluvchi")}: Odobli.ai Jamg'armasi
+                {t("Qabul qiluvchi")}: Pazanda AI Jamg'armasi
               </p>
             </div>
 

@@ -57,7 +57,7 @@ export class ErrorBoundary extends Component<Props, State> {
             ✨
           </div>
           <h2 className="text-xl font-black text-[#831843]">
-            Odobli.ai Qayta Yuklanmoqda...
+            Pazanda AI Qayta Yuklanmoqda...
           </h2>
           <p className="text-xs text-[#9D4C6C] max-w-xs leading-relaxed">
             Ilovani eng so'nggi va toza holatda ochish uchun quyidagi tugmani bosing.

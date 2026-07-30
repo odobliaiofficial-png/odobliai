@@ -199,7 +199,7 @@ export const AdminPanel: React.FC = () => {
       yosh_toifasi: taleAgeGroup,
       muqova_rasm_url: taleCover,
       holat: 'nashr',
-      muallif: 'Odobli.ai Jamoasi',
+      muallif: 'Pazanda AI Jamoasi',
       sahifalar: [
         {
           id: `p1_${Date.now()}`,

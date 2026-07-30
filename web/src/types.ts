@@ -144,7 +144,7 @@ export interface ShoppingItem {
   bajarildi: boolean;
 }
 
-export type ActiveTab = 'home' | 'pazanda' | 'bolajon' | 'lifehacklar' | 'profil' | 'admin';
+export type ActiveTab = 'home' | 'pazanda' | 'lifehacklar' | 'profil' | 'admin';
 
 // Type Aliases for compatibility
 export type Ertak = Tale;

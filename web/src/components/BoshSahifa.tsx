@@ -54,24 +54,15 @@ export const BoshSahifa: React.FC = () => {
     },
     {
       id: 1,
-      title: "Sehrli Bolajon & Ertaklar",
-      subtitle: "Audio ertaklar, bilimli o'yinlar va qiziqarli topishmoqlar!",
-      badge: "ZUKKO BOLAJON",
-      tab: 'bolajon',
-      btnText: "Ertaklar Dunyosi",
-      icon: "🧸"
+      title: "Aql-idrokli Bozorlik Ro'yxati",
+      subtitle: "Retseptlardan avtomatik masalliqlar ro'yxatini shakllantiring.",
+      badge: "BOZORLIK YORDAMCHISI",
+      tab: 'pazanda',
+      btnText: "Bozorlik Ro'yxati",
+      icon: "🛒"
     },
     {
       id: 2,
-      title: "Oila Kun Tartibi & Mukofotlar",
-      subtitle: "Farzandlar bilan kunlik topshiriqlarni bajarib ball to'plang.",
-      badge: "INTIZOM VA TARTIB",
-      tab: 'bolajon',
-      btnText: "Vazifalarni Ko'rish",
-      icon: "🏆"
-    },
-    {
-      id: 3,
       title: "Ro'zg'or Lifehacklari",
       subtitle: "Pazandalik va uy-ro'zg'or bo'yicha foydali maslahatlar.",
       badge: "FOYDALI MASLAHAT",
@@ -101,21 +92,15 @@ export const BoshSahifa: React.FC = () => {
       gradient: 'from-amber-100 to-orange-100 border-amber-200/80 shadow-amber-500/10' 
     },
     { 
-      id: 'bolajon', 
-      label: 'Ertaklar', 
-      icon: <BookOpenCheck className="w-5 h-5 text-purple-600 drop-shadow-xs" />, 
-      gradient: 'from-purple-100 to-pink-100 border-purple-200/80 shadow-purple-500/10' 
-    },
-    { 
       id: 'lifehacklar', 
       label: 'Lifehacklar', 
       icon: <Lightbulb className="w-5 h-5 text-emerald-600 drop-shadow-xs" />, 
       gradient: 'from-emerald-100 to-teal-100 border-emerald-200/80 shadow-emerald-500/10' 
     },
     { 
-      id: 'bolajon', 
-      label: 'Topishmoq', 
-      icon: <BrainCircuit className="w-5 h-5 text-rose-600 drop-shadow-xs" />, 
+      id: 'pazanda', 
+      label: "Bo'limlar", 
+      icon: <Utensils className="w-5 h-5 text-rose-600 drop-shadow-xs" />, 
       gradient: 'from-rose-100 to-pink-100 border-rose-200/80 shadow-rose-500/10' 
     },
   ];
@@ -287,7 +272,7 @@ export const BoshSahifa: React.FC = () => {
           {/* Item 2: Tale Card */}
           <motion.div
             whileHover={{ y: -2 }}
-            onClick={() => setActiveTab('bolajon')}
+            onClick={() => setActiveTab('lifehacklar')}
             className="card-pink p-2.5 relative flex flex-col justify-between cursor-pointer group"
           >
             <button
@@ -342,7 +327,7 @@ export const BoshSahifa: React.FC = () => {
           {/* Item 3: Riddle Card */}
           <motion.div
             whileHover={{ y: -2 }}
-            onClick={() => setActiveTab('bolajon')}
+            onClick={() => setActiveTab('lifehacklar')}
             className="card-pink p-2.5 relative flex flex-col justify-between cursor-pointer group"
           >
             <button

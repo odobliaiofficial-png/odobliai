@@ -10,7 +10,6 @@ export const BottomNav: React.FC = () => {
   const navItems: { id: ActiveTab; label: string; icon: React.ReactNode }[] = [
     { id: 'home', label: 'Bosh sahifa', icon: <Home className="w-5 h-5" /> },
     { id: 'pazanda', label: 'Pazanda AI', icon: <ChefHat className="w-5 h-5" /> },
-    { id: 'bolajon', label: 'Bolajon', icon: <Sparkles className="w-5 h-5" /> },
     { id: 'lifehacklar', label: 'Lifehacklar', icon: <Lightbulb className="w-5 h-5" /> },
     { id: 'profil', label: 'Profil', icon: <User className="w-5 h-5" /> },
   ];

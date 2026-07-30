@@ -457,7 +457,7 @@ export const PazandaAI: React.FC = () => {
       recipeIngredientItems.map(item => `• ${scaleIngredientString(item, 4, portions)}`).join('\n') +
       `\n\n📖 *Tayyorlanishi:*\n` +
       activeRecipe.korsatmalari.map((k, i) => `${i + 1}. ${t(k)}`).join('\n') +
-      `\n\n✨ _Odobli.ai Pazanda AI orqali tayyorlandi_`;
+      `\n\n✨ _Pazanda AI orqali tayyorlandi_\n👉 Botimiz: @Pazandaaibot`;
 
     navigator.clipboard.writeText(text);
     showToast("📋 Retsept va bozorlik ro'yxati nusxalandi! Telegramga joylashingiz mumkin.");

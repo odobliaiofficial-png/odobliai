@@ -210,6 +210,29 @@ export const Profil: React.FC = () => {
         )}
       </div>
 
+      
+      {/* Botga Taklif Qilish & Ulashish */}
+      <div className="card-pink p-3.5 rounded-3xl space-y-2.5 shadow-2xs border border-pink-100 bg-gradient-to-r from-amber-500 to-orange-500 text-white">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <span className="text-2xl">🎁</span>
+            <div>
+              <h3 className="font-extrabold text-white text-xs">Pazanda AI Botini Do'stlarga Ulashish</h3>
+              <p className="text-[10px] text-amber-100 font-medium">Yaqinlaringizga aql-idrokli retseptlar botini ulashing!</p>
+            </div>
+          </div>
+        </div>
+
+        <a
+          href="https://t.me/share/url?url=https://t.me/Pazandaaibot&text=Pazanda%20AI%20-%20Aql-idrokli%20Oila%20va%20Pazandalik%20Yordamchisi!%2060%2B%20mazali%20retseptlar%20va%20bozorlik%20ro'yxati"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-full py-2.5 px-4 bg-white text-orange-600 rounded-2xl font-black text-xs flex items-center justify-center gap-2 shadow-sm hover:bg-orange-50 active:scale-98 transition-all"
+        >
+          <span>✈️ Telegram'da Do'stlarga Ulashish</span>
+        </a>
+      </div>
+
       {/* Sozlamalar: Ismni tahrirlash & Alifbo Skripti */}
       <div className="card-pink p-3.5 rounded-3xl space-y-2.5 shadow-2xs border border-pink-100">
         <div className="flex items-center justify-between">

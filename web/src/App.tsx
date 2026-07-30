@@ -4,7 +4,6 @@ import { Header } from './components/Header';
 import { BottomNav } from './components/BottomNav';
 import { BoshSahifa } from './components/BoshSahifa';
 import { PazandaAI } from './components/PazandaAI';
-import { Bolajon } from './components/Bolajon';
 import { Lifehacklar } from './components/Lifehacklar';
 import { Profil } from './components/Profil';
 import { AdminPanel } from './components/AdminPanel';
@@ -32,7 +31,6 @@ const AppContent: React.FC = () => {
         <main className="flex-1 px-4 pt-3">
           {activeTab === 'home' && <BoshSahifa />}
           {activeTab === 'pazanda' && <PazandaAI />}
-          {activeTab === 'bolajon' && <Bolajon />}
           {activeTab === 'lifehacklar' && <Lifehacklar />}
           {activeTab === 'profil' && <Profil />}
           {activeTab === 'admin' && <AdminPanel />}
