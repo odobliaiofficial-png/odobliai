@@ -223,7 +223,10 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     const saved = loadStorage<Recipe[]>('recipes', []);
     if (!Array.isArray(saved) || saved.length === 0) return initialRecipes;
     const systemIds = new Set(initialRecipes.map(r => r.id));
-    const custom = saved.filter(r => !systemIds.has(r.id));
+    // Filter custom user created recipes only, ignore deleted system HD recipes
+    const custom = saved.filter(r => r.id.startsWith('user_rec_') && !systemIds.has(r.id));
+    // Clear localStorage to reset cached dataset
+    try { localStorage.removeItem('odobli_recipes'); } catch {}
     return [...initialRecipes, ...custom];
   });
   const [tales, setTales] = useState<Tale[]>(() => {
