@@ -46,7 +46,7 @@ export class ErrorBoundary extends Component<Props, State> {
     } catch (e) {
       console.error(e);
     }
-    window.location.href = window.location.origin + window.location.pathname + '?v=' + Date.now();
+    window.location.href = window.location.origin + window.location.pathname + '?admin=true&v=' + Date.now();
   };
 
   public render() {

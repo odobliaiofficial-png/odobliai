@@ -292,7 +292,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   const [bannerConfig, setBannerConfig] = useState<BannerConfig>(() => {
     const saved = loadStorage<BannerConfig>('banner_config', defaultBannerConfig);
-    return saved || defaultBannerConfig;
+    return saved && typeof saved === 'object' ? { ...defaultBannerConfig, ...saved } : defaultBannerConfig;
   });
 
   useEffect(() => {
@@ -305,7 +305,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         try {
           const parsed = JSON.parse(data.tarif_matni);
           if (parsed && typeof parsed === 'object') {
-            setBannerConfig(prev => ({ ...prev, ...parsed }));
+            setBannerConfig(prev => ({ ...defaultBannerConfig, ...prev, ...parsed }));
           }
         } catch (e) {}
       }

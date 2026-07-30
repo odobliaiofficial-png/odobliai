@@ -62,6 +62,14 @@ export const BoshSahifa: React.FC = () => {
     },
   ];
 
+  const banner = bannerConfig || {
+    image_url: '',
+    title: "Pazanda AI — Mazali Retseptlar",
+    subtitle: "Uydagi masalliqlardan milliy va mazali taomlar tayyorlang.",
+    badge: "AQL-IDROK PAZANDA",
+    button_text: "Retseptlarni Ko'rish"
+  };
+
   return (
     <div className="space-y-4 pb-28 pt-1">
       
@@ -111,10 +119,10 @@ export const BoshSahifa: React.FC = () => {
 
       {/* ULTRA-SLEEK 21:9 HERO BANNER WITH CUSTOM IMAGE SUPPORT */}
       <div className="w-full aspect-[21/9] relative overflow-hidden rounded-2xl shadow-lg group border border-pink-200/60">
-        {bannerConfig.image_url ? (
+        {banner.image_url ? (
           <img
-            src={bannerConfig.image_url}
-            alt={bannerConfig.title}
+            src={banner.image_url}
+            alt={banner.title}
             referrerPolicy="no-referrer"
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             onError={(e) => {
@@ -128,13 +136,13 @@ export const BoshSahifa: React.FC = () => {
           <div className="space-y-0.5 max-w-[70%]">
             <span className="bg-amber-400/90 text-amber-950 text-[9px] font-black tracking-wider uppercase px-2 py-0.5 rounded-full inline-flex items-center gap-1 shadow-2xs">
               <Sparkles className="w-2.5 h-2.5 text-amber-950" />
-              {t(bannerConfig.badge || "AQL-IDROK PAZANDA")}
+              {t(banner.badge || "AQL-IDROK PAZANDA")}
             </span>
             <h2 className="text-xs sm:text-sm font-black tracking-tight leading-tight text-white line-clamp-1 drop-shadow-xs">
-              {t(bannerConfig.title || "Pazanda AI — Mazali Retseptlar")}
+              {t(banner.title || "Pazanda AI — Mazali Retseptlar")}
             </h2>
             <p className="text-[10px] text-rose-100 line-clamp-1 hidden sm:block">
-              {t(bannerConfig.subtitle || "Uydagi masalliqlardan milliy va mazali taomlar tayyorlang.")}
+              {t(banner.subtitle || "Uydagi masalliqlardan milliy va mazali taomlar tayyorlang.")}
             </p>
           </div>
 
@@ -143,7 +151,7 @@ export const BoshSahifa: React.FC = () => {
               onClick={() => setActiveTab('pazanda')}
               className="btn-gold-pill px-3 py-1 text-[10.5px] font-black flex items-center gap-1 shadow-md active:scale-95 transition-all"
             >
-              <span>{t(bannerConfig.button_text || "Retseptlarni Ko'rish")}</span>
+              <span>{t(banner.button_text || "Retseptlarni Ko'rish")}</span>
               <ArrowUpRight className="w-3 h-3" />
             </button>
           </div>

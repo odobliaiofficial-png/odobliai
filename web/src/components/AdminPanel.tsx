@@ -69,11 +69,11 @@ export const AdminPanel: React.FC = () => {
   const [activeAdminTab, setActiveAdminTab] = useState<'recipes' | 'banner' | 'lifehacks' | 'users' | 'dashboard'>('recipes');
 
   // Banner Form State
-  const [bannerTitleInput, setBannerTitleInput] = useState<string>(bannerConfig.title || '');
-  const [bannerSubtitleInput, setBannerSubtitleInput] = useState<string>(bannerConfig.subtitle || '');
-  const [bannerBadgeInput, setBannerBadgeInput] = useState<string>(bannerConfig.badge || '');
-  const [bannerButtonTextInput, setBannerButtonTextInput] = useState<string>(bannerConfig.button_text || '');
-  const [bannerImageUrl, setBannerImageUrl] = useState<string>(bannerConfig.image_url || '');
+  const [bannerTitleInput, setBannerTitleInput] = useState<string>(bannerConfig?.title || '');
+  const [bannerSubtitleInput, setBannerSubtitleInput] = useState<string>(bannerConfig?.subtitle || '');
+  const [bannerBadgeInput, setBannerBadgeInput] = useState<string>(bannerConfig?.badge || '');
+  const [bannerButtonTextInput, setBannerButtonTextInput] = useState<string>(bannerConfig?.button_text || '');
+  const [bannerImageUrl, setBannerImageUrl] = useState<string>(bannerConfig?.image_url || '');
   const [isUploadingBanner, setIsUploadingBanner] = useState<boolean>(false);
   const [bannerSuccessToast, setBannerSuccessToast] = useState<string | null>(null);
 
