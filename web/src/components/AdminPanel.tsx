@@ -77,9 +77,7 @@ export const AdminPanel: React.FC = () => {
   const [isUploadingBanner, setIsUploadingBanner] = useState<boolean>(false);
   const [bannerSuccessToast, setBannerSuccessToast] = useState<string | null>(null);
 
-  const handleBannerImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
+  const processBannerFile = async (file: File) => {
     try {
       setIsUploadingBanner(true);
       const compressed = await compressImage(file, 1200, 0.8);
@@ -89,6 +87,24 @@ export const AdminPanel: React.FC = () => {
       alert("Rasmni yuklashda xatolik yuz berdi");
     } finally {
       setIsUploadingBanner(false);
+    }
+  };
+
+  const handleBannerImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) processBannerFile(file);
+  };
+
+  const handleBannerPaste = (e: React.ClipboardEvent) => {
+    const items = e.clipboardData?.items;
+    if (!items) return;
+    for (const item of items) {
+      if (item.type.startsWith('image/')) {
+        e.preventDefault();
+        const blob = item.getAsFile();
+        if (blob) processBannerFile(blob);
+        return;
+      }
     }
   };
 
@@ -143,6 +159,27 @@ export const AdminPanel: React.FC = () => {
   const [riddleAnswer, setRiddleAnswer] = useState<string>('');
   const [riddleOptions, setRiddleOptions] = useState<string>('Javob A, Javob B, Javob C');
   const [riddleAgeGroup, setRiddleAgeGroup] = useState<'3-5' | '6-8' | '9-12'>('3-5');
+
+  /** Generic Ctrl+V paste handler — compresses and uploads, then calls setter */
+  const handleImagePasteFor = (setter: (url: string) => void) => async (e: React.ClipboardEvent) => {
+    const items = e.clipboardData?.items;
+    if (!items) return;
+    for (const item of items) {
+      if (item.type.startsWith('image/')) {
+        e.preventDefault();
+        const blob = item.getAsFile();
+        if (!blob) return;
+        try {
+          const compressed = await compressImage(blob, 800, 0.75);
+          const publicUrl = await uploadImageToSupabase(compressed, `paste_${Date.now()}`);
+          setter(publicUrl);
+        } catch {
+          alert("Rasmni yuklashda xatolik yuz berdi");
+        }
+        return;
+      }
+    }
+  };
 
   // PIN Unlock Verification
   const handlePinSubmit = (e: React.FormEvent) => {
@@ -522,7 +559,7 @@ export const AdminPanel: React.FC = () => {
           <form onSubmit={handleSaveBanner} className="space-y-4 pt-2">
             
             {/* Image upload field */}
-            <div className="bg-pink-50/50 p-4 rounded-2xl border border-pink-100 space-y-2">
+            <div className="bg-pink-50/50 p-4 rounded-2xl border border-pink-100 space-y-2" onPaste={handleBannerPaste}>
               <label className="text-xs font-black text-[#2E121D] flex items-center gap-1.5">
                 <Upload className="w-4 h-4 text-[#DB2777]" />
                 <span>Banner Rasmi (21:9 O'lchamga mos):</span>
@@ -556,7 +593,8 @@ export const AdminPanel: React.FC = () => {
                 type="text"
                 value={bannerImageUrl}
                 onChange={e => setBannerImageUrl(e.target.value)}
-                placeholder="yoki Rasm URL havolasi (https://...)"
+                onPaste={handleBannerPaste}
+                placeholder="URL yoki Ctrl+V (📋 rasm qo'yish)"
                 className="w-full text-xs p-2.5 rounded-xl border border-pink-200 bg-white focus:outline-none focus:border-[#DB2777]"
               />
             </div>
@@ -955,9 +993,11 @@ export const AdminPanel: React.FC = () => {
               <div>
                 <label className="font-bold text-[#2D2A26] block mb-1">Rasm URL</label>
                 <input
-                  type="url"
+                  type="text"
                   value={recipeImage}
                   onChange={e => setRecipeImage(e.target.value)}
+                  onPaste={handleImagePasteFor(setRecipeImage)}
+                  placeholder="URL yoki Ctrl+V (📋 rasm qo'yish)"
                   className="w-full px-3 py-2 border rounded-xl"
                 />
               </div>

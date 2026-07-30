@@ -98,10 +98,7 @@ export const PazandaAI: React.FC = () => {
     setEditKorsatmalar(Array.isArray(rec.korsatmalari) ? rec.korsatmalari.join('\n') : rec.korsatmalari);
   };
 
-  const handleImageFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
+  const processImageFile = async (file: File) => {
     try {
       setIsCompressingImage(true);
       showToast("📷 Rasm siqilmoqda va serverga yuklanmoqda...");
@@ -113,6 +110,24 @@ export const PazandaAI: React.FC = () => {
       showToast("❌ Rasmni yuklashda xatolik yuz berdi");
     } finally {
       setIsCompressingImage(false);
+    }
+  };
+
+  const handleImageFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) processImageFile(file);
+  };
+
+  const handleImagePaste = (e: React.ClipboardEvent) => {
+    const items = e.clipboardData?.items;
+    if (!items) return;
+    for (const item of items) {
+      if (item.type.startsWith('image/')) {
+        e.preventDefault();
+        const blob = item.getAsFile();
+        if (blob) processImageFile(blob);
+        return;
+      }
     }
   };
 
@@ -1955,27 +1970,36 @@ const [customMinutesInput, setCustomMinutesInput] = useState<string>('20');
                 </div>
               </div>
 
-              {/* Image URL & Compressed Upload with Live Preview */}
-              <div className="space-y-1.5">
+              {/* Image URL & Compressed Upload with Live Preview — supports Ctrl+V paste */}
+              <div className="space-y-1.5" onPaste={handleImagePaste}>
                 <label className="block text-xs font-bold text-gray-700">Rasm / Emoji:</label>
                 
-                {/* Live Preview Box */}
-                {editRasmUrl && (
-                  <div className="w-full h-40 bg-stone-900/5 rounded-xl overflow-hidden flex items-center justify-center border border-gray-200 p-1 mb-2">
-                    {(editRasmUrl.startsWith('/') || editRasmUrl.startsWith('http') || editRasmUrl.startsWith('data:') || editRasmUrl.length > 10) ? (
+                {/* Live Preview Box / Paste Target */}
+                <div
+                  className={`w-full h-40 rounded-xl overflow-hidden flex items-center justify-center border-2 border-dashed p-1 mb-2 transition-colors cursor-pointer ${
+                    editRasmUrl ? 'border-gray-200 bg-stone-900/5' : 'border-amber-300 bg-amber-50/50'
+                  }`}
+                  tabIndex={0}
+                  title="Ctrl+V bosib rasm qo'ying"
+                >
+                  {editRasmUrl ? (
+                    (editRasmUrl.startsWith('/') || editRasmUrl.startsWith('http') || editRasmUrl.startsWith('data:') || editRasmUrl.length > 10) ? (
                       <img src={editRasmUrl} alt="Preview" className="w-full h-full object-contain rounded-lg" />
                     ) : (
                       <span className="text-5xl">{editRasmUrl}</span>
-                    )}
-                  </div>
-                )}
+                    )
+                  ) : (
+                    <span className="text-xs text-amber-500 font-bold">📋 Ctrl+V bosib rasm qo'ying</span>
+                  )}
+                </div>
 
                 <div className="flex items-center gap-2">
                   <input
                     type="text"
                     value={editRasmUrl}
                     onChange={(e) => setEditRasmUrl(e.target.value)}
-                    placeholder="URL, Base64 yoki Emoji (masalan: 🍲)"
+                    onPaste={handleImagePaste}
+                    placeholder="URL, Emoji yoki Ctrl+V (📋)"
                     className="flex-1 px-3 py-2 text-xs font-bold rounded-xl border border-gray-300 focus:border-amber-500 focus:outline-none"
                   />
                   <label className="cursor-pointer px-3 py-2 bg-amber-500 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 hover:bg-amber-600 transition-colors shadow-2xs">
