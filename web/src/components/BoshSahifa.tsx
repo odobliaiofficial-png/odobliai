@@ -15,7 +15,8 @@ import {
   ChefHat,
   BookOpenCheck,
   Lightbulb,
-  BrainCircuit
+  BrainCircuit,
+  Utensils
 } from 'lucide-react';
 
 export const BoshSahifa: React.FC = () => {
