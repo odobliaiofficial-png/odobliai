@@ -1283,6 +1283,204 @@ export const initialRecipes: Recipe[] = [
     required_ingredient_ids: ['ing_un', 'ing_qaymoq', 'ing_tuxum', 'ing_shakar']
   }
 
+  ,
+  {
+    id: 'rec_hd_070_sourdough_key_lime_ricotta_cookies',
+    nomi: 'Hamirturushli Laymli va Rikottali Pechenye (Sourdough Key Lime Ricotta Cookies)',
+    tayyorlash_vaqti_daq: 45,
+    qiyinlik: 'orta',
+    kategoriya: 'Pishiriqlar & Shirinliklar',
+    rasm_url: '🍪',
+    tarif_matni: "O'ziga xos nordon-shirin laym va rikotta pishlog'i hamda achigan hamirturushli og'izda eriydigan pechenye.",
+    masalliqlar_matni: "113 g saryog' (yumshatilgan)\n200 g shakar\n1 dona tuxum\n120 g achigan hamirturush (sourdough starter)\n125 g rikotta pishlog'i\n1 dona laym po'stining qirilgan rendasi\n1 choy qoshiq vanil ekstrakti\n360 g un\n15 g (1 osh qoshiq) qabartma kukun (Razrixlitel)\nYarim choy qoshiq dengiz tuzi\nGlazur va bezak uchun:\n90 g shakar kukuni (elangan)\n1-2 dona laym sharbati va rendasi",
+    korsatmalari: [
+      "Pechni 180°C gacha qizdiring. Ikki dona pishirish varag'iga pergament qog'oz solib tayyorlang.",
+      "Idishda yumshoq saryog' va shakarni mikserda 3–4 daqiqa davomida mayin bo'lguncha ko'pirtiring. Tuxumni solib aralashtiring.",
+      "Hamirturush, rikotta pishlog'i, laym rendasi va vanilni qo'shib mikserda aralashtiring (aralashma biroz donador bo'lishi normal holat).",
+      "Alohida idishda un, qabartma kukun (Razrixlitel) va tuzni elang. Quruq masalliqlarni past tezlikda asta-sekin qo'shib xamir qoring. Idishni plyonka bilan yopib, 30 daqiqa muzlatgichda tindiring.",
+      "Xamirdan osh qoshiq yordamida bo me'yorda sharikchalar ajratib listga tizib chiqing.",
+      "180°C pechda 15–17 daqiqa pishiring. Pishgach sim panjarada to'liq sovuting.",
+      "Glazur: Shakar kukuniga laym sharbatini oz-ozdan quyib, silliq va oquvchan massa bo'lguncha ko'pirtiring.",
+      "Sovigan pechenyelar ustiga glazur quyib, qirilgan laym rendasi bilan bezating."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_saryog', 'ing_shakar', 'ing_tuxum', 'ing_rikotta', 'ing_un', 'ing_limon']
+  },
+  {
+    id: 'rec_hd_071_cinnamon_sugar_sourdough_waffles',
+    nomi: 'Dolchin va Shakarli Hamirturushli Vafli (Cinnamon Sugar Sourdough Waffles)',
+    tayyorlash_vaqti_daq: 30,
+    qiyinlik: 'oson',
+    kategoriya: 'Pishiriqlar & Shirinliklar',
+    rasm_url: '🧇',
+    tarif_matni: "Qarsildoq vaflilar, dolchinli shakar va yangi mevalar va klyon siropi bilan uzatiladigan noshtabop shirinlik.",
+    masalliqlar_matni: "Dolchinli shakar uchun:\n50 g shakar\n1 choy qoshiq dolchin kukuni\nXamir uchun:\n120 g achigan hamirturush (sourdough starter)\n240 ml sut\n42 g eritilgan saryog' (bo'lingan)\n1 dona tuxum\n120 g un\n12 g shakar\n10 g (2 choy qoshiq) qabartma kukun (Razrixlitel)\nYarim choy qoshiq dengiz tuzi\nTortish uchun:\n165 g kubik to'g'ralgan ananas\nBir siqim yangi mevalar (qulupnay, chernika)\n30 g kokos qiyg'ichi\nKlyon siropi (yoki asal)",
+    korsatmalari: [
+      "Chuqur idishda 50 g shakar va dolchinni aralashtirib qo'ying.",
+      "Vafli pishirgichni yoqib qizdiring. Katta idishda achigan hamirturush, sut, 28 g eritilgan saryog' va tuxumni yaxshilab ko'pirtiring. Un, 12 g shakar, qabartma kukun (Razrixlitel) va tuzni qo'shib silliq bo'lguncha aralashtiring.",
+      "Vafli qolipini yog'lang. Xamirdan quyib, tillarang va qarsildoq bo'lguncha 3–5 daqiqa pishiring.",
+      "Pishgan vaflilarga qolgan eritilgan saryog'dan surting va dolchinli shakar aralashmasiga ikkala tarafini botirib oling.",
+      "Tayyor vaflilarni ananas, mevalar hamda kokos qiyg'ichi bilan bezatib, klyon siropi bilan dasturxonga torting."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_shakar', 'ing_sut', 'ing_saryog', 'ing_tuxum', 'ing_un', 'ing_ananas', 'ing_qulupnay', 'ing_chernika']
+  },
+  {
+    id: 'rec_hd_072_blueberry_lemon_corn_muffins',
+    nomi: "Chernikali va Limonli Makkajo'xori Mafinlari (Blueberry Lemon Corn Muffins)",
+    tayyorlash_vaqti_daq: 35,
+    qiyinlik: 'oson',
+    kategoriya: 'Pishiriqlar & Shirinliklar',
+    rasm_url: '🧁',
+    tarif_matni: "Makkajo'xori uni, chernika rezavorlari va limon aromati bilan tayyorlanadigan mitti va yumshoq mafinlar.",
+    masalliqlar_matni: "60 g saryog' (eritilgan va sovutilgan)\n95 g un\n1.5 choy qoshiq qabartma kukun (Razrixlitel)\n80 g makkajo'xori uni (cornmeal)\n110 g shakar\n1 osh qoshiq limon rendasi\n120 ml sut\n2 dona tuxum sarig'i\n75 g chernika (teng ikkiga bo'lingan)",
+    korsatmalari: [
+      "Pechni 190°C gacha qizdiring. 6 dona mafin qolipiga qog'oz korzinkachalar joylashtiring.",
+      "Idishda un va qabartma kukun (Razrixlitel)ni elang. Makkajo'xori uni, 100 g shakar, limon rendasi va bir chimdim tuzni solib aralashtiring.",
+      "Alohida idishda eritilgan saryog', sut va tuxum sariqlarini ko'pirtiring. Quruq masalliqlar va chernikaning yarmi bilan birga ohista aralashtiring.",
+      "Xamirni qoliplarga teng bo'lib quying. Qolgan chernikalarni mafinlar ustiga botirib tizib chiqing va 10 g shakar seping.",
+      "190°C pechda 15 daqiqa tillarang bo'lguncha pishiring. Sim panjarada sovutib uzating."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_saryog', 'ing_un', 'ing_makkajuxori', 'ing_shakar', 'ing_limon', 'ing_sut', 'ing_tuxum', 'ing_chernika']
+  },
+  {
+    id: 'rec_hd_073_swirl_spice_cake',
+    nomi: 'Ziravorli Mermer Keks (Swirl Spice Cake)',
+    tayyorlash_vaqti_daq: 90,
+    qiyinlik: 'orta',
+    kategoriya: 'Pishiriqlar & Shirinliklar',
+    rasm_url: '🥮',
+    tarif_matni: "Pekan yong'og'i shtreyzeli, smetana xamiri hamda apelsinli shirin glazur bilan pishiriladigan mermer keks.",
+    masalliqlar_matni: "Shtreyzel (uvoq) uchun:\n100 g maydalangan pekan yong'og'i\n45 g qahva va ziravorlar aralashmasi (Spice Mix)\n75 g jigarrang shakar\n24 g un\n1 choy qoshiq tuz\n60 g eritilgan saryog'\nXamir va glazur uchun:\n250 g un\nYarim choy qoshiq qabartma kukun (Razrixlitel)\nChorak choy qoshiq soda\nYarim choy qoshiq tuz\n250 g shakar\n170 g saryog' (xonaki haroratda)\n3 dona tuxum\n120 g smetana\n2 choy qoshiq vanil ekstrakti\n28 g shakar kukuni + 1 choy qoshiq apelsin sharbati",
+    korsatmalari: [
+      "Pechni 165°C gacha qizdiring. Keks qolipini yog'lab, pergament soling.",
+      "Uvoq: Yong'oq, ziravorlar aralashmasi, jigarrang shakar, un va tuzni aralashtirib, saryog' quyib uvoq holiga keltiring.",
+      "Idishda un, qabartma kukun (Razrixlitel), soda va tuzni elang. Mikserda saryog' va shakarni 6–8 daqiqa mayin ko'pirtiring. Tuxumlarni bittalab qo'shing. Unli aralashmaning yarmini, so'ng smetana va vanilni, keyin qolgan unni solib aralashtiring.",
+      "Xamirning yarmini qolipga quyib, ustiga uvoq aralashmasini yoying. Qolgan xamirni quyib, pichoq bilan mermer naqsh hosil qilib aralashtiring.",
+      "165°C pechda 80–90 daqiqa pishiring. Sovugach qolipdan oling.",
+      "Shakar kukuni va apelsin sharbatini ko'pirtirib glazur tayyorlang va keks ustidan quying."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_un', 'ing_shakar', 'ing_saryog', 'ing_tuxum', 'ing_smetana', 'ing_apelsin']
+  },
+  {
+    id: 'rec_hd_074_coffee_spice_mix',
+    nomi: 'Qahvali va Ziravorli Aralashma (Savory-to-Sweet Coffee Spice Mix)',
+    tayyorlash_vaqti_daq: 5,
+    qiyinlik: 'oson',
+    kategoriya: 'Garnirlar & Yengil Taomlar',
+    rasm_url: '☕',
+    tarif_matni: "Qahva, apelsin rendasi, dolchin va hil urug'laridan tayyorlanadigan shirinliklar uchun xushbo'y ziravor.",
+    masalliqlar_matni: "3 osh qoshiq asalari gulchangi kukuni (bee pollen)\n3 osh qoshiq mayda tortilgan qahva (instant emas)\n2 osh qoshiq quritilgan apelsin po'stlog'i rendasi\n2 osh qoshiq dolchin kukuni\n2 choy qoshiq kardamon (hil) kukuni\n2 choy qoshiq maydalangan fenxel urug'lari",
+    korsatmalari: [
+      "Barcha ziravor masalliqlarini toza va quruq shisha bankaga soling.",
+      "Qopqog'ini mahkam yopib, bir xil massa bo'lguncha yaxshilab silkiting.",
+      "Pishiriqlar, kekslar va shirinliklarga xushbo'y ta'm berish uchun foydalaning. (Xona haroratida 1 oy saqlash mumkin)."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_apelsin']
+  },
+  {
+    id: 'rec_hd_075_cabbage_potato_pie',
+    nomi: 'Karam va Kartoshkali Pirog (Cabbage Potato Pie)',
+    tayyorlash_vaqti_daq: 70,
+    qiyinlik: 'orta',
+    kategoriya: 'Pishiriqlar & Tuzli Piroglar',
+    rasm_url: '🥬',
+    tarif_matni: "Kartoshka pyuresi, qovurilgan karam, dudlangan bekon va cheddar pishlog'i solib pechda pishiriladigan tuzli pirog.",
+    masalliqlar_matni: "900 g kartoshka (tozalanib, bo'lingan)\n1 choy qoshiq tuz\n60 g saryog' (bo'lingan)\n1 dona savoy karami (Savoy cabbage)\n85 g dudlangan bekon bo'laklari (mayda to'g'ralgan)\nYarim dona qizil piyoz (ingichka to'g'ralgan)\n2 osh qoshiq olma sirkasi\n1 choy qoshiq timyan barglari, 1 choy qoshiq qora murch\n2 dona tuxum\n180 ml qaymoq (heavy cream)\n140 g qirilgan cheddar pishlog'i",
+    korsatmalari: [
+      "Pechni 200°C ga qizdiring. Kartoshkani tuzli suvda 20 daqiqa qaynatib oling va suvidan ajratib 30 g saryog' bilan ezib pyure qiling.",
+      "Karamning 10 dona butun bargini ajratib, tuzli suvda 8 daqiqa qaynatib oling va sovuq suvda sovutib qurutib oling. Qolgan karamni ingichka to'g'rang.",
+      "Tovada bekon, to'g'ralgan karam va piyozni 20 daqiqa qizartirib qovuring. Sirka, timyan, murch va tuz qo'shing.",
+      "Kartoshka pyuresiga tuxum, qaymoq, qovurilgan karamli aralashma va pishloqni qo'shib yaxshilab aralashtiring.",
+      "Qolip tubi va yonlariga qaynagan karam barglarini yoying. Kartoshkali massani solib tekislang va barglarning chetini ustiga yoping. Ustiga qolgan saryog'ni bo'lib soling.",
+      "200°C pechda 30–35 daqiqa tillarang bo'lguncha pishiring."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_kartoshka', 'ing_saryog', 'ing_karram', 'ing_piyoz', 'ing_tuxum', 'ing_qaymoq', 'ing_pishloq']
+  },
+  {
+    id: 'rec_hd_076_salmon_with_dates',
+    nomi: 'Xurmoli Achchiq-Shirin Somon Baliq (Spicy Sweet-and-Sour Salmon With Dates / Qaliyeh-e Khorma)',
+    tayyorlash_vaqti_daq: 40,
+    qiyinlik: 'orta',
+    kategoriya: 'Quyuq Taomlar',
+    rasm_url: '🐟',
+    tarif_matni: "Qizil somon balig'i filetosi, xurmo qiyomi va achchiq sous hamda bodringli yangi salat aralashmasi.",
+    masalliqlar_matni: "Bodring va piyozli salat uchun:\n4 osh qoshiq kashnich urug'lari (qovurilgan)\n1 dona qizil piyoz, 12 dona kichik bodring (kubik to'g'ralgan)\n4 osh qoshiq olma sirkasi, 1.5 choy qoshiq tuz\nBaliq va sous uchun:\n4–6 bo'lak somon balig'i (losos) filetosi\n1 osh qoshiq un, 1 choy qoshiq kurkuma, yarim choy qoshiq murch, tuz\n60 ml zaytun yog'i\n5 tish sarimsoq (qirilgan)\n240 ml olma sirkasi, 2 osh qoshiq xurmo qiyomi (date molasses)\n1 choy qoshiq achchiq qizil murch, 1 osh qoshiq quritilgan shambalila (fenugreek) barglari\n5 dona medjool xurmosi (urug'siz, ikkiga bo'lingan)\nYangi ko'katlar (kashnich, rayhon, yashil piyoz)",
+    korsatmalari: [
+      "Salat: Idishda piyoz, bodring, kashnich urug'lari, tuz va sirkani aralashtirib chetga suring.",
+      "Un, kurkuma, murch va tuzni aralashtirib, baliq filetosining ikkala tomoniga surting.",
+      "Tovada 2 osh qoshiq zaytun yog'ida baliqlarni har bir tomonini 1 daqiqadan qizartirib oling va idishga chiqaring.",
+      "Shu tovaga qolgan yog' va sarimsoqni solib 1-2 daqiqa qovuring. Sirka, xurmo qiyomi, achchiq murch va shambalilani solib aralashtiring.",
+      "Baliqlarni tovaga qaytarib, past olovda 10–15 daqiqa sous quyulguncha dimlang. Oxirida xurmo bo'laklarini qo'shing.",
+      "Dasturxonga yangi ko'katlar va bodringli salat bilan birga torting."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_piyoz', 'ing_bodring', 'ing_un', 'ing_sarimsoq', 'ing_xurmo', 'ing_kokatlar']
+  },
+  {
+    id: 'rec_hd_077_chocolate_almond_fudge',
+    nomi: 'Shokolad va Bodomli Fadj (Chocolate-Almond Fridge Fudge)',
+    tayyorlash_vaqti_daq: 15,
+    qiyinlik: 'oson',
+    kategoriya: 'Pishiriqlar & Shirinliklar',
+    rasm_url: '🍫',
+    tarif_matni: "Achchiq shokolad, avokado va bodom pastasi bilan muzlatgichda tayyorlanadigan tetik va shirin fadj deseri.",
+    masalliqlar_matni: "30 g bodom parraklari (tostlangan)\n115 g achchiq shokolad (kamida 60% kakao)\nYarim dona pishgan avokado\n80 ml klyon siropi (yoki asal)\n80 g bodom pastasi (almond butter)\n1 osh qoshiq kakao kukuni\nYarim choy qoshiq tuz va yirik dengiz tuzi",
+    korsatmalari: [
+      "Qolipga pergament qog'oz soling. Bodom parraklarini tovada qovurib maydalang.",
+      "Achchiq shokoladni mikrotulqinli pechda yoki bug' hammomida eritib sovuting.",
+      "Blenderda avokado, klyon siropi va bodom patasini silliq bo'lguncha ko'pirtiring. Kakao kukuni, tuz va 2 osh qoshiq sovuq suv qo'shib aralashtiring.",
+      "Eritilgan shokoladni qo'shib, bir xil konsistensiyaga kelguncha urib oling.",
+      "Massani qolipga tekis yoyib, ustiga bodom parraklari va yirik dengiz tuzi seping.",
+      "Muzlatgichda kamida 1 soat qotirib, so'ng bo'laklarga bo'ling."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_bodom', 'ing_shokolad', 'ing_avokado', 'ing_asal', 'ing_kakao']
+  },
+  {
+    id: 'rec_hd_078_english_muffin_breakfast_sandwich',
+    nomi: 'Inglizcha Mafinda Noshtabop Sendvich (Breakfast Sandwich on an English Muffin)',
+    tayyorlash_vaqti_daq: 35,
+    qiyinlik: 'oson',
+    kategoriya: 'Salatlar & Gazaklar',
+    rasm_url: '🥪',
+    tarif_matni: "Qizartirib qovurilgan piyoz, cheddar pishlog'i va tuxum bilan inglizcha muffinda pishiriladigan mazali sendvich.",
+    masalliqlar_matni: "1 dona qizil piyoz (halqa qilib to'g'ralgan)\n1 choy qoshiq soya sousi, yarim choy qoshiq sarimsoq kukuni\n30 ml zaytun yog'i\n30 g to'g'ralgan ko'katlar (rayhon, kashnich, ukrop)\n2 osh qoshiq achchiq sous (hot sauce)\n15 g saryog'\n4 dona tuxum\n2 dona inglizcha muffin (non)\n60 g cheddar pishlog'i (bo'laklangan)",
+    korsatmalari: [
+      "Pechni 175°C ga qizdiring. Piyoz, soya sousi, sarimsoq kukuni va 1 osh qoshiq yog'ni aralashtirib listda 25–35 daqiqa qizartirib pishiring.",
+      "Idishda ko'katlar, achchiq sous va 1 osh qoshiq zaytun yog'ini aralashtiring.",
+      "Tovada saryog'ni eritib, ko'pirtirilgan tuxumlarni 1-2 daqiqa yumshoq qilib pishirib oling.",
+      "Muffin nonlarini tostlangan holda ikkiga bo'ling. Ichki qismiga bo'me'yorda ko'katli sous surting.",
+      "Bottom nonlar ustiga tuxum, pishloq qo'yib, pechda pishloq eriguncha 5 daqiqa isiting. Ustiga qovurilgan piyoz qo'yib, ikkinchi non bilan yoping."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_piyoz', 'ing_soya_sousi', 'ing_sarimsoq', 'ing_kokatlar', 'ing_saryog', 'ing_tuxum', 'ing_pishloq']
+  },
+  {
+    id: 'rec_hd_079_double_chocolate_rye_cookies',
+    nomi: "Javdar Unli Qo'sh Shokoladli Pechenye (Double Chocolate Rye Cookies)",
+    tayyorlash_vaqti_daq: 30,
+    qiyinlik: 'orta',
+    kategoriya: 'Pishiriqlar & Shirinliklar',
+    rasm_url: '🍪',
+    tarif_matni: "Eritilgan achchiq shokolad, javdar uni va yong'oq bo'laklari solinib pishiriladigan qo'sh shokoladli pechenye.",
+    masalliqlar_matni: "90 g gretskiy yong'og'i (qovurilgan va to'g'ralgan)\n255 g achchiq shokolad (bittersweet chocolate)\n170 g shirin bo'lmagan shokolad (unsweetened chocolate)\n115 g saryog'\nYarim choy qoshiq vanil ekstrakti\n300 g shakar\n4 dona tuxum\n60 g javdar uni (rye flour)\nYarim choy qoshiq qabartma kukun (Razrixlitel)\nYarim choy qoshiq tuz",
+    korsatmalari: [
+      "140 g achchiq shokolad va 110 g shirin bo'lmagan shokoladni saryog' bilan bug' hammomida eritib sovuting. Vanilni qo'shing.",
+      "Mikserda shakar va tuxumlarni 5 daqiqa davomida quyuq va och rang bo'lguncha ko'pirtiring. Eritilgan shokoladli saryog'ni qo'shib aralashtiring.",
+      "Qolgan shokoladlarni yirik va mayda bo'laklarga bo'me'yorda to'g'rang.",
+      "Javdar uni, qabartma kukun (Razrixlitel), tuz, yong'oq va shokolad bo'laklarini aralashtirib, tuxumli massaga spatula bilan buklab aralashtiring.",
+      "Xamirni idishga solib, kamida 3–4 soat muzlatgichda sovuting.",
+      "Pechni 175°C ga qizdiring. Xamirdan 2 osh qoshiqlik shariklar ajratib, listga 5 cm masofada tizib chiqing.",
+      "175°C pechda 10–12 daqiqa chetlari tillarang bo'lguncha pishiring. Sim panjarada sovutib dasturxonga torting."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_shokolad', 'ing_saryog', 'ing_shakar', 'ing_tuxum', 'ing_un']
+  },
 ];
 
 export const initialTales: Tale[] = [
@@ -1303,6 +1501,8 @@ export const initialTales: Tale[] = [
         rasm_url: '/assets/images/tale_quyoncha_cover_1785171712747.png',
         matn: "Bir bor ekan, bir yo'q ekan. Quyoshli o'rmonda kichkina xushfe'l Quyoncha yashagan ekan. U har kuni barcha do'stlariga shirin sabzilar ulashardi."
       },
+
+
       {
         id: 'p2',
     kategoriya: 'Milliy Quyuq Taomlar',
