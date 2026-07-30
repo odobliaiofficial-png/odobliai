@@ -1003,36 +1003,39 @@ export const initialRecipes: Recipe[] = [
   },
   {
     id: 'rec_hd_055_salted_pistachio_crumble',
-    nomi: 'Tuzli Pistali Uvoq, Mevalar va Muzqaymoq (Salted Pistachio Crumble)',
+    nomi: 'Tuzli Pistali Uvoq, Mevalar va Muzqaymoq (Salted Pistachio Crumbles With Berries and Ice Cream)',
     tayyorlash_vaqti_daq: 35,
     qiyinlik: 'oson',
     kategoriya: 'Pishiriqlar & Shirinliklar',
     rasm_url: '/assets/images/shirinlik_baqlava_1785171638612.png',
     tarif_matni: "Pechda qovurilgan tuzli pista uvoqlari, qaynoq asalli qulupnaylar va muzday muzqaymoq uyg'unligi.",
-    masalliqlar_matni: "60 g pista, 125 g un, 100 g shakar, 40 g makkajo'xori uni, 1 choy qoshiq tuz, 115 g saryog', 700 g qulupnay, 1 osh qoshiq limon sharbati, hil (kardamon), 3 osh qoshiq asal, 1 litr muzqaymoq.",
+    masalliqlar_matni: "Pistali uvoq (Krambl) uchun:\n60 g xom pista\n125 g un\n100 g shakar\n40 g makkajo'xori uni (cornmeal)\n1 choy qoshiq yirik tuz\n115 g eritilgan saryog'\nMeva va muzqaymoq uchun:\n700 g yangi qulupnay (bo'laklangan)\n1 osh qoshiq limon sharbati\nYarim choy qoshiq hil (kardamon)\n3 osh qoshiq asal\n1 litr xohlagan turdagi muzqaymoq",
     korsatmalari: [
-      "Pistalarni pechda 6-8 daqiqa qovurib, kombaynda kichik bo'lakchalar qilib maydalang.",
-      "Maydalangan pista, un, shakar, makkajo'xori uni, tuz va eritilgan saryog'ni uvalab krambl hosil qiling.",
-      "175°C pechda 20-25 daqiqa tillarang bo'lguncha pishiring.",
-      "Qulupnaylarni limon sharbati, kardamon va qaynatilgan hot asal bilan aralashtirib 15 daqiqa tindiring.",
-      "Muzqaymoq ustidan qulupnay va qarsildoq pista uvoqlarini seping."
+      "Pechni 175°C gacha qizdiring. Pistalarni pishirish varag'iga yoyib, pechda 6–8 daqiqa qovurib oling. Sovigach, oshxona kombaynida kichik bo'lakchalar qoladigan qilib maydalang.",
+      "Idishda maydalangan pista, un, shakar, makkajo'xori uni va 1 choy qoshiq tuzni aralashtiring. Ustidan eritilgan saryog'ni quyib, barmoqlar bilan uvalab kichik noxotdek uvoqlar hosil qiling.",
+      "Krambl aralashmasini pergament qog'oz solingan listga yoyib, 175°C pechda tillarang bo'lguncha 20–25 daqiqa pishiring (o'rtasida bir marta aralashtirib qo'ying).",
+      "Chuqur idishda qulupnay, limon sharbati, hil va bir chimdim tuzni aralashtiring.",
+      "Kichik tovada asalni qizdiring — 4 daqiqa davomida pufakchalar chiqarib biroz to'qlashguncha qaynating va darhol qulupnaylar ustiga quying. Yaxshilab aralashtirib, 15 daqiqa tindiring.",
+      "Idishlarga muzqaymoq shariklarini soling, ustidan suvi bilan birga qulupnayli aralashmani quyib, qarsildoq pistali uvoqlardan seping."
     ],
     holat: 'nashr',
     required_ingredient_ids: ['ing_pista', 'ing_un', 'ing_shakar', 'ing_saryog', 'ing_qulupnay', 'ing_asal']
   },
   {
     id: 'rec_hd_056_summer_tomato_ricotta_tart',
-    nomi: 'Yozgi Pomidorli va Rikottali Tart (Summer Tomato & Ricotta Tart)',
+    nomi: 'Yozgi Pomidorli va Rikottali Tart (Summer Tomato and Ricotta Tart With Oat Pastry)',
     tayyorlash_vaqti_daq: 50,
     qiyinlik: 'orta',
     kategoriya: 'Pishiriqlar & Tuzli Piroglar',
     rasm_url: '/assets/images/qovurma_lagmon_1785171614749.png',
-    tarif_matni: "Sulli va chia urug'li qarsildoq korj, ipakdek rikotta pishlog'i hamda sersuv pomidor parraklari pishirig'i.",
-    masalliqlar_matni: "90 g suli yormasi, 50 g chia, 140 g bug'doy uni, 60 g bodom uni, 80 ml zaytun yog'i, 60 ml suv. Ichlik: 240 g rikotta, 2 choy qoshiq limon rendasi, 40 g parmezan, 400 g pomidor, rayhon.",
+    tarif_matni: "Sullili korj (xamir), chia urug'lari, ipakdek rikotta pishlog'i va sersuv pomidor bo'laklari bilan pishiriladigan yozgi tart.",
+    masalliqlar_matni: "Sullili korj (xamir) uchun:\n90 g suli yormasi (rolled oats)\n50 g chia urug'lari\nYarim choy qoshiq tuz\n140 g bug'doy uni (wholemeal/spelt flour)\n60 g bodom uni\n80 ml zaytun yog'i\n60 ml suv\nIchlik va ustiga:\n240 g rikotta pishlog'i (yoki yumshoq tvorog)\n2 choy qoshiq limon rendasi\n40 g parmezan pishlog'i (qirilgan)\n400 g sersuv pomidor bo'laklari\nYangi rayhon barglari, zaytun yog'i, tuz va qora murch",
     korsatmalari: [
-      "Suli, chia, unlar va zaytun yog'idan xamir qorib, qolipga presslang va 180°C pechda 20 daqiqa pishiring.",
-      "Rikotta, limon rendasi va parmezanni ko'pirtirib krem tayyorlang.",
-      "Sovigan korjga kremni yoyib, ustidan pomidor bo'laklari va fresh rayhon tizib torting."
+      "Pechni 180°C gacha qizdiring. Kombaynda suli yormasi, chia urug'lari va tuzni mayda uvoq bo'lguncha elang. Bug'doy va bodom unini qo'shib aralashtiring.",
+      "Zaytun yog'i va suvni birlashtirib, kombayn ishlab turganda unli aralashmaga quyib boring.",
+      "Xamirni 24 cm diametrli tart qolipiga solib, tubi va chetlariga barmoqlar bilan mahkam presslab yoying. Sanchqi bilan teshikchalar qilib, 180°C pechda 20 daqiqa tillarang bo'lguncha pishiring va to'liq sovuting.",
+      "Idishda rikotta, limon rendasi, parmezan, tuz va murch bilan yaxshilab ko'pirtiring.",
+      "Sovigan korj ichiga rikotta kremini tekis yoying. Ustiga pomidor bo'laklari va rayhon barglarini tizib, zaytun yog'i tomizing va murch seping."
     ],
     holat: 'nashr',
     required_ingredient_ids: ['ing_suli', 'ing_chia', 'ing_un', 'ing_bodom', 'ing_rikotta', 'ing_pomidor', 'ing_parmezan']
@@ -1044,196 +1047,217 @@ export const initialRecipes: Recipe[] = [
     qiyinlik: 'oson',
     kategoriya: 'Pishiriqlar & Shirinliklar',
     rasm_url: '/assets/images/shirinlik_baqlava_1785171638612.png',
-    tarif_matni: "Saryog'li fransuzcha uvalanuvchan xamir ustida shaftoli, o'rik va olxori bo mevalaridan tayyorlanadigan qarsildoq galetta.",
-    masalliqlar_matni: "200 g un, 100 g sovuq saryog', 1 osh qoshiq shakar, tuz, 4 osh qoshiq muzday suv. Ichlik: 400 g yangi mevalar (shaftoli, o'rik), 3 osh qoshiq shakar, 1 osh qoshiq kraxmal.",
+    tarif_matni: "Saryog'li fransuzcha uvalanuvchan xamir ustida shaftoli, o'rik va olxori mevalaridan tayyorlanadigan qarsildoq galetta.",
+    masalliqlar_matni: "Xamir uchun:\n200 g un\n100 g sovuq saryog' (kubik kesilgan)\n1 osh qoshiq shakar\n1 chimdim tuz\n4 osh qoshiq muzday suv\nIchlik uchun:\n400 g yangi mevalar (shaftoli, o'rik, olxori yoki meva aralashmasi)\n3 osh qoshiq shakar\n1 osh qoshiq kraxmal\n1 osh qoshiq mevali djem/murabbo (xohishga ko'ra)",
     korsatmalari: [
-      "Un va sovuq saryog'dan uvoqli xamir qorib, 30 daqiqa muzlatgichda tindiring.",
-      "Mevalarni parrak qilib shakar va kraxmal bilan aralashtiring.",
-      "Xamirni yoyib, o'rtasiga mevalarni tizib, chetlarini buking va 190°C pechda 35-40 daqiqa pishiring."
+      "Un, shakar va tuzga sovuq saryog'ni qo'shib, barmoqlar bilan uvalab qarsildoq uvoq holiga keltiring. Muzday suvni quyib tezda xamir to'plang va 30 daqiqa muzlatgichda tindiring.",
+      "Mevalarni parrak qilib to'g'rang, shakar va kraxmal bilan aralashtiring.",
+      "Tindirilgan xamirni pergament qog'oz ustida doira shaklida (3-4 mm qalinlikda) yoying.",
+      "Xamir o'rtasiga djem surting, chetlaridan 4-5 cm joy qoldirib mevalarni tizib chiqing.",
+      "Xamirning ochiq chetlarini mevalar ustiga bukib taxlang. Buklangan chetlariga shakar seping.",
+      "190°C pechda 35–40 daqiqa mevalar yumshab, xamiri tillarang bo'lguncha pishiring."
     ],
     holat: 'nashr',
     required_ingredient_ids: ['ing_un', 'ing_saryog', 'ing_shakar', 'ing_shaftoli', 'ing_orik', 'ing_kraxmal']
   },
   {
     id: 'rec_hd_058_red_date_cake',
-    nomi: 'Xitoy Xurmoli (Unab) Pirog (Red Date Cake)',
+    nomi: "Xitoy Xurmoli (Unab) Pirog (Win Son Bakery's Red Date Cake)",
     tayyorlash_vaqti_daq: 55,
     qiyinlik: 'orta',
     kategoriya: 'Pishiriqlar & Shirinliklar',
     rasm_url: '/assets/images/shirinlik_baqlava_1785171638612.png',
-    tarif_matni: "Quritilgan qizil xurmo (unab) pyuresi va karamelli qaymoqli glazur bilan pishiriladigan xushbo mevali keks.",
-    masalliqlar_matni: "170 g quritilgan qizil xurmo (unab), soda, 155 g un, 2 choy qoshiq qabartma kukun, 150 g shakar, 85 g saryog', 2 dona tuxum. Glazur: 60 ml qaymoq, 60 g saryog', 50 g jigarrang shakar.",
+    tarif_matni: "Quritilgan qizil xurmo (unab) pyuresi va karamelli qaymoqli glazur bilan pishiriladigan xushbo'y keks.",
+    masalliqlar_matni: "Xamir uchun:\n170 g quritilgan qizil xurmo (unab — red dates, urug'siz va to'g'ralgan)\nYarim choy qoshiq soda\n155 g un\n2 choy qoshiq qabartma kukun\n1 choy qoshiq tuz\n150 g shakar\n85 g yumshoq saryog'\n2 dona tuxum\nYarim choy qoshiq vanil ekstrakti\nGlazur uchun:\n4 dona qizil xurmo (tasmalarga bo'lingan)\n60 ml qaymoq\n60 g saryog'\n50 g jigarrang shakar\nYarim choy qoshiq tuz",
     korsatmalari: [
-      "Xurmolarni suv va soda bilan 3 daqiqa dimlab, pyure qiling.",
-      "Saryog', shakar va tuxumlarni ko'pirtiring, un va xurmo pyuresini qo'shib xamir qoring.",
-      "175°C pechda 25-30 daqiqa pishirib, ustidan issiq karamel-qaymoqli glazur quying."
+      "Pechni 175°C ga qizdiring. Qolipni saryog'lang. Idishda 170 g xurmo, soda va 180 ml suvni qaynatib, past olovda 3 daqiqa dimlang. Suvi tortilgach sovuting.",
+      "Un, qabartma kukun va tuzni elang. Alohida idishda saryog', shakar va vanilni mikserda 3 daqiqa ko'pirtiring. Tuxumlarni bittalab qo'shing.",
+      "Quruq masalliqlarning yarmini, so'ng sovigan xurmo pyuresini, keyin qolgan unni qo'shib past tezlikda aralashtiring. Qolipga quyib, 175°C pechda 25–30 daqiqa pishiring.",
+      "Glazur: Idishda qaymoq, saryog', jigarrang shakar va tuzni eritib, 5 daqiqa quyulguncha qaynating. Sovigan xurmo tasmalari bilan pirog ustini bezang va iliq glazurni ustidan quyib chiqing."
     ],
     holat: 'nashr',
     required_ingredient_ids: ['ing_xurmo', 'ing_un', 'ing_shakar', 'ing_saryog', 'ing_tuxum', 'ing_qaymoq']
   },
   {
     id: 'rec_hd_059_kong_jaban',
-    nomi: 'Koreyscha Shiringina Qora Lobiya (Kong Jaban)',
+    nomi: 'Koreyscha Shiringina Qora Lobiya (Kong Jaban / Korean Sweet Black Beans)',
     tayyorlash_vaqti_daq: 75,
     qiyinlik: 'oson',
     kategoriya: 'Koreys & Dunyo Oshxonasi',
     rasm_url: '/assets/images/qovurma_lagmon_1785171614749.png',
     tarif_matni: "Soya sousi, shakar va kunchut yog'ida uzoq dimlab pishiriladigan Koreyscha mashhur shirin-tuzli qora lobiya garniri.",
-    masalliqlar_matni: "250 g quritilgan qora lobiya, 2 litr bulyon/suv, 240 ml soya sousi, 150 g shakar, 2 osh qoshiq kunchut yog'i, 1 osh qoshiq kunchut.",
+    masalliqlar_matni: "250 g quritilgan qora lobiya (loviya)\n2 litr dashi bulyoni yoki suv\n240 ml soya sousi\n150 g shakar\n2 osh qoshiq qovurilgan kunchut yog'i\n1 osh qoshiq qovurilgan kunchut urug'lari",
     korsatmalari: [
-      "Lobiyani 8-12 soat ivitib oling.",
-      "Qozonda lobiya, bulyon va soya sousini 1 soat past olovda sekin dimlang.",
-      "Shakar, kunchut yog'i va kunchut urug'larini qo'shib, suyuqligi yaltiroq quyulguncha yana 10 daqiqa pishiring."
+      "Lobiyani sovuq suvda kamida 8–12 soat ivitib oling va suvsizlantiring.",
+      "Qozonga lobiyani solib, dashi bulyoni (yoki suv) va soya sousini quying. O'rta-yuqori olovda qaynatib oling, so'ng past olovda 1 soat davomida sekin dimlang.",
+      "Lobiya yumshab, suyuqligi kamaygach, shakar, kunchut yog'i va kunchut urug'larini qo'shib yaxshilab aralashtiring. (Shakarni boshida solmang, aks holda lobiya qattiq bo'lib qoladi).",
+      "Suyuqligi quyuq va yaltiroq holatga kelguncha yana 5-10 daqiqa pishiring. Sovutib, muzlatgichga qo'ying va garnir sifatida torting."
     ],
     holat: 'nashr',
     required_ingredient_ids: ['ing_lobiya', 'ing_soya_sousi', 'ing_shakar', 'ing_kunchut_yogi', 'ing_kunchut']
   },
   {
     id: 'rec_hd_060_lagrimas_de_la_virgen',
-    nomi: 'Lavlagi va Mevali Salqin Ichimlik (Beet Cooler With Fruits)',
+    nomi: 'Lavlagi va Mevali Salqin Ichimlik (Lágrimas de la Virgen / Beet Cooler With Fruits)',
     tayyorlash_vaqti_daq: 20,
     qiyinlik: 'oson',
     kategoriya: 'Ichimliklar & Kokteyllar',
     rasm_url: '/assets/images/qovurma_lagmon_1785171614749.png',
     tarif_matni: "Qizil lavlagi toza sharbati, olma, banan, apelsin va limon sharbati solingan vitaminlarga boy tetiklashtiruvchi salqin drink.",
-    masalliqlar_matni: "4 dona qizil lavlagi, 2 litr suv, 200 g shakar, 1 dona olma, 1 dona banan, 1 dona apelsin, romen salat barglari, 1 dona limon sharbati.",
+    masalliqlar_matni: "4 dona qizil lavlagi\n2 litr suv\n200 g shakar\n1 dona kichik olma (kubik to'g'ralgan)\n1 dona banan (kubik to'g'ralgan)\n1 dona apelsin (tozalangan, to'g'ralgan)\n4 yaproq romen salat bargi (ingichka tasmasimon to'g'ralgan)\n1 dona limon sharbati",
     korsatmalari: [
-      "Lavlagi sharbatini ajratib oling, shakarli suv bilan ko'zachada aralashtirib muzlatgichda sovuting.",
-      "Dasturxonga tortish oldidan to'g'ralgan olma, banan, apelsin, salat barglari va limon sharbatini qo'shib muz bilan uzating."
+      "Lavlagini tozalab, sharbat chiqargich orqali toza sharbatini chiqarib oling.",
+      "Katta ko'zachada suv va shakarni shakar to'liq eriguncha aralashtiring. Ustidan lavlagi sharbatini quying.",
+      "Ko'zachani muzlatgichda to'liq sovuting.",
+      "Dasturxonga tortish oldidan to'g'ralgan olma, banan, apelsin, salat barglari hamda limon sharbatini qo'shib aralashtiring (limon mevalar qarayib ketishining oldini oladi). Muz kubiklari bilan uzating."
     ],
     holat: 'nashr',
     required_ingredient_ids: ['ing_lavlagi', 'ing_shakar', 'ing_olma', 'ing_banan', 'ing_apelsin', 'ing_limon']
   },
   {
     id: 'rec_hd_061_guava_grapefruit_agua_fresca',
-    nomi: 'Gvayava, Greypfrut va Rozmarinli Agua Freska',
+    nomi: 'Gvayava, Greypfrut va Rozmarinli Agua Freska (Guava, Grapefruit, and Rosemary Agua Fresca)',
     tayyorlash_vaqti_daq: 15,
     qiyinlik: 'oson',
     kategoriya: 'Ichimliklar & Kokteyllar',
     rasm_url: '/assets/images/qovurma_lagmon_1785171614749.png',
-    tarif_matni: "Yangi greypfrut sharbati, gvayava pyuresi va rozmarin shoxchasi bilan tayyorlanadigan tropik agua freska.",
-    masalliqlar_matni: "700 ml suv, 3 dona greypfrut sharbati, 430 g gvayava pyuresi, 1 shoxcha rozmarin, 100 g shakar, muz.",
+    tarif_matni: "Yangi greypfrut sharbati, gvayava pyuresi va rozmarin barglari bilan tayyorlanadigan tropik agua freska.",
+    masalliqlar_matni: "700 ml suv\n3 dona greypfrut sharbati (yangi siqilgan)\n430 g gvayava pyuresi (guava puree)\n1 shoxcha yangi rozmarin barglari\n100 g shakar (ta'bga ko'ra)\nMuz kubiklari",
     korsatmalari: [
-      "Blenderda suv, greypfrut sharbati, gvayava pyuresi va rozmarin barglarini silliq ko'pirtiring.",
-      "Elakdan o'tkazib, shakar aralashtiring va muzli stakanlarda rozmarin bilan bezab uzating."
+      "Blender idishida suv, greypfrut sharbati, gvayava pyuresi va rozmarin barglarini solib to'liq silliq bo'lguncha ko'pirtiring.",
+      "Hosil bo'lgan aralashmani mayda elakdan ko'zachaga o'tkazib elang.",
+      "Shakarni ta'bga ko'ra qo'shib, eriguncha aralashtiring.",
+      "Stakanlarga muz to'ldirib, ustidan ichimlikni quying va rozmarin shoxchasi bilan bezating."
     ],
     holat: 'nashr',
     required_ingredient_ids: ['ing_greypfrut', 'ing_gvayava', 'ing_rozmarin', 'ing_shakar']
   },
   {
     id: 'rec_hd_062_aguas_frescas',
-    nomi: 'Meksikancha Mevali Salqin Ichimlik (Aguas Frescas)',
+    nomi: 'Meksikancha Mevali Salqin Ichimlik (Aguas Frescas / Mexican Fruit Coolers)',
     tayyorlash_vaqti_daq: 15,
     qiyinlik: 'oson',
     kategoriya: 'Ichimliklar & Kokteyllar',
     rasm_url: '/assets/images/qovurma_lagmon_1785171614749.png',
-    tarif_matni: "Tarvuz, ananas, qovun yoki qulupnay mevalari mag'zidan pishiriladigan klassik meksikancha tetiklantiruvchi ichimlik.",
-    masalliqlar_matni: "600 g to'g'ralgan mevalar (tarvuz, ananas, qulupnay), 1 litr suv, 100 g shakar, muz kubiklari, limon bo'laklari.",
+    tarif_matni: "Tarvuz, ananas, qovun, papaya, qulupnay yoki mango mevalari mag'zidan pishiriladigan meksikancha tetiklantiruvchi ichimlik.",
+    masalliqlar_matni: "600 g to'g'ralgan mevalar (tarvuz, qovun, ananas, papaya, qulupnay yoki mango)\n1 litr suv\n100 g shakar\nMuz kubiklari\nLimon bo'laklari",
     korsatmalari: [
-      "Mevalarni shakarli suv bilan blenderda pyure bo'lguncha ko'pirtiring.",
-      "Elakdan suzib, ko'zachaga soling va ko'p muz hamda limon bo'laklari bilan sovuq torting."
+      "Katta ko'zachada shakar va suvni aralashtirib shakarni eriting. Ushbu aralashmadan 240 ml ajratib oling.",
+      "Blenderga to'g'ralgan mevalar va ajratib olingan shakarli suvni solib silliq pyure bo'lguncha ko'pirtiring.",
+      "Mevali pyureni ko'zachadagi shakarli suvga elak orqali o'tkazing, yog'och qoshiq bilan meva mag'zini ezib suvini ajrating.",
+      "Yaxshilab aralashtirib, muz va limon bo'laklari bilan sovuq holda torting."
     ],
     holat: 'nashr',
     required_ingredient_ids: ['ing_tarvuz', 'ing_ananas', 'ing_qulupnay', 'ing_shakar', 'ing_limon']
   },
   {
     id: 'rec_hd_063_scallion_pancakes',
-    nomi: 'Yashil Piyozli Qarsildoq Pirojkalar va Chili Sousi',
+    nomi: 'Yashil Piyozli Qarsildoq Pirojkalar va Chili-Zanjabilli Sous (Scallion Pancakes With Chili-Ginger Dipping Sauce)',
     tayyorlash_vaqti_daq: 30,
     qiyinlik: 'orta',
     kategoriya: 'Salatlar & Gazaklar',
     rasm_url: '/assets/images/qovurma_lagmon_1785171614749.png',
     tarif_matni: "Muzday gazlangan suvda tayyorlangan xamir va yashil piyozli qarsildoq mini-pirojkalar hamda chili-zanjabilli sous.",
-    masalliqlar_matni: "Sous: zanjabil, 2 osh qoshiq soya sousi, guruch sirkasi, chili yog'i, shakar. Xamir: 125 g un, 30 g kraxmal, muzday gazli suv, kunchut yog'i, 150 g yashil piyoz.",
+    masalliqlar_matni: "Sous uchun:\n1 bo'lak zanjabil (ingichka to'g'ralgan)\n2 osh qoshiq soya sousi, 2 osh qoshiq guruch sirkasi, 1 choy qoshiq chili yog'i, 1 choy qoshiq shakar\nXamir va ichlik uchun:\n125 g un, 30 g kraxmal, 1 choy qoshiq tuz, 1 choy qoshiq shakar\n240 ml muzday gazlangan suv (club soda), 2 choy qoshiq soya sousi, 1 choy qoshiq kunchut yog'i\n150 g ingichka to'g'ralgan yashil piyoz, 4 osh qoshiq o'simlik yog'i",
     korsatmalari: [
-      "Zanjabil, soya sousi, sirka va chili yog'ini ko mepirtirib sous tayyorlang.",
-      "Un, kraxmal va gazli suvdan xamir qorib, ko'p yashil piyoz soling.",
-      "Tovada yog'da ikki taraflama qarsildoq tillarang bo'lguncha qovuring va chili sousi bilan torting."
+      "Sous: Idishda zanjabil, soya sousi, sirka, chili yog'i va shakarni shakar eriguncha ko'pirtiring va chetga suring.",
+      "Xamir: Katta idishda un, kraxmal, tuz va shakarni aralashtiring. Alohida idishda gazlangan suv, soya sousi va kunchut yog'ini birlashtiring. Quyib, silliq bo'lguncha aralashtiring (ko'p aralashtirmang). Yashil piyozni xamirga qo'shib aralashtiring.",
+      "Qovurish: Tovada 1 osh qoshiq o'simlik yog'ini qizdiring. Xamirning to'rtdan bir qismini quyib, past-o'rta olovda 2 daqiqa tillarang bo'lguncha pishiring. Agdarib, yassilab presslang va yana 1-2 daqiqa qarsildoq bo'lguncha pishiring.",
+      "Qolgan xamir va yog' bilan yana 3 dona quymoq pishiring. Bo'laklarga bo'lib, zanjabilli sous bilan uzating."
     ],
     holat: 'nashr',
     required_ingredient_ids: ['ing_un', 'ing_kraxmal', 'ing_kok_piyoz', 'ing_zanjabil', 'ing_soya_sousi']
   },
   {
     id: 'rec_hd_064_camouflage_fudge_brownies',
-    nomi: "'Kamuflyaj' Shokoladli va Chizkeykli Brauni",
+    nomi: '"Kamuflyaj" Shokoladli va Chizkeykli Brauni (Camouflage Chocolate Fudge Brownies)',
     tayyorlash_vaqti_daq: 50,
     qiyinlik: 'orta',
     kategoriya: 'Pishiriqlar & Shirinliklar',
     rasm_url: '/assets/images/shirinlik_baqlava_1785171638612.png',
     tarif_matni: "To'q shokoladli quyuq brauni va oq hamda kakao-pishloqli cream cheese qatlamlarining kamuflyaj naqshli pirogi.",
-    masalliqlar_matni: "Cream cheese qatlam: 225 g cream cheese, 1 tuxum, shakar, kakao. Brauni: 150 g saryog', 200 g shakar, 80 g kakao, espresso, 2 dona tuxum, 65 g un.",
+    masalliqlar_matni: "Tvorogli (Cream Cheese) qatlam:\n225 g cream cheese, 1 dona tuxum, 65 g shakar, yarim choy qoshiq vanil, yarim choy qoshiq tuz, 1.5 choy qoshiq kakao kukuni\nShokoladli Brauni qatlam:\n150 g saryog', 200 g shakar, 80 g kakao kukuni, yarim choy qoshiq tuz, 1 choy qoshiq espresso kukuni\n2 dona tuxum, yarim choy qoshiq vanil, 65 g un",
     korsatmalari: [
-      "Cream cheese va shakar-tuxumni ko'pirtirib, yarmini kakaoli qiling.",
-      "Saryog', kakao, shakar, tuxum va undan quyuq brauni xamiri qoring.",
-      "Qolipga brauni va pishloqli aralashmalarni dog' shaklida navbatma-navbat tomizib, 165°C pechda 22-25 daqiqa pishiring."
+      "Pechni 165°C ga qizdiring. 20x20 cm qolipga pergament qog'oz soling.",
+      "Cream cheese-ni issiqlikka chidamli idishda bug' hammomida 5 daqiqa yumshating. Olovdan olib silliq bo'lguncha ezib, 1 dona tuxum, 65 g shakar, yarim choy qoshiq vanil va yarim choy qoshiq tuzni ko'pirtiring. Yarmini ajratib, 1.5 choy qoshiq kakao qo'shing.",
+      "Idishda saryog', espresso kukuni, 200 g shakar, 80 g kakao va yarim choy qoshiq tuzni bug' hammomida saryog' eriguncha eritib, 5 daqiqa sovuting. 2 dona tuxum va vanilni qo'shib ko'pirtiring. Unni solib yaxshilab aralashtiring.",
+      "Brauni xamirining ko'p qismini qolipga tekis yoying. Ustiga oq va shokoladli tvorog massasini va qolgan brauni xamirini navbatma-navbat dog' sifat (\"kamuflyaj\") qilib tomizing.",
+      "165°C pechda 22–25 daqiqa pishiring. Sovugach bo'laklarga bo'ling."
     ],
     holat: 'nashr',
     required_ingredient_ids: ['ing_cream_cheese', 'ing_tuxum', 'ing_shakar', 'ing_kakao', 'ing_saryog', 'ing_un']
   },
   {
     id: 'rec_hd_065_sour_cream_onion_biscuits',
-    nomi: 'Smetana va Piyozli Yumshoq Biskvitlar',
+    nomi: 'Smetana va Piyozli Yumshoq Biskvitlar (Sour Cream and Onion Biscuits)',
     tayyorlash_vaqti_daq: 40,
     qiyinlik: 'orta',
     kategoriya: 'Pishiriqlar & Xamirlar',
     rasm_url: '/assets/images/shirinlik_baqlava_1785171638612.png',
-    tarif_matni: "Kat-kat saryog'li xamir, smetana va yashil piyoz aromati bilan pechda tillarang pishiriladigan amerikancha biskvit-bulochkalar.",
-    masalliqlar_matni: "310 g un, qabartma kukun, soda, 1.5 choy qoshiq tuz, murch, 150 g sovuq saryog', 80 g yashil piyoz, 300 g smetana, yirik tuz.",
+    tarif_matni: "Kat-kat saryog'li xamir, smetana va yashil piyoz aromati bilan pechda tillarang pishiriladigan biskvit-bulochkalar.",
+    masalliqlar_matni: "310 g un\n2 choy qoshiq qabartma kukun (baking powder)\nYarim choy qoshiq soda\n1.5 choy qoshiq tuz, 1 choy qoshiq qora murch\n1 choy qoshiq shakar\n150 g sovuq saryog' (kubik bo'lingan) + 30 g eritilgan saryog'\n80 g ingichka to'g'ralgan yashil piyoz\n300 g smetana\nYirik dengiz tuzi (flaky sea salt)",
     korsatmalari: [
-      "Un, qabartma kukun va sovuq saryog'dan uvoq hosil qilib yashil piyoz va smetanani soling.",
-      "Xamirni 3 ga bukab kat-kat qiling va 8 ta kvadratga bo'ling.",
-      "Ustiga eritilgan saryog' va yirik tuz seping, 215°C pechda 18-22 daqiqa pishiring."
+      "Pechni 215°C gacha qizdiring. Idishda un, qabartma kukun, soda, tuz, murch va shakarni elang. Sovuq saryog'ni qo'shib, barmoqlar bilan uvalab noxotdek uvoqlar hosil qiling. Yashil piyozni qo'shing.",
+      "O'rtasini ochib smetanani quying, sanchqi bilan xamir holiga keltiring. Stolda xamirni 20x10 cm to'rtburchak qilib yoying.",
+      "Xamirni konvertga o'xshab uchga taxlang. Yana yoyib, yana uchga taxlang (bu kat-kat bo'lishini ta'minlaydi). 8 ta kvadrat bo'lakka bo'ling.",
+      "Listga tizib, ustiga eritilgan saryog' surting va yirik tuz seping. 215°C pechda 18–22 daqiqa tillarang bo'lguncha pishiring."
     ],
     holat: 'nashr',
     required_ingredient_ids: ['ing_un', 'ing_saryog', 'ing_kok_piyoz', 'ing_smetana', 'ing_tuz']
   },
   {
     id: 'rec_hd_066_salty_buckwheat_chocolate_cookies',
-    nomi: 'Grechka Unli va Shokoladli Tuzli Pechenye',
+    nomi: 'Grechka Unli va Shokoladli Tuzli Pechenye (Salty Buckwheat Chocolate Chunk Cookies)',
     tayyorlash_vaqti_daq: 35,
     qiyinlik: 'orta',
     kategoriya: 'Pishiriqlar & Shirinliklar',
     rasm_url: '/assets/images/shirinlik_baqlava_1785171638612.png',
     tarif_matni: "Grechka uni, jigarrang shakar va yirik shokolad bo'laklari solinib pishiriladigan og'izda eriydigan tuzli pechenye.",
-    masalliqlar_matni: "125 g un, 65 g grechka uni, soda, 115 g saryog', 130 g jigarrang shakar, 100 g shakar, 1 tuxum + 2 sarig'i, 170 g achchiq shokolad.",
+    masalliqlar_matni: "125 g un\n65 g grechka uni (buckwheat flour)\nYarim choy qoshiq qabartma kukun, yarim choy qoshiq soda\n1 choy qoshiq tuz\n115 g saryog'\n130 g jigarrang shakar, 100 g shakar\n1 dona tuxum + 2 dona tuxum sarig'i, 1 choy qoshiq vanil\n170 g achchiq shokolad bo'laklari (chopped chocolate)",
     korsatmalari: [
-      "Eritilgan saryog', shakarlar, tuxum va grechka uni-shokoladlarni aralashtirib 2 soat sovuting.",
-      "Xamirdan sharchalar yasab 190°C pechda 8-10 daqiqa pishiring.",
-      "Pechdan olgach ustiga yirik tuz seping va sovuting."
+      "Saryog'ni past olovda eritib oling. Ikki xil un, qabartma kukun, soda va tuzni elang.",
+      "Eritilgan saryog' va ikkala shakarni mikserda 30 soniya ko'pirtiring. Tuxum va tuxum sariqlarini bittalab qo'shing, vanilni solib krem holatiga keltiring.",
+      "Quruq masalliqlarni va shokolad bo'laklarini qo'shib yumshoq xamir qoring. Idishni yopib, 2 soat muzlatgichda sovuting.",
+      "Pechni 190°C ga qizdiring. Xamirdan 2 osh qoshiqlik shariklar yasab, listga 5 cm masofada tizib chiqing.",
+      "190°C pechda 8–10 daqiqa chetlari tillarang bo'lguncha pishiring. Pechdan olgach, listni stolga sekin urib yassilang va ustiga yirik tuz seping."
     ],
     holat: 'nashr',
     required_ingredient_ids: ['ing_un', 'ing_grechka', 'ing_saryog', 'ing_shakar', 'ing_tuxum', 'ing_shokolad']
   },
   {
     id: 'rec_hd_067_mochi_cake',
-    nomi: 'Kokosli va Guruch Unli Mochi Pirogi (Mochi Cake)',
+    nomi: 'Kokosli va Guruch Unli Mochi Pirogi (Mochi Cake, Any Way You Want It)',
     tayyorlash_vaqti_daq: 70,
     qiyinlik: 'oson',
     kategoriya: 'Pishiriqlar & Shirinliklar',
     rasm_url: '/assets/images/shirinlik_baqlava_1785171638612.png',
     tarif_matni: "Yapishqoq guruch uni (mochiko), kokos suti va saryog'dan pishiriladigan qarsildoq ustli va elastik ichli Osiyo pirogi.",
-    masalliqlar_matni: "250 g yapishqoq guruch uni, 300 g shakar, 400 ml kokos suti, 90 g saryog', 2 dona tuxum, vanil, 30 g kokos qiyg'ichi yoki kunchut.",
+    masalliqlar_matni: "250 g yapishqoq guruch uni (glutinous sweet rice flour / mochiko)\n300 g shakar\n400 ml kokos suti (yoki qaymoq)\n90 g eritilgan saryog' (yoki kokos yog'i)\n2 dona tuxum\n2 choy qoshiq vanil\n1 choy qoshiq tuz, 1 choy qoshiq qabartma kukun\n30 g kokos qiyg'ichi yoki kunchut (ustiga)",
     korsatmalari: [
-      "Shakar, saryog', kokos suti va tuxumlarni aralashtiring.",
-      "Yapishqoq guruch unini solib silliq xamir ko'pirtiring va qolipga quying.",
-      "Ustiga kokos qiyg'ichi seping, 175°C pechda 55-65 daqiqa pishiring."
+      "Pechni 175°C gacha qizdiring. Qolipni saryog'lab, shakar sepib tayyorlang.",
+      "Idishda shakar, eritilgan saryog' va kokos sutini mikserda aralashtiring. Tuxum, vanil va tuzni qo'shing.",
+      "Guruch uni va qabartma kukunni qo'shib silliq xamir bo'lguncha ko'pirtiring.",
+      "Xamirni qolipga quyib, ustiga kokos qiyg'ichi yoki kunchut seping.",
+      "175°C pechda 55–65 daqiqa usti qarsildoq va tillarang bo'lguncha pishiring. To'liq sovutib kosing."
     ],
     holat: 'nashr',
     required_ingredient_ids: ['ing_guruch_uni', 'ing_shakar', 'ing_kokos_suti', 'ing_saryog', 'ing_tuxum']
   },
   {
     id: 'rec_hd_068_orange_chocolate_loaf_cake',
-    nomi: 'Apelsinli va Shokoladli Keks (Orange Chocolate Cake)',
+    nomi: 'Apelsinli va Shokoladli Keks (Orange Chocolate Loaf Cake From Florida)',
     tayyorlash_vaqti_daq: 75,
     qiyinlik: 'orta',
     kategoriya: 'Pishiriqlar & Shirinliklar',
     rasm_url: '/assets/images/shirinlik_baqlava_1785171638612.png',
     tarif_matni: "Kakao, qaymoq va apelsin rendasi xamiri hamda pishgach surtiladigan xushbo'y apelsinli shirin qiyom biskviti.",
-    masalliqlar_matni: "150 g un, 50 g kakao, 200 g shakar, 240 ml qaymoq, 2 dona tuxum, apelsin rendasi. Qiyom: 80 ml apelsin sharbati, 3 osh qoshiq shakar.",
+    masalliqlar_matni: "Xamir uchun:\n150 g un, 50 g kakao kukuni, 2 choy qoshiq qabartma kukun, yarim choy qoshiq tuz\n200 g shakar, 240 ml suyuq qaymoq (heavy cream), 2 dona tuxum, 1 choy qoshiq vanil\n1 dona apelsin po'stining qirilgan rendasi\nApelsin qiyomi uchun:\n80 ml apelsin sharbati, 3 osh qoshiq shakar",
     korsatmalari: [
-      "Un, kakao, qaymoq, tuxum va apelsin rendasidan keks xamiri tayyorlang.",
-      "175°C pechda 1 soat 5 daqiqa pishiring.",
-      "Keks issiqligida ustiga va yon atrofiga apelsinli qiyomni surtib sovuting."
+      "Pechni 175°C ga qizdiring. Loaf (keks) qolipini yog'lab, non uvoqlari seping. Un, kakao, qabartma kukun, tuz va shakarni birga elang.",
+      "Qaymoq va vanilni mikserda biroz ko'pirtiring. Tuxumlarni bittalab qo'shib ko'pirtirishda davom eting.",
+      "Elangan quruq masalliqlarni past tezlikda qo'shing va apelsin rendasini solib aralashtiring.",
+      "Xamirni qolipga quyib, 175°C pechda 1 soat 5 daqiqa pishiring.",
+      "Qiyom: Apelsin sharbati va shakarni aralashtirib qo'ying. Keks pishgach, issiq holda ustiga va yon atroflariga apelsinli qiyomni cho'tka bilan surtib chiqib sovuting."
     ],
     holat: 'nashr',
     required_ingredient_ids: ['ing_un', 'ing_kakao', 'ing_shakar', 'ing_qaymoq', 'ing_tuxum', 'ing_apelsin']
@@ -1246,15 +1270,18 @@ export const initialRecipes: Recipe[] = [
     kategoriya: 'Pishiriqlar & Shirinliklar',
     rasm_url: '/assets/images/shirinlik_baqlava_1785171638612.png',
     tarif_matni: "Ko'pirtirilgan sovuq qaymoq, tuxum va elangan un aralashmasidan tayyorlanadigan g'ovakli va momiq keks.",
-    masalliqlar_matni: "280 g un, 2 choy qoshiq qabartma kukun, tuz, 360 ml sovuq suyuq qaymoq, 3 dona tuxum, 225 g shakar, vanil.",
+    masalliqlar_matni: "280 g maxsus tort uni (cake flour) yoki elangan oddiy un\n2 choy qoshiq qabartma kukun (baking powder)\nYarim choy qoshiq tuz\n360 ml sovuq suyuq qaymoq (heavy cream)\n3 dona tuxum (xonaki haroratda)\n225 g shakar\n1 choy qoshiq vanil ekstrakti",
     korsatmalari: [
-      "Qaymoqni qattiq piklar bo'lguncha yaxshilab ko'pirtiring.",
-      "Tuxum, vanil va shakarni qo'shib 30 soniya ko'pirtiring va elangan unni ehtiyotkorlik bilan buklab soling.",
-      "175°C pechda 25-35 daqiqa pishirib, shakar kukuni bilan torting."
+      "Pechni 175°C gacha qizdiring. Teshikli keks qolipini (tube pan) yog'lang va un sepib tayyorlang.",
+      "Idishda un, qabartma kukun va tuzni elab aralashtiring.",
+      "Suyuq qaymoqni mikserda quyuq va qattiq piklar hosil bo'lguncha yaxshilab ko'pirtiring.",
+      "Alohida idishda tuxum va vanilni sanchqi bilan ko'pirtirib, ko'pirtirilgan qaymoqqa oz-ozdan qo'shing. Shakarni sekin-asta solib 30 soniya ko'pirtiring.",
+      "Elangan unli aralashmani ikki bo'lakka bo'lib solib, lapatka bilan pastdan yuqoriga ehtiyotkorlik bilan buklab aralashtiring (qaymoq cho'kib qolmasin).",
+      "Qolipga quyib, 175°C pechda 25–35 daqiqa pishiring. 10 daqiqa sovutib, agdarib oling va shakar kukuni bilan bezating."
     ],
     holat: 'nashr',
     required_ingredient_ids: ['ing_un', 'ing_qaymoq', 'ing_tuxum', 'ing_shakar']
-  },
+  }
 
 ];
 
