@@ -970,27 +970,29 @@ const [customMinutesInput, setCustomMinutesInput] = useState<string>('20');
               >
                 <div>
                   <div className="relative overflow-hidden rounded-lg mb-2">
-                    {(!recipe.rasm_url.startsWith('/') && !recipe.rasm_url.startsWith('http')) ? (
-                      <div className="w-full h-28 bg-gradient-to-br from-amber-100 via-orange-100 to-pink-100 flex items-center justify-center rounded-lg group-hover:scale-105 transition-transform duration-300">
-                        <span className="text-4xl filter drop-shadow-sm">{recipe.rasm_url}</span>
+                    {(!recipe.rasm_url.startsWith('/') && !recipe.rasm_url.startsWith('http') && !recipe.rasm_url.startsWith('data:') && recipe.rasm_url.length <= 10) ? (
+                      <div className="w-full h-32 bg-gradient-to-br from-amber-100 via-orange-100 to-pink-100 flex items-center justify-center rounded-xl group-hover:scale-105 transition-transform duration-300 shadow-2xs">
+                        <span className="text-5xl filter drop-shadow-sm">{recipe.rasm_url}</span>
                       </div>
                     ) : (
-                      <img
-                        src={recipe.rasm_url}
-                        alt={recipe.nomi}
-                        onError={(e) => {
-                          e.currentTarget.style.display = 'none';
-                          const parent = e.currentTarget.parentElement;
-                          if (parent && !parent.querySelector('.emoji-fallback')) {
-                            const fallback = document.createElement('div');
-                            fallback.className = "emoji-fallback w-full h-28 bg-gradient-to-br from-amber-100 via-orange-100 to-pink-100 flex items-center justify-center rounded-lg";
-                            fallback.innerHTML = `<span class="text-4xl">🍲</span>`;
-                            parent.appendChild(fallback);
-                          }
-                        }}
-                        referrerPolicy="no-referrer"
-                        className="w-full h-28 object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
+                      <div className="w-full h-32 bg-stone-900/5 rounded-xl overflow-hidden flex items-center justify-center border border-[#EFE8DC]">
+                        <img
+                          src={recipe.rasm_url}
+                          alt={recipe.nomi}
+                          onError={(e) => {
+                            e.currentTarget.style.display = 'none';
+                            const parent = e.currentTarget.parentElement;
+                            if (parent && !parent.querySelector('.emoji-fallback')) {
+                              const fallback = document.createElement('div');
+                              fallback.className = "emoji-fallback w-full h-32 bg-gradient-to-br from-amber-100 via-orange-100 to-pink-100 flex items-center justify-center rounded-xl";
+                              fallback.innerHTML = `<span class="text-4xl">🍲</span>`;
+                              parent.appendChild(fallback);
+                            }
+                          }}
+                          referrerPolicy="no-referrer"
+                          className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                        />
+                      </div>
                     )}
                     <span className="absolute top-1.5 right-1.5 bg-black/60 backdrop-blur text-white text-[9px] font-bold px-1.5 py-0.2 rounded-md flex items-center gap-1">
                       <Clock className="w-2.5 h-2.5 text-amber-300" />
@@ -1459,27 +1461,29 @@ const [customMinutesInput, setCustomMinutesInput] = useState<string>('20');
               </div>
             </div>
 
-            {(!activeRecipe.rasm_url.startsWith('/') && !activeRecipe.rasm_url.startsWith('http')) ? (
-              <div className="w-full h-44 bg-gradient-to-br from-orange-400 via-pink-400 to-purple-500 flex items-center justify-center rounded-2xl shadow-md">
-                <span className="text-6xl filter drop-shadow-md">{activeRecipe.rasm_url}</span>
+            {(!activeRecipe.rasm_url.startsWith('/') && !activeRecipe.rasm_url.startsWith('http') && !activeRecipe.rasm_url.startsWith('data:') && activeRecipe.rasm_url.length <= 10) ? (
+              <div className="w-full h-52 bg-gradient-to-br from-orange-400 via-pink-400 to-purple-500 flex items-center justify-center rounded-2xl shadow-md">
+                <span className="text-7xl filter drop-shadow-md">{activeRecipe.rasm_url}</span>
               </div>
             ) : (
-              <img
-                src={activeRecipe.rasm_url}
-                alt={activeRecipe.nomi}
-                onError={(e) => {
-                  e.currentTarget.style.display = 'none';
-                  const parent = e.currentTarget.parentElement;
-                  if (parent && !parent.querySelector('.emoji-fallback')) {
-                    const fallback = document.createElement('div');
-                    fallback.className = "emoji-fallback w-full h-44 bg-gradient-to-br from-orange-400 via-pink-400 to-purple-500 flex items-center justify-center rounded-2xl shadow-md";
-                    fallback.innerHTML = `<span class="text-6xl">🍲</span>`;
-                    parent.appendChild(fallback);
-                  }
-                }}
-                referrerPolicy="no-referrer"
-                className="w-full h-48 object-cover rounded-2xl shadow-xs"
-              />
+              <div className="w-full h-56 bg-stone-900/5 rounded-2xl overflow-hidden flex items-center justify-center p-1 border border-[#EFE8DC] relative">
+                <img
+                  src={activeRecipe.rasm_url}
+                  alt={activeRecipe.nomi}
+                  onError={(e) => {
+                    e.currentTarget.style.display = 'none';
+                    const parent = e.currentTarget.parentElement;
+                    if (parent && !parent.querySelector('.emoji-fallback')) {
+                      const fallback = document.createElement('div');
+                      fallback.className = "emoji-fallback w-full h-56 bg-gradient-to-br from-orange-400 via-pink-400 to-purple-500 flex items-center justify-center rounded-2xl shadow-md";
+                      fallback.innerHTML = `<span class="text-7xl">🍲</span>`;
+                      parent.appendChild(fallback);
+                    }
+                  }}
+                  referrerPolicy="no-referrer"
+                  className="w-full h-full object-contain rounded-xl shadow-xs transition-all"
+                />
+              </div>
             )}
 
             <div>
@@ -1950,15 +1954,27 @@ const [customMinutesInput, setCustomMinutesInput] = useState<string>('20');
                 </div>
               </div>
 
-              {/* Image URL & Compressed Upload */}
+              {/* Image URL & Compressed Upload with Live Preview */}
               <div className="space-y-1.5">
                 <label className="block text-xs font-bold text-gray-700">Rasm / Emoji:</label>
+                
+                {/* Live Preview Box */}
+                {editRasmUrl && (
+                  <div className="w-full h-40 bg-stone-900/5 rounded-xl overflow-hidden flex items-center justify-center border border-gray-200 p-1 mb-2">
+                    {(editRasmUrl.startsWith('/') || editRasmUrl.startsWith('http') || editRasmUrl.startsWith('data:') || editRasmUrl.length > 10) ? (
+                      <img src={editRasmUrl} alt="Preview" className="w-full h-full object-contain rounded-lg" />
+                    ) : (
+                      <span className="text-5xl">{editRasmUrl}</span>
+                    )}
+                  </div>
+                )}
+
                 <div className="flex items-center gap-2">
                   <input
                     type="text"
                     value={editRasmUrl}
                     onChange={(e) => setEditRasmUrl(e.target.value)}
-                    placeholder="URL yoki Emoji (masalan: 🍲)"
+                    placeholder="URL, Base64 yoki Emoji (masalan: 🍲)"
                     className="flex-1 px-3 py-2 text-xs font-bold rounded-xl border border-gray-300 focus:border-amber-500 focus:outline-none"
                   />
                   <label className="cursor-pointer px-3 py-2 bg-amber-500 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 hover:bg-amber-600 transition-colors shadow-2xs">
@@ -1973,7 +1989,7 @@ const [customMinutesInput, setCustomMinutesInput] = useState<string>('20');
                   </label>
                 </div>
                 {isCompressingImage && (
-                  <p className="text-[10px] text-amber-600 font-bold animate-pulse">📷 Rasm avtomatik siqilmoqda (~50KB)...</p>
+                  <p className="text-[10px] text-amber-600 font-bold animate-pulse">📷 Rasm avtomatik siqilmoqda (WebP/JPEG ~50KB)...</p>
                 )}
               </div>
 

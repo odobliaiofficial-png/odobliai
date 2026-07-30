@@ -197,12 +197,21 @@ export const Profil: React.FC = () => {
                       onClick={() => setActiveTab('pazanda')}
                       className="flex items-center gap-2.5 flex-1 min-w-0 cursor-pointer"
                     >
-                      <img
-                        src={recipe.rasm_url}
-                        alt={recipe.nomi}
-                        referrerPolicy="no-referrer"
-                        className="w-11 h-11 object-cover rounded-xl shadow-2xs flex-shrink-0"
-                      />
+                      {(!recipe.rasm_url.startsWith('/') && !recipe.rasm_url.startsWith('http') && !recipe.rasm_url.startsWith('data:') && recipe.rasm_url.length <= 10) ? (
+                        <div className="w-11 h-11 bg-pink-100 flex items-center justify-center rounded-xl text-2xl flex-shrink-0">
+                          {recipe.rasm_url}
+                        </div>
+                      ) : (
+                        <img
+                          src={recipe.rasm_url}
+                          alt={recipe.nomi}
+                          onError={(e) => {
+                            e.currentTarget.style.display = 'none';
+                          }}
+                          referrerPolicy="no-referrer"
+                          className="w-11 h-11 object-contain bg-stone-900/5 rounded-xl shadow-2xs flex-shrink-0"
+                        />
+                      )}
                       <div className="min-w-0">
                         <h4 className="font-extrabold text-[#2E121D] text-xs truncate">
                           {t(recipe.nomi)}
