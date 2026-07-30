@@ -1,5 +1,13 @@
 export type ScriptType = 'lotin' | 'kirill';
 
+export interface BannerConfig {
+  image_url: string;
+  title: string;
+  subtitle: string;
+  badge: string;
+  button_text: string;
+}
+
 export interface Child {
   id: string;
   ism: string;

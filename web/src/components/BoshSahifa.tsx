@@ -1,22 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { useApp } from '../context/AppContext';
 import {
   Star,
   Sparkles,
-  ChevronRight,
   CheckCircle2,
-  Clock,
   Heart,
   ArrowUpRight,
   Search,
   SlidersHorizontal,
   X,
   ChefHat,
-  BookOpenCheck,
   Lightbulb,
-  BrainCircuit,
-  Utensils
+  Utensils,
+  ChevronRight
 } from 'lucide-react';
 
 export const BoshSahifa: React.FC = () => {
@@ -24,16 +21,12 @@ export const BoshSahifa: React.FC = () => {
     setActiveTab,
     t,
     recipes,
-    tales,
-    riddles,
     lifehacks,
-    user,
     openRecipeModal,
-    openTaleModal,
-    openLifehackModal
+    openLifehackModal,
+    bannerConfig
   } = useApp();
 
-  const [currentSlide, setCurrentSlide] = useState(0);
   const [favorites, setFavorites] = useState<Record<string, boolean>>({});
   const [showFilterModal, setShowFilterModal] = useState(false);
   const [filterSearch, setFilterSearch] = useState('');
@@ -43,47 +36,10 @@ export const BoshSahifa: React.FC = () => {
     setFavorites(prev => ({ ...prev, [id]: !prev[id] }));
   };
 
-  const slides = [
-    {
-      id: 0,
-      title: "Pazanda AI — Mazali Retseptlar",
-      subtitle: "Uydagi masalliqlardan milliy va mazali taomlar tayyorlang.",
-      badge: "AQL-IDROK PAZANDA",
-      tab: 'pazanda',
-      btnText: "Retseptlarni Ko'rish",
-      icon: "🍲"
-    },
-    {
-      id: 1,
-      title: "Aql-idrokli Bozorlik Ro'yxati",
-      subtitle: "Retseptlardan avtomatik masalliqlar ro'yxatini shakllantiring.",
-      badge: "BOZORLIK YORDAMCHISI",
-      tab: 'pazanda',
-      btnText: "Bozorlik Ro'yxati",
-      icon: "🛒"
-    },
-    {
-      id: 2,
-      title: "Ro'zg'or Lifehacklari",
-      subtitle: "Pazandalik va uy-ro'zg'or bo'yicha foydali maslahatlar.",
-      badge: "FOYDALI MASLAHAT",
-      tab: 'lifehacklar',
-      btnText: "Lifehacklar",
-      icon: "💡"
-    }
-  ];
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide(prev => (prev + 1) % slides.length);
-    }, 4500);
-    return () => clearInterval(timer);
-  }, [slides.length]);
-
-  const featuredRecipe = recipes[0];
-  const featuredTale = tales[0];
-  const featuredRiddle = riddles[0];
-  const featuredLifehack = lifehacks[0];
+  const featuredRecipe1 = recipes[0];
+  const featuredRecipe2 = recipes[1] || recipes[0];
+  const featuredLifehack1 = lifehacks[0];
+  const featuredLifehack2 = lifehacks[1] || lifehacks[0];
 
   const categories = [
     { 
@@ -119,7 +75,7 @@ export const BoshSahifa: React.FC = () => {
           >
             <Search className="w-4 h-4 text-[#DB2777]" />
             <span className="text-xs font-medium text-[#9D4C6C] line-clamp-1">
-              {t("Masalliq, retsept yoki ertak qidiring...")}
+              {t("Masalliq, retsept yoki lifehack qidiring...")}
             </span>
           </motion.div>
           <motion.button 
@@ -133,8 +89,8 @@ export const BoshSahifa: React.FC = () => {
         </div>
       </div>
 
-      {/* 4 ROUND CATEGORIES ROW WITH PROFESSIONAL GRADIENTS & LUCIDE ICONS */}
-      <div className="grid grid-cols-4 gap-2 pt-1">
+      {/* CATEGORIES ROW */}
+      <div className="grid grid-cols-3 gap-2 pt-1">
         {categories.map((cat, idx) => (
           <motion.button
             key={idx}
@@ -153,55 +109,53 @@ export const BoshSahifa: React.FC = () => {
         ))}
       </div>
 
-      {/* COMPACT & ELEGANT ROSE BANNER */}
-      <div className="card-rose-banner p-4 relative overflow-hidden rounded-2xl shadow-md min-h-[115px] flex flex-col justify-between">
-        <div className="relative z-10 flex items-start justify-between gap-2">
-          <div className="space-y-1 max-w-[240px]">
-            <span className="bg-white/20 text-[#FBBF24] text-[9.5px] font-extrabold tracking-wider uppercase px-2.5 py-0.5 rounded-full inline-flex items-center gap-1 backdrop-blur-md border border-white/10">
-              <Sparkles className="w-2.5 h-2.5 text-[#FBBF24]" />
-              {t(slides[currentSlide].badge)}
+      {/* ULTRA-SLEEK 21:9 HERO BANNER WITH CUSTOM IMAGE SUPPORT */}
+      <div className="w-full aspect-[21/9] relative overflow-hidden rounded-2xl shadow-lg group border border-pink-200/60">
+        {bannerConfig.image_url ? (
+          <img
+            src={bannerConfig.image_url}
+            alt={bannerConfig.title}
+            referrerPolicy="no-referrer"
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            onError={(e) => {
+              e.currentTarget.style.display = 'none';
+            }}
+          />
+        ) : null}
+
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-rose-950/85 via-rose-900/65 to-transparent p-3.5 flex flex-col justify-between z-10 backdrop-blur-[1px]">
+          <div className="space-y-0.5 max-w-[70%]">
+            <span className="bg-amber-400/90 text-amber-950 text-[9px] font-black tracking-wider uppercase px-2 py-0.5 rounded-full inline-flex items-center gap-1 shadow-2xs">
+              <Sparkles className="w-2.5 h-2.5 text-amber-950" />
+              {t(bannerConfig.badge || "AQL-IDROK PAZANDA")}
             </span>
-            <h2 className="text-sm font-extrabold tracking-tight leading-snug text-white mt-1">
-              {t(slides[currentSlide].title)}
+            <h2 className="text-xs sm:text-sm font-black tracking-tight leading-tight text-white line-clamp-1 drop-shadow-xs">
+              {t(bannerConfig.title || "Pazanda AI — Mazali Retseptlar")}
             </h2>
+            <p className="text-[10px] text-rose-100 line-clamp-1 hidden sm:block">
+              {t(bannerConfig.subtitle || "Uydagi masalliqlardan milliy va mazali taomlar tayyorlang.")}
+            </p>
           </div>
-          <span className="text-3xl drop-shadow-md select-none">{slides[currentSlide].icon}</span>
-        </div>
 
-        <div className="relative z-10 flex items-center justify-between pt-2">
-          <button
-            onClick={() => setActiveTab(slides[currentSlide].tab as any)}
-            className="btn-gold-pill px-3.5 py-1 text-xs font-extrabold flex items-center gap-1 shadow-xs active:scale-95 transition-all"
-          >
-            <span>{t(slides[currentSlide].btnText)}</span>
-            <ArrowUpRight className="w-3.5 h-3.5" />
-          </button>
-
-          {/* Dots */}
-          <div className="flex items-center gap-1">
-            {slides.map((s, idx) => (
-              <button
-                key={s.id}
-                onClick={() => setCurrentSlide(idx)}
-                className={`h-1.5 rounded-full transition-all ${
-                  currentSlide === idx ? 'w-5 bg-[#FBBF24]' : 'w-1.5 bg-white/40'
-                }`}
-              />
-            ))}
+          <div className="flex items-center justify-between">
+            <button
+              onClick={() => setActiveTab('pazanda')}
+              className="btn-gold-pill px-3 py-1 text-[10.5px] font-black flex items-center gap-1 shadow-md active:scale-95 transition-all"
+            >
+              <span>{t(bannerConfig.button_text || "Retseptlarni Ko'rish")}</span>
+              <ArrowUpRight className="w-3 h-3" />
+            </button>
           </div>
         </div>
       </div>
 
-
-
       {/* KUNLIK TAVSIYALAR SECTION */}
       <div>
         <div className="flex items-center justify-between mb-2.5 px-1">
-          <div className="flex items-center gap-2">
-            <h3 className="font-bold text-[#831843] text-xs uppercase tracking-wider">
-              {t("Kunlik Sara Tavsiyalar")}
-            </h3>
-          </div>
+          <h3 className="font-bold text-[#831843] text-xs uppercase tracking-wider">
+            {t("Kunlik Sara Tavsiyalar")}
+          </h3>
           <button 
             onClick={() => setActiveTab('pazanda')}
             className="text-xs font-bold text-[#DB2777] hover:underline"
@@ -210,229 +164,239 @@ export const BoshSahifa: React.FC = () => {
           </button>
         </div>
 
-        {/* 2-Column Product/Recipe Grid */}
+        {/* 2-Column Recipe & Lifehack Grid */}
         <div className="grid grid-cols-2 gap-2.5">
           
-          {/* Item 1: Recipe Card */}
-          <motion.div
-            whileHover={{ y: -2 }}
-            onClick={() => setActiveTab('pazanda')}
-            className="card-pink p-2.5 relative flex flex-col justify-between cursor-pointer group"
-          >
-            {/* Heart Favorite Button */}
-            <button
-              onClick={(e) => toggleFavorite('recipe-1', e)}
-              className={`w-6 h-6 rounded-full bg-white/90 shadow-xs border border-pink-100 flex items-center justify-center absolute top-2 right-2 z-10 transition-transform active:scale-90 ${
-                favorites['recipe-1'] ? 'text-rose-500 fill-rose-500' : 'text-stone-400'
-              }`}
+          {/* Card 1: Recipe 1 */}
+          {featuredRecipe1 && (
+            <motion.div
+              whileHover={{ y: -2 }}
+              onClick={() => openRecipeModal(featuredRecipe1)}
+              className="card-pink p-2.5 relative flex flex-col justify-between cursor-pointer group"
             >
-              <Heart className="w-3.5 h-3.5" />
-            </button>
+              <button
+                onClick={(e) => toggleFavorite(featuredRecipe1.id, e)}
+                className={`w-6 h-6 rounded-full bg-white/90 shadow-xs border border-pink-100 flex items-center justify-center absolute top-2 right-2 z-10 transition-transform active:scale-90 ${
+                  favorites[featuredRecipe1.id] ? 'text-rose-500 fill-rose-500' : 'text-stone-400'
+                }`}
+              >
+                <Heart className="w-3.5 h-3.5" />
+              </button>
 
-            <div>
-              <div className="aspect-[4/3] overflow-hidden rounded-xl mb-2 bg-pink-50 relative">
-                <img
-                  src={featuredRecipe?.rasm_url || '/assets/images/toshkent_palov_1785171559097.png'}
-                  alt={featuredRecipe?.nomi}
-                  onError={(e) => { e.currentTarget.src = '/assets/images/toshkent_palov_1785171559097.png'; }}
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
+              <div>
+                <div className="aspect-[4/3] overflow-hidden rounded-xl mb-2 bg-pink-50 relative">
+                  <img
+                    src={featuredRecipe1.rasm_url}
+                    alt={featuredRecipe1.nomi}
+                    onError={(e) => { e.currentTarget.src = 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80'; }}
+                    referrerPolicy="no-referrer"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+
+                <div className="flex items-center justify-between text-[10px] text-[#9D4C6C] font-medium mb-1">
+                  <div className="flex items-center gap-1">
+                    <span className="w-3.5 h-3.5 rounded-full bg-pink-100 text-[8px] flex items-center justify-center font-bold text-pink-800">
+                      👨‍🍳
+                    </span>
+                    <span className="truncate max-w-[50px]">Pazanda</span>
+                    <CheckCircle2 className="w-3 h-3 text-blue-500 fill-blue-500 text-white" />
+                  </div>
+                  <div className="flex items-center gap-0.5 text-amber-500 font-bold">
+                    <Star className="w-3 h-3 fill-amber-400" />
+                    <span>4.9</span>
+                  </div>
+                </div>
+
+                <h4 className="font-bold text-[#2E121D] text-xs leading-snug line-clamp-1">
+                  {t(featuredRecipe1.nomi)}
+                </h4>
               </div>
 
-              {/* Author & Rating */}
-              <div className="flex items-center justify-between text-[10px] text-[#9D4C6C] font-medium mb-1">
-                <div className="flex items-center gap-1">
-                  <span className="w-3.5 h-3.5 rounded-full bg-pink-100 text-[8px] flex items-center justify-center font-bold text-pink-800">
-                    👨‍🍳
-                  </span>
-                  <span className="truncate max-w-[50px]">Chef</span>
-                  <CheckCircle2 className="w-3 h-3 text-blue-500 fill-blue-500 text-white" />
-                </div>
-                <div className="flex items-center gap-0.5 text-amber-500 font-bold">
-                  <Star className="w-3 h-3 fill-amber-400" />
-                  <span>4.9</span>
-                </div>
+              <div className="mt-2 flex items-center justify-between pt-1 border-t border-dashed border-[#FCE7F3]">
+                <span className="text-[#DB2777] font-bold text-[11px]">
+                  {featuredRecipe1.tayyorlash_vaqti_daq} {t("daq")}
+                </span>
+                <span className="bg-pink-50 text-[#DB2777] text-[9.5px] font-bold px-2 py-0.5 rounded-full border border-pink-100 capitalize">
+                  {t(featuredRecipe1.qiyinlik)}
+                </span>
               </div>
+            </motion.div>
+          )}
 
-              <h4 className="font-bold text-[#2E121D] text-xs leading-snug line-clamp-1">
-                {t(featuredRecipe?.nomi || "Toshkent To'y Palovi")}
-              </h4>
-            </div>
-
-            <div className="mt-2 flex items-center justify-between pt-1 border-t border-dashed border-[#FCE7F3]">
-              <span className="text-[#DB2777] font-bold text-[11px]">
-                {featuredRecipe?.tayyorlash_vaqti_daq} {t("daq")}
-              </span>
-              <span className="bg-pink-50 text-[#DB2777] text-[9.5px] font-bold px-2 py-0.5 rounded-full border border-pink-100">
-                {t(featuredRecipe?.qiyinlik || 'Oson')}
-              </span>
-            </div>
-          </motion.div>
-
-          {/* Item 2: Tale Card */}
-          <motion.div
-            whileHover={{ y: -2 }}
-            onClick={() => setActiveTab('lifehacklar')}
-            className="card-pink p-2.5 relative flex flex-col justify-between cursor-pointer group"
-          >
-            <button
-              onClick={(e) => toggleFavorite('tale-1', e)}
-              className={`w-6 h-6 rounded-full bg-white/90 shadow-xs border border-pink-100 flex items-center justify-center absolute top-2 right-2 z-10 transition-transform active:scale-90 ${
-                favorites['tale-1'] ? 'text-rose-500 fill-rose-500' : 'text-stone-400'
-              }`}
+          {/* Card 2: Recipe 2 */}
+          {featuredRecipe2 && (
+            <motion.div
+              whileHover={{ y: -2 }}
+              onClick={() => openRecipeModal(featuredRecipe2)}
+              className="card-pink p-2.5 relative flex flex-col justify-between cursor-pointer group"
             >
-              <Heart className="w-3.5 h-3.5" />
-            </button>
+              <button
+                onClick={(e) => toggleFavorite(featuredRecipe2.id, e)}
+                className={`w-6 h-6 rounded-full bg-white/90 shadow-xs border border-pink-100 flex items-center justify-center absolute top-2 right-2 z-10 transition-transform active:scale-90 ${
+                  favorites[featuredRecipe2.id] ? 'text-rose-500 fill-rose-500' : 'text-stone-400'
+                }`}
+              >
+                <Heart className="w-3.5 h-3.5" />
+              </button>
 
-            <div>
-              <div className="aspect-[4/3] overflow-hidden rounded-xl mb-2 bg-purple-50 relative">
-                <img
-                  src={featuredTale?.muqova_rasm_url || '/assets/images/tale_quyoncha_cover_1785171712747.png'}
-                  alt={featuredTale?.sarlavha}
-                  onError={(e) => { e.currentTarget.src = '/assets/images/tale_quyoncha_cover_1785171712747.png'; }}
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
+              <div>
+                <div className="aspect-[4/3] overflow-hidden rounded-xl mb-2 bg-pink-50 relative">
+                  <img
+                    src={featuredRecipe2.rasm_url}
+                    alt={featuredRecipe2.nomi}
+                    onError={(e) => { e.currentTarget.src = 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80'; }}
+                    referrerPolicy="no-referrer"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+
+                <div className="flex items-center justify-between text-[10px] text-[#9D4C6C] font-medium mb-1">
+                  <div className="flex items-center gap-1">
+                    <span className="w-3.5 h-3.5 rounded-full bg-orange-100 text-[8px] flex items-center justify-center font-bold text-orange-800">
+                      🍲
+                    </span>
+                    <span className="truncate max-w-[50px]">Retsept</span>
+                    <CheckCircle2 className="w-3 h-3 text-blue-500 fill-blue-500 text-white" />
+                  </div>
+                  <div className="flex items-center gap-0.5 text-amber-500 font-bold">
+                    <Star className="w-3 h-3 fill-amber-400" />
+                    <span>5.0</span>
+                  </div>
+                </div>
+
+                <h4 className="font-bold text-[#2E121D] text-xs leading-snug line-clamp-1">
+                  {t(featuredRecipe2.nomi)}
+                </h4>
               </div>
 
-              <div className="flex items-center justify-between text-[10px] text-[#9D4C6C] font-medium mb-1">
-                <div className="flex items-center gap-1">
-                  <span className="w-3.5 h-3.5 rounded-full bg-purple-100 text-[8px] flex items-center justify-center font-bold text-purple-800">
-                    🏰
-                  </span>
-                  <span className="truncate max-w-[50px]">{t("Ertak")}</span>
-                  <CheckCircle2 className="w-3 h-3 text-blue-500 fill-blue-500 text-white" />
-                </div>
-                <div className="flex items-center gap-0.5 text-amber-500 font-bold">
-                  <Star className="w-3 h-3 fill-amber-400" />
-                  <span>4.8</span>
-                </div>
+              <div className="mt-2 flex items-center justify-between pt-1 border-t border-dashed border-[#FCE7F3]">
+                <span className="text-[#DB2777] font-bold text-[11px]">
+                  {featuredRecipe2.tayyorlash_vaqti_daq} {t("daq")}
+                </span>
+                <span className="bg-pink-50 text-[#DB2777] text-[9.5px] font-bold px-2 py-0.5 rounded-full border border-pink-100 capitalize">
+                  {t(featuredRecipe2.qiyinlik)}
+                </span>
               </div>
+            </motion.div>
+          )}
 
-              <h4 className="font-bold text-[#2E121D] text-xs leading-snug line-clamp-1">
-                {t(featuredTale?.sarlavha || "Mehrli quyoncha")}
-              </h4>
-            </div>
-
-            <div className="mt-2 flex items-center justify-between pt-1 border-t border-dashed border-[#FCE7F3]">
-              <span className="text-[#F59E0B] font-bold text-[11px]">
-                {featuredTale?.yosh_toifasi} {t("yosh")}
-              </span>
-              <span className="bg-amber-50 text-[#D97706] text-[9.5px] font-bold px-2 py-0.5 rounded-full border border-amber-100">
-                Audio 🎧
-              </span>
-            </div>
-          </motion.div>
-
-          {/* Item 3: Riddle Card */}
-          <motion.div
-            whileHover={{ y: -2 }}
-            onClick={() => setActiveTab('lifehacklar')}
-            className="card-pink p-2.5 relative flex flex-col justify-between cursor-pointer group"
-          >
-            <button
-              onClick={(e) => toggleFavorite('riddle-1', e)}
-              className={`w-6 h-6 rounded-full bg-white/90 shadow-xs border border-pink-100 flex items-center justify-center absolute top-2 right-2 z-10 transition-transform active:scale-90 ${
-                favorites['riddle-1'] ? 'text-rose-500 fill-rose-500' : 'text-stone-400'
-              }`}
+          {/* Card 3: Lifehack 1 */}
+          {featuredLifehack1 && (
+            <motion.div
+              whileHover={{ y: -2 }}
+              onClick={() => openLifehackModal(featuredLifehack1)}
+              className="card-pink p-2.5 relative flex flex-col justify-between cursor-pointer group"
             >
-              <Heart className="w-3.5 h-3.5" />
-            </button>
+              <button
+                onClick={(e) => toggleFavorite(featuredLifehack1.id, e)}
+                className={`w-6 h-6 rounded-full bg-white/90 shadow-xs border border-pink-100 flex items-center justify-center absolute top-2 right-2 z-10 transition-transform active:scale-90 ${
+                  favorites[featuredLifehack1.id] ? 'text-rose-500 fill-rose-500' : 'text-stone-400'
+                }`}
+              >
+                <Heart className="w-3.5 h-3.5" />
+              </button>
 
-            <div>
-              <div className="aspect-[4/3] rounded-xl bg-amber-50/80 border border-amber-100 p-2 mb-2 flex items-center justify-center text-center">
-                <p className="text-[11px] font-semibold text-amber-950 line-clamp-3 italic">
-                  "{t(featuredRiddle?.savol || "Ko'zi bor, boshi yo'q...")}"
-                </p>
+              <div>
+                <div className="aspect-[4/3] overflow-hidden rounded-xl mb-2 bg-emerald-50 relative">
+                  <img
+                    src={featuredLifehack1.rasm_url}
+                    alt={featuredLifehack1.sarlavha}
+                    onError={(e) => { e.currentTarget.src = 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=600&q=80'; }}
+                    referrerPolicy="no-referrer"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+
+                <div className="flex items-center justify-between text-[10px] text-[#9D4C6C] font-medium mb-1">
+                  <div className="flex items-center gap-1">
+                    <span className="w-3.5 h-3.5 rounded-full bg-emerald-100 text-[8px] flex items-center justify-center font-bold text-emerald-800">
+                      💡
+                    </span>
+                    <span>{t("Lifehack")}</span>
+                  </div>
+                  <div className="flex items-center gap-0.5 text-amber-500 font-bold">
+                    <Star className="w-3 h-3 fill-amber-400" />
+                    <span>4.9</span>
+                  </div>
+                </div>
+
+                <h4 className="font-bold text-[#2E121D] text-xs leading-snug line-clamp-1">
+                  {t(featuredLifehack1.sarlavha)}
+                </h4>
               </div>
 
-              <div className="flex items-center justify-between text-[10px] text-[#9D4C6C] font-medium mb-1">
-                <div className="flex items-center gap-1">
-                  <span className="w-3.5 h-3.5 rounded-full bg-amber-200 text-[8px] flex items-center justify-center font-bold text-amber-900">
-                    🧩
-                  </span>
-                  <span>{t("Topishmoq")}</span>
-                </div>
-                <div className="flex items-center gap-0.5 text-amber-500 font-bold">
-                  <Star className="w-3 h-3 fill-amber-400" />
-                  <span>5.0</span>
-                </div>
+              <div className="mt-2 flex items-center justify-between pt-1 border-t border-dashed border-[#FCE7F3]">
+                <span className="text-[#059669] font-bold text-[11px]">
+                  {t("Maslahat")}
+                </span>
+                <span className="bg-emerald-50 text-[#059669] text-[9.5px] font-bold px-2 py-0.5 rounded-full border border-emerald-100">
+                  {t("O'tish")}
+                </span>
               </div>
+            </motion.div>
+          )}
 
-              <h4 className="font-bold text-[#2E121D] text-xs leading-snug line-clamp-1">
-                {t("Mantiqiy Topishmoq")}
-              </h4>
-            </div>
-
-            <div className="mt-2 flex items-center justify-between pt-1 border-t border-dashed border-[#FCE7F3]">
-              <span className="text-[#DB2777] font-bold text-[11px]">
-                +15 Ball ⭐
-              </span>
-              <span className="btn-gold-pill px-2.5 py-0.5 text-[10px] truncate">
-                {t("Yechish")}
-              </span>
-            </div>
-          </motion.div>
-
-          {/* Item 4: Lifehack Card */}
-          <motion.div
-            whileHover={{ y: -2 }}
-            onClick={() => setActiveTab('lifehacklar')}
-            className="card-pink p-2.5 relative flex flex-col justify-between cursor-pointer group"
-          >
-            <button
-              onClick={(e) => toggleFavorite('lifehack-1', e)}
-              className={`w-6 h-6 rounded-full bg-white/90 shadow-xs border border-pink-100 flex items-center justify-center absolute top-2 right-2 z-10 transition-transform active:scale-90 ${
-                favorites['lifehack-1'] ? 'text-rose-500 fill-rose-500' : 'text-stone-400'
-              }`}
+          {/* Card 4: Lifehack 2 */}
+          {featuredLifehack2 && (
+            <motion.div
+              whileHover={{ y: -2 }}
+              onClick={() => openLifehackModal(featuredLifehack2)}
+              className="card-pink p-2.5 relative flex flex-col justify-between cursor-pointer group"
             >
-              <Heart className="w-3.5 h-3.5" />
-            </button>
+              <button
+                onClick={(e) => toggleFavorite(featuredLifehack2.id, e)}
+                className={`w-6 h-6 rounded-full bg-white/90 shadow-xs border border-pink-100 flex items-center justify-center absolute top-2 right-2 z-10 transition-transform active:scale-90 ${
+                  favorites[featuredLifehack2.id] ? 'text-rose-500 fill-rose-500' : 'text-stone-400'
+                }`}
+              >
+                <Heart className="w-3.5 h-3.5" />
+              </button>
 
-            <div>
-              <div className="aspect-[4/3] overflow-hidden rounded-xl mb-2 bg-pink-50 relative">
-                <img
-                  src={featuredLifehack?.rasm_url || '/assets/images/lh_atirgul_carving_1785171733978.png'}
-                  alt={featuredLifehack?.sarlavha}
-                  onError={(e) => { e.currentTarget.src = '/assets/images/lh_atirgul_carving_1785171733978.png'; }}
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
+              <div>
+                <div className="aspect-[4/3] overflow-hidden rounded-xl mb-2 bg-emerald-50 relative">
+                  <img
+                    src={featuredLifehack2.rasm_url}
+                    alt={featuredLifehack2.sarlavha}
+                    onError={(e) => { e.currentTarget.src = 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=600&q=80'; }}
+                    referrerPolicy="no-referrer"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+
+                <div className="flex items-center justify-between text-[10px] text-[#9D4C6C] font-medium mb-1">
+                  <div className="flex items-center gap-1">
+                    <span className="w-3.5 h-3.5 rounded-full bg-emerald-100 text-[8px] flex items-center justify-center font-bold text-emerald-800">
+                      💡
+                    </span>
+                    <span>{t("Lifehack")}</span>
+                  </div>
+                  <div className="flex items-center gap-0.5 text-amber-500 font-bold">
+                    <Star className="w-3 h-3 fill-amber-400" />
+                    <span>4.8</span>
+                  </div>
+                </div>
+
+                <h4 className="font-bold text-[#2E121D] text-xs leading-snug line-clamp-1">
+                  {t(featuredLifehack2.sarlavha)}
+                </h4>
               </div>
 
-              <div className="flex items-center justify-between text-[10px] text-[#9D4C6C] font-medium mb-1">
-                <div className="flex items-center gap-1">
-                  <span className="w-3.5 h-3.5 rounded-full bg-pink-100 text-[8px] flex items-center justify-center font-bold text-pink-800">
-                    💡
-                  </span>
-                  <span>{t("Lifehack")}</span>
-                </div>
-                <div className="flex items-center gap-0.5 text-amber-500 font-bold">
-                  <Star className="w-3 h-3 fill-amber-400" />
-                  <span>4.9</span>
-                </div>
+              <div className="mt-2 flex items-center justify-between pt-1 border-t border-dashed border-[#FCE7F3]">
+                <span className="text-[#059669] font-bold text-[11px]">
+                  {t("Maslahat")}
+                </span>
+                <span className="bg-emerald-50 text-[#059669] text-[9.5px] font-bold px-2 py-0.5 rounded-full border border-emerald-100">
+                  {t("O'tish")}
+                </span>
               </div>
-
-              <h4 className="font-bold text-[#2E121D] text-xs leading-snug line-clamp-1">
-                {t(featuredLifehack?.sarlavha || "Oshxona sirlari")}
-              </h4>
-            </div>
-
-            <div className="mt-2 flex items-center justify-between pt-1 border-t border-dashed border-[#FCE7F3]">
-              <span className="text-[#DB2777] font-bold text-[11px]">
-                {t("Foydali")}
-              </span>
-              <span className="btn-rose-pill px-2.5 py-0.5 text-[10px] truncate">
-                {t("O'tish")}
-              </span>
-            </div>
-          </motion.div>
+            </motion.div>
+          )}
 
         </div>
       </div>
 
-      {/* FILTER & SEARCH INLINE OVERLAY MODAL */}
+      {/* FILTER & SEARCH OVERLAY MODAL */}
       {showFilterModal && (
         <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs flex items-start justify-center p-4 pt-12 animate-in fade-in duration-150">
           <div className="bg-white w-full max-w-md max-h-[85vh] rounded-3xl p-4 border border-[#FCE7F3] shadow-2xl flex flex-col space-y-3">
@@ -457,7 +421,7 @@ export const BoshSahifa: React.FC = () => {
                 autoFocus
                 value={filterSearch}
                 onChange={e => setFilterSearch(e.target.value)}
-                placeholder={t("Retsept, ertak yoki lifehack nomini yozing...")}
+                placeholder={t("Retsept yoki lifehack nomini yozing...")}
                 className="w-full pl-9 pr-4 py-2 rounded-2xl bg-pink-50/50 border border-[#FCE7F3] text-xs focus:outline-none focus:border-[#DB2777]"
               />
             </div>
@@ -465,7 +429,7 @@ export const BoshSahifa: React.FC = () => {
             <div className="flex-1 overflow-y-auto space-y-3 pt-1">
               {!filterSearch.trim() ? (
                 <p className="text-center text-xs text-[#9D4C6C] py-8">
-                  {t("Ilovadagi barcha retseptlar, ertaklar va lifehacklarni tezda toping.")}
+                  {t("Ilovadagi barcha retseptlar va lifehacklarni tezda toping.")}
                 </p>
               ) : (
                 <div className="space-y-2">
@@ -487,27 +451,6 @@ export const BoshSahifa: React.FC = () => {
                           <span>{t(r.nomi)}</span>
                         </div>
                         <ChevronRight className="w-4 h-4 text-[#FF6B4A]" />
-                      </div>
-                    ))}
-
-                  {/* Tales */}
-                  {tales
-                    .filter(t => t.sarlavha.toLowerCase().includes(filterSearch.toLowerCase()))
-                    .map(tale => (
-                      <div
-                        key={tale.id}
-                        onClick={() => {
-                          setShowFilterModal(false);
-                          setFilterSearch('');
-                          openTaleModal(tale);
-                        }}
-                        className="p-2.5 rounded-xl bg-[#FFFDF9] border border-[#FCE7F3] hover:border-[#7C3AED] cursor-pointer flex items-center justify-between text-xs font-semibold text-[#2E121D]"
-                      >
-                        <div className="flex items-center gap-2">
-                          <span>🏰</span>
-                          <span>{t(tale.sarlavha)}</span>
-                        </div>
-                        <ChevronRight className="w-4 h-4 text-[#7C3AED]" />
                       </div>
                     ))}
 

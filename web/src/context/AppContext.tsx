@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import {
+  BannerConfig,
   User,
   UserProgress,
   ScriptType,
@@ -133,7 +134,19 @@ interface AppContextType {
 
   // Admin Verification Status
   isAdmin: boolean;
+
+  // App Banner Config (21:9 Hero Banner)
+  bannerConfig: BannerConfig;
+  updateBannerConfig: (config: Partial<BannerConfig>) => void;
 }
+
+const defaultBannerConfig: BannerConfig = {
+  image_url: '',
+  title: "Pazanda AI — Mazali Retseptlar",
+  subtitle: "Uydagi masalliqlardan milliy va mazali taomlar tayyorlang.",
+  badge: "AQL-IDROK PAZANDA",
+  button_text: "Retseptlarni Ko'rish"
+};
 
 const defaultUser: User = {
   id: 'usr_user_1',
@@ -265,6 +278,45 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       }));
     });
   }, []);
+
+  const [bannerConfig, setBannerConfig] = useState<BannerConfig>(() => {
+    const saved = loadStorage<BannerConfig>('banner_config', defaultBannerConfig);
+    return saved || defaultBannerConfig;
+  });
+
+  useEffect(() => {
+    saveStorage('banner_config', bannerConfig);
+  }, [bannerConfig]);
+
+  useEffect(() => {
+    supabase.from('recipe_edits').select('*').eq('recipe_id', 'app_banner_config').single().then(({ data }) => {
+      if (data && data.tarif_matni) {
+        try {
+          const parsed = JSON.parse(data.tarif_matni);
+          if (parsed && typeof parsed === 'object') {
+            setBannerConfig(prev => ({ ...prev, ...parsed }));
+          }
+        } catch (e) {}
+      }
+    });
+  }, []);
+
+  const updateBannerConfig = (config: Partial<BannerConfig>) => {
+    setBannerConfig(prev => {
+      const updated = { ...prev, ...config };
+      saveStorage('banner_config', updated);
+      supabase.from('recipe_edits').upsert({
+        recipe_id: 'app_banner_config',
+        nomi: 'App Banner Config',
+        tarif_matni: JSON.stringify(updated),
+        rasm_url: updated.image_url || '',
+        updated_at: new Date().toISOString(),
+      }, { onConflict: 'recipe_id' }).then(({ error }) => {
+        if (error) console.warn('Supabase banner sync error:', error.message);
+      });
+      return updated;
+    });
+  };
 
   const [tales, setTales] = useState<Tale[]>(() => {
     const saved = loadStorage<Tale[]>('tales', initialTales);
@@ -894,6 +946,8 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         selectedAgeFilter,
         setSelectedAgeFilter,
         isAdmin,
+        bannerConfig,
+        updateBannerConfig,
         selectedRecipeModal,
         setSelectedRecipeModal,
         openRecipeModal,

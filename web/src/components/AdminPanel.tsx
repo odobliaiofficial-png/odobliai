@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
-import { Recipe, Tale, Lifehack, Riddle, Ingredient } from '../types';
+import { Recipe, Lifehack, Ingredient } from '../types';
+import { compressImage, uploadImageToSupabase } from '../utils/imageCompressor';
 import {
   Shield,
   CheckCircle,
@@ -29,7 +30,9 @@ import {
   AlertCircle,
   X,
   Clock,
-  Layers
+  Layers,
+  Image,
+  Upload
 } from 'lucide-react';
 
 export const AdminPanel: React.FC = () => {
@@ -43,23 +46,17 @@ export const AdminPanel: React.FC = () => {
     updateRecipe,
     deleteRecipe,
     toggleRecipeStatus,
-    tales,
-    addTale,
-    updateTale,
-    deleteTale,
-    toggleTaleStatus,
     lifehacks,
     addLifehack,
     deleteLifehack,
     toggleLifehackStatus,
-    riddles,
-    addRiddle,
-    deleteRiddle,
     ingredients,
     addIngredient,
     grantUserPremium,
     exportBackupData,
     setActiveTab,
+    bannerConfig,
+    updateBannerConfig,
     t
   } = useApp();
 
@@ -69,7 +66,44 @@ export const AdminPanel: React.FC = () => {
   const [pinError, setPinError] = useState<boolean>(false);
 
   // Sub-tabs navigation
-  const [activeAdminTab, setActiveAdminTab] = useState<'recipes' | 'lifehacks' | 'users' | 'dashboard'>('recipes');
+  const [activeAdminTab, setActiveAdminTab] = useState<'recipes' | 'banner' | 'lifehacks' | 'users' | 'dashboard'>('recipes');
+
+  // Banner Form State
+  const [bannerTitleInput, setBannerTitleInput] = useState<string>(bannerConfig.title || '');
+  const [bannerSubtitleInput, setBannerSubtitleInput] = useState<string>(bannerConfig.subtitle || '');
+  const [bannerBadgeInput, setBannerBadgeInput] = useState<string>(bannerConfig.badge || '');
+  const [bannerButtonTextInput, setBannerButtonTextInput] = useState<string>(bannerConfig.button_text || '');
+  const [bannerImageUrl, setBannerImageUrl] = useState<string>(bannerConfig.image_url || '');
+  const [isUploadingBanner, setIsUploadingBanner] = useState<boolean>(false);
+  const [bannerSuccessToast, setBannerSuccessToast] = useState<string | null>(null);
+
+  const handleBannerImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    try {
+      setIsUploadingBanner(true);
+      const compressed = await compressImage(file, 1200, 0.8);
+      const publicUrl = await uploadImageToSupabase(compressed, `banner_${Date.now()}`);
+      setBannerImageUrl(publicUrl);
+    } catch (err) {
+      alert("Rasmni yuklashda xatolik yuz berdi");
+    } finally {
+      setIsUploadingBanner(false);
+    }
+  };
+
+  const handleSaveBanner = (e: React.FormEvent) => {
+    e.preventDefault();
+    updateBannerConfig({
+      image_url: bannerImageUrl.trim(),
+      title: bannerTitleInput.trim(),
+      subtitle: bannerSubtitleInput.trim(),
+      badge: bannerBadgeInput.trim(),
+      button_text: bannerButtonTextInput.trim(),
+    });
+    setBannerSuccessToast("✅ 21:9 Hero Banner sozlamalari muvaffaqiyatli saqlandi!");
+    setTimeout(() => setBannerSuccessToast(null), 3500);
+  };
 
   // Search & Filter States
   const [searchTerm, setSearchTerm] = useState<string>('');
@@ -362,22 +396,34 @@ export const AdminPanel: React.FC = () => {
       </div>
 
       {/* Main Sub-Navigation Bar */}
-      <div className="grid grid-cols-4 gap-1.5 bg-[#FAF6EF] p-1.5 rounded-2xl border border-[#EFE8DC] shadow-inner">
+      <div className="grid grid-cols-5 gap-1 bg-[#FAF6EF] p-1.5 rounded-2xl border border-[#EFE8DC] shadow-inner">
         <button
           onClick={() => setActiveAdminTab('recipes')}
-          className={`py-2.5 px-2 text-xs font-black rounded-xl transition-all flex items-center justify-center gap-1 ${
+          className={`py-2.5 px-1.5 text-[11px] font-black rounded-xl transition-all flex items-center justify-center gap-1 ${
             activeAdminTab === 'recipes'
               ? 'bg-[#FF6B4A] text-white shadow-sm'
               : 'text-[#6B6359] hover:bg-white'
           }`}
         >
           <Utensils className="w-3.5 h-3.5" />
-          Retseptlar ({recipes.length})
+          Retseptlar
+        </button>
+
+        <button
+          onClick={() => setActiveAdminTab('banner')}
+          className={`py-2.5 px-1.5 text-[11px] font-black rounded-xl transition-all flex items-center justify-center gap-1 ${
+            activeAdminTab === 'banner'
+              ? 'bg-[#DB2777] text-white shadow-sm'
+              : 'text-[#6B6359] hover:bg-white'
+          }`}
+        >
+          <Image className="w-3.5 h-3.5" />
+          Banner (21:9)
         </button>
 
         <button
           onClick={() => setActiveAdminTab('lifehacks')}
-          className={`py-2.5 px-2 text-xs font-black rounded-xl transition-all flex items-center justify-center gap-1 ${
+          className={`py-2.5 px-1.5 text-[11px] font-black rounded-xl transition-all flex items-center justify-center gap-1 ${
             activeAdminTab === 'lifehacks'
               ? 'bg-[#FF6B4A] text-white shadow-sm'
               : 'text-[#6B6359] hover:bg-white'
@@ -389,19 +435,19 @@ export const AdminPanel: React.FC = () => {
 
         <button
           onClick={() => setActiveAdminTab('users')}
-          className={`py-2.5 px-2 text-xs font-black rounded-xl transition-all flex items-center justify-center gap-1 ${
+          className={`py-2.5 px-1.5 text-[11px] font-black rounded-xl transition-all flex items-center justify-center gap-1 ${
             activeAdminTab === 'users'
               ? 'bg-[#FF6B4A] text-white shadow-sm'
               : 'text-[#6B6359] hover:bg-white'
           }`}
         >
           <Users className="w-3.5 h-3.5" />
-          Obunachilar & Prem
+          Obunachilar
         </button>
 
         <button
           onClick={() => setActiveAdminTab('dashboard')}
-          className={`py-2.5 px-2 text-xs font-black rounded-xl transition-all flex items-center justify-center gap-1 ${
+          className={`py-2.5 px-1.5 text-[11px] font-black rounded-xl transition-all flex items-center justify-center gap-1 ${
             activeAdminTab === 'dashboard'
               ? 'bg-[#2D2A26] text-white shadow-sm'
               : 'text-[#6B6359] hover:bg-white'
@@ -411,6 +457,163 @@ export const AdminPanel: React.FC = () => {
           Metrikalar
         </button>
       </div>
+
+      {/* SECTION BANNER MANAGEMENT (21:9 Aspect Ratio) */}
+      {activeAdminTab === 'banner' && (
+        <div className="bg-white p-5 rounded-3xl border border-[#EFE8DC] shadow-sm space-y-5">
+          <div className="flex items-center justify-between border-b border-pink-100 pb-3">
+            <div>
+              <h3 className="text-base font-black text-[#2E121D] flex items-center gap-2">
+                <Image className="w-5 h-5 text-[#DB2777]" />
+                <span>21:9 Hero Banner Sozlamalari</span>
+              </h3>
+              <p className="text-xs text-stone-500 mt-0.5">
+                Bosh sahifa yuqori qismidagi zamonaviy ingichka (21:9) bannerni va matnlarini boshqaring.
+              </p>
+            </div>
+          </div>
+
+          {bannerSuccessToast && (
+            <div className="p-3 bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold rounded-2xl animate-in fade-in">
+              {bannerSuccessToast}
+            </div>
+          )}
+
+          {/* Live 21:9 Banner Preview */}
+          <div className="space-y-2">
+            <span className="text-xs font-black text-stone-700 uppercase tracking-wider">
+              📱 Bosh Sahifadagi Ko'rinishi (21:9 Aspect Ratio Live Preview):
+            </span>
+            <div className="w-full aspect-[21/9] relative overflow-hidden rounded-2xl shadow-lg border border-pink-200/60 bg-stone-900">
+              {bannerImageUrl ? (
+                <img
+                  src={bannerImageUrl}
+                  alt="Banner preview"
+                  referrerPolicy="no-referrer"
+                  className="w-full h-full object-cover"
+                />
+              ) : null}
+
+              <div className="absolute inset-0 bg-gradient-to-r from-rose-950/85 via-rose-900/65 to-transparent p-4 flex flex-col justify-between z-10">
+                <div className="space-y-1 max-w-[70%]">
+                  <span className="bg-amber-400/90 text-amber-950 text-[9.5px] font-black tracking-wider uppercase px-2.5 py-0.5 rounded-full inline-flex items-center gap-1 shadow-2xs">
+                    <Sparkles className="w-2.5 h-2.5" />
+                    {bannerBadgeInput || "AQL-IDROK PAZANDA"}
+                  </span>
+                  <h2 className="text-sm font-black tracking-tight leading-tight text-white line-clamp-1 drop-shadow-xs">
+                    {bannerTitleInput || "Pazanda AI — Mazali Retseptlar"}
+                  </h2>
+                  <p className="text-[10px] text-rose-100 line-clamp-1">
+                    {bannerSubtitleInput || "Uydagi masalliqlardan milliy va mazali taomlar tayyorlang."}
+                  </p>
+                </div>
+
+                <div className="flex items-center justify-between">
+                  <div className="bg-amber-400 text-amber-950 font-black px-3 py-1 text-[11px] rounded-full flex items-center gap-1 shadow-md">
+                    <span>{bannerButtonTextInput || "Retseptlarni Ko'rish"}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Form Controls */}
+          <form onSubmit={handleSaveBanner} className="space-y-4 pt-2">
+            
+            {/* Image upload field */}
+            <div className="bg-pink-50/50 p-4 rounded-2xl border border-pink-100 space-y-2">
+              <label className="text-xs font-black text-[#2E121D] flex items-center gap-1.5">
+                <Upload className="w-4 h-4 text-[#DB2777]" />
+                <span>Banner Rasmi (21:9 O'lchamga mos):</span>
+              </label>
+              
+              <div className="flex items-center gap-3">
+                <label className="px-4 py-2.5 bg-[#DB2777] hover:bg-[#BE185D] text-white text-xs font-bold rounded-xl cursor-pointer transition-colors shadow-xs flex items-center gap-1.5">
+                  <Upload className="w-4 h-4" />
+                  <span>{isUploadingBanner ? "Yuklanmoqda..." : "Rasm Tanlash / Yuklash"}</span>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleBannerImageUpload}
+                    disabled={isUploadingBanner}
+                    className="hidden"
+                  />
+                </label>
+
+                {bannerImageUrl && (
+                  <button
+                    type="button"
+                    onClick={() => setBannerImageUrl('')}
+                    className="px-3 py-2 bg-rose-100 text-rose-700 text-xs font-bold rounded-xl hover:bg-rose-200 transition-colors"
+                  >
+                    Rasmni Olib Tashlash
+                  </button>
+                )}
+              </div>
+
+              <input
+                type="text"
+                value={bannerImageUrl}
+                onChange={e => setBannerImageUrl(e.target.value)}
+                placeholder="yoki Rasm URL havolasi (https://...)"
+                className="w-full text-xs p-2.5 rounded-xl border border-pink-200 bg-white focus:outline-none focus:border-[#DB2777]"
+              />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div className="space-y-1">
+                <label className="text-xs font-bold text-stone-700">Banner Sarlavhasi (Title):</label>
+                <input
+                  type="text"
+                  value={bannerTitleInput}
+                  onChange={e => setBannerTitleInput(e.target.value)}
+                  className="w-full text-xs p-2.5 rounded-xl border border-stone-200 focus:outline-none focus:border-[#DB2777]"
+                />
+              </div>
+
+              <div className="space-y-1">
+                <label className="text-xs font-bold text-stone-700">Beyj (Badge) Matni:</label>
+                <input
+                  type="text"
+                  value={bannerBadgeInput}
+                  onChange={e => setBannerBadgeInput(e.target.value)}
+                  className="w-full text-xs p-2.5 rounded-xl border border-stone-200 focus:outline-none focus:border-[#DB2777]"
+                />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div className="space-y-1">
+                <label className="text-xs font-bold text-stone-700">Kichik Tavsif (Subtitle):</label>
+                <input
+                  type="text"
+                  value={bannerSubtitleInput}
+                  onChange={e => setBannerSubtitleInput(e.target.value)}
+                  className="w-full text-xs p-2.5 rounded-xl border border-stone-200 focus:outline-none focus:border-[#DB2777]"
+                />
+              </div>
+
+              <div className="space-y-1">
+                <label className="text-xs font-bold text-stone-700">Tugma Matni (Button Text):</label>
+                <input
+                  type="text"
+                  value={bannerButtonTextInput}
+                  onChange={e => setBannerButtonTextInput(e.target.value)}
+                  className="w-full text-xs p-2.5 rounded-xl border border-stone-200 focus:outline-none focus:border-[#DB2777]"
+                />
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              className="w-full py-3 bg-gradient-to-r from-[#DB2777] to-[#F472B6] hover:from-[#BE185D] hover:to-[#DB2777] text-white text-xs font-black rounded-2xl shadow-md transition-all active:scale-98"
+            >
+              ✅ Banner Sozlamalarini Saqlash
+            </button>
+
+          </form>
+        </div>
+      )}
 
       {/* SECTION 1: DASHBOARD METRICS */}
       {activeAdminTab === 'dashboard' && (
