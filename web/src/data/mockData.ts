@@ -500,7 +500,7 @@ export const initialRecipes: Recipe[] = [
     nomi: 'Turkiya Baqlavasi (Baklava)',
     tayyorlash_vaqti_daq: 45,
     qiyinlik: 'orta',
-    rasm_url: 'https://images.unsplash.com/photo-1519676867240-f03562e64548?auto=format&fit=crop&w=600&q=80',
+    rasm_url: '🍪',
     tarif_matni: "Turkiyaning Gaziantep viloyatining mashhur milliy deserti. Yupqa filo xamiri, saryog' va yong'oq/pista qatlamlaridan sovuq qiyom bilan tayyorlanadi.",
     masalliqlar_matni: "Filo xamiri (yufka), Saryog', Yong'oq yoki pista, Shakar, Suv, Limon sharbati",
     korsatmalari: [
@@ -520,7 +520,7 @@ export const initialRecipes: Recipe[] = [
     nomi: 'Turk Loqumi (Turkish Delight)',
     tayyorlash_vaqti_daq: 60,
     qiyinlik: 'orta',
-    rasm_url: 'https://images.unsplash.com/photo-1582170083198-c06845056a9b?auto=format&fit=crop&w=600&q=80',
+    rasm_url: '🍲',
     tarif_matni: "Usmonli imperiyasidan yetib kelgan mashhur qandolat deserti. Shakar, kraxmal va xushbo'y sharbatlardan tayyorlanadi.",
     masalliqlar_matni: "Shakar, Suv, Makkajo'xori kraxmali, Limon sharbati, Gul suvi yoki limon essensiyasi, Shakar kukuni",
     korsatmalari: [
@@ -540,7 +540,7 @@ export const initialRecipes: Recipe[] = [
     nomi: 'Turkcha Sütlaç (Sutli Desert)',
     tayyorlash_vaqti_daq: 40,
     qiyinlik: 'oson',
-    rasm_url: 'https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?auto=format&fit=crop&w=600&q=80',
+    rasm_url: '🍲',
     tarif_matni: "Sut, guruch va vanillin qo'shib pishiriladigan va pechda usti qizartiriladigan turkcha sutli pudding deserti.",
     masalliqlar_matni: "Sut, Guruch, Shakar, Guruch uni yoki kraxmal, Vanillin, Dolchin",
     korsatmalari: [
@@ -560,7 +560,7 @@ export const initialRecipes: Recipe[] = [
     nomi: 'Revani (Manna Yarma Keksa)',
     tayyorlash_vaqti_daq: 35,
     qiyinlik: 'oson',
-    rasm_url: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=80',
+    rasm_url: '🍰',
     tarif_matni: "Usmonli oshxonasidan manna yarmasidan pishirilib, ustidan sharbat (sirop) quyiladigan yumshoq keks.",
     masalliqlar_matni: "Manna yarmasi (manka), Bug'doy uni, Tuxum, Shakar, Qatiq yoki yogurt, O'simlik yog'i, Razrixlitel, Qiyom",
     korsatmalari: [
@@ -580,7 +580,7 @@ export const initialRecipes: Recipe[] = [
     nomi: 'Şekerpare Pechenyesi',
     tayyorlash_vaqti_daq: 25,
     qiyinlik: 'oson',
-    rasm_url: 'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=600&q=80',
+    rasm_url: '🍪',
     tarif_matni: "Saryog', manna yarmasi va findiq/bodom bilan pechda pishirilib, shirin qiyomga botiriladigan mashhur turk pechenyesi.",
     masalliqlar_matni: "Saryog', Shakar kukuni (pudra), Tuxum, Bug'doy uni, Manna yarmasi, Razrixlitel, Qiyom, Findiq yoki bodom",
     korsatmalari: [
@@ -600,7 +600,7 @@ export const initialRecipes: Recipe[] = [
     nomi: 'Tulumba Tatlısı',
     tayyorlash_vaqti_daq: 30,
     qiyinlik: 'orta',
-    rasm_url: 'https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=600&q=80',
+    rasm_url: '🍲',
     tarif_matni: "Qaynatilgan xamirdan tishli shaklda yog'da qovurilib, sovuq qiyomda shimitiladigan qarsillama desert.",
     masalliqlar_matni: "Suv, Saryog', Bug'doy uni, Tuxum, Kraxmal, Qiyom (sirop), O'simlik yog'i",
     korsatmalari: [
@@ -620,7 +620,7 @@ export const initialRecipes: Recipe[] = [
     nomi: 'Turk Künefe Deserti',
     tayyorlash_vaqti_daq: 30,
     qiyinlik: 'orta',
-    rasm_url: 'https://images.unsplash.com/photo-1579372786545-d24232daf58c?auto=format&fit=crop&w=600&q=80',
+    rasm_url: '🍲',
     tarif_matni: "Xatay viloyatining tilsimon kadayif xamiri, eruvchan tuzsiz pishloq va saryog'dan pishiriladigan issiq qiyomli desert.",
     masalliqlar_matni: "Kadayif xamiri, Tuzsiz eruvchan pishloq (Mozzarella), Saryog', Shakar, Suv, Limon sharbati, Pista",
     korsatmalari: [
@@ -641,7 +641,7 @@ export const initialRecipes: Recipe[] = [
     nomi: 'Lokma (Qiyomli Sharchalar)',
     tayyorlash_vaqti_daq: 25,
     qiyinlik: 'orta',
-    rasm_url: 'https://images.unsplash.com/photo-1587314168485-3236d6710814?auto=format&fit=crop&w=600&q=80',
+    rasm_url: '🍲',
     tarif_matni: "Egey dengizi qirg'oqlarining oshgan xamirdan yog'da qovurilib, shirin siropda shimitiladigan mashhur sharchalari.",
     masalliqlar_matni: "Bug'doy uni, Xamirturush (drojji), Suv, Shakar, Tuz, O'simlik yog'i, Qiyom",
     korsatmalari: [
@@ -661,7 +661,7 @@ export const initialRecipes: Recipe[] = [
     nomi: 'Kazandibi (Karamellangan Sutli Desert)',
     tayyorlash_vaqti_daq: 40,
     qiyinlik: 'orta',
-    rasm_url: 'https://images.unsplash.com/photo-1579372786545-d24232daf58c?auto=format&fit=crop&w=600&q=80',
+    rasm_url: '🍲',
     tarif_matni: "Usmonli saroy oshxonasining sutli deserti. Tova tubida qatlam hosil qilib, karamellashtirib pishiriladi.",
     masalliqlar_matni: "Sut, Shakar, Guruch uni, Makkajo'xori kraxmali, Sariyog', Vanillin",
     korsatmalari: [
@@ -680,7 +680,7 @@ export const initialRecipes: Recipe[] = [
     nomi: 'Turkcha Muhallebi Krem Deserti',
     tayyorlash_vaqti_daq: 20,
     qiyinlik: 'oson',
-    rasm_url: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=600&q=80',
+    rasm_url: '🍲',
     tarif_matni: "Sut, shakar, kraxmal va vanillin qo'shib tayyorlanadigan yengil, ipakdek muloyim krem-desert.",
     masalliqlar_matni: "Sut, Shakar, Makkajo'xori kraxmali, Guruch uni, Vanillin, Sariyog'",
     korsatmalari: [
@@ -699,7 +699,7 @@ export const initialRecipes: Recipe[] = [
     nomi: 'İrmik Helvası (Manna Halvosi)',
     tayyorlash_vaqti_daq: 30,
     qiyinlik: 'oson',
-    rasm_url: 'https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?auto=format&fit=crop&w=600&q=80',
+    rasm_url: '🍲',
     tarif_matni: "Sariyog'da qovurilgan manna yarmasiga sutli yoki suvli shirin qiyom quyilib tayyorlanadigan turk halvosi.",
     masalliqlar_matni: "Manna yarmasi (manka) yoki kunjut pastasi, Sariyog', Shakar, Suv yoki sut, Yong'oq",
     korsatmalari: [
@@ -737,7 +737,7 @@ export const initialRecipes: Recipe[] = [
     nomi: 'Pişmaniye (Turk Paxtahalvosi)',
     tayyorlash_vaqti_daq: 90,
     qiyinlik: 'qiyin',
-    rasm_url: 'https://images.unsplash.com/photo-1582170083198-c06845056a9b?auto=format&fit=crop&w=600&q=80',
+    rasm_url: '🍲',
     tarif_matni: "Izmit shahrining nozik, ip-ip bo'lib ajraladigan paxtahalvosiga o'xshash mashhur milliy qandolati.",
     masalliqlar_matni: "Bug'doy uni, Shakar, Suv, Sariyog', Limon sharbati",
     korsatmalari: [
@@ -756,7 +756,7 @@ export const initialRecipes: Recipe[] = [
     tayyorlash_vaqti_daq: 20,
     qiyinlik: 'oson',
     kategoriya: 'Pishiriqlar & Xamirlar',
-    rasm_url: '/assets/images/shirinlik_baqlava_1785171638612.png',
+    rasm_url: '🍰',
     tarif_matni: "Muzday saryog' va un birlashmasidan tayyorlanadigan, har qanday shirin va sho'r piroglar uchun eng zo'r va qarsildoq korj xamiri.",
     masalliqlar_matni: "1 ¼ stakan un, ½ choy qoshiq tuz, 115 g sovuq saryog' (kubik kesilgan), 4–5 osh qoshiq muzday suv.",
     korsatmalari: [
@@ -793,7 +793,7 @@ export const initialRecipes: Recipe[] = [
     tayyorlash_vaqti_daq: 75,
     qiyinlik: 'orta',
     kategoriya: 'Quyuq Taomlar',
-    rasm_url: '/assets/images/qovurma_lagmon_1785171614749.png',
+    rasm_url: '🍚',
     tarif_matni: "Saryog'da qizartirilgan qaymoqli sous, kichik kartoshkalar va tovuq go'shtidan pechda pishiriladigan shirin gratin.",
     masalliqlar_matni: "1.3 kg tovuq go'shti (son va boldirlar), 450 g kichik kartoshka (ikkiga bo'lingan), 250 g sharlot piyoz, 75 g saryog', 180 ml qaymoq (heavy cream), 2 tish sarimsoq, Tuz, murch, muskat yong'og'i, mavrak va timyan, 100 g qotgan non uvoqlari.",
     korsatmalari: [
@@ -812,7 +812,7 @@ export const initialRecipes: Recipe[] = [
     tayyorlash_vaqti_daq: 60,
     qiyinlik: 'orta',
     kategoriya: 'Pishiriqlar & Shirinliklar',
-    rasm_url: '/assets/images/shirinlik_baqlava_1785171638612.png',
+    rasm_url: '🍰',
     tarif_matni: "Tvorog, kardamon va manka yormasidan karamel qatlam ustida pishiriladigan afsonaviy hindistoncha tvorogli chizkeyk.",
     masalliqlar_matni: "225 g panir (yoki uydagidek tvorog), ¼ stakan shakar kukuni, ½ choy qoshiq hil (kardamon), 2 osh qoshiq manny yormasi (manka), 2 osh qoshiq eritilgan saryog', ¼ stakan sut, Kesh'yu va mayiz, 3 osh qoshiq shakar (karamel uchun).",
     korsatmalari: [
@@ -830,7 +830,7 @@ export const initialRecipes: Recipe[] = [
     tayyorlash_vaqti_daq: 35,
     qiyinlik: 'oson',
     kategoriya: 'Garnirlar & Yengil Taomlar',
-    rasm_url: '/assets/images/qovurma_lagmon_1785171614749.png',
+    rasm_url: '🍚',
     tarif_matni: "Issiq sut, smetana, saryog' va sarimsoq aromati bilan ezilgan o'ta yumshoq va mayin klassik kartoshka pyuresi.",
     masalliqlar_matni: "1.8 kg kartoshka (tozalanib, bo'lingan), 6 tish sarimsoq, 300 ml sut, 200 g saryog', 100 g smetana, Tuz, qora murch va timyan.",
     korsatmalari: [
@@ -848,7 +848,7 @@ export const initialRecipes: Recipe[] = [
     tayyorlash_vaqti_daq: 90,
     qiyinlik: 'qiyin',
     kategoriya: 'Pishiriqlar & Shirinliklar',
-    rasm_url: '/assets/images/shirinlik_baqlava_1785171638612.png',
+    rasm_url: '🍰',
     tarif_matni: "Krekerli korj, yumshoq pishloqli krem hamda ustiga dimlangan karamelli nordon olma qatlami bilan pishiriladigan dabdabali chizkeyk.",
     masalliqlar_matni: "Korj: 2 stakan grek krekeri uvoqlari, 100 g saryog', 3 osh qoshiq shakar. Krem: 900 g cream cheese, 1.3 stakan smetana, 1 stakan shakar, 2 dona tuxum, vanil. Ustiga: 7 dona nordon olma, 50 g saryog', ½ stakan jigarrang shakar, dolchin va kardamon.",
     korsatmalari: [
@@ -866,7 +866,7 @@ export const initialRecipes: Recipe[] = [
     tayyorlash_vaqti_daq: 25,
     qiyinlik: 'oson',
     kategoriya: 'Garnirlar & Yengil Taomlar',
-    rasm_url: '/assets/images/qovurma_lagmon_1785171614749.png',
+    rasm_url: '🍲',
     tarif_matni: "Zanjabil, zardachub va kokos sutida dimlangan shirin makkajuxori va kinoa donchalari.",
     masalliqlar_matni: "4 so'ta makkajuxori donchalari, 1 stakan pishirilgan yarma (kinoa yoki farro), 1 stakan kokos suti, 1 dona xalapeno murchi, Zanjabil, sarimsoq, zardachub, tuz va laym.",
     korsatmalari: [
@@ -883,7 +883,7 @@ export const initialRecipes: Recipe[] = [
     tayyorlash_vaqti_daq: 90,
     qiyinlik: 'orta',
     kategoriya: 'Pishiriqlar & Tuzli Piroglar',
-    rasm_url: '/assets/images/qovurma_lagmon_1785171614749.png',
+    rasm_url: '🍰',
     tarif_matni: "Pechda tob berilgan pomidorlar, erigan pishloq va sarimsoqli krem bilan pishiriladigan ajoyib tuzli fransuzcha pirog.",
     masalliqlar_matni: "1.1 kg pomidor bo'laklari, 6 tish sarimsoq, 115 g saryog', 250 g kreker uvoqlari, 2 dona tuxum, 300 g pishloq (Taleggio va Parmezan), ½ stakan mayonez, timyan va murch.",
     korsatmalari: [
@@ -901,7 +901,7 @@ export const initialRecipes: Recipe[] = [
     tayyorlash_vaqti_daq: 35,
     qiyinlik: 'oson',
     kategoriya: 'Salatlar & Gazaklar',
-    rasm_url: '/assets/images/qovurma_lagmon_1785171614749.png',
+    rasm_url: '🍚',
     tarif_matni: "Yumshoq kartoshka, smetana, dijon xardali va ustiga uvalangan qarsildoq kartoshka chipslari solingan xushbo'y salat.",
     masalliqlar_matni: "900 g kichik kartoshka, 1 stakan smetana, ¼ stakan mayonez, 1 osh qoshiq piyoz kukuni, 2 choy qoshiq dijon xardali, Yashil piyoz, qizil piyoz va sarimsoq, Kartoshka chipslari (ustiga uvatish uchun).",
     korsatmalari: [
@@ -919,7 +919,7 @@ export const initialRecipes: Recipe[] = [
     tayyorlash_vaqti_daq: 30,
     qiyinlik: 'oson',
     kategoriya: 'Pishiriqlar & Shirinliklar',
-    rasm_url: '/assets/images/shirinlik_baqlava_1785171638612.png',
+    rasm_url: '🍰',
     tarif_matni: "Yangi avokado, quyultirilgan sut (sgushchenka) va laym sharbatidan tayyorlanadigan tetiklashtiruvchi muzlatilgan pishiriq.",
     masalliqlar_matni: "Korj: 180 g kreker uvoqlari, ⅓ stakan quyultirilgan sut. Asos: 3 dona avokado, 450 g cream cheese, 1.5 banka quyultirilgan sut, limon va laym sharbati hamda rendasi.",
     korsatmalari: [
@@ -937,7 +937,7 @@ export const initialRecipes: Recipe[] = [
     tayyorlash_vaqti_daq: 70,
     qiyinlik: 'orta',
     kategoriya: 'Pishiriqlar & Shirinliklar',
-    rasm_url: '/assets/images/shirinlik_baqlava_1785171638612.png',
+    rasm_url: '🍰',
     tarif_matni: "Kakao, shokolad tomchilari va maydalangan qovoqcha (zucchini) qo'shilgan, jonsizlanmaydigan va sirli darajada shirin keks.",
     masalliqlar_matni: "2 stakan un, ½ stakan kakao kukuni, 1 choy qoshiq soda, tuz, 1.5 stakan shakar, 115 g saryog', ½ stakan o'simlik yog'i, 2 dona tuxum, ½ stakan qatiq/kefir, 2 stakan qirg'ichdan chiqarilgan qovoqcha (zucchini), 1 stakan shokolad tomchilari va yong'oq.",
     korsatmalari: [
@@ -955,7 +955,7 @@ export const initialRecipes: Recipe[] = [
     tayyorlash_vaqti_daq: 45,
     qiyinlik: 'orta',
     kategoriya: 'Koreys & Dunyo Oshxonasi',
-    rasm_url: '/assets/images/qovurma_lagmon_1785171614749.png',
+    rasm_url: '🍗',
     tarif_matni: "Kraxmalda ikki marta qovurilgan qarsildoq tovuq bo'laklari va shirin-achchiq asalli asil koreyscha sous.",
     masalliqlar_matni: "1.1 kg tovuq qanotchalari yoki bo'laklari, ½ stakan kartoshka kraxmali, tuz va murch. Sous: ½ stakan asal, 3 osh qoshiq soyali sous, 2 osh qoshiq shakar, sarimsoq, zanjabil va qurutilgan achchiq qalampir. Qovurish uchun o'simlik yog'i, kunchut.",
     korsatmalari: [
@@ -973,7 +973,7 @@ export const initialRecipes: Recipe[] = [
     tayyorlash_vaqti_daq: 70,
     qiyinlik: 'orta',
     kategoriya: 'Pishiriqlar & Shirinliklar',
-    rasm_url: '/assets/images/shirinlik_baqlava_1785171638612.png',
+    rasm_url: '🍰',
     tarif_matni: "Bodom unli qarsildoq tart korji, ipakdek mayin zavarnoy krem va ustida yangi rezavor mevalar.",
     masalliqlar_matni: "Korj: 1 stakan un, ½ stakan bodom uni, 3 osh qoshiq shakar, 115 g sovuq saryog', 2 tuxum sarig'i. Krem: 2 stakan sut, 4 tuxum sarig'i, ⅓ stakan shakar, ¼ stakan kraxmal, vanil va saryog'. Ustiga: 350 g chernika va smorodina.",
     korsatmalari: [
@@ -990,7 +990,7 @@ export const initialRecipes: Recipe[] = [
     tayyorlash_vaqti_daq: 60,
     qiyinlik: 'orta',
     kategoriya: 'Pishiriqlar & Shirinliklar',
-    rasm_url: '/assets/images/shirinlik_baqlava_1785171638612.png',
+    rasm_url: '🍰',
     tarif_matni: "Funduk yong'og'i va saryog'dan pishirilgan franjipan kremi hamda ustiga tizilgan shirin nok parraklari bilan tayyorlanadigan fransuz tarti.",
     masalliqlar_matni: "1 dona tayyor tart korji, 1 stakan funduk (maydalangan yong'oq), ½ stakan shakar, 90 g saryog', 2 dona tuxum, vanil va bodom ekstrakti, 3 dona nok (ingichka parrak kesilgan), Qiyom (o'rik murabbosi suvi).",
     korsatmalari: [
@@ -1007,7 +1007,7 @@ export const initialRecipes: Recipe[] = [
     tayyorlash_vaqti_daq: 35,
     qiyinlik: 'oson',
     kategoriya: 'Pishiriqlar & Shirinliklar',
-    rasm_url: '/assets/images/shirinlik_baqlava_1785171638612.png',
+    rasm_url: '🍪',
     tarif_matni: "Pechda qovurilgan tuzli pista uvoqlari, qaynoq asalli qulupnaylar va muzday muzqaymoq uyg'unligi.",
     masalliqlar_matni: "Pistali uvoq (Krambl) uchun:\n60 g xom pista\n125 g un\n100 g shakar\n40 g makkajo'xori uni (cornmeal)\n1 choy qoshiq yirik tuz\n115 g eritilgan saryog'\nMeva va muzqaymoq uchun:\n700 g yangi qulupnay (bo'laklangan)\n1 osh qoshiq limon sharbati\nYarim choy qoshiq hil (kardamon)\n3 osh qoshiq asal\n1 litr xohlagan turdagi muzqaymoq",
     korsatmalari: [
@@ -1027,7 +1027,7 @@ export const initialRecipes: Recipe[] = [
     tayyorlash_vaqti_daq: 50,
     qiyinlik: 'orta',
     kategoriya: 'Pishiriqlar & Tuzli Piroglar',
-    rasm_url: '/assets/images/qovurma_lagmon_1785171614749.png',
+    rasm_url: '🍰',
     tarif_matni: "Sullili korj (xamir), chia urug'lari, ipakdek rikotta pishlog'i va sersuv pomidor bo'laklari bilan pishiriladigan yozgi tart.",
     masalliqlar_matni: "Sullili korj (xamir) uchun:\n90 g suli yormasi (rolled oats)\n50 g chia urug'lari\nYarim choy qoshiq tuz\n140 g bug'doy uni (wholemeal/spelt flour)\n60 g bodom uni\n80 ml zaytun yog'i\n60 ml suv\nIchlik va ustiga:\n240 g rikotta pishlog'i (yoki yumshoq tvorog)\n2 choy qoshiq limon rendasi\n40 g parmezan pishlog'i (qirilgan)\n400 g sersuv pomidor bo'laklari\nYangi rayhon barglari, zaytun yog'i, tuz va qora murch",
     korsatmalari: [
@@ -1046,7 +1046,7 @@ export const initialRecipes: Recipe[] = [
     tayyorlash_vaqti_daq: 45,
     qiyinlik: 'oson',
     kategoriya: 'Pishiriqlar & Shirinliklar',
-    rasm_url: '/assets/images/shirinlik_baqlava_1785171638612.png',
+    rasm_url: '🍰',
     tarif_matni: "Saryog'li fransuzcha uvalanuvchan xamir ustida shaftoli, o'rik va olxori mevalaridan tayyorlanadigan qarsildoq galetta.",
     masalliqlar_matni: "Xamir uchun:\n200 g un\n100 g sovuq saryog' (kubik kesilgan)\n1 osh qoshiq shakar\n1 chimdim tuz\n4 osh qoshiq muzday suv\nIchlik uchun:\n400 g yangi mevalar (shaftoli, o'rik, olxori yoki meva aralashmasi)\n3 osh qoshiq shakar\n1 osh qoshiq kraxmal\n1 osh qoshiq mevali djem/murabbo (xohishga ko'ra)",
     korsatmalari: [
@@ -1084,7 +1084,7 @@ export const initialRecipes: Recipe[] = [
     tayyorlash_vaqti_daq: 75,
     qiyinlik: 'oson',
     kategoriya: 'Koreys & Dunyo Oshxonasi',
-    rasm_url: '/assets/images/qovurma_lagmon_1785171614749.png',
+    rasm_url: '🫘',
     tarif_matni: "Soya sousi, shakar va kunchut yog'ida uzoq dimlab pishiriladigan Koreyscha mashhur shirin-tuzli qora lobiya garniri.",
     masalliqlar_matni: "250 g quritilgan qora lobiya (loviya)\n2 litr dashi bulyoni yoki suv\n240 ml soya sousi\n150 g shakar\n2 osh qoshiq qovurilgan kunchut yog'i\n1 osh qoshiq qovurilgan kunchut urug'lari",
     korsatmalari: [
@@ -1102,7 +1102,7 @@ export const initialRecipes: Recipe[] = [
     tayyorlash_vaqti_daq: 20,
     qiyinlik: 'oson',
     kategoriya: 'Ichimliklar & Kokteyllar',
-    rasm_url: '/assets/images/qovurma_lagmon_1785171614749.png',
+    rasm_url: '🍹',
     tarif_matni: "Qizil lavlagi toza sharbati, olma, banan, apelsin va limon sharbati solingan vitaminlarga boy tetiklashtiruvchi salqin drink.",
     masalliqlar_matni: "4 dona qizil lavlagi\n2 litr suv\n200 g shakar\n1 dona kichik olma (kubik to'g'ralgan)\n1 dona banan (kubik to'g'ralgan)\n1 dona apelsin (tozalangan, to'g'ralgan)\n4 yaproq romen salat bargi (ingichka tasmasimon to'g'ralgan)\n1 dona limon sharbati",
     korsatmalari: [
@@ -1120,7 +1120,7 @@ export const initialRecipes: Recipe[] = [
     tayyorlash_vaqti_daq: 15,
     qiyinlik: 'oson',
     kategoriya: 'Ichimliklar & Kokteyllar',
-    rasm_url: '/assets/images/qovurma_lagmon_1785171614749.png',
+    rasm_url: '🍹',
     tarif_matni: "Yangi greypfrut sharbati, gvayava pyuresi va rozmarin barglari bilan tayyorlanadigan tropik agua freska.",
     masalliqlar_matni: "700 ml suv\n3 dona greypfrut sharbati (yangi siqilgan)\n430 g gvayava pyuresi (guava puree)\n1 shoxcha yangi rozmarin barglari\n100 g shakar (ta'bga ko'ra)\nMuz kubiklari",
     korsatmalari: [
@@ -1138,7 +1138,7 @@ export const initialRecipes: Recipe[] = [
     tayyorlash_vaqti_daq: 15,
     qiyinlik: 'oson',
     kategoriya: 'Ichimliklar & Kokteyllar',
-    rasm_url: '/assets/images/qovurma_lagmon_1785171614749.png',
+    rasm_url: '🍹',
     tarif_matni: "Tarvuz, ananas, qovun, papaya, qulupnay yoki mango mevalari mag'zidan pishiriladigan meksikancha tetiklantiruvchi ichimlik.",
     masalliqlar_matni: "600 g to'g'ralgan mevalar (tarvuz, qovun, ananas, papaya, qulupnay yoki mango)\n1 litr suv\n100 g shakar\nMuz kubiklari\nLimon bo'laklari",
     korsatmalari: [
@@ -1156,7 +1156,7 @@ export const initialRecipes: Recipe[] = [
     tayyorlash_vaqti_daq: 30,
     qiyinlik: 'orta',
     kategoriya: 'Salatlar & Gazaklar',
-    rasm_url: '/assets/images/qovurma_lagmon_1785171614749.png',
+    rasm_url: '🍰',
     tarif_matni: "Muzday gazlangan suvda tayyorlangan xamir va yashil piyozli qarsildoq mini-pirojkalar hamda chili-zanjabilli sous.",
     masalliqlar_matni: "Sous uchun:\n1 bo'lak zanjabil (ingichka to'g'ralgan)\n2 osh qoshiq soya sousi, 2 osh qoshiq guruch sirkasi, 1 choy qoshiq chili yog'i, 1 choy qoshiq shakar\nXamir va ichlik uchun:\n125 g un, 30 g kraxmal, 1 choy qoshiq tuz, 1 choy qoshiq shakar\n240 ml muzday gazlangan suv (club soda), 2 choy qoshiq soya sousi, 1 choy qoshiq kunchut yog'i\n150 g ingichka to'g'ralgan yashil piyoz, 4 osh qoshiq o'simlik yog'i",
     korsatmalari: [
@@ -1174,7 +1174,7 @@ export const initialRecipes: Recipe[] = [
     tayyorlash_vaqti_daq: 50,
     qiyinlik: 'orta',
     kategoriya: 'Pishiriqlar & Shirinliklar',
-    rasm_url: '/assets/images/shirinlik_baqlava_1785171638612.png',
+    rasm_url: '🍰',
     tarif_matni: "To'q shokoladli quyuq brauni va oq hamda kakao-pishloqli cream cheese qatlamlarining kamuflyaj naqshli pirogi.",
     masalliqlar_matni: "Tvorogli (Cream Cheese) qatlam:\n225 g cream cheese, 1 dona tuxum, 65 g shakar, yarim choy qoshiq vanil, yarim choy qoshiq tuz, 1.5 choy qoshiq kakao kukuni\nShokoladli Brauni qatlam:\n150 g saryog', 200 g shakar, 80 g kakao kukuni, yarim choy qoshiq tuz, 1 choy qoshiq espresso kukuni\n2 dona tuxum, yarim choy qoshiq vanil, 65 g un",
     korsatmalari: [
@@ -1193,7 +1193,7 @@ export const initialRecipes: Recipe[] = [
     tayyorlash_vaqti_daq: 40,
     qiyinlik: 'orta',
     kategoriya: 'Pishiriqlar & Xamirlar',
-    rasm_url: '/assets/images/shirinlik_baqlava_1785171638612.png',
+    rasm_url: '🍰',
     tarif_matni: "Kat-kat saryog'li xamir, smetana va yashil piyoz aromati bilan pechda tillarang pishiriladigan biskvit-bulochkalar.",
     masalliqlar_matni: "310 g un\n2 choy qoshiq qabartma kukun (baking powder)\nYarim choy qoshiq soda\n1.5 choy qoshiq tuz, 1 choy qoshiq qora murch\n1 choy qoshiq shakar\n150 g sovuq saryog' (kubik bo'lingan) + 30 g eritilgan saryog'\n80 g ingichka to'g'ralgan yashil piyoz\n300 g smetana\nYirik dengiz tuzi (flaky sea salt)",
     korsatmalari: [
@@ -1211,7 +1211,7 @@ export const initialRecipes: Recipe[] = [
     tayyorlash_vaqti_daq: 35,
     qiyinlik: 'orta',
     kategoriya: 'Pishiriqlar & Shirinliklar',
-    rasm_url: '/assets/images/shirinlik_baqlava_1785171638612.png',
+    rasm_url: '🍪',
     tarif_matni: "Grechka uni, jigarrang shakar va yirik shokolad bo'laklari solinib pishiriladigan og'izda eriydigan tuzli pechenye.",
     masalliqlar_matni: "125 g un\n65 g grechka uni (buckwheat flour)\nYarim choy qoshiq qabartma kukun, yarim choy qoshiq soda\n1 choy qoshiq tuz\n115 g saryog'\n130 g jigarrang shakar, 100 g shakar\n1 dona tuxum + 2 dona tuxum sarig'i, 1 choy qoshiq vanil\n170 g achchiq shokolad bo'laklari (chopped chocolate)",
     korsatmalari: [
@@ -1230,7 +1230,7 @@ export const initialRecipes: Recipe[] = [
     tayyorlash_vaqti_daq: 70,
     qiyinlik: 'oson',
     kategoriya: 'Pishiriqlar & Shirinliklar',
-    rasm_url: '/assets/images/shirinlik_baqlava_1785171638612.png',
+    rasm_url: '🍚',
     tarif_matni: "Yapishqoq guruch uni (mochiko), kokos suti va saryog'dan pishiriladigan qarsildoq ustli va elastik ichli Osiyo pirogi.",
     masalliqlar_matni: "250 g yapishqoq guruch uni (glutinous sweet rice flour / mochiko)\n300 g shakar\n400 ml kokos suti (yoki qaymoq)\n90 g eritilgan saryog' (yoki kokos yog'i)\n2 dona tuxum\n2 choy qoshiq vanil\n1 choy qoshiq tuz, 1 choy qoshiq qabartma kukun\n30 g kokos qiyg'ichi yoki kunchut (ustiga)",
     korsatmalari: [
@@ -1249,7 +1249,7 @@ export const initialRecipes: Recipe[] = [
     tayyorlash_vaqti_daq: 75,
     qiyinlik: 'orta',
     kategoriya: 'Pishiriqlar & Shirinliklar',
-    rasm_url: '/assets/images/shirinlik_baqlava_1785171638612.png',
+    rasm_url: '🍰',
     tarif_matni: "Kakao, qaymoq va apelsin rendasi xamiri hamda pishgach surtiladigan xushbo'y apelsinli shirin qiyom biskviti.",
     masalliqlar_matni: "Xamir uchun:\n150 g un, 50 g kakao kukuni, 2 choy qoshiq qabartma kukun, yarim choy qoshiq tuz\n200 g shakar, 240 ml suyuq qaymoq (heavy cream), 2 dona tuxum, 1 choy qoshiq vanil\n1 dona apelsin po'stining qirilgan rendasi\nApelsin qiyomi uchun:\n80 ml apelsin sharbati, 3 osh qoshiq shakar",
     korsatmalari: [
@@ -1268,7 +1268,7 @@ export const initialRecipes: Recipe[] = [
     tayyorlash_vaqti_daq: 45,
     qiyinlik: 'oson',
     kategoriya: 'Pishiriqlar & Shirinliklar',
-    rasm_url: '/assets/images/shirinlik_baqlava_1785171638612.png',
+    rasm_url: '🍰',
     tarif_matni: "Ko'pirtirilgan sovuq qaymoq, tuxum va elangan un aralashmasidan tayyorlanadigan g'ovakli va momiq keks.",
     masalliqlar_matni: "280 g maxsus tort uni (cake flour) yoki elangan oddiy un\n2 choy qoshiq qabartma kukun (baking powder)\nYarim choy qoshiq tuz\n360 ml sovuq suyuq qaymoq (heavy cream)\n3 dona tuxum (xonaki haroratda)\n225 g shakar\n1 choy qoshiq vanil ekstrakti",
     korsatmalari: [

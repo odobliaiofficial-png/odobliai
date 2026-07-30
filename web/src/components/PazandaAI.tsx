@@ -895,12 +895,28 @@ export const PazandaAI: React.FC = () => {
               >
                 <div>
                   <div className="relative overflow-hidden rounded-lg mb-2">
-                    <img
-                      src={recipe.rasm_url}
-                      alt={recipe.nomi}
-                      referrerPolicy="no-referrer"
-                      className="w-full h-28 object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
+                    {(!recipe.rasm_url.startsWith('/') && !recipe.rasm_url.startsWith('http')) ? (
+                      <div className="w-full h-28 bg-gradient-to-br from-amber-100 via-orange-100 to-pink-100 flex items-center justify-center rounded-lg group-hover:scale-105 transition-transform duration-300">
+                        <span className="text-4xl filter drop-shadow-sm">{recipe.rasm_url}</span>
+                      </div>
+                    ) : (
+                      <img
+                        src={recipe.rasm_url}
+                        alt={recipe.nomi}
+                        onError={(e) => {
+                          e.currentTarget.style.display = 'none';
+                          const parent = e.currentTarget.parentElement;
+                          if (parent && !parent.querySelector('.emoji-fallback')) {
+                            const fallback = document.createElement('div');
+                            fallback.className = "emoji-fallback w-full h-28 bg-gradient-to-br from-amber-100 via-orange-100 to-pink-100 flex items-center justify-center rounded-lg";
+                            fallback.innerHTML = `<span class="text-4xl">🍲</span>`;
+                            parent.appendChild(fallback);
+                          }
+                        }}
+                        referrerPolicy="no-referrer"
+                        className="w-full h-28 object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                    )}
                     <span className="absolute top-1.5 right-1.5 bg-black/60 backdrop-blur text-white text-[9px] font-bold px-1.5 py-0.2 rounded-md flex items-center gap-1">
                       <Clock className="w-2.5 h-2.5 text-amber-300" />
                       {recipe.tayyorlash_vaqti_daq} {t("daq")}
@@ -1346,15 +1362,28 @@ export const PazandaAI: React.FC = () => {
               </div>
             </div>
 
-            <img
-              src={activeRecipe.rasm_url}
-              alt={activeRecipe.nomi}
-              onError={(e) => {
-                e.currentTarget.src = 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80';
-              }}
-              referrerPolicy="no-referrer"
-              className="w-full h-48 object-cover rounded-2xl shadow-xs"
-            />
+            {(!activeRecipe.rasm_url.startsWith('/') && !activeRecipe.rasm_url.startsWith('http')) ? (
+              <div className="w-full h-44 bg-gradient-to-br from-orange-400 via-pink-400 to-purple-500 flex items-center justify-center rounded-2xl shadow-md">
+                <span className="text-6xl filter drop-shadow-md">{activeRecipe.rasm_url}</span>
+              </div>
+            ) : (
+              <img
+                src={activeRecipe.rasm_url}
+                alt={activeRecipe.nomi}
+                onError={(e) => {
+                  e.currentTarget.style.display = 'none';
+                  const parent = e.currentTarget.parentElement;
+                  if (parent && !parent.querySelector('.emoji-fallback')) {
+                    const fallback = document.createElement('div');
+                    fallback.className = "emoji-fallback w-full h-44 bg-gradient-to-br from-orange-400 via-pink-400 to-purple-500 flex items-center justify-center rounded-2xl shadow-md";
+                    fallback.innerHTML = `<span class="text-6xl">🍲</span>`;
+                    parent.appendChild(fallback);
+                  }
+                }}
+                referrerPolicy="no-referrer"
+                className="w-full h-48 object-cover rounded-2xl shadow-xs"
+              />
+            )}
 
             <div>
               <h3 className="font-black text-[#2D2A26] text-xl">
