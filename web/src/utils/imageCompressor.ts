@@ -49,17 +49,41 @@ export const compressImage = (file: File, maxWidth = 800, quality = 0.75): Promi
 };
 
 /**
- * Upload a compressed data-URL image to Catbox.moe (Primary: 100% Free, Unlimited Bandwidth, Permanent).
+ * Upload a compressed data-URL image directly to Catbox CDN via Vercel Serverless Proxy (/api/upload).
+ * Primary: Catbox.moe (100% Free, Unlimited Bandwidth & Storage).
  * Fallback: Supabase Storage, and lastly Data URL.
  */
 export const uploadImageToSupabase = async (
   dataUrl: string,
   recipeId: string
 ): Promise<string> => {
-  const blob = dataUrlToBlob(dataUrl);
-
-  // 1. Primary: Upload to Catbox.moe (Free, Unlimited, Permanent)
+  // 1. Primary: Upload via /api/upload Vercel Proxy to Catbox.moe
   try {
+    const res = await fetch('/api/upload', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        imageBase64: dataUrl,
+        filename: `${recipeId}_${Date.now()}.jpg`,
+      }),
+    });
+
+    if (res.ok) {
+      const json = await res.json();
+      if (json.url && json.url.startsWith('http')) {
+        console.log('✅ Uploaded to Catbox CDN via Vercel Proxy:', json.url);
+        return json.url;
+      }
+    } else {
+      console.warn('/api/upload status:', res.status);
+    }
+  } catch (err) {
+    console.warn('Catbox Vercel proxy failed, falling back to Supabase Storage:', err);
+  }
+
+  // 2. Direct Catbox upload attempt (if CORS permits or fallback)
+  try {
+    const blob = dataUrlToBlob(dataUrl);
     const formData = new FormData();
     formData.append('reqtype', 'fileupload');
     formData.append('fileToUpload', blob, `${recipeId}_${Date.now()}.jpg`);
@@ -72,16 +96,15 @@ export const uploadImageToSupabase = async (
     if (res.ok) {
       const catboxUrl = (await res.text()).trim();
       if (catboxUrl.startsWith('http')) {
-        console.log('✅ Uploaded to Catbox CDN (Unlimited Free):', catboxUrl);
+        console.log('✅ Uploaded directly to Catbox CDN:', catboxUrl);
         return catboxUrl;
       }
     }
-  } catch (err) {
-    console.warn('Catbox upload failed, falling back to Supabase Storage:', err);
-  }
+  } catch (e) {}
 
-  // 2. Fallback: Upload to Supabase Storage
+  // 3. Fallback: Upload to Supabase Storage
   try {
+    const blob = dataUrlToBlob(dataUrl);
     const ext = blob.type === 'image/png' ? 'png' : 'jpg';
     const path = `${recipeId}_${Date.now()}.${ext}`;
 
@@ -105,6 +128,6 @@ export const uploadImageToSupabase = async (
     console.warn('Supabase storage fallback error:', err);
   }
 
-  // 3. Final Fallback: Base64 data URL
+  // 4. Final Fallback: Base64 data URL
   return dataUrl;
 };
