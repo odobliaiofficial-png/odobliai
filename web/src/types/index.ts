@@ -28,6 +28,11 @@ export interface Recipe {
   rasm_url: string;
   tarif_matni: string;
   ingredient_ids: string[];
+  kategoriya?: string;
+  masalliqlar_matni?: string;
+  korsatmalari?: string[];
+  holat?: string;
+  required_ingredient_ids?: string[];
 }
 
 export interface ErtakSahifa {

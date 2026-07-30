@@ -190,6 +190,7 @@ export const initialRecipes: Recipe[] = [
   },
 {
     id: 'rec_02_samarqand_sofi',
+    kategoriya: 'Milliy Quyuq Taomlar',
     nomi: 'Samarqand Oshi Sofi',
     tayyorlash_vaqti_daq: 105,
     qiyinlik: 'qiyin',
@@ -208,6 +209,7 @@ export const initialRecipes: Recipe[] = [
   },
 {
     id: 'rec_03_fargona_devzira',
+    kategoriya: 'Milliy Quyuq Taomlar',
     nomi: "Farg'ona Devzira Palovi",
     tayyorlash_vaqti_daq: 110,
     qiyinlik: 'qiyin',
@@ -225,6 +227,7 @@ export const initialRecipes: Recipe[] = [
   },
 {
     id: 'rec_04_buxoro_baxsh',
+    kategoriya: 'Milliy Quyuq Taomlar',
     nomi: 'Buxoro Baxsh Palovi',
     tayyorlash_vaqti_daq: 60,
     qiyinlik: 'orta',
@@ -242,6 +245,7 @@ export const initialRecipes: Recipe[] = [
   },
 {
     id: 'rec_05_xiva_shivit_oshi',
+    kategoriya: 'Milliy Quyuq Taomlar',
     nomi: 'Xiva Shivit Oshi',
     tayyorlash_vaqti_daq: 90,
     qiyinlik: 'qiyin',
@@ -259,6 +263,7 @@ export const initialRecipes: Recipe[] = [
   },
 {
     id: 'rec_06_xorazm_tuxum_barak',
+    kategoriya: 'Milliy Quyuq Taomlar',
     nomi: 'Xorazm Tuxum Baraki',
     tayyorlash_vaqti_daq: 60,
     qiyinlik: 'qiyin',
@@ -276,6 +281,7 @@ export const initialRecipes: Recipe[] = [
   },
 {
     id: 'rec_07_chuchvara',
+    kategoriya: 'Milliy Quyuq Taomlar',
     nomi: "O'zbek Chuchvarasi",
     tayyorlash_vaqti_daq: 60,
     qiyinlik: 'orta',
@@ -293,6 +299,7 @@ export const initialRecipes: Recipe[] = [
   },
 {
     id: 'rec_08_manti',
+    kategoriya: 'Milliy Quyuq Taomlar',
     nomi: "Go'shtli O'zbek Mantisi",
     tayyorlash_vaqti_daq: 80,
     qiyinlik: 'orta',
@@ -310,6 +317,7 @@ export const initialRecipes: Recipe[] = [
   },
 {
     id: 'rec_09_xonim',
+    kategoriya: 'Milliy Quyuq Taomlar',
     nomi: 'Kartoshkali Xonim (Orama)',
     tayyorlash_vaqti_daq: 70,
     qiyinlik: 'orta',
@@ -327,6 +335,7 @@ export const initialRecipes: Recipe[] = [
   },
 {
     id: 'rec_10_mastava',
+    kategoriya: 'Milliy Quyuq Taomlar',
     nomi: "O'zbek Mastavasi",
     tayyorlash_vaqti_daq: 65,
     qiyinlik: 'orta',
@@ -344,6 +353,7 @@ export const initialRecipes: Recipe[] = [
   },
 {
     id: 'rec_11_qaynatma_shorva',
+    kategoriya: 'Milliy Quyuq Taomlar',
     nomi: "Qaynatma Sho'rva",
     tayyorlash_vaqti_daq: 135,
     qiyinlik: 'orta',
@@ -361,6 +371,7 @@ export const initialRecipes: Recipe[] = [
   },
 {
     id: 'rec_12_dimlama_original',
+    kategoriya: 'Milliy Quyuq Taomlar',
     nomi: "An'anaviy Go'shtli Dimlama",
     tayyorlash_vaqti_daq: 120,
     qiyinlik: 'orta',
@@ -378,6 +389,7 @@ export const initialRecipes: Recipe[] = [
   },
 {
     id: 'rec_13_qozon_kabob',
+    kategoriya: 'Milliy Quyuq Taomlar',
     nomi: 'Qozon Kabob',
     tayyorlash_vaqti_daq: 80,
     qiyinlik: 'orta',
@@ -395,6 +407,7 @@ export const initialRecipes: Recipe[] = [
   },
 {
     id: 'rec_14_shashlik',
+    kategoriya: 'Milliy Quyuq Taomlar',
     nomi: "Qo'y Go'shtidan Shashlik",
     tayyorlash_vaqti_daq: 45,
     qiyinlik: 'orta',
@@ -412,6 +425,7 @@ export const initialRecipes: Recipe[] = [
   },
 {
     id: 'rec_15_tandir_somsa',
+    kategoriya: 'Milliy Quyuq Taomlar',
     nomi: 'Tandir Somsa',
     tayyorlash_vaqti_daq: 85,
     qiyinlik: 'qiyin',
@@ -429,6 +443,7 @@ export const initialRecipes: Recipe[] = [
   },
 {
     id: 'rec_16_toshkent_salat',
+    kategoriya: 'Milliy Quyuq Taomlar',
     nomi: 'Toshkent Salati',
     tayyorlash_vaqti_daq: 40,
     qiyinlik: 'orta',
@@ -446,6 +461,7 @@ export const initialRecipes: Recipe[] = [
   },
 {
     id: 'rec_17_achichuk',
+    kategoriya: 'Salatlar & Gazaklar',
     nomi: 'Achichuk Salati',
     tayyorlash_vaqti_daq: 10,
     qiyinlik: 'oson',
@@ -462,6 +478,7 @@ export const initialRecipes: Recipe[] = [
   },
 {
     id: 'rec_18_medovik',
+    kategoriya: 'Milliy Quyuq Taomlar',
     nomi: 'Asalli "Medovik" Torti',
     tayyorlash_vaqti_daq: 105,
     qiyinlik: 'qiyin',
@@ -479,6 +496,7 @@ export const initialRecipes: Recipe[] = [
   },
 {
     id: 'rec_tr_001_baklava',
+    kategoriya: 'Turk Oshxonasi',
     nomi: 'Turkiya Baqlavasi (Baklava)',
     tayyorlash_vaqti_daq: 45,
     qiyinlik: 'orta',
@@ -498,6 +516,7 @@ export const initialRecipes: Recipe[] = [
   },
 {
     id: 'rec_tr_002_lokum',
+    kategoriya: 'Turk Oshxonasi',
     nomi: 'Turk Loqumi (Turkish Delight)',
     tayyorlash_vaqti_daq: 60,
     qiyinlik: 'orta',
@@ -517,6 +536,7 @@ export const initialRecipes: Recipe[] = [
   },
 {
     id: 'rec_tr_003_sutlac',
+    kategoriya: 'Turk Oshxonasi',
     nomi: 'Turkcha Sütlaç (Sutli Desert)',
     tayyorlash_vaqti_daq: 40,
     qiyinlik: 'oson',
@@ -536,6 +556,7 @@ export const initialRecipes: Recipe[] = [
   },
 {
     id: 'rec_tr_004_revani',
+    kategoriya: 'Turk Oshxonasi',
     nomi: 'Revani (Manna Yarma Keksa)',
     tayyorlash_vaqti_daq: 35,
     qiyinlik: 'oson',
@@ -555,6 +576,7 @@ export const initialRecipes: Recipe[] = [
   },
 {
     id: 'rec_tr_005_sekerpare',
+    kategoriya: 'Turk Oshxonasi',
     nomi: 'Şekerpare Pechenyesi',
     tayyorlash_vaqti_daq: 25,
     qiyinlik: 'oson',
@@ -574,6 +596,7 @@ export const initialRecipes: Recipe[] = [
   },
 {
     id: 'rec_tr_006_tulumba',
+    kategoriya: 'Turk Oshxonasi',
     nomi: 'Tulumba Tatlısı',
     tayyorlash_vaqti_daq: 30,
     qiyinlik: 'orta',
@@ -593,6 +616,7 @@ export const initialRecipes: Recipe[] = [
   },
 {
     id: 'rec_tr_007_kunefe',
+    kategoriya: 'Turk Oshxonasi',
     nomi: 'Turk Künefe Deserti',
     tayyorlash_vaqti_daq: 30,
     qiyinlik: 'orta',
@@ -613,6 +637,7 @@ export const initialRecipes: Recipe[] = [
   },
 {
     id: 'rec_tr_008_lokma',
+    kategoriya: 'Turk Oshxonasi',
     nomi: 'Lokma (Qiyomli Sharchalar)',
     tayyorlash_vaqti_daq: 25,
     qiyinlik: 'orta',
@@ -632,6 +657,7 @@ export const initialRecipes: Recipe[] = [
   },
 {
     id: 'rec_tr_009_kazandibi',
+    kategoriya: 'Turk Oshxonasi',
     nomi: 'Kazandibi (Karamellangan Sutli Desert)',
     tayyorlash_vaqti_daq: 40,
     qiyinlik: 'orta',
@@ -650,6 +676,7 @@ export const initialRecipes: Recipe[] = [
   },
 {
     id: 'rec_tr_010_muhallebi',
+    kategoriya: 'Turk Oshxonasi',
     nomi: 'Turkcha Muhallebi Krem Deserti',
     tayyorlash_vaqti_daq: 20,
     qiyinlik: 'oson',
@@ -668,6 +695,7 @@ export const initialRecipes: Recipe[] = [
   },
 {
     id: 'rec_tr_011_irmik_helvasi',
+    kategoriya: 'Turk Oshxonasi',
     nomi: 'İrmik Helvası (Manna Halvosi)',
     tayyorlash_vaqti_daq: 30,
     qiyinlik: 'oson',
@@ -686,6 +714,7 @@ export const initialRecipes: Recipe[] = [
   },
 {
     id: 'rec_tr_012_asure',
+    kategoriya: 'Turk Oshxonasi',
     nomi: "Aşure (Nuh Payg'ambar Deserti)",
     tayyorlash_vaqti_daq: 90,
     qiyinlik: 'orta',
@@ -704,6 +733,7 @@ export const initialRecipes: Recipe[] = [
   },
 {
     id: 'rec_tr_013_pismaniye',
+    kategoriya: 'Turk Oshxonasi',
     nomi: 'Pişmaniye (Turk Paxtahalvosi)',
     tayyorlash_vaqti_daq: 90,
     qiyinlik: 'qiyin',
@@ -719,12 +749,264 @@ export const initialRecipes: Recipe[] = [
     ],
     holat: 'nashr',
     required_ingredient_ids: ['ing_un', 'ing_shakar', 'ing_saryog', 'ing_limon']
-  }
+  },
+  {
+    id: 'rec_hd_041_perfect_pie_crust',
+    nomi: 'Mukammal Pirog Xamiri (Perfect Pie Crust)',
+    tayyorlash_vaqti_daq: 20,
+    qiyinlik: 'oson',
+    kategoriya: 'Pishiriqlar & Xamirlar',
+    rasm_url: '/assets/images/shirinlik_baqlava_1785171638612.png',
+    tarif_matni: "Muzday saryog' va un birlashmasidan tayyorlanadigan, har qanday shirin va sho'r piroglar uchun eng zo'r va qarsildoq korj xamiri.",
+    masalliqlar_matni: "1 ¼ stakan un, ½ choy qoshiq tuz, 115 g sovuq saryog' (kubik kesilgan), 4–5 osh qoshiq muzday suv.",
+    korsatmalari: [
+      "Un va tuzni aralashtiring.",
+      "Sovuq saryog'ni qo'shib, uvoq hosil bo'lguncha barmoqlar bilan uvalang.",
+      "Muzday suvni oz-ozdan quyib, xamirni to'plang.",
+      "Plyonkaga o'rab, muzlatgichda kamida 1 soat tindiring."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_un', 'ing_tuz', 'ing_saryog']
+  },
+  {
+    id: 'rec_hd_042_peanut_butter_cookies',
+    nomi: "Yer-yong'oqli Pechenye (Peanut Butter Cookies)",
+    tayyorlash_vaqti_daq: 30,
+    qiyinlik: 'oson',
+    kategoriya: 'Pishiriqlar & Shirinliklar',
+    rasm_url: '/assets/images/shirinlik_baqlava_1785171638612.png',
+    tarif_matni: "Yer-yong'oq pastasi va qovurilgan yer-yong'oq bo'laklari bilan pishiriladigan xushbo'y va og'izda eriydigan pechenye.",
+    masalliqlar_matni: "1 stakan yer-yong'oq pastasi (peanut butter), 1 stakan shakar, 1 dona tuxum, 1 stakan qovurilgan tuzli yer-yong'oq (maydalangan).",
+    korsatmalari: [
+      "Pechni 175°C gacha qizdiring.",
+      "Yer-yong'oq pastasi, shakar va tuxumni aralashtiring.",
+      "Maydalangan yer-yong'oqni qo'shing.",
+      "Xamirdan sharchalar yasab, sanchqi bilan katakcha naqsh qiling.",
+      "175°C pechda 10–12 daqiqa tillarang bo'lguncha pishiring."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_yeryongoq', 'ing_shakar', 'ing_tuxum']
+  },
+  {
+    id: 'rec_hd_043_chicken_potato_gratin',
+    nomi: 'Tovuqli va Kartoshkali Gratin (Chicken and Potato Gratin)',
+    tayyorlash_vaqti_daq: 75,
+    qiyinlik: 'orta',
+    kategoriya: 'Quyuq Taomlar',
+    rasm_url: '/assets/images/qovurma_lagmon_1785171614749.png',
+    tarif_matni: "Saryog'da qizartirilgan qaymoqli sous, kichik kartoshkalar va tovuq go'shtidan pechda pishiriladigan shirin gratin.",
+    masalliqlar_matni: "1.3 kg tovuq go'shti (son va boldirlar), 450 g kichik kartoshka (ikkiga bo'lingan), 250 g sharlot piyoz, 75 g saryog', 180 ml qaymoq (heavy cream), 2 tish sarimsoq, Tuz, murch, muskat yong'og'i, mavrak va timyan, 100 g qotgan non uvoqlari.",
+    korsatmalari: [
+      "Tovuqni tuzlab 1 soat tindiring. Pechni 220°C ga qizdiring.",
+      "Saryog'ni tovada qizartirib brown-butter qiling, qaymoq, sarimsoq va ziravorlar qo'shing.",
+      "Tovuq go'shtini tovada qizartirib oling.",
+      "Qolipga tovuq va kartoshkalarni tizib, ustidan qaymoqli sousni quying. 40 daqiqa pechda pishiring.",
+      "Non uvoqlarini qovurib, pishgan gratin ustidan seping."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_tovuq', 'ing_kartoshka', 'ing_piyoz', 'ing_saryog', 'ing_qaymoq', 'ing_sarimsoq']
+  },
+  {
+    id: 'rec_hd_044_chhena_poda',
+    nomi: 'Chhena Poda — Ziravorli Chizkeyk (Chhena Poda)',
+    tayyorlash_vaqti_daq: 60,
+    qiyinlik: 'orta',
+    kategoriya: 'Pishiriqlar & Shirinliklar',
+    rasm_url: '/assets/images/shirinlik_baqlava_1785171638612.png',
+    tarif_matni: "Tvorog, kardamon va manka yormasidan karamel qatlam ustida pishiriladigan afsonaviy hindistoncha tvorogli chizkeyk.",
+    masalliqlar_matni: "225 g panir (yoki uydagidek tvorog), ¼ stakan shakar kukuni, ½ choy qoshiq hil (kardamon), 2 osh qoshiq manny yormasi (manka), 2 osh qoshiq eritilgan saryog', ¼ stakan sut, Kesh'yu va mayiz, 3 osh qoshiq shakar (karamel uchun).",
+    korsatmalari: [
+      "Pechni 175°C ga qizdiring. Qolip tubida shakarni eritib karamel holiga keltiring.",
+      "Tvorog, shakar kukuni, hil, manka, saryog' va sutni silliq bo'lguncha aralashtiring.",
+      "Kesh'yu va mayizni solib, karamelli qolipga quying.",
+      "175°C pechda 40–45 daqiqa pishiring. Sovugach agdarib dasturxonga torting."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_tvorog', 'ing_shakar', 'ing_manka', 'ing_saryog', 'ing_sut', 'ing_keshyu', 'ing_mayiz']
+  },
+  {
+    id: 'rec_hd_045_creamy_mashed_potatoes',
+    nomi: 'Mayin Kartoshka Pyuresi (Our Favorite Creamy Mashed Potatoes)',
+    tayyorlash_vaqti_daq: 35,
+    qiyinlik: 'oson',
+    kategoriya: 'Garnirlar & Yengil Taomlar',
+    rasm_url: '/assets/images/qovurma_lagmon_1785171614749.png',
+    tarif_matni: "Issiq sut, smetana, saryog' va sarimsoq aromati bilan ezilgan o'ta yumshoq va mayin klassik kartoshka pyuresi.",
+    masalliqlar_matni: "1.8 kg kartoshka (tozalanib, bo'lingan), 6 tish sarimsoq, 300 ml sut, 200 g saryog', 100 g smetana, Tuz, qora murch va timyan.",
+    korsatmalari: [
+      "Kartoshka va sarimsoqni tuzli suvda 20 daqiqa yumshaguncha qaynatib oling.",
+      "Sut, saryog' va timyanni isitib oling.",
+      "Kartoshkani suvidan ajratib ezing.",
+      "Issiq sutli aralashma va smetanani qo'shib silliq krem holatiga keltiring."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_kartoshka', 'ing_sarimsoq', 'ing_sut', 'ing_saryog', 'ing_smetana']
+  },
+  {
+    id: 'rec_hd_046_creole_apple_cheesecake',
+    nomi: 'Karamel-Olmali Kreol Chizkeyki (Creole Apple Cheesecake)',
+    tayyorlash_vaqti_daq: 90,
+    qiyinlik: 'qiyin',
+    kategoriya: 'Pishiriqlar & Shirinliklar',
+    rasm_url: '/assets/images/shirinlik_baqlava_1785171638612.png',
+    tarif_matni: "Krekerli korj, yumshoq pishloqli krem hamda ustiga dimlangan karamelli nordon olma qatlami bilan pishiriladigan dabdabali chizkeyk.",
+    masalliqlar_matni: "Korj: 2 stakan grek krekeri uvoqlari, 100 g saryog', 3 osh qoshiq shakar. Krem: 900 g cream cheese, 1.3 stakan smetana, 1 stakan shakar, 2 dona tuxum, vanil. Ustiga: 7 dona nordon olma, 50 g saryog', ½ stakan jigarrang shakar, dolchin va kardamon.",
+    korsatmalari: [
+      "Korj masalliqlarini aralashtirib qolipga presslang va 190°C pechda 10 daqiqa pishiring.",
+      "Cream cheese va shakarni ko'pirtiring, smetana va tuxumlarni qo'shing. Korjga quyib suvli hammomda (water bath) 175°C pechda 1 soat pishiring.",
+      "Olmalarni saryog', shakar va ziravorlar bilan tovada yumshaguncha dimlang.",
+      "Chizkeyk sovugach, olmali karamelni ustiga yoying."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_kreker', 'ing_saryog', 'ing_shakar', 'ing_cream_cheese', 'ing_smetana', 'ing_tuxum', 'ing_olma']
+  },
+  {
+    id: 'rec_hd_047_coconut_creamed_corn',
+    nomi: 'Kokosli Sutda Pishirilgan Makkajuxori va Yarma (Coconut Creamed Corn)',
+    tayyorlash_vaqti_daq: 25,
+    qiyinlik: 'oson',
+    kategoriya: 'Garnirlar & Yengil Taomlar',
+    rasm_url: '/assets/images/qovurma_lagmon_1785171614749.png',
+    tarif_matni: "Zanjabil, zardachub va kokos sutida dimlangan shirin makkajuxori va kinoa donchalari.",
+    masalliqlar_matni: "4 so'ta makkajuxori donchalari, 1 stakan pishirilgan yarma (kinoa yoki farro), 1 stakan kokos suti, 1 dona xalapeno murchi, Zanjabil, sarimsoq, zardachub, tuz va laym.",
+    korsatmalari: [
+      "Tovada yog'ni qizdirib zanjabil, sarimsoq va murch pishiring. Zardachub va makkajuxorini qo'shib 5 daqiqa qovuring.",
+      "Pishgan yarma va kokos sutini qo'shing, 3 daqiqa dimlang.",
+      "Ustiga qovurilgan piyoz seping va laym bo'lagi bilan torting."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_makkajuxori', 'ing_kokos_suti', 'ing_zanjabil', 'ing_sarimsoq', 'ing_piyoz']
+  },
+  {
+    id: 'rec_hd_048_tomato_roasted_garlic_pie',
+    nomi: 'Pomidor va Qovurilgan Sarimsoqli Pirog (Tomato & Roasted Garlic Pie)',
+    tayyorlash_vaqti_daq: 90,
+    qiyinlik: 'orta',
+    kategoriya: 'Pishiriqlar & Tuzli Piroglar',
+    rasm_url: '/assets/images/qovurma_lagmon_1785171614749.png',
+    tarif_matni: "Pechda tob berilgan pomidorlar, erigan pishloq va sarimsoqli krem bilan pishiriladigan ajoyib tuzli fransuzcha pirog.",
+    masalliqlar_matni: "1.1 kg pomidor bo'laklari, 6 tish sarimsoq, 115 g saryog', 250 g kreker uvoqlari, 2 dona tuxum, 300 g pishloq (Taleggio va Parmezan), ½ stakan mayonez, timyan va murch.",
+    korsatmalari: [
+      "Pomidorlarni 240°C pechda 25 daqiqa biroz quritib oling.",
+      "Sarimsoqni saryog'da qovuring. Kreker uvoqlarini tuxum va sarimsoqli saryog' bilan aralashtirib qolipga presslang va 10 daqiqa pishiring.",
+      "Pishloq, mayonez, ziravorlar va sarimsoqni aralashtiring.",
+      "Qolipga pishloqli krem va pomidorlarni qatlam qilib tizib, 190°C pechda 1 soat pishiring."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_pomidor', 'ing_sarimsoq', 'ing_saryog', 'ing_tuxum', 'ing_pishloq', 'ing_mayonez']
+  },
+  {
+    id: 'rec_hd_049_sour_cream_onion_potato_salad',
+    nomi: 'Smetana va Piyozli Kartoshka Salati (Sour Cream Potato Salad)',
+    tayyorlash_vaqti_daq: 35,
+    qiyinlik: 'oson',
+    kategoriya: 'Salatlar & Gazaklar',
+    rasm_url: '/assets/images/qovurma_lagmon_1785171614749.png',
+    tarif_matni: "Yumshoq kartoshka, smetana, dijon xardali va ustiga uvalangan qarsildoq kartoshka chipslari solingan xushbo'y salat.",
+    masalliqlar_matni: "900 g kichik kartoshka, 1 stakan smetana, ¼ stakan mayonez, 1 osh qoshiq piyoz kukuni, 2 choy qoshiq dijon xardali, Yashil piyoz, qizil piyoz va sarimsoq, Kartoshka chipslari (ustiga uvatish uchun).",
+    korsatmalari: [
+      "Kartoshkani tuzli suvda yumshaguncha qaynatib oling va biroz ezing.",
+      "Smetana, mayonez, piyoz kukuni, xardal, sarimsoq va yashil piyozni aralashtiring.",
+      "Kartoshkalarni sousga solib aralashtiring va sovuting.",
+      "Dasturxonga tortish oldidan ustiga uvalangan chipslarni seping."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_kartoshka', 'ing_smetana', 'ing_mayonez', 'ing_piyoz', 'ing_sarimsoq']
+  },
+  {
+    id: 'rec_hd_050_frozen_avocado_cake',
+    nomi: 'Muzlatilgan Avokadoli Pirog (Frozen Avocado Cake)',
+    tayyorlash_vaqti_daq: 30,
+    qiyinlik: 'oson',
+    kategoriya: 'Pishiriqlar & Shirinliklar',
+    rasm_url: '/assets/images/shirinlik_baqlava_1785171638612.png',
+    tarif_matni: "Yangi avokado, quyultirilgan sut (sgushchenka) va laym sharbatidan tayyorlanadigan tetiklashtiruvchi muzlatilgan pishiriq.",
+    masalliqlar_matni: "Korj: 180 g kreker uvoqlari, ⅓ stakan quyultirilgan sut. Asos: 3 dona avokado, 450 g cream cheese, 1.5 banka quyultirilgan sut, limon va laym sharbati hamda rendasi.",
+    korsatmalari: [
+      "Kreker va ⅓ stakan quyultirilgan sutni aralashtirib qolipga yoying, 180°C pechda 12 daqiqa pishirib sovuting.",
+      "Avokado, cream cheese, quyultirilgan sut va limon sharbatini kombaynda silliq ko'pirtiring.",
+      "Kremni korj ustiga yoyib, kamida 6 soat muzlatgichda muzlating.",
+      "Kesishdan 15 daqiqa oldin xonaga chiqaring."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_avokado', 'ing_cream_cheese', 'ing_quyultirilgan_sut', 'ing_limon', 'ing_kreker']
+  },
+  {
+    id: 'rec_hd_051_chocolate_zucchini_cake',
+    nomi: 'Shokoladli va Qovoqchali Pirog (Chocolate Zucchini Cake)',
+    tayyorlash_vaqti_daq: 70,
+    qiyinlik: 'orta',
+    kategoriya: 'Pishiriqlar & Shirinliklar',
+    rasm_url: '/assets/images/shirinlik_baqlava_1785171638612.png',
+    tarif_matni: "Kakao, shokolad tomchilari va maydalangan qovoqcha (zucchini) qo'shilgan, jonsizlanmaydigan va sirli darajada shirin keks.",
+    masalliqlar_matni: "2 stakan un, ½ stakan kakao kukuni, 1 choy qoshiq soda, tuz, 1.5 stakan shakar, 115 g saryog', ½ stakan o'simlik yog'i, 2 dona tuxum, ½ stakan qatiq/kefir, 2 stakan qirg'ichdan chiqarilgan qovoqcha (zucchini), 1 stakan shokolad tomchilari va yong'oq.",
+    korsatmalari: [
+      "Quruq va ho'l masalliqlarni alohida idishlarda aralashtiring.",
+      "Xamirlarni birlashtirib, qirilgan qovoqchani qo'shing.",
+      "Qolipga quyib, ustidan shokolad va yong'oq seping.",
+      "165°C pechda 50 daqiqa pishiring."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_un', 'ing_kakao', 'ing_shakar', 'ing_saryog', 'ing_tuxum', 'ing_qabachki', 'ing_shokolad']
+  },
+  {
+    id: 'rec_hd_052_dakgangjeong',
+    nomi: 'Dakgangjeong — Koreyscha Qarsildoq Tovuq (Dakgangjeong)',
+    tayyorlash_vaqti_daq: 45,
+    qiyinlik: 'orta',
+    kategoriya: 'Koreys & Dunyo Oshxonasi',
+    rasm_url: '/assets/images/qovurma_lagmon_1785171614749.png',
+    tarif_matni: "Kraxmalda ikki marta qovurilgan qarsildoq tovuq bo'laklari va shirin-achchiq asalli asil koreyscha sous.",
+    masalliqlar_matni: "1.1 kg tovuq qanotchalari yoki bo'laklari, ½ stakan kartoshka kraxmali, tuz va murch. Sous: ½ stakan asal, 3 osh qoshiq soyali sous, 2 osh qoshiq shakar, sarimsoq, zanjabil va qurutilgan achchiq qalampir. Qovurish uchun o'simlik yog'i, kunchut.",
+    korsatmalari: [
+      "Tovuq bo'laklarini tuz, murch va kraxmalga bulab oling.",
+      "Yog'da ikki marta (qarsildoq bo'lguncha) qovurib oling.",
+      "Tovada sous masalliqlarini 2–3 daqiqa qaynatib quyultiring.",
+      "Qovurilgan tovuqlarni sousga solib aralashtiring va kunchut seping."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_tovuq', 'ing_kraxmal', 'ing_asal', 'ing_soya_sousi', 'ing_shakar', 'ing_sarimsoq', 'ing_zanjabil']
+  },
+  {
+    id: 'rec_hd_053_fresh_fruit_tart',
+    nomi: 'Bodomli Korjda Yangi Mevali Tart (Fresh Fruit Tart)',
+    tayyorlash_vaqti_daq: 70,
+    qiyinlik: 'orta',
+    kategoriya: 'Pishiriqlar & Shirinliklar',
+    rasm_url: '/assets/images/shirinlik_baqlava_1785171638612.png',
+    tarif_matni: "Bodom unli qarsildoq tart korji, ipakdek mayin zavarnoy krem va ustida yangi rezavor mevalar.",
+    masalliqlar_matni: "Korj: 1 stakan un, ½ stakan bodom uni, 3 osh qoshiq shakar, 115 g sovuq saryog', 2 tuxum sarig'i. Krem: 2 stakan sut, 4 tuxum sarig'i, ⅓ stakan shakar, ¼ stakan kraxmal, vanil va saryog'. Ustiga: 350 g chernika va smorodina.",
+    korsatmalari: [
+      "Korj masalliqlaridan xamir qorib, qolipga yoying va 175°C pechda 35 daqiqa pishirib sovuting.",
+      "Sut, tuxum sarig'i, shakar va kraxmalni qaynatib quyuq zavarnoy krem pishiring.",
+      "Kremni korj ustiga surtib, yangi mevalar bilan bezating."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_un', 'ing_bodom', 'ing_shakar', 'ing_saryog', 'ing_tuxum', 'ing_sut', 'ing_chernika']
+  },
+  {
+    id: 'rec_hd_054_pear_hazelnut_tart',
+    nomi: 'Nok va Fundukli Franjipan Tarti (Pear & Hazelnut Tart)',
+    tayyorlash_vaqti_daq: 60,
+    qiyinlik: 'orta',
+    kategoriya: 'Pishiriqlar & Shirinliklar',
+    rasm_url: '/assets/images/shirinlik_baqlava_1785171638612.png',
+    tarif_matni: "Funduk yong'og'i va saryog'dan pishirilgan franjipan kremi hamda ustiga tizilgan shirin nok parraklari bilan tayyorlanadigan fransuz tarti.",
+    masalliqlar_matni: "1 dona tayyor tart korji, 1 stakan funduk (maydalangan yong'oq), ½ stakan shakar, 90 g saryog', 2 dona tuxum, vanil va bodom ekstrakti, 3 dona nok (ingichka parrak kesilgan), Qiyom (o'rik murabbosi suvi).",
+    korsatmalari: [
+      "Funduk, shakar, saryog', tuxum va ekstraktlarni ko'pirtirib franjipan kremi tayyorlang.",
+      "Kremni korjga yoying va ustidan nok bo'laklarini chiroyli tizib chiqing.",
+      "175°C pechda 35–40 daqiqa pishiring. Issiq holda ustiga o'rik qiyomini surting."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_funduk', 'ing_shakar', 'ing_saryog', 'ing_tuxum', 'ing_nok']
+  },
 ];
 
 export const initialTales: Tale[] = [
   {
     id: 'tale_quyoncha',
+    kategoriya: 'Milliy Quyuq Taomlar',
     sarlavha: 'Mehrli quyoncha',
     yosh_toifasi: '3-5',
     muqova_rasm_url: '/assets/images/tale_quyoncha_cover_1785171712747.png',
@@ -734,12 +1016,14 @@ export const initialTales: Tale[] = [
       {
         id: 'p1',
         ertak_id: 'tale_quyoncha',
+    kategoriya: 'Milliy Quyuq Taomlar',
         tartib_raqami: 1,
         rasm_url: '/assets/images/tale_quyoncha_cover_1785171712747.png',
         matn: "Bir bor ekan, bir yo'q ekan. Quyoshli o'rmonda kichkina xushfe'l Quyoncha yashagan ekan. U har kuni barcha do'stlariga shirin sabzilar ulashardi."
       },
       {
         id: 'p2',
+    kategoriya: 'Milliy Quyuq Taomlar',
         ertak_id: 'tale_quyoncha',
         tartib_raqami: 2,
         rasm_url: '/assets/images/tale_quyoncha_cover_1785171712747.png',
@@ -747,6 +1031,7 @@ export const initialTales: Tale[] = [
       },
       {
         id: 'p3',
+    kategoriya: 'Milliy Quyuq Taomlar',
         ertak_id: 'tale_quyoncha',
         tartib_raqami: 3,
         rasm_url: '/assets/images/tale_quyoncha_cover_1785171712747.png',
@@ -756,6 +1041,7 @@ export const initialTales: Tale[] = [
   },
   {
     id: 'tale_odat',
+    kategoriya: 'Milliy Quyuq Taomlar',
     sarlavha: 'Yomon odatning zarari',
     yosh_toifasi: '6-8',
     muqova_rasm_url: '/assets/images/tale_quyoncha_cover_1785171712747.png',
@@ -765,12 +1051,14 @@ export const initialTales: Tale[] = [
       {
         id: 'p1',
         ertak_id: 'tale_odat',
+    kategoriya: 'Milliy Quyuq Taomlar',
         tartib_raqami: 1,
         rasm_url: '/assets/images/tale_quyoncha_cover_1785171712747.png',
         matn: "Odil ismli bola har kuni maktabdan keliboq o'yinchoqlarini tarqoq holda qoldirib, qo'lini yuvmay shirinlik yeyishni yaxshi ko'rardi."
       },
       {
         id: 'p2',
+    kategoriya: 'Milliy Quyuq Taomlar',
         ertak_id: 'tale_odat',
         tartib_raqami: 2,
         rasm_url: 'https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=600&q=80',
@@ -778,6 +1066,7 @@ export const initialTales: Tale[] = [
       },
       {
         id: 'p3',
+    kategoriya: 'Milliy Quyuq Taomlar',
         ertak_id: 'tale_odat',
         tartib_raqami: 3,
         rasm_url: 'https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&w=600&q=80',
@@ -787,6 +1076,7 @@ export const initialTales: Tale[] = [
   },
   {
     id: 'tale_chumoli',
+    kategoriya: 'Milliy Quyuq Taomlar',
     sarlavha: 'Mehnatsevar chumoli',
     yosh_toifasi: '6-8',
     muqova_rasm_url: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80',
@@ -796,12 +1086,14 @@ export const initialTales: Tale[] = [
       {
         id: 'p1',
         ertak_id: 'tale_chumoli',
+    kategoriya: 'Milliy Quyuq Taomlar',
         tartib_raqami: 1,
         rasm_url: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80',
         matn: "Issiq yoz kunlarida barcha kapalaklar o'ynab yurganida, tirishqoq Chumoli qish uchun oziq-ovqat g'amlar edi."
       },
       {
         id: 'p2',
+    kategoriya: 'Milliy Quyuq Taomlar',
         ertak_id: 'tale_chumoli',
         tartib_raqami: 2,
         rasm_url: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=600&q=80',
@@ -811,6 +1103,7 @@ export const initialTales: Tale[] = [
   },
   {
     id: 'tale_sehrli_bog',
+    kategoriya: 'Milliy Quyuq Taomlar',
     sarlavha: "Sehrli bog'",
     yosh_toifasi: '9-12',
     muqova_rasm_url: 'https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=600&q=80',
@@ -820,12 +1113,14 @@ export const initialTales: Tale[] = [
       {
         id: 'p1',
         ertak_id: 'tale_sehrli_bog',
+    kategoriya: 'Milliy Quyuq Taomlar',
         tartib_raqami: 1,
         rasm_url: 'https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=600&q=80',
         matn: "Qadimiy qishloq chetida sirlarga to'la bir bog' bor edi. U yerdagi har bir daraxt kishiga ezgulik va odob so'zlarini so'zlar edi."
       },
       {
         id: 'p2',
+    kategoriya: 'Milliy Quyuq Taomlar',
         ertak_id: 'tale_sehrli_bog',
         tartib_raqami: 2,
         rasm_url: 'https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=600&q=80',
@@ -895,6 +1190,7 @@ export const initialLifehacks: Lifehack[] = [
 export const initialRiddles: Riddle[] = [
   {
     id: 'rid_1',
+    kategoriya: 'Milliy Quyuq Taomlar',
     savol: "Ko'zi bor, boshi yo'q. Ko'zi bor, ko'rmaydi. Bu nima?",
     javob: 'Igna',
     variantlar: ['Igna', 'Tuxum', 'Tuz', 'Uy'],
@@ -904,6 +1200,7 @@ export const initialRiddles: Riddle[] = [
   },
   {
     id: 'rid_2',
+    kategoriya: 'Milliy Quyuq Taomlar',
     savol: "Uydan chiqadi, yo'ldan ketadi, lekin joyidan jilmaydi. Bu nima?",
     javob: "Yo'l",
     variantlar: ["Yo'l", 'Avtobus', 'Soy', 'Daraxt'],
@@ -913,6 +1210,7 @@ export const initialRiddles: Riddle[] = [
   },
   {
     id: 'rid_3',
+    kategoriya: 'Milliy Quyuq Taomlar',
     savol: "Oq yer, qora urug', Qo'l bilan ekar, Ko'z bilan o'rar. Bu nima?",
     javob: 'Yozuv / Kitob',
     variantlar: ['Yozuv / Kitob', 'Dala', 'Qor', 'Tush'],
@@ -925,6 +1223,7 @@ export const initialRiddles: Riddle[] = [
 export const initialMathProblems: MathProblem[] = [
   {
     id: 'math_1',
+    kategoriya: 'Milliy Quyuq Taomlar',
     savol: "Aida 12 ta olma terdi. Ukasi undan 5 tasini oldi. Aidaning nechta olmasi qoldi?",
     togri_javob: '7',
     notogri_variantlar: ['5', '8', '17'],
@@ -933,6 +1232,7 @@ export const initialMathProblems: MathProblem[] = [
   },
   {
     id: 'math_2',
+    kategoriya: 'Milliy Quyuq Taomlar',
     savol: "Savatchada 4 ta qizil va 6 ta yashil shar bor. Jami nechta shar bor?",
     togri_javob: '10',
     notogri_variantlar: ['8', '12', '2'],
@@ -941,6 +1241,7 @@ export const initialMathProblems: MathProblem[] = [
   },
   {
     id: 'math_3',
+    kategoriya: 'Milliy Quyuq Taomlar',
     savol: "Bir kitobda 20 sahifa bor. Malika har kuni 5 sahifa o'qisa, kitobni necha kunda tugatadi?",
     togri_javob: '4',
     notogri_variantlar: ['5', '3', '10'],
