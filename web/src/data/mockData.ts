@@ -169,1203 +169,7 @@ export const initialIngredients: Ingredient[] = [
 ];
 
 export const initialRecipes: Recipe[] = [
-  {
-  "id": "rec_hd_001_strawberry_cheesecake",
-  "nomi": "Pishirilmaydigan Qulupnayli Chizkeyk",
-  "tayyorlash_vaqti_daq": 25,
-  "qiyinlik": "oson",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Pishirilmaydigan Qulupnayli Chizkeyk — 6-8 kishilik. Halol va mayin tvorojniy desert.",
-  "masalliqlar_matni": "225g Tvorojniy pishloq, 70g Shakar, 240g Smetana yoki qaymoq, 2 choy qoshiq Vanil ekstrakti, 225g Ko'pirtirilgan qaymoq, 170g Qumli pechenye asos, 450g Yangi qulupnay",
-  "korsatmalari": [
-    "1. Tvorojniy pishloqni shakar bilan 2 daqiqa ko'pirtiring.",
-    "2. Smetana va vanillani solib aralashtiring.",
-    "3. Ko'pirtirilgan qaymoqni ehtiyotkorlik bilan kremga qo'shing.",
-    "4. Pekenyeli asos ustiga kremni quyib, 4 soat muzlatgichda tuting.",
-    "5. Ustiga yangi qulupnay bo'laklarini terib dasturxonga torting."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_un",
-    "ing_saryog",
-    "ing_shakar",
-    "ing_tuxum"
-  ]
-},
-  {
-  "id": "rec_hd_002_pistachio_cake",
-  "nomi": "Pista va Hil (Kardamon)li Xushbo'y Keks",
-  "tayyorlash_vaqti_daq": 45,
-  "qiyinlik": "orta",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Pista va Hil (Kardamon)li Xushbo'y Keks — 8 kishilik. Halol va xushbo'y pishiriq.",
-  "masalliqlar_matni": "115g Maydalangan pista, 130g Un, 2 choy qoshiq Razraxlitel, 1 choy qoshiq Maydalangan kardamon, 170g Saryog', 200g Shakar, 3 dona Tuxum, 120ml Sut",
-  "korsatmalari": [
-    "1. Pechni 175°C ga qizdiring va qolipni yog'lang.",
-    "2. Pista, un, razraxlitel va kardamonni aralashtiring.",
-    "3. Sariyog' va shakarni ko'pirtirib tuxumlarni soling.",
-    "4. Quruq masalliqlar va sutni navbatma-navbat qo'shing.",
-    "5. 175°C pechda 35-40 daqiqa pishiring va sovutib torting."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_un",
-    "ing_saryog",
-    "ing_shakar",
-    "ing_tuxum"
-  ]
-},
-  {
-  "id": "rec_hd_003_shortbread_cookies",
-  "nomi": "Shotlandcha Saryog'li Ushoqli Pechenye",
-  "tayyorlash_vaqti_daq": 30,
-  "qiyinlik": "oson",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Shotlandcha Saryog'li Ushoqli Pechenye — 12 dona. Og'izda eriydigan saryog'li desert.",
-  "masalliqlar_matni": "130g Un, 50g Shakar, 1/4 choy qoshiq Tuz, 115g Muzday saryog'",
-  "korsatmalari": [
-    "1. Un, shakar va tuzni aralashtiring.",
-    "2. Muzday sariyog'ni kubik qilib quruq masalliqlarga uvalang.",
-    "3. Xamirdan shakllar yasab 150°C pechda 20 daqiqa pishiring."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_un",
-    "ing_saryog",
-    "ing_shakar",
-    "ing_tuxum"
-  ]
-},
-  {
-  "id": "rec_hd_004_chocolate_candycane_cookies",
-  "nomi": "Shokoladli va Yalpizli Bayram Pechenyesi",
-  "tayyorlash_vaqti_daq": 35,
-  "qiyinlik": "oson",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Shokoladli va Yalpizli Bayram Pechenyesi — 20 dona. Qarsildoq va shokoladli pechenye.",
-  "masalliqlar_matni": "220g Un, 50g Kakao, 200g Shakar, 170g Saryog', 1 dona Tuxum, Yalpiz ekstrakti",
-  "korsatmalari": [
-    "1. Sariyog' va shakarni ko'pirtirib tuxum va yalpiz soling.",
-    "2. Un va kakaoni elab qo'shib xamir tayyorlang.",
-    "3. Patnisga terib 175°C pechda 12 daqiqa pishiring."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_un",
-    "ing_saryog",
-    "ing_shakar",
-    "ing_tuxum"
-  ]
-},
-  {
-  "id": "rec_hd_005_chhena_poda",
-  "nomi": "Chhena Poda (Hindiston Karamel-Pishloqli Pirogi)",
-  "tayyorlash_vaqti_daq": 60,
-  "qiyinlik": "orta",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Hindistonning pishirilgan karamelli va pishloqli nozik pirogi.",
-  "masalliqlar_matni": "225g Uy pishlog'i (panir/tvorog), 50g Shakar kukuni, 1/2 choy qoshiq Kardamon, 2 osh qoshiq Manniy",
-  "korsatmalari": [
-    "1. Panir, shakar, kardamon va manniyni birga silliq ezing.",
-    "2. Qolip tubiga sariyog' surtib, 175°C pechda 45 daqiqa qizarguncha pishiring."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_un",
-    "ing_saryog",
-    "ing_shakar",
-    "ing_tuxum"
-  ]
-},
-  {
-  "id": "rec_hd_006_creole_cheesecake",
-  "nomi": "Karamel va Olma Sousli Kreol Chizkeyki",
-  "tayyorlash_vaqti_daq": 75,
-  "qiyinlik": "qiyin",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Karamel-olma qaylasida pishirilgan shohona chizkeyk deserti.",
-  "masalliqlar_matni": "200g Pechenye ushog'i, 450g Tvorojniy pishloq, 150g Shakar, 3 dona Tuxum, 2 dona Olma, 50g Saryog'",
-  "korsatmalari": [
-    "1. Pechenyedan korj tayyorlang.",
-    "2. Tvorojniy pishloq va shakarni ko'pirtiring, tuxum soling va pishiring.",
-    "3. Olmalarni sariyog'da qovurib karamel bilan ustiga yoying."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_un",
-    "ing_saryog",
-    "ing_shakar",
-    "ing_tuxum"
-  ]
-},
-  {
-  "id": "rec_hd_007_frozen_avocado_cake",
-  "nomi": "Muzlatilgan Avokado va Laymli Yengil Desert",
-  "tayyorlash_vaqti_daq": 20,
-  "qiyinlik": "oson",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Yozgi salqin avokado va laym ta'mli muzlatilgan mevali tort.",
-  "masalliqlar_matni": "2 dona Avokado, 1 banka Sgushchenka, 2 dona Laym sharbati, 180g Pechenye korj",
-  "korsatmalari": [
-    "1. Avokado, sgushchenka va laym sharbatini blenderda pashshaday silliq ezing.",
-    "2. Pechenye korjiga quyib 6 soat muzlatgich kamerada tuting."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_un",
-    "ing_saryog",
-    "ing_shakar",
-    "ing_tuxum"
-  ]
-},
-  {
-  "id": "rec_hd_008_chocolate_zucchini_cake",
-  "nomi": "Shokoladli va Zukkinili Nam Keks",
-  "tayyorlash_vaqti_daq": 50,
-  "qiyinlik": "orta",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Zukkini va qora shokoladli g'ovakli yumshoq keks.",
-  "masalliqlar_matni": "250g Un, 50g Kakao, 150g Shakar, 2 dona Tuxum, 1 dona Rendalangan Zukkini, 100ml O'simlik yog'i",
-  "korsatmalari": [
-    "1. Masalliqlarni aralashtirib zukkini va kakaoni qo'shing.",
-    "2. 180°C pechda 40 daqiqa pishiring."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_un",
-    "ing_saryog",
-    "ing_shakar",
-    "ing_tuxum"
-  ]
-},
-  {
-  "id": "rec_hd_009_fresh_fruit_tart",
-  "nomi": "Yangi Mevali va Bodomli Pirog",
-  "tayyorlash_vaqti_daq": 50,
-  "qiyinlik": "orta",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Bodomli xamir ustiga rezavor mevalar terilgan chiroyli frantsuzcha tart.",
-  "masalliqlar_matni": "150g Un, 70g Bodom uni, 80g Saryog', 1 dona Tuxum, Yangi mevalar (qulupnay, malina)",
-  "korsatmalari": [
-    "1. Bodomli korj pishirib sovuting.",
-    "2. Ustiga krem surtib yangi mevalar bilan bezang."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_un",
-    "ing_saryog",
-    "ing_shakar",
-    "ing_tuxum"
-  ]
-},
-  {
-  "id": "rec_hd_010_pear_hazelnut_tart",
-  "nomi": "Nokli va Funtukli Bodomli Pirog",
-  "tayyorlash_vaqti_daq": 55,
-  "qiyinlik": "qiyin",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Nok parraklari va funtuk yong'og'li krem uyg'unligi.",
-  "masalliqlar_matni": "100g Funtuk yong'og'i, 100g Shakar, 35g Un, 90g Saryog', 2 dona Tuxum, 3 dona Nok",
-  "korsatmalari": [
-    "1. Funtuk va shakarni blenderda ezib krem tayyorlang.",
-    "2. Korjga krem surtib nok parraklarini terib 175°C pechda 45 daqiqa pishiring."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_un",
-    "ing_saryog",
-    "ing_shakar",
-    "ing_tuxum"
-  ]
-},
-  {
-  "id": "rec_hd_011_pistachio_plum_tart",
-  "nomi": "Pista va Qizil Olxo'rili Pirog",
-  "tayyorlash_vaqti_daq": 50,
-  "qiyinlik": "orta",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Maydalangan pista kremi va sharbatli qizil olxo'rili nozik pirog.",
-  "masalliqlar_matni": "100g Pista, 100g Shakar, 100g Saryog', 2 dona Tuxum, 5 dona Qizil Olxo'ri",
-  "korsatmalari": [
-    "1. Pista va sariyog'dan krem tayyorlang.",
-    "2. Olxo'rilarni to'g'rab korjga terib 180°C pechda 40 daqiqa pishiring."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_un",
-    "ing_saryog",
-    "ing_shakar",
-    "ing_tuxum"
-  ]
-},
-  {
-  "id": "rec_hd_012_ice_cream_cake",
-  "nomi": "Ikki Qatlamli Mevali Muzqaymoqli Tort",
-  "tayyorlash_vaqti_daq": 30,
-  "qiyinlik": "oson",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Vanil va meva ta'mli muzlatilgan salqin desert.",
-  "masalliqlar_matni": "1 litr Muzqaymoq, 200g Pechenye ushog'i, 80g Saryog', 100g Mevali murabbo",
-  "korsatmalari": [
-    "1. Pechenyedan korj tayyorlang va muzqaymoqni qatlam qilib yoying va muzlatgichda tuting."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_un",
-    "ing_saryog",
-    "ing_shakar",
-    "ing_tuxum"
-  ]
-},
-  {
-  "id": "rec_hd_013_almond_raspberry_icecream",
-  "nomi": "Bodomli va Malinali Uy Muzqaymog'i",
-  "tayyorlash_vaqti_daq": 20,
-  "qiyinlik": "oson",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Pishirilmaydigan qaymoq va malina sousli tabiiy muzqaymoq.",
-  "masalliqlar_matni": "400ml Qaymoq, 1 banka Sgushchenka, 150g Malina, 50g Bodom bo'laklari",
-  "korsatmalari": [
-    "1. Qaymoq va sgushchenkani ko'pirtirib malina va bodom aralashtirib 5 soat muzlatgichda qotiring."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_un",
-    "ing_saryog",
-    "ing_shakar",
-    "ing_tuxum"
-  ]
-},
-  {
-  "id": "rec_hd_014_mint_chocolate_icecream",
-  "nomi": "Yangi Yalpizli va Shokoladli Muzqaymoq",
-  "tayyorlash_vaqti_daq": 20,
-  "qiyinlik": "oson",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Salqin yalpiz va qora shokolad bo'lakli muzqaymoq.",
-  "masalliqlar_matni": "400ml Qaymoq, 1 banka Sgushchenka, Yalpiz barglari, 100g Qora shokolad tomchilari",
-  "korsatmalari": [
-    "1. Masalliqlarni ko'pirtirib muzlatgichda 5 soat qotiring."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_un",
-    "ing_saryog",
-    "ing_shakar",
-    "ing_tuxum"
-  ]
-},
-  {
-  "id": "rec_hd_015_cassava_cake",
-  "nomi": "Kassava va Kokosli Sharq Keksi",
-  "tayyorlash_vaqti_daq": 50,
-  "qiyinlik": "orta",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Kokos sutida pishirilgan yumshoq sharqona keks.",
-  "masalliqlar_matni": "300g Kassava uni, 200ml Kokos suti, 1 banka Sgushchenka, 2 dona Tuxum",
-  "korsatmalari": [
-    "1. Masalliqlarni aralashtirib 180°C pechda 45 daqiqa pishiring."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_un",
-    "ing_saryog",
-    "ing_shakar",
-    "ing_tuxum"
-  ]
-},
-  {
-  "id": "rec_hd_016_labneh_lime_icecream",
-  "nomi": "Suzmali va Laymli Muzqaymoq",
-  "tayyorlash_vaqti_daq": 20,
-  "qiyinlik": "oson",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Nordon suzma va laym sharbatli yengil desert.",
-  "masalliqlar_matni": "200g Suzma, 200ml Qaymoq, 1 banka Sgushchenka, 2 dona Laym sharbati",
-  "korsatmalari": [
-    "1. Aralashtirib muzlatgichda 4 soat tuting."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_un",
-    "ing_saryog",
-    "ing_shakar",
-    "ing_tuxum"
-  ]
-},
-  {
-  "id": "rec_hd_017_mango_coconut_mousse",
-  "nomi": "Tropik Mango va Kokosli Mus Deserti",
-  "tayyorlash_vaqti_daq": 25,
-  "qiyinlik": "oson",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Mango va kokos qaymoqli havoday yengil mus deserti.",
-  "masalliqlar_matni": "200g Mango pyuresi, 200ml Kokos qaymog'i, 50g Shakar kukuni",
-  "korsatmalari": [
-    "1. Ko'pirtirib stakanlarga quyib 2 soat sovitib torting."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_un",
-    "ing_saryog",
-    "ing_shakar",
-    "ing_tuxum"
-  ]
-},
-  {
-  "id": "rec_hd_018_lemon_meringue_pie",
-  "nomi": "Limonli va Meringali Salqin Pirog",
-  "tayyorlash_vaqti_daq": 45,
-  "qiyinlik": "orta",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Limon kremi va usti oppoq ko'pirtirilgan meringali pirog.",
-  "masalliqlar_matni": "1 dona Korj, 3 dona Limon sharbati va po'sti, 1 banka Sgushchenka, 3 dona Tuxum oqi",
-  "korsatmalari": [
-    "1. Limonli kremni korjga quying, ustiga ko'pirtirilgan meringa yoyib 10 daqiqa pechda pishiring."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_un",
-    "ing_saryog",
-    "ing_shakar",
-    "ing_tuxum"
-  ]
-},
-  {
-  "id": "rec_hd_019_red_velvet_cake",
-  "nomi": "Klassik Qizil Barxat Torti",
-  "tayyorlash_vaqti_daq": 60,
-  "qiyinlik": "orta",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Shohona qizil biskvit va tvorojniy krem-chizli mashhur tort.",
-  "masalliqlar_matni": "300g Un, 200g Shakar, 2 dona Tuxum, 200ml Qatiq, 300g Tvorojniy pishloq",
-  "korsatmalari": [
-    "1. Biskvit tayyorlab 180°C pechda 30 daqiqa pishiring va sovutib krem surting."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_un",
-    "ing_saryog",
-    "ing_shakar",
-    "ing_tuxum"
-  ]
-},
-  {
-  "id": "rec_hd_020_strawberry_shortcake",
-  "nomi": "Qulupnayli va Qaymoqli Mayin Keks",
-  "tayyorlash_vaqti_daq": 40,
-  "qiyinlik": "orta",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Sharbatli qulupnay va ko'pirtirilgan qaymoqli mayin keks.",
-  "masalliqlar_matni": "400g Qulupnay, 360g Un, 115g Saryog', 180ml Sut, 250ml Qaymoq",
-  "korsatmalari": [
-    "1. Keks pishirib ikkiga bo'ling va qaymoq hamda qulupnay solib yoping."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_qulupnay",
-    "ing_un",
-    "ing_saryog",
-    "ing_sut",
-    "ing_qaymoq"
-  ]
-},
-  {
-  "id": "rec_hd_021_cinnamon_scones",
-  "nomi": "Dolchinli va Saryog'li Shirin Skonlar",
-  "tayyorlash_vaqti_daq": 35,
-  "qiyinlik": "oson",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Dolchinli va Saryog'li Shirin Skonlar — 8-10 dona. Qarsildoq va saryog'li mayin pishiriq.",
-  "masalliqlar_matni": "300 g un, 100 g muzday saryog', 70 g shakar, 1 dona tuxum, 120 ml sut, 1 osh qoshiq dolchin, 1 choy qoshiq razraxlitel",
-  "korsatmalari": [
-    "1. Pechni 200°C gacha qizdiring va patnisga pergament qog'oz yozing.",
-    "2. Chuqur idishda un, shakar, dolchin va razraxlitelni elab aralashtiring.",
-    "3. Muzday saryog'ni mayda kubik qilib to'g'rab qumsimon massa hosil qiling va yumshoq xamir qoring.",
-    "4. Xamirni 2 sm qalinlikda yoyib 8 ta bo'lakka kesing va 15-18 daqiqa pishiring."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_un",
-    "ing_saryog",
-    "ing_shakar",
-    "ing_tuxum",
-    "ing_sut",
-    "ing_dolchin",
-    "ing_razraxlitel"
-  ]
-},
-  {
-  "id": "rec_hd_022_vanilla_cupcakes",
-  "nomi": "Vanilli Kapkeyklar Krem-Chizli Krem Bilan",
-  "tayyorlash_vaqti_daq": 40,
-  "qiyinlik": "oson",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Vanilli Kapkeyklar Krem-Chizli Krem Bilan — 12 dona. Mayin va shirali mini-kekslar.",
-  "masalliqlar_matni": "250 g un, 200 g shakar, 115 g saryog', 2 dona tuxum, 180 ml sut, 200 g tvorojniy pishloq",
-  "korsatmalari": [
-    "1. Kapkeyk xamiri tayyorlab qoliplarga soling.",
-    "2. 180°C pechda 20 daqiqa pishirib sovuting va ustiga krem surting."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_un",
-    "ing_shakar",
-    "ing_saryog",
-    "ing_tuxum",
-    "ing_sut",
-    "ing_vanilin",
-    "ing_tvorojniy_pishloq"
-  ]
-},
-  {
-  "id": "rec_hd_023_pumpkin_pancakes",
-  "nomi": "Oshqovoqli va Asalli Mayin Pankeyklar",
-  "tayyorlash_vaqti_daq": 25,
-  "qiyinlik": "oson",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Oshqovoqli va Asalli Mayin Pankeyklar — 4 kishilik. Kuzgi boy vitaminli nonushta.",
-  "masalliqlar_matni": "200 g oshqovoq pyuresi, 250 g un, 2 dona tuxum, 250 ml sut, 3 osh qoshiq asal, 50 g saryog'",
-  "korsatmalari": [
-    "1. Masalliqlarni birga ko'pirtirib xamir tayyorlang.",
-    "2. Tovada ikkala tomonini qizarguncha pishiring."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_qovoq",
-    "ing_un",
-    "ing_tuxum",
-    "ing_sut",
-    "ing_asal",
-    "ing_saryog"
-  ]
-},
-  {
-  "id": "rec_hd_024_blueberry_pie",
-  "nomi": "Chernikali Xushbo'y Pirog",
-  "tayyorlash_vaqti_daq": 50,
-  "qiyinlik": "orta",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Chernikali Xushbo'y Pirog — 8 kishilik. Sharbatli rezavor mevali qarsildoq pirog.",
-  "masalliqlar_matni": "300 g un, 150 g saryog', 1 dona tuxum, 400 g chernika, 100 g shakar",
-  "korsatmalari": [
-    "1. Xamir tayyorlab qolipga yoying va chernikali ichlikni solib 190°C pechda 40 daqiqa pishiring."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_un",
-    "ing_saryog",
-    "ing_tuxum",
-    "ing_chernika",
-    "ing_shakar"
-  ]
-},
-  {
-  "id": "rec_hd_025_blackberry_cheesecake",
-  "nomi": "Maymunjonli Chizkeyk",
-  "tayyorlash_vaqti_daq": 70,
-  "qiyinlik": "qiyin",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Maymunjonli Chizkeyk — 10 kishilik. Tvorojniy pishloq va maymunjonli sous.",
-  "masalliqlar_matni": "200 g pechenye, 500 g tvorojniy pishloq, 150 g shakar, 250 g maymunjon",
-  "korsatmalari": [
-    "1. Korj tayyorlab tvorojniy kremni quying va 160°C pechda 50 daqiqa pishirib sovutib torting."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_pechenye",
-    "ing_saryog",
-    "ing_tvorojniy_pishloq",
-    "ing_shakar",
-    "ing_maymunjon"
-  ]
-},
-  {
-  "id": "rec_hd_026_raspberry_cream_pie",
-  "nomi": "Malinali va Qaymoqli Pirog",
-  "tayyorlash_vaqti_daq": 45,
-  "qiyinlik": "orta",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Malinali va Qaymoqli Pirog — 8 kishilik. Yangi malina va ko'pirtirilgan krem.",
-  "masalliqlar_matni": "1 dona pirog korji, 300 g malina, 400 ml sut, 3 dona tuxum sarig'i, 200 ml qaymoq",
-  "korsatmalari": [
-    "1. Pishgan korj ustiga krem va yangi malinalarni yoyib 2 soat sovitib torting."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_pirog_korji",
-    "ing_malina",
-    "ing_sut",
-    "ing_tuxum",
-    "ing_qaymoq"
-  ]
-},
-  {
-  "id": "rec_hd_027_chocolate_roll_cookies",
-  "nomi": "Shokoladli Rulet Bulochkalar",
-  "tayyorlash_vaqti_daq": 40,
-  "qiyinlik": "orta",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Shokoladli Rulet Bulochkalar — 12 dona. Xushbo'y va shirin shokoladli bulochka.",
-  "masalliqlar_matni": "350 g un, 1 choy qoshiq drojji, 150 ml sut, 150 g shokolad tomchilari",
-  "korsatmalari": [
-    "1. Xamir oshirib shokolad sepib rulet o'rang va 180°C pechda 25 daqiqa pishiring."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_un",
-    "ing_xamirturush",
-    "ing_sut",
-    "ing_shokolad_tomchilari"
-  ]
-},
-  {
-  "id": "rec_hd_028_apple_pie",
-  "nomi": "Amerikancha Qarsildoq Olmali Pirog",
-  "tayyorlash_vaqti_daq": 60,
-  "qiyinlik": "orta",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Amerikancha Qarsildoq Olmali Pirog — 8 kishilik. Dolchinli va shirali olma to'ldirmali pirog.",
-  "masalliqlar_matni": "320 g un, 180 g saryog', 5 dona olma, 100 g shakar, 1 osh qoshiq dolchin",
-  "korsatmalari": [
-    "1. Xamir yoyib olma ichlik soling va 190°C pechda 45 daqiqa pishiring."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_un",
-    "ing_saryog",
-    "ing_olma",
-    "ing_shakar",
-    "ing_dolchin"
-  ]
-},
-  {
-  "id": "rec_hd_029_cranberry_pie",
-  "nomi": "Nantaketcha Klyukvali va Yong'oqli Pirog",
-  "tayyorlash_vaqti_daq": 50,
-  "qiyinlik": "oson",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Nantaketcha Klyukvali va Yong'oqli Pirog — 8 kishilik. Yong'oqli va klyukvali tezkor pirog.",
-  "masalliqlar_matni": "2 stakan klyukva, 1/2 stakan yong'oq mag'zi, 1 stakan un, 115 g saryog', 2 dona tuxum",
-  "korsatmalari": [
-    "1. Qolipga meva va yong'oq yoyib xamir quying va 175°C pechda 40 daqiqa pishiring."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_klyukva",
-    "ing_yongoq",
-    "ing_un",
-    "ing_saryog",
-    "ing_tuxum"
-  ]
-},
-  {
-  "id": "rec_hd_030_blueberry_lemon_rolls",
-  "nomi": "Chernikali va Limonli Shirin Ruletlar",
-  "tayyorlash_vaqti_daq": 45,
-  "qiyinlik": "orta",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Chernikali va Limonli Shirin Ruletlar — 12 dona. Limon aromatli chernikali bulochkalar.",
-  "masalliqlar_matni": "380 g un, 1 stakan sut, 200 g chernika, 1 dona limon po'sti rendasi",
-  "korsatmalari": [
-    "1. Xamir oshirib chernika va limon rendasi sepib 180°C pechda 25 daqiqa pishiring."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_un",
-    "ing_sut",
-    "ing_chernika",
-    "ing_limon"
-  ]
-},
-  {
-  "id": "rec_hd_031_chicken_potato_gratin",
-  "nomi": "Tovuqli va Kartoshkali Saryog'li Gratin",
-  "tayyorlash_vaqti_daq": 45,
-  "qiyinlik": "orta",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Tovuqli va Kartoshkali Saryog'li Gratin — 6 kishilik. Yumshoq pishirilgan qaymoqli toba taom.",
-  "masalliqlar_matni": "500g Tovuq go'shti, 500g Kartoshka, 200ml Qaymoq, 50g Saryog', 1 tish Sarimsoq, Tuz va Murch",
-  "korsatmalari": [
-    "1. Kartoshkalarni yupqa parrak qilib kesing.",
-    "2. Tovuq go'shtini ziravorlar bilan qovurib oling.",
-    "3. Qolipga kartoshka va tovuqni qatlam qilib terib, qaymoq va sariyog' quying.",
-    "4. 180°C pechda 40 daqiqa qizarguncha pishiring."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_tovuq",
-    "ing_kartoshka",
-    "ing_qaymoq",
-    "ing_saryog",
-    "ing_tuz"
-  ]
-},
-  {
-  "id": "rec_hd_032_creamy_mashed_potatoes",
-  "nomi": "Krem-Smetanali Yumshoq Kartoshka Pyuresi",
-  "tayyorlash_vaqti_daq": 25,
-  "qiyinlik": "oson",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Krem-Smetanali Yumshoq Kartoshka Pyuresi — 4 kishilik. Sariyog' va smetana bilan boyitilgan mayin garnir.",
-  "masalliqlar_matni": "1kg Kartoshka, 100g Saryog', 150ml Smetana, 100ml Sut, Tuz",
-  "korsatmalari": [
-    "1. Kartoshkani tuzli suvda pishirib oling va suvidan ajrating.",
-    "2. Sariyog', smetana va issiq sut solib mikser yoki ezgich bilan silliq pyure qiling."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_kartoshka",
-    "ing_saryog",
-    "ing_smetana",
-    "ing_sut",
-    "ing_tuz"
-  ]
-},
-  {
-  "id": "rec_hd_033_coconut_creamed_corn",
-  "nomi": "Kokos Sutida Pishirilgan Makkajo'xori",
-  "tayyorlash_vaqti_daq": 25,
-  "qiyinlik": "oson",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Kokos Sutida Pishirilgan Makkajo'xori — 4 kishilik. Tropik xushbo'y va shirin taom.",
-  "masalliqlar_matni": "300g Shiringo'sht Makkajo'xori, 200ml Kokos suti, 30g Saryog', Tuz va Murch",
-  "korsatmalari": [
-    "1. Makkajo'xorini sariyog'da 3 daqiqa qovuring.",
-    "2. Kokos sutini quyib past olovda 15 daqiqa quyuqlashguncha pishiring."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_makkajoxori_un",
-    "ing_sut",
-    "ing_saryog",
-    "ing_tuz"
-  ]
-},
-  {
-  "id": "rec_hd_034_tomato_garlic_pie",
-  "nomi": "Sarimsoq va Pomidorli Qarsildoq Pirog",
-  "tayyorlash_vaqti_daq": 45,
-  "qiyinlik": "orta",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Sarimsoq va Pomidorli Qarsildoq Pirog — 6 kishilik. Yangi pomidor va pishloqli tart.",
-  "masalliqlar_matni": "1 dona Tayyor Korj, 3 dona Pomidor, 3 tish Sarimsoq, 150g Pishloq, Zaytun yog'i",
-  "korsatmalari": [
-    "1. Korjga rendalangan pishloq va sarimsoq yoying.",
-    "2. Ustidan pomidor parraklarini terib 190°C pechda 30 daqiqa pishiring."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_pomidor",
-    "ing_sarimsoq",
-    "ing_pishloq",
-    "ing_un"
-  ]
-},
-  {
-  "id": "rec_hd_035_sourcream_potato_salad",
-  "nomi": "Smetana va Ko'k Piyozli Kartoshka Salati",
-  "tayyorlash_vaqti_daq": 20,
-  "qiyinlik": "oson",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Smetana va Ko'k Piyozli Kartoshka Salati — 4 kishilik. Salqin va to'yimli mehmondorchilik salati.",
-  "masalliqlar_matni": "500g Pishirilgan Kartoshka, 150g Smetana, 1 bog' Ko'k piyoz, Tuz va Murch",
-  "korsatmalari": [
-    "1. Kartoshkani kubik to'g'rang.",
-    "2. Smetana va ko'k piyoz bilan aralashtirib 30 daqiqa muzlatgichda tuting."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_kartoshka",
-    "ing_smetana",
-    "ing_piyoz",
-    "ing_tuz"
-  ]
-},
-  {
-  "id": "rec_hd_036_dakgangjeong_korean_chicken",
-  "nomi": "Koreyscha Shiringo'sht Qovurilgan Tovuq",
-  "tayyorlash_vaqti_daq": 35,
-  "qiyinlik": "orta",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Koreyscha Shiringo'sht Qovurilgan Tovuq — 4 kishilik. Qarsildoq va asalli sousli tovuq bo'laklari.",
-  "masalliqlar_matni": "500g Tovuq filalari, 3 osh qoshiq Asal, 2 osh qoshiq Soya sousi, Kraxmal, Qovurish uchun yog'",
-  "korsatmalari": [
-    "1. Tovuqni kraxmalga bulab yog'da qarsillab qovuring.",
-    "2. Asal va soya sousini qaynatib qovurilgan tovuqni sousga bulang."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_tovuq",
-    "ing_asal",
-    "ing_kraxmal",
-    "ing_osimlik_yogi"
-  ]
-},
-  {
-  "id": "rec_hd_037_salted_pbj_icecream_pie",
-  "nomi": "Araxas Yog'i va Murabboli Muzqaymoqli Pirog",
-  "tayyorlash_vaqti_daq": 25,
-  "qiyinlik": "oson",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Araxas Yog'i va Murabboli Muzqaymoqli Pirog — 8 kishilik.",
-  "masalliqlar_matni": "200g Pechenye, 150g Araxas yog'i, 500g Vanilli muzqaymoq, 100g Qulupnay murabbosi",
-  "korsatmalari": [
-    "1. Pechenye va araxas yog'idan korj qilib muzqaymoq quyib 4 soat muzlatgichda tuting."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_pechenye",
-    "ing_araxis",
-    "ing_qulupnay"
-  ]
-},
-  {
-  "id": "rec_hd_038_tamale_pie",
-  "nomi": "Pomidor va Makkajo'xorili Tamale Pirogi",
-  "tayyorlash_vaqti_daq": 50,
-  "qiyinlik": "orta",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Pomidor va Makkajo'xorili Tamale Pirogi — 6 kishilik. Makkajo'xori xamiri va pomidorli taom.",
-  "masalliqlar_matni": "200g Makkajo'xori uni, 3 dona Pomidor, 150g Pishloq, 1 dona Piyoz, Ziravorlar",
-  "korsatmalari": [
-    "1. Pomidor va piyozni qovurib qolipga soling.",
-    "2. Ustiga makkajo'xori xamirini yoyib 180°C pechda 35 daqiqa pishiring."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_makkajoxori_un",
-    "ing_pomidor",
-    "ing_pishloq",
-    "ing_piyoz"
-  ]
-},
-  {
-  "id": "rec_hd_039_plantain_chips",
-  "nomi": "Qovurilgan Banan Qarsildoqlari va Mango Sousi",
-  "tayyorlash_vaqti_daq": 20,
-  "qiyinlik": "oson",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Qarsildoq banan chipsi va nordon mango sousi.",
-  "masalliqlar_matni": "2 dona Banan / Plantayn, Qovurish uchun yog', 1 dona Mango, 1 dona Laym",
-  "korsatmalari": [
-    "1. Bananni yupqa kesib qarsillab qovuring va mango eziqlanib sous bilan suzing."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_osimlik_yogi",
-    "ing_laym"
-  ]
-},
-  {
-  "id": "rec_hd_040_mississippi_corn_pudding",
-  "nomi": "Makkajo'xorili Puding-Pirog",
-  "tayyorlash_vaqti_daq": 45,
-  "qiyinlik": "oson",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Shohona makkajo'xorili va qaymoqli pishiriq puding.",
-  "masalliqlar_matni": "300g Makkajo'xori, 100g Saryog', 3 dona Tuxum, 100ml Sut, 2 osh qoshiq Un",
-  "korsatmalari": [
-    "1. Masalliqlarni aralashtirib 175°C pechda 40 daqiqa pishiring."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_makkajoxori_un",
-    "ing_saryog",
-    "ing_tuxum",
-    "ing_sut",
-    "ing_un"
-  ]
-},
-  {
-  "id": "rec_hd_041_strawberry_balsamic_shortcakes",
-  "nomi": "Qulupnayli va Balzamikli Qarsildoq Kekslar",
-  "tayyorlash_vaqti_daq": 35,
-  "qiyinlik": "oson",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Qulupnay va qaymoqli qarsildoq mini-kekslar.",
-  "masalliqlar_matni": "250g Un, 100g Saryog', 300g Qulupnay, 200ml Qaymoq, 50g Shakar",
-  "korsatmalari": [
-    "1. Kekslarni pishirib ikkiga bo'ling va qaymoq hamda qulupnay soling."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_un",
-    "ing_saryog",
-    "ing_qulupnay",
-    "ing_qaymoq",
-    "ing_shakar"
-  ]
-},
-  {
-  "id": "rec_hd_042_strawberry_coconut_cake",
-  "nomi": "Qulupnayli va Kokosli Mayin Tort",
-  "tayyorlash_vaqti_daq": 50,
-  "qiyinlik": "orta",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Kokos ushoqlari va qulupnayli shohona biskvit tort.",
-  "masalliqlar_matni": "250g Un, 50g Kokos ushog'i, 150g Shakar, 3 dona Tuxum, 300g Qulupnay",
-  "korsatmalari": [
-    "1. Kokosli biskvit pishirib krem va qulupnay bilan qatlang."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_un",
-    "ing_shakar",
-    "ing_tuxum",
-    "ing_qulupnay"
-  ]
-},
-  {
-  "id": "rec_hd_043_tea_cakes",
-  "nomi": "Klassik Inglis Choy Pechenyesi",
-  "tayyorlash_vaqti_daq": 25,
-  "qiyinlik": "oson",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Choy va kofe bilan tanavvul qilinadigan mayin pechenye.",
-  "masalliqlar_matni": "250g Un, 100g Saryog', 100g Shakar, 1 dona Tuxum, 1 choy qoshiq Razraxlitel",
-  "korsatmalari": [
-    "1. Xamirdan doiralar kesib 180°C pechda 12 daqiqa pishiring."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_un",
-    "ing_saryog",
-    "ing_shakar",
-    "ing_tuxum"
-  ]
-},
-  {
-  "id": "rec_hd_044_roasted_strawberry_cake",
-  "nomi": "Qovurilgan Qulupnayli Ko'p Qavatli Tort",
-  "tayyorlash_vaqti_daq": 60,
-  "qiyinlik": "orta",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Pechda karamellangan qulupnayli bayramona tort.",
-  "masalliqlar_matni": "300g Un, 200g Shakar, 4 dona Tuxum, 400g Qulupnay, 200ml Qaymoq",
-  "korsatmalari": [
-    "1. Qulupnayni shakar bilan 10 daqiqa pechda qovurib sovuting.",
-    "2. Biskvitlar orasiga qaymoq va qulupnay yoyib tort tayyorlang."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_un",
-    "ing_shakar",
-    "ing_tuxum",
-    "ing_qulupnay",
-    "ing_qaymoq"
-  ]
-},
-  {
-  "id": "rec_hd_045_camouflage_fudge_brownies",
-  "nomi": "Shokoladli Kamuflyaj Fadj-Brauni",
-  "tayyorlash_vaqti_daq": 40,
-  "qiyinlik": "orta",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Tvorojniy pishloq va qora shokoladli ikki rangli brauni.",
-  "masalliqlar_matni": "200g Qora shokolad, 150g Saryog', 150g Shakar, 3 dona Tuxum, 100g Tvorojniy pishloq, 100g Un",
-  "korsatmalari": [
-    "1. Shokoladli xamir va tvorojli kremni patnisga qatlam qilib soling va 175°C pechda 25 daqiqa pishiring."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_shokolad_tomchilari",
-    "ing_saryog",
-    "ing_shakar",
-    "ing_tuxum",
-    "ing_tvorojniy_pishloq",
-    "ing_un"
-  ]
-},
-  {
-  "id": "rec_hd_046_sourcream_onion_biscuits",
-  "nomi": "Smetana va Ko'k Piyozli Qarsildoq Bulochkalar",
-  "tayyorlash_vaqti_daq": 30,
-  "qiyinlik": "oson",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Sho'r va ko'k piyozli saryog'li qarsildoq bulochka.",
-  "masalliqlar_matni": "300g Un, 100g Saryog', 150ml Smetana, 1 bog' Ko'k piyoz, 1 choy qoshiq Razraxlitel",
-  "korsatmalari": [
-    "1. Quruq masalliqlarga sariyog' va ko'k piyoz aralashtirib bulochkalar pishiring."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_un",
-    "ing_saryog",
-    "ing_smetana",
-    "ing_piyoz"
-  ]
-},
-  {
-  "id": "rec_hd_047_buckwheat_chocolate_cookies",
-  "nomi": "Shokoladli va Grechka Unli Qarsildoq Pechenye",
-  "tayyorlash_vaqti_daq": 30,
-  "qiyinlik": "oson",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Grechka uni va qora shokolad bo'lakli to'yimli pechenye.",
-  "masalliqlar_matni": "150g Bug'doy uni, 100g Grechka uni, 100g Saryog', 100g Shakar, 1 dona Tuxum, 100g Shokolad",
-  "korsatmalari": [
-    "1. Xamirdan sharchalar yasab 180°C pechda 12 daqiqa pishiring."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_un",
-    "ing_saryog",
-    "ing_shakar",
-    "ing_tuxum",
-    "ing_shokolad_tomchilari"
-  ]
-},
-  {
-  "id": "rec_hd_048_apple_bread_pudding",
-  "nomi": "Olma va Dolchinli Non Pudingi",
-  "tayyorlash_vaqti_daq": 45,
-  "qiyinlik": "oson",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Nondan pishiriladigan olma va dolchinli mazali puding.",
-  "masalliqlar_matni": "200g Non bo'laklari, 2 dona Olma, 2 dona Tuxum, 200ml Sut, 50g Shakar, 1 choy qoshiq Dolchin",
-  "korsatmalari": [
-    "1. Non va olmalarni qolipga solib sut-tuxumli aralashmani quying va 180°C da 30 daqiqa pishiring."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_olma",
-    "ing_tuxum",
-    "ing_sut",
-    "ing_shakar",
-    "ing_dolchin"
-  ]
-},
-  {
-  "id": "rec_hd_049_lemon_raspberry_chewy_cookies",
-  "nomi": "Limon va Malinali Chevik-Pechenye",
-  "tayyorlash_vaqti_daq": 30,
-  "qiyinlik": "oson",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Limon po'sti va yangi malinali yumshoq pechenye.",
-  "masalliqlar_matni": "250g Un, 100g Saryog', 100g Shakar, 1 dona Limon po'sti, 100g Malina",
-  "korsatmalari": [
-    "1. Masalliqlarni aralashtirib 175°C pechda 12 daqiqa pishiring."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_un",
-    "ing_saryog",
-    "ing_shakar",
-    "ing_limon",
-    "ing_malina"
-  ]
-},
-  {
-  "id": "rec_hd_050_chocolate_almond_biscotti",
-  "nomi": "Shokolad va Bodomli Qarsildoq Biscotti",
-  "tayyorlash_vaqti_daq": 45,
-  "qiyinlik": "orta",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Italiya uslubidagi qarsildoq bodomli va shokoladli biskotti.",
-  "masalliqlar_matni": "250g Un, 100g Bodom, 100g Shakar, 2 dona Tuxum, 50g Kakao",
-  "korsatmalari": [
-    "1. Xamirni batton qilib pishiring, so'ng ingichka kesib ikki tarafini qarsillatib pishiring."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_un",
-    "ing_bodom",
-    "ing_shakar",
-    "ing_tuxum",
-    "ing_kakao"
-  ]
-},
-  {
-  "id": "rec_hd_051_orange_caramel_cake",
-  "nomi": "Apelsinli va Karamel Glazurli Keks",
-  "tayyorlash_vaqti_daq": 50,
-  "qiyinlik": "orta",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Tsitrus xushbo'yligi va karamel shira quyilgan keks.",
-  "masalliqlar_matni": "250g Un, 1 dona Apelsin sharbati, 150g Shakar, 100g Saryog', 3 dona Tuxum, Karamel sousi",
-  "korsatmalari": [
-    "1. Keks pishirib ustidan issiq karamel sousini quying."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_un",
-    "ing_shakar",
-    "ing_saryog",
-    "ing_tuxum"
-  ]
-},
-  {
-  "id": "rec_hd_052_pistachio_raspberry_roll",
-  "nomi": "Pista va Malinali Shohona Rulet",
-  "tayyorlash_vaqti_daq": 45,
-  "qiyinlik": "qiyin",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Maydalangan pista va malina djemli biskvit rulet.",
-  "masalliqlar_matni": "4 dona Tuxum, 100g Shakar, 80g Un, 50g Pista kukun, 150g Malina djemi",
-  "korsatmalari": [
-    "1. Yupqa biskvit pishirib malina djemi va pista sepib o'rang."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_tuxum",
-    "ing_shakar",
-    "ing_un",
-    "ing_malina"
-  ]
-},
-  {
-  "id": "rec_hd_053_chicken_pot_pie",
-  "nomi": "Tovuqli va Sabzavotli Qarsildoq Pirog",
-  "tayyorlash_vaqti_daq": 55,
-  "qiyinlik": "orta",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Tovuq go'shti, sabzi va makkajo'xorili quyuq pirog.",
-  "masalliqlar_matni": "300g Tovuq go'shti, 1 dona Sabzi, 100g Makkajo'xori, 1 varaq Katlama xamir, 100ml Qaymoq",
-  "korsatmalari": [
-    "1. Sabzavot va tovuqni qaymoqda dimlab qolipga soling va katlama xamir bilan yopib 190°C da 30 daqiqa pishiring."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_tovuq",
-    "ing_sabzi",
-    "ing_makkajoxori_un",
-    "ing_qatlama_xamir",
-    "ing_qaymoq"
-  ]
-},
-  {
-  "id": "rec_hd_054_creamy_butter_pasta",
-  "nomi": "Sariyog'li va Pishloqli Uy Ugrasi",
-  "tayyorlash_vaqti_daq": 20,
-  "qiyinlik": "oson",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Bolalar uchun eng sevimli sariyog'li va pishloqli makaron.",
-  "masalliqlar_matni": "250g Makaron / Ugra, 50g Saryog', 100g Rendalangan Pishloq, Tuz",
-  "korsatmalari": [
-    "1. Ugrani pishirib issiq holda sariyog' va pishloq bilan aralashtiring."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_un",
-    "ing_saryog",
-    "ing_pishloq",
-    "ing_tuz"
-  ]
-},
-  {
-  "id": "rec_hd_055_baked_cheese_flatbread",
-  "nomi": "Pishirilgan Lavashli va Pishloqli Somsa",
-  "tayyorlash_vaqti_daq": 20,
-  "qiyinlik": "oson",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Tezkor va qarsildoq pishloqli lavash sarmasi.",
-  "masalliqlar_matni": "2 dona Lavash, 200g Pishloq, 1 dona Tuxum, Kunjut",
-  "korsatmalari": [
-    "1. Lavashga pishloq o'rab tuxum surting va 200°C pechda 12 daqiqa qizartiring."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_pishloq",
-    "ing_tuxum"
-  ]
-},
-  {
-  "id": "rec_hd_056_cherry_almond_cake",
-  "nomi": "Gilosli va Bodomli Shirmoy Pirog",
-  "tayyorlash_vaqti_daq": 50,
-  "qiyinlik": "orta",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Yangi gilos va bodom uni bilan pishirilgan keks.",
-  "masalliqlar_matni": "200g Un, 50g Bodom uni, 150g Shakar, 3 dona Tuxum, 200g Gilos",
-  "korsatmalari": [
-    "1. Xamir tayyorlab giloslarni soling va 180°C pechda 40 daqiqa pishiring."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_un",
-    "ing_bodom",
-    "ing_shakar",
-    "ing_tuxum",
-    "ing_gilos"
-  ]
-},
-  {
-  "id": "rec_hd_057_caramel_cocoa_crumble",
-  "nomi": "Karamelli va Kakao Ushoqli Keks",
-  "tayyorlash_vaqti_daq": 45,
-  "qiyinlik": "orta",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Shokoladli ushoq va karamel qiyomli pirog.",
-  "masalliqlar_matni": "250g Un, 40g Kakao, 150g Shakar, 100g Saryog', Karamel sousi",
-  "korsatmalari": [
-    "1. Kakao xamiri ustiga ushoq seping va pishgach karamel quyib suzing."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_un",
-    "ing_kakao",
-    "ing_shakar",
-    "ing_saryog"
-  ]
-},
-  {
-  "id": "rec_hd_058_almond_lime_tart",
-  "nomi": "Bodom va Laymli Yengil Desert",
-  "tayyorlash_vaqti_daq": 40,
-  "qiyinlik": "oson",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Laym nordonligi va bodomli qarsildoq tart korji.",
-  "masalliqlar_matni": "1 dona Bodom korji, 1 banka Sgushchenka, 2 dona Laym sharbati, 2 dona Tuxum sarig'i",
-  "korsatmalari": [
-    "1. Laym va sgushchenka kremini korjga quyib 15 daqiqa pechda pishiring va 3 soat sovitib torting."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_bodom",
-    "ing_sgushchenka",
-    "ing_laym",
-    "ing_tuxum"
-  ]
-},
-  {
-  "id": "rec_hd_059_moroccan_chicken_stew",
-  "nomi": "Tovuqli va Zaytunli Sharqona Qozon Taom",
-  "tayyorlash_vaqti_daq": 55,
-  "qiyinlik": "orta",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Tovuq go'shti, limon va zaytun bilan qozonda dimlangan taom.",
-  "masalliqlar_matni": "600g Tovuq go'shti, 1 dona Limon, 100g Zaytun, 1 dona Piyoz, Sharq ziravorlari",
-  "korsatmalari": [
-    "1. Tovuq va piyozni qovurib limon va zaytun bilan 40 daqiqa past olovda dimlang."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_tovuq",
-    "ing_limon",
-    "ing_piyoz"
-  ]
-},
-  {
-  "id": "rec_hd_060_caramel_pear_pie",
-  "nomi": "Nokli va Dolchinli Karamel Pirog",
-  "tayyorlash_vaqti_daq": 50,
-  "qiyinlik": "orta",
-  "rasm_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-  "tarif_matni": "Pechda karamellangan nok parraklari va dolchinli xushbo'y pirog.",
-  "masalliqlar_matni": "3 dona Nok, 100g Shakar, 50g Saryog', 250g Un, 1 choy qoshiq Dolchin",
-  "korsatmalari": [
-    "1. Noklarni sariyog' va shakarda 5 daqiqa qovuring, xamir yoyib 180°C pechda 35 daqiqa pishiring."
-  ],
-  "holat": "nashr",
-  "required_ingredient_ids": [
-    "ing_saryog",
-    "ing_shakar",
-    "ing_un",
-    "ing_dolchin"
-  ]
-},
-  {
+{
     id: 'rec_01_toshkent_palov',
     nomi: "Toshkent To'y Palovi",
     tayyorlash_vaqti_daq: 90,
@@ -1384,7 +188,7 @@ export const initialRecipes: Recipe[] = [
     holat: 'nashr',
     required_ingredient_ids: ['ing_guruch', 'ing_qoy', 'ing_sabzi', 'ing_piyoz', 'ing_noxat']
   },
-  {
+{
     id: 'rec_02_samarqand_sofi',
     nomi: 'Samarqand Oshi Sofi',
     tayyorlash_vaqti_daq: 105,
@@ -1402,7 +206,7 @@ export const initialRecipes: Recipe[] = [
     holat: 'nashr',
     required_ingredient_ids: ['ing_guruch', 'ing_mol', 'ing_sabzi', 'ing_piyoz']
   },
-  {
+{
     id: 'rec_03_fargona_devzira',
     nomi: "Farg'ona Devzira Palovi",
     tayyorlash_vaqti_daq: 110,
@@ -1419,7 +223,7 @@ export const initialRecipes: Recipe[] = [
     holat: 'nashr',
     required_ingredient_ids: ['ing_guruch', 'ing_qoy', 'ing_sabzi', 'ing_piyoz', 'ing_qalampir']
   },
-  {
+{
     id: 'rec_04_buxoro_baxsh',
     nomi: 'Buxoro Baxsh Palovi',
     tayyorlash_vaqti_daq: 60,
@@ -1436,7 +240,7 @@ export const initialRecipes: Recipe[] = [
     holat: 'nashr',
     required_ingredient_ids: ['ing_guruch', 'ing_mol', 'ing_jigar', 'ing_kokatlar', 'ing_shivit']
   },
-  {
+{
     id: 'rec_05_xiva_shivit_oshi',
     nomi: 'Xiva Shivit Oshi',
     tayyorlash_vaqti_daq: 90,
@@ -1453,7 +257,7 @@ export const initialRecipes: Recipe[] = [
     holat: 'nashr',
     required_ingredient_ids: ['ing_un', 'ing_shivit', 'ing_mol', 'ing_kartoshka', 'ing_sabzi', 'ing_yogurt']
   },
-  {
+{
     id: 'rec_06_xorazm_tuxum_barak',
     nomi: 'Xorazm Tuxum Baraki',
     tayyorlash_vaqti_daq: 60,
@@ -1470,7 +274,7 @@ export const initialRecipes: Recipe[] = [
     holat: 'nashr',
     required_ingredient_ids: ['ing_un', 'ing_tuxum', 'ing_saryog', 'ing_yogurt']
   },
-  {
+{
     id: 'rec_07_chuchvara',
     nomi: "O'zbek Chuchvarasi",
     tayyorlash_vaqti_daq: 60,
@@ -1487,7 +291,7 @@ export const initialRecipes: Recipe[] = [
     holat: 'nashr',
     required_ingredient_ids: ['ing_un', 'ing_qiyma', 'ing_piyoz', 'ing_tuxum']
   },
-  {
+{
     id: 'rec_08_manti',
     nomi: "Go'shtli O'zbek Mantisi",
     tayyorlash_vaqti_daq: 80,
@@ -1504,7 +308,7 @@ export const initialRecipes: Recipe[] = [
     holat: 'nashr',
     required_ingredient_ids: ['ing_un', 'ing_mol', 'ing_dumba', 'ing_piyoz']
   },
-  {
+{
     id: 'rec_09_xonim',
     nomi: 'Kartoshkali Xonim (Orama)',
     tayyorlash_vaqti_daq: 70,
@@ -1521,7 +325,7 @@ export const initialRecipes: Recipe[] = [
     holat: 'nashr',
     required_ingredient_ids: ['ing_un', 'ing_kartoshka', 'ing_piyoz', 'ing_yogi']
   },
-  {
+{
     id: 'rec_10_mastava',
     nomi: "O'zbek Mastavasi",
     tayyorlash_vaqti_daq: 65,
@@ -1538,7 +342,7 @@ export const initialRecipes: Recipe[] = [
     holat: 'nashr',
     required_ingredient_ids: ['ing_mol', 'ing_guruch', 'ing_kartoshka', 'ing_sabzi', 'ing_piyoz']
   },
-  {
+{
     id: 'rec_11_qaynatma_shorva',
     nomi: "Qaynatma Sho'rva",
     tayyorlash_vaqti_daq: 135,
@@ -1555,7 +359,7 @@ export const initialRecipes: Recipe[] = [
     holat: 'nashr',
     required_ingredient_ids: ['ing_qoy', 'ing_kartoshka', 'ing_sabzi', 'ing_piyoz']
   },
-  {
+{
     id: 'rec_12_dimlama_original',
     nomi: "An'anaviy Go'shtli Dimlama",
     tayyorlash_vaqti_daq: 120,
@@ -1572,7 +376,7 @@ export const initialRecipes: Recipe[] = [
     holat: 'nashr',
     required_ingredient_ids: ['ing_qoy', 'ing_karram', 'ing_kartoshka', 'ing_sabzi', 'ing_piyoz']
   },
-  {
+{
     id: 'rec_13_qozon_kabob',
     nomi: 'Qozon Kabob',
     tayyorlash_vaqti_daq: 80,
@@ -1589,7 +393,7 @@ export const initialRecipes: Recipe[] = [
     holat: 'nashr',
     required_ingredient_ids: ['ing_qoy', 'ing_kartoshka', 'ing_yogi', 'ing_zira']
   },
-  {
+{
     id: 'rec_14_shashlik',
     nomi: "Qo'y Go'shtidan Shashlik",
     tayyorlash_vaqti_daq: 45,
@@ -1606,7 +410,7 @@ export const initialRecipes: Recipe[] = [
     holat: 'nashr',
     required_ingredient_ids: ['ing_qoy', 'ing_dumba', 'ing_piyoz', 'ing_zira']
   },
-  {
+{
     id: 'rec_15_tandir_somsa',
     nomi: 'Tandir Somsa',
     tayyorlash_vaqti_daq: 85,
@@ -1623,7 +427,7 @@ export const initialRecipes: Recipe[] = [
     holat: 'nashr',
     required_ingredient_ids: ['ing_un', 'ing_mol', 'ing_dumba', 'ing_piyoz', 'ing_saryog']
   },
-  {
+{
     id: 'rec_16_toshkent_salat',
     nomi: 'Toshkent Salati',
     tayyorlash_vaqti_daq: 40,
@@ -1640,7 +444,7 @@ export const initialRecipes: Recipe[] = [
     holat: 'nashr',
     required_ingredient_ids: ['ing_til', 'ing_turp', 'ing_piyoz']
   },
-  {
+{
     id: 'rec_17_achichuk',
     nomi: 'Achichuk Salati',
     tayyorlash_vaqti_daq: 10,
@@ -1656,7 +460,7 @@ export const initialRecipes: Recipe[] = [
     holat: 'nashr',
     required_ingredient_ids: ['ing_pomidor', 'ing_piyoz']
   },
-  {
+{
     id: 'rec_18_medovik',
     nomi: 'Asalli "Medovik" Torti',
     tayyorlash_vaqti_daq: 105,
@@ -1673,7 +477,7 @@ export const initialRecipes: Recipe[] = [
     holat: 'nashr',
     required_ingredient_ids: ['ing_un', 'ing_asal', 'ing_saryog', 'ing_tuxum', 'ing_smetana']
   },
-  {
+{
     id: 'rec_tr_001_baklava',
     nomi: 'Turkiya Baqlavasi (Baklava)',
     tayyorlash_vaqti_daq: 45,
@@ -1692,7 +496,7 @@ export const initialRecipes: Recipe[] = [
     holat: 'nashr',
     required_ingredient_ids: ['ing_filo_xamiri', 'ing_saryog', 'ing_yongoq', 'ing_shakar', 'ing_limon']
   },
-  {
+{
     id: 'rec_tr_002_lokum',
     nomi: 'Turk Loqumi (Turkish Delight)',
     tayyorlash_vaqti_daq: 60,
@@ -1711,7 +515,7 @@ export const initialRecipes: Recipe[] = [
     holat: 'nashr',
     required_ingredient_ids: ['ing_shakar', 'ing_kraxmal', 'ing_limon']
   },
-  {
+{
     id: 'rec_tr_003_sutlac',
     nomi: 'Turkcha Sütlaç (Sutli Desert)',
     tayyorlash_vaqti_daq: 40,
@@ -1730,7 +534,7 @@ export const initialRecipes: Recipe[] = [
     holat: 'nashr',
     required_ingredient_ids: ['ing_sut', 'ing_guruch', 'ing_shakar', 'ing_vanilin']
   },
-  {
+{
     id: 'rec_tr_004_revani',
     nomi: 'Revani (Manna Yarma Keksa)',
     tayyorlash_vaqti_daq: 35,
@@ -1749,7 +553,7 @@ export const initialRecipes: Recipe[] = [
     holat: 'nashr',
     required_ingredient_ids: ['ing_manniy', 'ing_un', 'ing_tuxum', 'ing_shakar', 'ing_qatiq']
   },
-  {
+{
     id: 'rec_tr_005_sekerpare',
     nomi: 'Şekerpare Pechenyesi',
     tayyorlash_vaqti_daq: 25,
@@ -1768,7 +572,7 @@ export const initialRecipes: Recipe[] = [
     holat: 'nashr',
     required_ingredient_ids: ['ing_saryog', 'ing_shakar', 'ing_tuxum', 'ing_un', 'ing_manniy', 'ing_bodom']
   },
-  {
+{
     id: 'rec_tr_006_tulumba',
     nomi: 'Tulumba Tatlısı',
     tayyorlash_vaqti_daq: 30,
@@ -1787,7 +591,7 @@ export const initialRecipes: Recipe[] = [
     holat: 'nashr',
     required_ingredient_ids: ['ing_un', 'ing_saryog', 'ing_tuxum', 'ing_kraxmal', 'ing_shakar']
   },
-  {
+{
     id: 'rec_tr_007_kunefe',
     nomi: 'Turk Künefe Deserti',
     tayyorlash_vaqti_daq: 30,
@@ -1807,7 +611,7 @@ export const initialRecipes: Recipe[] = [
     holat: 'nashr',
     required_ingredient_ids: ['ing_kadayif', 'ing_pishloq', 'ing_saryog', 'ing_shakar', 'ing_pista']
   },
-  {
+{
     id: 'rec_tr_008_lokma',
     nomi: 'Lokma (Qiyomli Sharchalar)',
     tayyorlash_vaqti_daq: 25,
@@ -1826,7 +630,7 @@ export const initialRecipes: Recipe[] = [
     holat: 'nashr',
     required_ingredient_ids: ['ing_un', 'ing_xamirturush', 'ing_shakar', 'ing_osimlik_yogi']
   },
-  {
+{
     id: 'rec_tr_009_kazandibi',
     nomi: 'Kazandibi (Karamellangan Sutli Desert)',
     tayyorlash_vaqti_daq: 40,
@@ -1844,7 +648,7 @@ export const initialRecipes: Recipe[] = [
     holat: 'nashr',
     required_ingredient_ids: ['ing_sut', 'ing_shakar', 'ing_kraxmal', 'ing_saryog', 'ing_vanilin']
   },
-  {
+{
     id: 'rec_tr_010_muhallebi',
     nomi: 'Turkcha Muhallebi Krem Deserti',
     tayyorlash_vaqti_daq: 20,
@@ -1862,7 +666,7 @@ export const initialRecipes: Recipe[] = [
     holat: 'nashr',
     required_ingredient_ids: ['ing_sut', 'ing_shakar', 'ing_kraxmal', 'ing_vanilin']
   },
-  {
+{
     id: 'rec_tr_011_irmik_helvasi',
     nomi: 'İrmik Helvası (Manna Halvosi)',
     tayyorlash_vaqti_daq: 30,
@@ -1880,7 +684,7 @@ export const initialRecipes: Recipe[] = [
     holat: 'nashr',
     required_ingredient_ids: ['ing_manniy', 'ing_saryog', 'ing_shakar', 'ing_sut']
   },
-  {
+{
     id: 'rec_tr_012_asure',
     nomi: "Aşure (Nuh Payg'ambar Deserti)",
     tayyorlash_vaqti_daq: 90,
@@ -1898,7 +702,7 @@ export const initialRecipes: Recipe[] = [
     holat: 'nashr',
     required_ingredient_ids: ['ing_noxat', 'ing_loviya', 'ing_mayiz', 'ing_yongoq', 'ing_shakar']
   },
-  {
+{
     id: 'rec_tr_013_pismaniye',
     nomi: 'Pişmaniye (Turk Paxtahalvosi)',
     tayyorlash_vaqti_daq: 90,
