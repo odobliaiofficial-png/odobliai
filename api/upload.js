@@ -1,5 +1,20 @@
+import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
+
+const accountId = 'ff193c88523c7bd026a0c6ba6237c519';
+const accessKeyId = '112da4273a6597cb913fbd66e90cc202';
+const secretAccessKey = 'c9a635a1f2cf3a3bad06c5a923e8baa61c1a4e383da318507de4e24b3538a4cb';
+const bucketName = 'recipe-images';
+
+const s3Client = new S3Client({
+  region: 'auto',
+  endpoint: `https://${accountId}.r2.cloudflarestorage.com`,
+  credentials: {
+    accessKeyId,
+    secretAccessKey,
+  },
+});
+
 export default async function handler(req, res) {
-  // CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -20,26 +35,22 @@ export default async function handler(req, res) {
 
     const b64Data = imageBase64.includes(',') ? imageBase64.split(',')[1] : imageBase64;
     const buffer = Buffer.from(b64Data, 'base64');
-    const blob = new Blob([buffer], { type: 'image/jpeg' });
+    const objectKey = `${(filename || 'photo').replace(/[^a-zA-Z0-0_-]/g, '_')}_${Date.now()}.jpg`;
 
-    const formData = new FormData();
-    formData.append('reqtype', 'fileupload');
-    formData.append('fileToUpload', blob, filename || 'recipe_photo.jpg');
-
-    const response = await fetch('https://catbox.moe/user/api.php', {
-      method: 'POST',
-      body: formData,
+    const command = new PutObjectCommand({
+      Bucket: bucketName,
+      Key: objectKey,
+      Body: buffer,
+      ContentType: 'image/jpeg',
     });
 
-    if (response.ok) {
-      const catboxUrl = (await response.text()).trim();
-      if (catboxUrl.startsWith('http')) {
-        return res.status(200).json({ url: catboxUrl });
-      }
-    }
+    await s3Client.send(command);
 
-    return res.status(500).json({ error: 'Failed to get URL from Catbox' });
+    const publicUrl = `/api/image?key=${encodeURIComponent(objectKey)}`;
+    console.log('✅ Cloudflare R2 Upload Success:', objectKey);
+    return res.status(200).json({ url: publicUrl, key: objectKey });
   } catch (err) {
-    return res.status(500).json({ error: err.message || 'Catbox proxy failed' });
+    console.error('❌ Cloudflare R2 Upload Error:', err);
+    return res.status(500).json({ error: err.message || 'Cloudflare R2 Upload failed' });
   }
 }
