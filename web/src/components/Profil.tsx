@@ -3,7 +3,7 @@ import { useApp } from '../context/AppContext';
 import { ShieldCheck, Flame, Star, Sparkles, CreditCard, Heart, Clock, ChefHat, Trash2, FolderHeart, Globe, ChevronRight, Pencil, Check, X, User as UserIcon } from 'lucide-react';
 
 export const Profil: React.FC = () => {
-  const { user, progress, script, setScript, t, setShowPaymentModal, setActiveTab, badges, recipes, favoriteRecipeIds, toggleFavoriteRecipe, updateUserName } = useApp();
+  const { user, progress, script, setScript, t, setShowPaymentModal, setActiveTab, badges, recipes, favoriteRecipeIds, toggleFavoriteRecipe, updateUserName, isAdmin } = useApp();
 
   const [showSavedList, setShowSavedList] = useState<boolean>(true);
   const [isEditingName, setIsEditingName] = useState<boolean>(false);
@@ -121,6 +121,27 @@ export const Profil: React.FC = () => {
           <span>{user.is_premium ? t("Premium Obuna Ma'lumoti") : t("Premium Sotib Olish (25,000 so'm/oy)")}</span>
         </button>
       </div>
+
+      {/* Admin Panel Access Card */}
+      {isAdmin && (
+        <div className="card-pink p-3.5 rounded-3xl space-y-2.5 shadow-2xs border border-amber-300 bg-gradient-to-r from-amber-500 to-orange-500 text-white">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <span className="text-2xl">👑</span>
+              <div className="text-left">
+                <h3 className="font-extrabold text-white text-xs">Admin Boshqaruv Paneli</h3>
+                <p className="text-[10px] text-amber-100 font-medium">Baza, retseptlar va kontentni boshqarish (ID: {user.telegram_id})</p>
+              </div>
+            </div>
+            <button
+              onClick={() => setActiveTab('admin')}
+              className="px-3.5 py-1.5 bg-white text-orange-600 rounded-xl text-xs font-black shadow-xs hover:bg-orange-50 active:scale-95 transition-all flex-shrink-0"
+            >
+              Ochish →
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Saqlanganlar (Uzunchoq Papka Card) */}
       <div className="card-pink p-3.5 rounded-3xl space-y-3 shadow-2xs border border-pink-100">

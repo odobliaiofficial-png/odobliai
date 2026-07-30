@@ -1481,6 +1481,234 @@ export const initialRecipes: Recipe[] = [
     holat: 'nashr',
     required_ingredient_ids: ['ing_shokolad', 'ing_saryog', 'ing_shakar', 'ing_tuxum', 'ing_un']
   },
+  {
+    id: 'rec_hd_081_sourdough_rye_brownies',
+    nomi: 'Javdar Unli va Hamirturushli Brauni (Sourdough Rye Brownies)',
+    tayyorlash_vaqti_daq: 60,
+    qiyinlik: 'orta',
+    kategoriya: 'Pishiriqlar & Shirinliklar',
+    rasm_url: '🍫',
+    tarif_matni: "O'ziga xos achigan javdar hamirturushi, to'q achchiq shokolad va saryog'dan pishiriladigan quyuq brauni.",
+    masalliqlar_matni: "1-bosqich (Hamirturush uchun):\n72 g javdar uni\n57 ml suv\n36 g javdar hamirturushi (sourdough starter)\n2-bosqich:\n194 g javdar uni\n3-bosqich (Brauni uchun):\n5 dona tuxum\n100 g shakar\n195 g saryog'\n475 g achchiq shokolad (kamida 66% kakao)\n77 g shakar\n265 g jigarrang shakar\n70 g kakao kukuni\n5 ml vanil ekstrakti\n3 g soda\n2 g tuz",
+    korsatmalari: [
+      "1-bosqich masalliqlarini idishda aralashtirib, ustini yopib iliq joyda 4–6 soatga tindiring.",
+      "1-bosqichdagi hamirturushdan 125 g ajratib oling va 194 g javdar uni bilan aralashtirib, 1–2 soat iliq joyda qoldiring.",
+      "Saryog' va shokoladni issiq suvli qozoncha ustiga idish qo'yib (suv tegmaydigan qilib) eritib oling va 30 daqiqa sovuting. Pechni 160°C ga qizdiring. 25x25 cm qolipga pergament qog'oz soling.",
+      "Tayyor xamirga eritilgan shokolad, saryog', tuxum, ikkala shakar, kakao, vanil, soda va tuzni solib mikserda yaxshilab ko'pirtiring.",
+      "Massani qolipga quyib, 160°C pechda 30–40 daqiqa pishiring (usti quruq, o'rtasi biroz yumshoq bo'lishi kerak). Sovutib, bo'laklarga bo'ling."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_un', 'ing_tuxum', 'ing_shakar', 'ing_saryog', 'ing_shokolad', 'ing_kakao']
+  },
+  {
+    id: 'rec_hd_082_lemon_meringue_pie',
+    nomi: 'Limonli va Meringali Pirog (Lemon Meringue Pie)',
+    tayyorlash_vaqti_daq: 60,
+    qiyinlik: 'orta',
+    kategoriya: 'Pishiriqlar & Shirinliklar',
+    rasm_url: '🍋',
+    tarif_matni: "Qarsildoq korj, nordon-shirin limonli zavarnoy kurd va momiq meringa kremi bilan pishiriladigan klassik pirog.",
+    masalliqlar_matni: "Korj uchun:\n1 dona tayyor pirog korji\nKrem (Kurd) uchun:\n200 g shakar\n5 osh qoshiq kraxmal\nYarim choy qoshiq tuz\n240 ml suv\n120 ml sut\n4 dona tuxum sarig'i\n15 g saryog'\n120 ml limon sharbati\n2 choy qoshiq limon rendasi\nMeringa (Krem) uchun:\n4 dona tuxum oqi\nYarim choy qoshiq limon kislotasi\n100 g shakar",
+    korsatmalari: [
+      "Pechni 200°C ga qizdiring. Korj xamirini qolipga yoyib, 10 daqiqa yopilgan holda, so'ng 12 daqiqa ochiq holda tillarang bo'lguncha pishirib sovuting. Pech haroratini 175°C ga tushiring.",
+      "Qozonchada shakar, kraxmal va tuzni aralashtiring. Suv va sutni quyib ko'pirtiring. Tuxum sariqlarini qo'shib, o'rta olovda quyulguncha qaynatib oling.",
+      "Olovdan olib saryog', limon sharbati va rendani solib aralashtiring.",
+      "Meringa: Tuxum oqlarini limon kislotasi bilan mikserda ko'pirtiring. Shakarni oz-ozdan quyib, qattiq piklar hosil bo'lguncha davom eting.",
+      "Issiq kremni korjga quying, ustiga meringa kremini tekis yoyib, sanchqi bilan cho'qqilar hosil qiling. 175°C pechda 15 daqiqa meringa tillarang bo'lguncha pishiring."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_shakar', 'ing_kraxmal', 'ing_sut', 'ing_tuxum', 'ing_saryog', 'ing_limon']
+  },
+  {
+    id: 'rec_hd_083_chocolate_pudding_pie',
+    nomi: 'Shokoladli Pudding Pirogi (Chocolate Pudding Pie)',
+    tayyorlash_vaqti_daq: 45,
+    qiyinlik: 'orta',
+    kategoriya: 'Pishiriqlar & Shirinliklar',
+    rasm_url: '🍮',
+    tarif_matni: "Uvalanuvchan xamir korji, ipakdek shokoladli pudding va ko'pirtirilgan qaymoqli pirog.",
+    masalliqlar_matni: "Korj uchun:\n155 g un\n45 g sovuq saryog'\n30 g o'simlik margarini (shortening)\nYarim choy qoshiq tuz\n3-4 osh qoshiq muzday suv\nPudding uchun:\n30 g kraxmal\n90 g shakar\n3 osh qoshiq kakao kukuni\nYarim choy qoshiq tuz\n700 ml sut\n115 g achchiq shokolad (maydalangan)\n1 choy qoshiq vanil\nUstiga:\n240 ml sovuq qaymoq\n2 osh qoshiq shakar",
+    korsatmalari: [
+      "Un, saryog', margarin va tuzni barmoqlar bilan ezib, kichik bo'lakchalar holiga keltiring. Muzday suv qo'shib xamirni to'plang va 1 soat muzlatgichda tindiring.",
+      "Xamirni yoyib qolipga soling. 190°C pechda 35–40 daqiqa tillarang bo'lguncha pishirib sovuting.",
+      "Qozonda kraxmal, 90 g shakar, kakao va tuzni aralashtiring. Sutni quyib, o'rta olovda 2 daqiqa qaynatib quyultiring. Olovdan olib shokolad va vanilni solib eriting.",
+      "Puddingni sovigan korjga quyib, 2 soat muzlatgichda qotiring.",
+      "Dasturxonga tortish oldidan qaymoq va 2 osh qoshiq shakarni ko'pirtirib, pirog ustini bezating."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_un', 'ing_saryog', 'ing_kraxmal', 'ing_shakar', 'ing_kakao', 'ing_sut', 'ing_shokolad', 'ing_qaymoq']
+  },
+  {
+    id: 'rec_hd_084_blind_baked_pie_crust',
+    nomi: 'Mukammal Pishirilgan Pirog Xamiri (Blind-Baked Pie Crust)',
+    tayyorlash_vaqti_daq: 50,
+    qiyinlik: 'oson',
+    kategoriya: 'Pishiriqlar & Xamirlar',
+    rasm_url: '🥧',
+    tarif_matni: "Shirin va tuzli piroglarning barchasi uchun mos keladigan uvalanuvchan va qarsildoq korj xamiri.",
+    masalliqlar_matni: "2 osh qoshiq shakar\n2 choy qoshiq tuz\n330 g un\n340 g sovuq saryog' (kubik bo'lingan)\n160 ml muzday suv",
+    korsatmalari: [
+      "Katta idishda shakar, tuz va unni aralashtiring. Sovuq saryog'ni solib, barmoqlar bilan ezib yapaloq bo'lakchalar hosil qiling.",
+      "Muzday suvni quyib, spatula bilan xamir holiga keltiring. Ikki bo'lakka bo'lib, har birini 1 soat muzlatgichda tindiring.",
+      "Tindirilgan xamirni unlangan stolda yoyib, 23 cm diametrli pirog qolipiga joylashtiring va chetlariga shakl bering.",
+      "Pechni 200°C ga qizdiring. Xamir ustiga pergament qog'oz solib, ustiga yuk (mosh yoki noxot) soling va 30–35 daqiqa pishiring.",
+      "Yukni olib tashlab, pech haroratini 150°C ga tushiring va yana 10–15 daqiqa to'liq qarsildoq tillarang bo'lguncha pishiring."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_shakar', 'ing_un', 'ing_saryog']
+  },
+  {
+    id: 'rec_hd_085_banana_cream_pie',
+    nomi: 'Bananli va Qaymoqli Pirog (Banana Cream Pie)',
+    tayyorlash_vaqti_daq: 40,
+    qiyinlik: 'oson',
+    kategoriya: 'Pishiriqlar & Shirinliklar',
+    rasm_url: '🍌',
+    tarif_matni: "Yangi banan parraklari, mayin zavarnoy krem va momiq qaymoq qatlami pishirig'i.",
+    masalliqlar_matni: "1 dona pishirilgan tayyor pirog korji\n3 dona pishgan banan\n400 ml sut\n3 dona tuxum sarig'i\n80 g shakar\n3 osh qoshiq kraxmal\n1 choy qoshiq vanil\n200 ml ko'pirtirilgan qaymoq",
+    korsatmalari: [
+      "Qozonda sut, tuxum sarig'i, shakar va kraxmalni silliq bo'lguncha ko'pirtirib, past olovda quyuq zavarnoy krem bo'lguncha pishiring. Olovdan olib vanilni solib sovuting.",
+      "Bananlarni parrak qilib to'g'rang.",
+      "Pishirilgan korj tubiga banan bo'laklarini bir tekis tizib chiqing.",
+      "Ustidan sovigan zavarnoy kremni quying.",
+      "Muzlatgichda 2 soat sovutgach, ustini ko'pirtirilgan qaymoq va banan bo'laklari bilan bezating."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_banan', 'ing_sut', 'ing_tuxum', 'ing_shakar', 'ing_kraxmal', 'ing_qaymoq']
+  },
+  {
+    id: 'rec_hd_086_coconut_creamed_greens',
+    nomi: "Kokos Sutida Dimlangan Ko'katlar (Coconut Creamed Greens)",
+    tayyorlash_vaqti_daq: 30,
+    qiyinlik: 'oson',
+    kategoriya: 'Garnirlar & Yengil Taomlar',
+    rasm_url: '🥬',
+    tarif_matni: "Ismaloq, kale va zanjabil-sarimsoqli ko'katlarning kokos sutida dimlangan xushbo'y garniri.",
+    masalliqlar_matni: "100 g kokos qiyg'ichi\n1.3 kg har xil ko'katlar (kale, mangold, ispanoq)\n60 ml kokos yog'i\n6 tish sarimsoq (ezilgan)\n1 dona piyoz (to'g'ralgan)\n1 dona achchiq qizil qalampir\n1 bo'lak (5 cm) zanjabil\n1 osh qoshiq xardal urug'lari (mustard seeds)\n2 choy qoshiq kashnich kukuni, yarim choy qoshiq kurkuma, tuz\n480 ml kokos suti\n50 g kashnich ko'kati",
+    korsatmalari: [
+      "Pechni 175°C ga qizdiring. Kokos qiyg'ichini listda 5–7 daqiqa qizartirib olib sovuting.",
+      "Ko'katlarning qattiq tomirlarini olib tashlab, barglarini to'g'rang.",
+      "Tovada kokos yog'ida sarimsoq, piyoz, qalampir va zanjabilni 5 daqiqa qovuring. Ziravorlarni solib 1 daqiqa qovurishda davom eting.",
+      "Kokos sutini quyib qaynatib oling. Ko'katlarni oz-ozdan qo'shib, 15–18 daqiqa yumshaguncha dimlang.",
+      "Ustiga qovurilgan kokos qiyg'ichlari va kashnich seping."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_kokos_suti', 'ing_sarimsoq', 'ing_piyoz', 'ing_zanjabil', 'ing_kokatlar']
+  },
+  {
+    id: 'rec_hd_087_charred_sweet_potatoes',
+    nomi: "Qovurilgan Shirin Kartoshka, Achchiq Asalli Saryog' va Laym (Charred Sweet Potatoes With Hot Honey Butter and Lime)",
+    tayyorlash_vaqti_daq: 35,
+    qiyinlik: 'oson',
+    kategoriya: 'Garnirlar & Yengil Taomlar',
+    rasm_url: '🍠',
+    tarif_matni: "Pechda qizartirib pishirilgan batat kartoshkasi, asalli saryog' va qarsildoq qovoq urug'lari.",
+    masalliqlar_matni: "1.3 kg kichik shirin kartoshka (batat, ikkiga bo'lingan)\n120 ml zaytun yog'i\nTuz\n85 g saryog' (xonaki haroratda)\n2 osh qoshiq asal\n3 osh qoshiq achchiq sous (hot sauce)\n30 g qovoq urug'lari (pepitas)\n1 osh qoshiq kashnich kukuni\nLaym bo'laklari",
+    korsatmalari: [
+      "Pechni 220°C ga qizdiring. Shirin kartoshkalarni 60 ml zaytun yog'i va tuz bilan aralashtirib, kesilgan tarafini pastga qilib 25–30 daqiqa pechda pishiring.",
+      "Idishda saryog', asal va achchiq sousni sanchqi bilan ko'pirtirib achchiq-asalli saryog' tayyorlang.",
+      "Tovada qolgan 60 ml yog'da qovoq urug'larini 4 daqiqa qovuring, kashnich kukuni va tuz soling.",
+      "Pishgan kartoshkalarni laganga tizib, ustiga asalli saryog' surting. Ustidan qovoq urug'li yog'ni quyib, laym sharbati siqib torting."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_kartoshka', 'ing_saryog', 'ing_asal', 'ing_limon']
+  },
+  {
+    id: 'rec_hd_088_pastel_butter_cookies',
+    nomi: 'Bodomli Rangli Pechenye (Pastel Butter Cookies)',
+    tayyorlash_vaqti_daq: 40,
+    qiyinlik: 'orta',
+    kategoriya: 'Pishiriqlar & Shirinliklar',
+    rasm_url: '🍪',
+    tarif_matni: "Maydalangan bodom, saryog' va tabiiy mevali shakar kukuniga botiriladigan rang-barang pechenyelar.",
+    masalliqlar_matni: "140 g qovurilgan bodom\n250 g un\nYarim choy qoshiq tuz\nYarim choy qoshiq dolchin\n225 g saryog' (xonaki haroratda)\n120 g shakar kukuni (+ har bir rang uchun 60 g shakar kukuni)\n1 choy qoshiq vanil\nQuritilgan mevalar (qulupnay, chernika, mango - maydalangan)",
+    korsatmalari: [
+      "Pechni 175°C ga qizdiring. Kombaynda bodom, un, tuz va dolchinni maydalang.",
+      "Idishda saryog' va 120 g shakar kukunini 4 daqiqa ko'pirtiring. Vanil va bodomli un aralashmasini qo'shib xamir qoring.",
+      "Xamirdan 1 osh qoshiqlik shariklar yasab, listga tizing va 175°C pechda 14–16 daqiqa pishirib sovuting.",
+      "Har bir quritilgan meva va shakar kukunini kombaynda ko'pirtirib rangli shakar kukuni tayyorlang.",
+      "Sovigan pechenyelarni rangli shakar kukunlariga botirib oling."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_bodom', 'ing_un', 'ing_saryog', 'ing_shakar', 'ing_qulupnay', 'ing_chernika']
+  },
+  {
+    id: 'rec_hd_089_iranian_rice_cookies',
+    nomi: 'Eroncha Guruch Unli Pechenye (Iranian Rice Cookies)',
+    tayyorlash_vaqti_daq: 40,
+    qiyinlik: 'orta',
+    kategoriya: 'Pishiriqlar & Shirinliklar',
+    rasm_url: '🌾',
+    tarif_matni: "Guruch uni, gulob va hil aromati bilan pishiriladigan sharqona uvalanuvchan pechenye.",
+    masalliqlar_matni: "170 g saryog' (tovada biroz qizartirib eritilgan)\n50 g shakar\nChorak choy qoshiq gulob (rose water)\n1 dona tuxum sarig'i\n60 g un\n100 g guruch uni\nYarim choy qoshiq kardamon (hil)\nYarim choy qoshiq tuz",
+    korsatmalari: [
+      "Saryog'ni tovada qizartirib eritib, elakdan o'tkazing va sovuting.",
+      "Idishda shakar va 2 osh qoshiq issiq suvni eriting. Gulob va tuxum sarig'ini solib ko'pirtiring, eritilgan saryog'ni oz-ozdan quyib aralashtiring.",
+      "Alohida idishda ikki xil un, hil va tuzni aralashtiring. Saryog'li massaga qo'shib xamir qoring.",
+      "Xamirdan sharikchalar yasab, listga tizing va sanchqi bilan yassilang.",
+      "175°C pechda 16–18 daqiqa pishirib sovuting."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_saryog', 'ing_shakar', 'ing_tuxum', 'ing_un', 'ing_guruch_uni']
+  },
+  {
+    id: 'rec_hd_090_sweet_potato_bowls',
+    nomi: 'Shirin Kartoshka, Kale va Nohotli Bouli (Sweet Potato Bowls With Kale and Chickpeas)',
+    tayyorlash_vaqti_daq: 25,
+    qiyinlik: 'oson',
+    kategoriya: 'Garnirlar & Yengil Taomlar',
+    rasm_url: '🥗',
+    tarif_matni: "Dimlangan shirin kartoshka, nohot, karri va kokos sutida pishirilgan kale ko'kati solingan to'quvchi bowl.",
+    masalliqlar_matni: "450 g shirin kartoshka (batat, kubik to'g'ralgan)\n180 ml sabzavot bulyoni\n300 ml kokos suti\n1 osh qoshiq karri kukuni\n220 g kale ko'kati (to'g'ralgan)\n1 banka (400 g) konservalangan nohot\n2 osh qoshiq limon sharbati, tuz, murch\n300 g pishirilgan guruch",
+    korsatmalari: [
+      "Qozonda shirin kartoshka va bulyonni 5 daqiqa qaynatib dimlang.",
+      "Idishda kokos suti va karri kukunini aralashtiring.",
+      "Qozonga kale ko'kati, nohot va kokos sutli aralashmani solib, qopqog'ini yopgan holda 8 daqiqa sekin qaynatib pishiring.",
+      "Limon sharbati, tuz va murch solib aralashtiring.",
+      "Idishlarga pishgan guruchni solib, ustidan kartoshkali va nohotli taomni quying."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_kartoshka', 'ing_kokos_suti', 'ing_limon', 'ing_guruch']
+  },
+  {
+    id: 'rec_hd_091_black_bottom_hazelnut_pie',
+    nomi: 'Shokoladli va Fundukli Pirog (Black-Bottom Hazelnut Pie)',
+    tayyorlash_vaqti_daq: 70,
+    qiyinlik: 'orta',
+    kategoriya: 'Pishiriqlar & Shirinliklar',
+    rasm_url: '🥧',
+    tarif_matni: "Korj tubiga surtilgan erigan achchiq shokolad, qovurilgan funduk yong'og'i va qahvali pirog.",
+    masalliqlar_matni: "Korj uchun:\n155 g un\n115 g sovuq saryog'\n1 choy qoshiq shakar\nYarim choy qoshiq tuz\n2-3 osh qoshiq muzday suv\nIchlik uchun:\n400 g funduk yong'og'i (hazelnuts)\n115 g achchiq shokolad (eritilgan)\n85 g saryog'\n200 g jigarrang shakar\n1 osh qoshiq qahva kukuni (espresso)\n1 osh qoshiq vanil\n300 ml makkajo'xori siropi (yoki asal)\n1 choy qoshiq tuz\n3 dona tuxum",
+    korsatmalari: [
+      "Korj masalliqlaridan xamir qorib, 1 soat muzlatgichda tindiring. Yoyib qolipga soling va sovuting.",
+      "Funduklarni 175°C pechda 10 daqiqa qovurib oling. 1 stakan butun fundukni bezak uchun ajratib, qolganini maydalang.",
+      "Eritilgan shokoladni korj tubiga tekis yoyib, 15 daqiqa muzlatgichda qotiring.",
+      "Idishda eritilgan saryog', jigarrang shakar, qahva kukuni, vanil, asal, tuz va tuxumlarni ko'pirtiring. Maydalangan fundukni qo'shing.",
+      "Aralashmani korjga quyib, ustini butun funduklar bilan bezating. 175°C pechda 40–45 daqiqa pishirib sovuting."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_un', 'ing_saryog', 'ing_shokolad', 'ing_shakar', 'ing_asal', 'ing_tuxum']
+  },
+  {
+    id: 'rec_hd_092_olive_oil_apple_cake',
+    nomi: "Zaytun Yog'li va Olmali Keks (Olive Oil Apple Cake with Spiced Sugar)",
+    tayyorlash_vaqti_daq: 75,
+    qiyinlik: 'orta',
+    kategoriya: 'Pishiriqlar & Shirinliklar',
+    rasm_url: '🍎',
+    tarif_matni: "Zaytun yog'i, qirilgan shirin olmalar va xushbo'y dolchin-hil ziravorlari solib pishiriladigan keks.",
+    masalliqlar_matni: "240 ml zaytun yog'i\n110 g shakar\n2 dona nordon-shirin olma (qirilgan va suvi siqilgan)\nZiravorlar: 1 choy qoshiq dolchin, yarim choy qoshiq murch, yarim choy qoshiq kardamon (hil), yarim choy qoshiq zanjabil\n185 g un\n2 choy qoshiq qabartma kukun (Razrixlitel)\n2 dona tuxum + 2 dona tuxum sarig'i\n100 g jigarrang shakar\n1 choy qoshiq vanil, yarim choy qoshiq tuz",
+    korsatmalari: [
+      "Pechni 175°C ga qizdiring. Qolipni zaytun yog'i va shakar bilan qoplang. Olmalarni qirib suvi qolmaguncha yaxshilab siqing.",
+      "Barcha ziravorlarni aralashtiring. Chorak choy qoshig'ini ajratib, qolganiga un va qabartma kukun (Razrixlitel)ni qo'shib elang.",
+      "Mikserda tuxumlar, jigarrang shakar, vanil, tuz va 100 g shakarni ko'pirtiring. Zaytun yog'ini quyib aralashtiring.",
+      "Quruq masalliqlarni va qirilgan olmalarni qo'shib xamir holiga keltiring.",
+      "Qolipga quyib, ustiga ajratilgan ziravor va 2 choy qoshiq shakar aralashmasini seping. 175°C pechda 60–70 daqiqa pishiring."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_shakar', 'ing_olma', 'ing_un', 'ing_tuxum']
+  },
+
 ];
 
 export const initialTales: Tale[] = [

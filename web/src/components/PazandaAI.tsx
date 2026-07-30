@@ -1,3 +1,4 @@
+import { compressImage } from '../utils/imageCompressor';
 import React, { useState, useMemo, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { motion } from 'motion/react';
@@ -31,7 +32,10 @@ import {
   Square,
   ChevronDown,
   ChevronRight,
-  X
+  X,
+  Pencil,
+  Upload,
+  Save
 } from 'lucide-react';
 
 export const PazandaAI: React.FC = () => {
@@ -56,7 +60,10 @@ export const PazandaAI: React.FC = () => {
     stopGlobalTimer,
     setCustomTimer,
     selectedRecipeModal,
-    setSelectedRecipeModal
+    setSelectedRecipeModal,
+    isAdmin,
+    updateRecipe,
+    deleteRecipe
   } = useApp();
 
   useEffect(() => {
@@ -66,7 +73,75 @@ export const PazandaAI: React.FC = () => {
     }
   }, [selectedRecipeModal]);
 
-  const [customMinutesInput, setCustomMinutesInput] = useState<string>('20');
+    // Admin In-Place Recipe Edit State
+  const [adminEditingRecipe, setAdminEditingRecipe] = useState<Recipe | null>(null);
+  const [editNomi, setEditNomi] = useState('');
+  const [editKategoriya, setEditKategoriya] = useState('');
+  const [editVaqti, setEditVaqti] = useState(30);
+  const [editQiyinlik, setEditQiyinlik] = useState<'oson' | 'orta' | 'qiyin'>('oson');
+  const [editRasmUrl, setEditRasmUrl] = useState('');
+  const [editTarif, setEditTarif] = useState('');
+  const [editMasalliqlar, setEditMasalliqlar] = useState('');
+  const [editKorsatmalar, setEditKorsatmalar] = useState('');
+  const [isCompressingImage, setIsCompressingImage] = useState(false);
+
+  const handleOpenAdminEdit = (rec: Recipe, e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
+    setAdminEditingRecipe(rec);
+    setEditNomi(rec.nomi);
+    setEditKategoriya(rec.kategoriya);
+    setEditVaqti(rec.tayyorlash_vaqti_daq);
+    setEditQiyinlik(rec.qiyinlik);
+    setEditRasmUrl(rec.rasm_url);
+    setEditTarif(rec.tarif_matni);
+    setEditMasalliqlar(rec.masalliqlar_matni);
+    setEditKorsatmalar(Array.isArray(rec.korsatmalari) ? rec.korsatmalari.join('\n') : rec.korsatmalari);
+  };
+
+  const handleImageFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    try {
+      setIsCompressingImage(true);
+      showToast("📷 Rasm avtomatik siqilmoqda (WebP/JPEG ~50KB)...");
+      const compressed = await compressImage(file, 800, 0.75);
+      setEditRasmUrl(compressed);
+      showToast("⚡ Rasm siqildi va muvaffaqiyatli yuklandi!");
+    } catch (err) {
+      showToast("❌ Rasmni yuklashda xatolik yuz berdi");
+    } finally {
+      setIsCompressingImage(false);
+    }
+  };
+
+  const handleSaveAdminEdit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!adminEditingRecipe) return;
+
+    const stepsArray = editKorsatmalar.split('\n').map(s => s.trim()).filter(Boolean);
+
+    const updated: Recipe = {
+      ...adminEditingRecipe,
+      nomi: editNomi.trim(),
+      kategoriya: editKategoriya,
+      tayyorlash_vaqti_daq: Number(editVaqti) || 30,
+      qiyinlik: editQiyinlik,
+      rasm_url: editRasmUrl.trim() || '🍲',
+      tarif_matni: editTarif.trim(),
+      masalliqlar_matni: editMasalliqlar.trim(),
+      korsatmalari: stepsArray.length > 0 ? stepsArray : [editTarif]
+    };
+
+    updateRecipe(updated);
+    if (activeRecipe?.id === updated.id) {
+      setActiveRecipe(updated);
+    }
+    setAdminEditingRecipe(null);
+    showToast("✅ Admin: Retsept muvaffaqiyatli saqlandi!");
+  };
+
+const [customMinutesInput, setCustomMinutesInput] = useState<string>('20');
 
   // Tab mode: 'match' | 'catalog' | 'bozorlik' | 'timer'
   const [viewMode, setViewMode] = useState<'match' | 'catalog' | 'bozorlik' | 'timer'>('match');
@@ -922,6 +997,17 @@ export const PazandaAI: React.FC = () => {
                       {recipe.tayyorlash_vaqti_daq} {t("daq")}
                     </span>
 
+                    {isAdmin && (
+                      <button
+                        onClick={(e) => handleOpenAdminEdit(recipe, e)}
+                        className="absolute bottom-1.5 right-1.5 bg-amber-500 text-white font-extrabold text-[9px] px-2 py-0.5 rounded-md flex items-center gap-1 shadow-sm border border-amber-300 z-10 active:scale-90"
+                        title="Tahrirlash"
+                      >
+                        <Pencil className="w-2.5 h-2.5" />
+                        Tahrir
+                      </button>
+                    )}
+
                     <button
                       onClick={(e) => toggleFavorite(recipe.id, e)}
                       className="absolute top-1.5 left-1.5 p-1 rounded-full bg-white/90 backdrop-blur text-gray-600 hover:text-red-500 transition-colors shadow-2xs"
@@ -1344,6 +1430,17 @@ export const PazandaAI: React.FC = () => {
               </motion.button>
 
               <div className="flex items-center gap-2">
+                {isAdmin && (
+                  <button
+                    onClick={(e) => handleOpenAdminEdit(activeRecipe, e)}
+                    className="px-2.5 py-1.5 bg-amber-500 hover:bg-amber-600 text-white rounded-xl font-extrabold text-xs flex items-center gap-1 shadow-xs border border-amber-300 active:scale-95 transition-all"
+                    title="Admin sifatida tahrirlash"
+                  >
+                    <Pencil className="w-3.5 h-3.5" />
+                    <span>Tahrirlash</span>
+                  </button>
+                )}
+
                 <button
                   onClick={() => copyRecipeForTelegram()}
                   className="p-1.5 text-[#FF6B4A] hover:bg-[#FFF0EC] rounded-xl border border-[#FFD5C8] transition-colors flex items-center gap-1 text-xs font-extrabold"
@@ -1767,6 +1864,166 @@ export const PazandaAI: React.FC = () => {
             >
               {t("Yopish")}
             </button>
+
+          </div>
+        </div>,
+        document.body
+      )}
+
+    
+      {/* Admin Inline Recipe Edit Modal */}
+      {adminEditingRecipe && createPortal(
+        <div className="fixed inset-0 z-[10000] bg-black/80 backdrop-blur-xl flex items-center justify-center p-3 sm:p-4 overscroll-contain animate-in fade-in duration-200">
+          <div className="bg-white w-full max-w-lg max-h-[92vh] overflow-y-auto rounded-3xl p-5 space-y-4 border border-amber-300 shadow-2xl relative text-left">
+            
+            <div className="flex items-center justify-between border-b border-gray-200 pb-3">
+              <div className="flex items-center gap-2">
+                <span className="text-xl">👑</span>
+                <div>
+                  <h3 className="font-extrabold text-[#2D2A26] text-base">Retseptni Tahrirlash (Admin)</h3>
+                  <p className="text-xs text-gray-500">ID: {adminEditingRecipe.id}</p>
+                </div>
+              </div>
+
+              <button
+                onClick={() => setAdminEditingRecipe(null)}
+                className="p-1.5 rounded-full hover:bg-gray-100 text-gray-600 transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <form onSubmit={handleSaveAdminEdit} className="space-y-3.5">
+              <div>
+                <label className="block text-xs font-bold text-gray-700 mb-1">Taom Nomi (Uzbek):</label>
+                <input
+                  type="text"
+                  value={editNomi}
+                  onChange={(e) => setEditNomi(e.target.value)}
+                  className="w-full px-3 py-2 text-xs font-bold rounded-xl border border-gray-300 focus:border-amber-500 focus:outline-none"
+                  required
+                />
+              </div>
+
+              <div className="grid grid-cols-3 gap-2">
+                <div>
+                  <label className="block text-[11px] font-bold text-gray-700 mb-1">Kategoriya:</label>
+                  <select
+                    value={editKategoriya}
+                    onChange={(e) => setEditKategoriya(e.target.value)}
+                    className="w-full px-2 py-2 text-[11px] font-bold rounded-xl border border-gray-300 focus:border-amber-500 focus:outline-none"
+                  >
+                    <option value="Pishiriqlar & Shirinliklar">Pishiriqlar & Shirinliklar</option>
+                    <option value="Milliy Quyuq Taomlar">Milliy Quyuq Taomlar</option>
+                    <option value="Turk Oshxonasi">Turk Oshxonasi</option>
+                    <option value="Garnirlar & Yengil Taomlar">Garnirlar & Yengil Taomlar</option>
+                    <option value="Salatlar & Gazaklar">Salatlar & Gazaklar</option>
+                    <option value="Pishiriqlar & Xamirlar">Pishiriqlar & Xamirlar</option>
+                    <option value="Pishiriqlar & Tuzli Piroglar">Pishiriqlar & Tuzli Piroglar</option>
+                    <option value="Ichimliklar & Kokteyllar">Ichimliklar & Kokteyllar</option>
+                    <option value="Quyuq Taomlar">Quyuq Taomlar</option>
+                    <option value="Koreys & Dunyo Oshxonasi">Koreys & Dunyo Oshxonasi</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-[11px] font-bold text-gray-700 mb-1">Vaqt (Daqiqa):</label>
+                  <input
+                    type="number"
+                    value={editVaqti}
+                    onChange={(e) => setEditVaqti(Number(e.target.value))}
+                    className="w-full px-2 py-2 text-xs font-bold rounded-xl border border-gray-300 focus:border-amber-500 focus:outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-[11px] font-bold text-gray-700 mb-1">Qiyinlik:</label>
+                  <select
+                    value={editQiyinlik}
+                    onChange={(e) => setEditQiyinlik(e.target.value as any)}
+                    className="w-full px-2 py-2 text-[11px] font-bold rounded-xl border border-gray-300 focus:border-amber-500 focus:outline-none"
+                  >
+                    <option value="oson">Oson</option>
+                    <option value="orta">O'rta</option>
+                    <option value="qiyin">Qiyin</option>
+                  </select>
+                </div>
+              </div>
+
+              {/* Image URL & Compressed Upload */}
+              <div className="space-y-1.5">
+                <label className="block text-xs font-bold text-gray-700">Rasm / Emoji:</label>
+                <div className="flex items-center gap-2">
+                  <input
+                    type="text"
+                    value={editRasmUrl}
+                    onChange={(e) => setEditRasmUrl(e.target.value)}
+                    placeholder="URL yoki Emoji (masalan: 🍲)"
+                    className="flex-1 px-3 py-2 text-xs font-bold rounded-xl border border-gray-300 focus:border-amber-500 focus:outline-none"
+                  />
+                  <label className="cursor-pointer px-3 py-2 bg-amber-500 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 hover:bg-amber-600 transition-colors shadow-2xs">
+                    <Upload className="w-4 h-4" />
+                    <span>Rasm Yuklash</span>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={handleImageFileChange}
+                      className="hidden"
+                    />
+                  </label>
+                </div>
+                {isCompressingImage && (
+                  <p className="text-[10px] text-amber-600 font-bold animate-pulse">📷 Rasm avtomatik siqilmoqda (~50KB)...</p>
+                )}
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-gray-700 mb-1">Qisqa Tarif:</label>
+                <input
+                  type="text"
+                  value={editTarif}
+                  onChange={(e) => setEditTarif(e.target.value)}
+                  className="w-full px-3 py-2 text-xs font-bold rounded-xl border border-gray-300 focus:border-amber-500 focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-gray-700 mb-1">Masalliqlar Matni:</label>
+                <textarea
+                  rows={4}
+                  value={editMasalliqlar}
+                  onChange={(e) => setEditMasalliqlar(e.target.value)}
+                  className="w-full px-3 py-2 text-xs font-medium rounded-xl border border-gray-300 focus:border-amber-500 focus:outline-none leading-relaxed"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-gray-700 mb-1">Tayyorlanishi (Har bir qadam yangi qatorda):</label>
+                <textarea
+                  rows={6}
+                  value={editKorsatmalar}
+                  onChange={(e) => setEditKorsatmalar(e.target.value)}
+                  className="w-full px-3 py-2 text-xs font-medium rounded-xl border border-gray-300 focus:border-amber-500 focus:outline-none leading-relaxed"
+                />
+              </div>
+
+              <div className="flex items-center justify-end gap-2 pt-2 border-t border-gray-200">
+                <button
+                  type="button"
+                  onClick={() => setAdminEditingRecipe(null)}
+                  className="px-4 py-2 bg-gray-200 text-gray-700 rounded-xl text-xs font-bold hover:bg-gray-300 transition-colors"
+                >
+                  Bekor Qilish
+                </button>
+                <button
+                  type="submit"
+                  className="px-5 py-2 bg-amber-500 text-white rounded-xl text-xs font-bold hover:bg-amber-600 transition-colors shadow-md flex items-center gap-1.5"
+                >
+                  <Save className="w-4 h-4" />
+                  <span>Saqlash</span>
+                </button>
+              </div>
+            </form>
 
           </div>
         </div>,

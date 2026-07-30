@@ -129,6 +129,9 @@ interface AppContextType {
   setShowPaymentModal: (v: boolean) => void;
   selectedAgeFilter: string;
   setSelectedAgeFilter: (age: string) => void;
+
+  // Admin Verification Status
+  isAdmin: boolean;
 }
 
 const defaultUser: User = {
@@ -210,6 +213,9 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [script, setScriptState] = useState<ScriptType>(() => loadStorage('script', 'lotin'));
   const [activeTab, setActiveTab] = useState<ActiveTab>('home');
   const [selectedAgeFilter, setSelectedAgeFilter] = useState<string>('Barchasi');
+
+  // Admin Security verification (Telegram ID: 8544023815)
+  const isAdmin = String(user.telegram_id) === '8544023815' || user.is_admin === true || (user as any).role === 'admin';
 
   // Datasets safely initialized with Array.isArray checks and fresh system item mapping
   const [ingredients, setIngredients] = useState<Ingredient[]>(() => {
@@ -840,6 +846,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         setShowPaymentModal,
         selectedAgeFilter,
         setSelectedAgeFilter,
+        isAdmin,
         selectedRecipeModal,
         setSelectedRecipeModal,
         openRecipeModal,

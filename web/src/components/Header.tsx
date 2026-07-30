@@ -5,7 +5,7 @@ import { useApp } from '../context/AppContext';
 import { Flame, Star, ShieldCheck, Sparkles, Search, X, ChevronRight, ChefHat, BookOpen, Lightbulb } from 'lucide-react';
 
 export const Header: React.FC = () => {
-  const { user, progress, script, setScript, t, activeTab, setActiveTab, recipes, tales, lifehacks, openRecipeModal, openTaleModal, openLifehackModal } = useApp();
+  const { user, progress, script, setScript, t, activeTab, setActiveTab, recipes, tales, lifehacks, openRecipeModal, openTaleModal, openLifehackModal, isAdmin } = useApp();
   const [showSearchModal, setShowSearchModal] = useState(false);
   const [globalSearch, setGlobalSearch] = useState('');
 
@@ -62,6 +62,17 @@ export const Header: React.FC = () => {
 
           {/* Quick Actions (Search & Language/Script switcher) */}
           <div className="flex items-center gap-2">
+            
+            {isAdmin && (
+              <motion.button
+                whileTap={{ scale: 0.92 }}
+                onClick={() => setActiveTab('admin')}
+                className="px-2.5 py-1 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white rounded-full text-[11px] font-black shadow-xs flex items-center gap-1 border border-amber-300 active:scale-95 transition-all"
+                title="Admin Panel"
+              >
+                👑 Admin
+              </motion.button>
+            )}
             
             {/* Search Trigger Button (Visible only on non-home tabs) */}
             {activeTab !== 'home' && (
