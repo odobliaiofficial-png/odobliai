@@ -25,6 +25,7 @@ import {
   initialMathProblems
 } from '../data/mockData';
 import { translateText } from '../utils/transliterate';
+import { supabase } from '../lib/supabase';
 
 interface RewardDetails {
   title: string;
@@ -241,6 +242,30 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     
     return [...merged, ...customNew];
   });
+
+  // Fetch server-side recipe edits from Supabase (visible to all users)
+  useEffect(() => {
+    supabase.from('recipe_edits').select('*').then(({ data, error }) => {
+      if (error || !data || data.length === 0) return;
+      const editsMap = new Map(data.map((e: any) => [e.recipe_id, e]));
+      setRecipes(prev => prev.map(r => {
+        const edit = editsMap.get(r.id);
+        if (!edit) return r;
+        return {
+          ...r,
+          rasm_url: edit.rasm_url || r.rasm_url,
+          nomi: edit.nomi || r.nomi,
+          kategoriya: edit.kategoriya || r.kategoriya,
+          tayyorlash_vaqti_daq: edit.tayyorlash_vaqti_daq || r.tayyorlash_vaqti_daq,
+          qiyinlik: edit.qiyinlik || r.qiyinlik,
+          tarif_matni: edit.tarif_matni || r.tarif_matni,
+          masalliqlar_matni: edit.masalliqlar_matni || r.masalliqlar_matni,
+          korsatmalari: edit.korsatmalari ? edit.korsatmalari.split('\n').filter(Boolean) : r.korsatmalari,
+        };
+      }));
+    });
+  }, []);
+
   const [tales, setTales] = useState<Tale[]>(() => {
     const saved = loadStorage<Tale[]>('tales', initialTales);
     return Array.isArray(saved) && saved.length > 0 ? saved : initialTales;
@@ -649,6 +674,21 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   const updateRecipe = (recipe: Recipe) => {
     setRecipes(prev => prev.map(r => r.id === recipe.id ? recipe : r));
+    // Persist to Supabase so all users see the change
+    supabase.from('recipe_edits').upsert({
+      recipe_id: recipe.id,
+      rasm_url: recipe.rasm_url,
+      nomi: recipe.nomi,
+      kategoriya: recipe.kategoriya,
+      tayyorlash_vaqti_daq: recipe.tayyorlash_vaqti_daq,
+      qiyinlik: recipe.qiyinlik,
+      tarif_matni: recipe.tarif_matni,
+      masalliqlar_matni: recipe.masalliqlar_matni,
+      korsatmalari: Array.isArray(recipe.korsatmalari) ? recipe.korsatmalari.join('\n') : recipe.korsatmalari,
+      updated_at: new Date().toISOString(),
+    }, { onConflict: 'recipe_id' }).then(({ error }) => {
+      if (error) console.warn('Supabase recipe sync failed:', error.message);
+    });
   };
 
   const deleteRecipe = (id: string) => {

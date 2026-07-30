@@ -1,4 +1,4 @@
-import { compressImage } from '../utils/imageCompressor';
+import { compressImage, uploadImageToSupabase } from '../utils/imageCompressor';
 import React, { useState, useMemo, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { motion } from 'motion/react';
@@ -104,10 +104,11 @@ export const PazandaAI: React.FC = () => {
 
     try {
       setIsCompressingImage(true);
-      showToast("📷 Rasm avtomatik siqilmoqda (WebP/JPEG ~50KB)...");
+      showToast("📷 Rasm siqilmoqda va serverga yuklanmoqda...");
       const compressed = await compressImage(file, 800, 0.75);
-      setEditRasmUrl(compressed);
-      showToast("⚡ Rasm siqildi va muvaffaqiyatli yuklandi!");
+      const publicUrl = await uploadImageToSupabase(compressed, adminEditingRecipe?.id || `new_${Date.now()}`);
+      setEditRasmUrl(publicUrl);
+      showToast(publicUrl.startsWith('data:') ? "⚠️ Rasm faqat lokal saqlandi" : "✅ Rasm serverga muvaffaqiyatli yuklandi!");
     } catch (err) {
       showToast("❌ Rasmni yuklashda xatolik yuz berdi");
     } finally {
