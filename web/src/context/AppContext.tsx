@@ -209,6 +209,14 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     }
   };
 
+  const saveStorage = (key: string, value: any) => {
+    try {
+      localStorage.setItem(`odobli_${key}`, JSON.stringify(value));
+    } catch (e) {
+      console.warn('localStorage save error:', e);
+    }
+  };
+
   const [user, setUser] = useState<User>(() => {
     const saved = loadStorage<User>('user', defaultUser);
     const initial = saved && typeof saved === 'object' ? { ...defaultUser, ...saved } : defaultUser;
