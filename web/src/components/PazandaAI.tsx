@@ -530,7 +530,7 @@ const [customMinutesInput, setCustomMinutesInput] = useState<string>('20');
       `⏱ Tayyorlash vaqti: ${activeRecipe.tayyorlash_vaqti_daq} daqiqa\n` +
       `📊 Qiyinlik: ${t(activeRecipe.qiyinlik)}\n\n` +
       `🛒 *Kerakli masalliqlar:*\n` +
-      recipeIngredientItems.map(item => `• ${scaleIngredientString(item, 4, portions)}`).join('\n') +
+      recipeIngredientItems.map(item => `• ${t(scaleIngredientString(item, 4, portions))}`).join('\n') +
       `\n\n📖 *Tayyorlanishi:*\n` +
       activeRecipe.korsatmalari.map((k, i) => `${i + 1}. ${t(k)}`).join('\n') +
       `\n\n✨ _Pazanda AI orqali tayyorlandi_\n👉 Botimiz: @Pazandaaibot`;
@@ -1587,7 +1587,7 @@ const [customMinutesInput, setCustomMinutesInput] = useState<string>('20');
                       >
                         {isChecked && <Check className="w-3 h-3 stroke-[3]" />}
                       </div>
-                      <span>{scaledStr}</span>
+                      <span>{t(scaledStr)}</span>
                     </div>
                   );
                 })}
