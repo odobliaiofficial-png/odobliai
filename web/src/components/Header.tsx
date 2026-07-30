@@ -5,7 +5,7 @@ import { useApp } from '../context/AppContext';
 import { Flame, Star, ShieldCheck, Sparkles, Search, X, ChevronRight, ChefHat, BookOpen, Lightbulb } from 'lucide-react';
 
 export const Header: React.FC = () => {
-  const { user, progress, script, setScript, t, activeTab, setActiveTab, recipes, tales, lifehacks, openRecipeModal, openTaleModal, openLifehackModal, isAdmin } = useApp();
+  const { user, progress, script, setScript, t, activeTab, setActiveTab, recipes, lifehacks, openRecipeModal, openLifehackModal, isAdmin } = useApp();
   const [showSearchModal, setShowSearchModal] = useState(false);
   const [globalSearch, setGlobalSearch] = useState('');
 
@@ -15,10 +15,6 @@ export const Header: React.FC = () => {
       r.nomi.toLowerCase().includes(globalSearch.toLowerCase()) ||
       r.tarif_matni.toLowerCase().includes(globalSearch.toLowerCase())
     )
-  );
-
-  const filteredTales = tales.filter(t => 
-    globalSearch.trim() && t.sarlavha.toLowerCase().includes(globalSearch.toLowerCase())
   );
 
   const filteredLifehacks = lifehacks.filter(l => 
@@ -178,32 +174,7 @@ export const Header: React.FC = () => {
                     </div>
                   )}
 
-                  {/* Tales Section */}
-                  {filteredTales.length > 0 && (
-                    <div className="space-y-2">
-                      <span className="text-[10px] font-black text-purple-600 uppercase tracking-wider block">
-                        🏰 {t("Ertaklar")} ({filteredTales.length})
-                      </span>
-                      {filteredTales.map(tItem => (
-                        <div
-                          key={tItem.id}
-                          onClick={() => {
-                            setShowSearchModal(false);
-                            setActiveTab('bolajon');
-                            openTaleModal(tItem);
-                          }}
-                          className="p-2 bg-white rounded-2xl border border-purple-100 hover:border-purple-300 flex items-center gap-2.5 cursor-pointer shadow-2xs transition-all"
-                        >
-                          <img src={tItem.muqova_rasm_url} alt={tItem.sarlavha} className="w-10 h-10 rounded-xl object-cover" />
-                          <div className="flex-1 min-w-0">
-                            <h4 className="font-bold text-xs text-[#2E121D] truncate">{t(tItem.sarlavha)}</h4>
-                            <p className="text-[10px] text-purple-500 font-semibold">{tItem.yosh_toifasi} {t("yosh")}</p>
-                          </div>
-                          <ChevronRight className="w-4 h-4 text-gray-400" />
-                        </div>
-                      ))}
-                    </div>
-                  )}
+
 
                   {/* Lifehacks Section */}
                   {filteredLifehacks.length > 0 && (

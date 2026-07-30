@@ -228,12 +228,18 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [recipes, setRecipes] = useState<Recipe[]>(() => {
     const saved = loadStorage<Recipe[]>('recipes', []);
     if (!Array.isArray(saved) || saved.length === 0) return initialRecipes;
-    const systemIds = new Set(initialRecipes.map(r => r.id));
-    // Filter custom user created recipes only, ignore deleted system HD recipes
-    const custom = saved.filter(r => r.id.startsWith('user_rec_') && !systemIds.has(r.id));
-    // Clear localStorage to reset cached dataset
-    try { localStorage.removeItem('odobli_recipes'); } catch {}
-    return [...initialRecipes, ...custom];
+    
+    // Create map of saved modified recipes
+    const savedMap = new Map(saved.map(r => [r.id, r]));
+    
+    // Merge: for every system recipe in initialRecipes, use saved edited version if exists
+    const merged = initialRecipes.map(initialRec => savedMap.get(initialRec.id) || initialRec);
+    
+    // Include any new custom recipes
+    const initialIds = new Set(initialRecipes.map(r => r.id));
+    const customNew = saved.filter(r => !initialIds.has(r.id));
+    
+    return [...merged, ...customNew];
   });
   const [tales, setTales] = useState<Tale[]>(() => {
     const saved = loadStorage<Tale[]>('tales', initialTales);
@@ -413,6 +419,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   useEffect(() => {
     localStorage.setItem('odobli_recipes', JSON.stringify(recipes));
+    localStorage.setItem('pazanda_recipes', JSON.stringify(recipes));
   }, [recipes]);
 
   useEffect(() => {

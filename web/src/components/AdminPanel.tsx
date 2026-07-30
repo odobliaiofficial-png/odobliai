@@ -69,9 +69,7 @@ export const AdminPanel: React.FC = () => {
   const [pinError, setPinError] = useState<boolean>(false);
 
   // Sub-tabs navigation
-  const [activeAdminTab, setActiveAdminTab] = useState<
-    'dashboard' | 'payments' | 'recipes' | 'tales' | 'lifehacks' | 'users'
-  >('dashboard');
+  const [activeAdminTab, setActiveAdminTab] = useState<'recipes' | 'lifehacks' | 'users' | 'dashboard'>('recipes');
 
   // Search & Filter States
   const [searchTerm, setSearchTerm] = useState<string>('');
@@ -364,39 +362,10 @@ export const AdminPanel: React.FC = () => {
       </div>
 
       {/* Main Sub-Navigation Bar */}
-      <div className="grid grid-cols-3 md:grid-cols-6 gap-1.5 bg-[#FAF6EF] p-1.5 rounded-2xl border border-[#EFE8DC] shadow-inner">
-        <button
-          onClick={() => setActiveAdminTab('dashboard')}
-          className={`py-2 px-2 text-xs font-black rounded-xl transition-all flex items-center justify-center gap-1 ${
-            activeAdminTab === 'dashboard'
-              ? 'bg-[#2D2A26] text-white shadow-sm'
-              : 'text-[#6B6359] hover:bg-white'
-          }`}
-        >
-          <TrendingUp className="w-3.5 h-3.5" />
-          Metrikalar
-        </button>
-
-        <button
-          onClick={() => setActiveAdminTab('payments')}
-          className={`py-2 px-2 text-xs font-black rounded-xl transition-all flex items-center justify-center gap-1 relative ${
-            activeAdminTab === 'payments'
-              ? 'bg-[#FF6B4A] text-white shadow-sm'
-              : 'text-[#6B6359] hover:bg-white'
-          }`}
-        >
-          <DollarSign className="w-3.5 h-3.5" />
-          To'lovlar
-          {pendingPaymentsCount > 0 && (
-            <span className="ml-1 bg-amber-400 text-amber-950 font-black text-[9px] w-4 h-4 rounded-full flex items-center justify-center animate-pulse">
-              {pendingPaymentsCount}
-            </span>
-          )}
-        </button>
-
+      <div className="grid grid-cols-4 gap-1.5 bg-[#FAF6EF] p-1.5 rounded-2xl border border-[#EFE8DC] shadow-inner">
         <button
           onClick={() => setActiveAdminTab('recipes')}
-          className={`py-2 px-2 text-xs font-black rounded-xl transition-all flex items-center justify-center gap-1 ${
+          className={`py-2.5 px-2 text-xs font-black rounded-xl transition-all flex items-center justify-center gap-1 ${
             activeAdminTab === 'recipes'
               ? 'bg-[#FF6B4A] text-white shadow-sm'
               : 'text-[#6B6359] hover:bg-white'
@@ -407,20 +376,8 @@ export const AdminPanel: React.FC = () => {
         </button>
 
         <button
-          onClick={() => setActiveAdminTab('tales')}
-          className={`py-2 px-2 text-xs font-black rounded-xl transition-all flex items-center justify-center gap-1 ${
-            activeAdminTab === 'tales'
-              ? 'bg-[#FF6B4A] text-white shadow-sm'
-              : 'text-[#6B6359] hover:bg-white'
-          }`}
-        >
-          <BookOpen className="w-3.5 h-3.5" />
-          Ertaklar ({tales.length})
-        </button>
-
-        <button
           onClick={() => setActiveAdminTab('lifehacks')}
-          className={`py-2 px-2 text-xs font-black rounded-xl transition-all flex items-center justify-center gap-1 ${
+          className={`py-2.5 px-2 text-xs font-black rounded-xl transition-all flex items-center justify-center gap-1 ${
             activeAdminTab === 'lifehacks'
               ? 'bg-[#FF6B4A] text-white shadow-sm'
               : 'text-[#6B6359] hover:bg-white'
@@ -432,14 +389,26 @@ export const AdminPanel: React.FC = () => {
 
         <button
           onClick={() => setActiveAdminTab('users')}
-          className={`py-2 px-2 text-xs font-black rounded-xl transition-all flex items-center justify-center gap-1 ${
+          className={`py-2.5 px-2 text-xs font-black rounded-xl transition-all flex items-center justify-center gap-1 ${
             activeAdminTab === 'users'
               ? 'bg-[#FF6B4A] text-white shadow-sm'
               : 'text-[#6B6359] hover:bg-white'
           }`}
         >
           <Users className="w-3.5 h-3.5" />
-          Foydalanuvchi
+          Obunachilar & Prem
+        </button>
+
+        <button
+          onClick={() => setActiveAdminTab('dashboard')}
+          className={`py-2.5 px-2 text-xs font-black rounded-xl transition-all flex items-center justify-center gap-1 ${
+            activeAdminTab === 'dashboard'
+              ? 'bg-[#2D2A26] text-white shadow-sm'
+              : 'text-[#6B6359] hover:bg-white'
+          }`}
+        >
+          <TrendingUp className="w-3.5 h-3.5" />
+          Metrikalar
         </button>
       </div>
 
