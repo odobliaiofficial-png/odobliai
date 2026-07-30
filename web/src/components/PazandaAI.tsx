@@ -118,16 +118,87 @@ export const PazandaAI: React.FC = () => {
     if (file) processImageFile(file);
   };
 
-  const handleImagePaste = (e: React.ClipboardEvent) => {
-    const items = e.clipboardData?.items;
-    if (!items) return;
-    for (const item of items) {
-      if (item.type.startsWith('image/')) {
-        e.preventDefault();
-        const blob = item.getAsFile();
-        if (blob) processImageFile(blob);
-        return;
+  const handleImagePaste = async (e: ClipboardEvent | React.ClipboardEvent) => {
+    const clipboardData = 'clipboardData' in e ? e.clipboardData : null;
+    if (!clipboardData) return;
+
+    const items = clipboardData.items;
+    let handled = false;
+
+    if (items) {
+      for (const item of Array.from(items)) {
+        if (item.type.startsWith('image/')) {
+          e.preventDefault();
+          const blob = item.getAsFile();
+          if (blob) {
+            await processImageFile(blob);
+            handled = true;
+            break;
+          }
+        }
       }
+    }
+
+    if (!handled) {
+      const pastedText = clipboardData.getData('text/plain')?.trim();
+      if (pastedText && (pastedText.startsWith('http://') || pastedText.startsWith('https://') || pastedText.startsWith('data:image/'))) {
+        e.preventDefault();
+        setEditRasmUrl(pastedText);
+        showToast("✅ Rasm havolasi buferdan qo'yildi!");
+      }
+    }
+  };
+
+  // Window-level paste listener for Telegram Desktop
+  useEffect(() => {
+    if (!adminEditingRecipe) return;
+    const listener = (e: ClipboardEvent) => handleImagePaste(e);
+    window.addEventListener('paste', listener);
+    return () => window.removeEventListener('paste', listener);
+  }, [adminEditingRecipe]);
+
+  // Button handler for direct Async Clipboard API reading
+  const handlePasteFromClipboardButton = async () => {
+    try {
+      if (navigator.clipboard && navigator.clipboard.read) {
+        const items = await navigator.clipboard.read();
+        for (const item of items) {
+          const imageType = item.types.find(t => t.startsWith('image/'));
+          if (imageType) {
+            const blob = await item.getType(imageType);
+            const file = new File([blob], `clipboard_${Date.now()}.${imageType.split('/')[1] || 'png'}`, { type: imageType });
+            await processImageFile(file);
+            return;
+          }
+        }
+      }
+
+      if (navigator.clipboard && navigator.clipboard.readText) {
+        const text = await navigator.clipboard.readText();
+        const trimmed = text?.trim();
+        if (trimmed && (trimmed.startsWith('http://') || trimmed.startsWith('https://') || trimmed.startsWith('data:image/'))) {
+          setEditRasmUrl(trimmed);
+          showToast("✅ Buferdan rasm havolasi saqlandi!");
+          return;
+        }
+      }
+      showToast("ℹ️ Buferda rasm topilmadi. Avval rasmni nusxalang (Ctrl+C).");
+    } catch (err) {
+      showToast("👉 Ctrl+V tugmalarini bosing yoki rasm faylini tanlang");
+    }
+  };
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const files = e.dataTransfer.files;
+    if (files && files[0] && files[0].type.startsWith('image/')) {
+      processImageFile(files[0]);
     }
   };
 
@@ -1974,13 +2045,15 @@ const [customMinutesInput, setCustomMinutesInput] = useState<string>('20');
               <div className="space-y-1.5" onPaste={handleImagePaste}>
                 <label className="block text-xs font-bold text-gray-700">Rasm / Emoji:</label>
                 
-                {/* Live Preview Box / Paste Target */}
+                {/* Live Preview Box / Drag & Drop Target */}
                 <div
-                  className={`w-full h-40 rounded-xl overflow-hidden flex items-center justify-center border-2 border-dashed p-1 mb-2 transition-colors cursor-pointer ${
+                  onDragOver={handleDragOver}
+                  onDrop={handleDrop}
+                  className={`w-full h-40 rounded-xl overflow-hidden flex flex-col items-center justify-center border-2 border-dashed p-1 mb-2 transition-colors cursor-pointer ${
                     editRasmUrl ? 'border-gray-200 bg-stone-900/5' : 'border-amber-300 bg-amber-50/50'
                   }`}
                   tabIndex={0}
-                  title="Ctrl+V bosib rasm qo'ying"
+                  title="Ctrl+V bosib rasm qo'ying yoki sudrab keling"
                 >
                   {editRasmUrl ? (
                     (editRasmUrl.startsWith('/') || editRasmUrl.startsWith('http') || editRasmUrl.startsWith('data:') || editRasmUrl.length > 10) ? (
@@ -1989,7 +2062,10 @@ const [customMinutesInput, setCustomMinutesInput] = useState<string>('20');
                       <span className="text-5xl">{editRasmUrl}</span>
                     )
                   ) : (
-                    <span className="text-xs text-amber-500 font-bold">📋 Ctrl+V bosib rasm qo'ying</span>
+                    <div className="text-center p-2">
+                      <span className="text-xs text-amber-600 font-bold block mb-1">📋 Ctrl+V bosing yoki rasmni shu yerga sudrang</span>
+                      <span className="text-[10px] text-gray-400">Telegram Desktop yoki Brauzerdan rasm nusxalang (Ctrl+C)</span>
+                    </div>
                   )}
                 </div>
 
@@ -2002,9 +2078,17 @@ const [customMinutesInput, setCustomMinutesInput] = useState<string>('20');
                     placeholder="URL, Emoji yoki Ctrl+V (📋)"
                     className="flex-1 px-3 py-2 text-xs font-bold rounded-xl border border-gray-300 focus:border-amber-500 focus:outline-none"
                   />
-                  <label className="cursor-pointer px-3 py-2 bg-amber-500 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 hover:bg-amber-600 transition-colors shadow-2xs">
+                  <button
+                    type="button"
+                    onClick={handlePasteFromClipboardButton}
+                    title="Buferdan rasmni yuklash"
+                    className="px-3 py-2 bg-emerald-600 text-white rounded-xl text-xs font-bold flex items-center gap-1 hover:bg-emerald-700 transition-colors shadow-2xs shrink-0"
+                  >
+                    <span>📋 Joylash</span>
+                  </button>
+                  <label className="cursor-pointer px-3 py-2 bg-amber-500 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 hover:bg-amber-600 transition-colors shadow-2xs shrink-0">
                     <Upload className="w-4 h-4" />
-                    <span>Rasm Yuklash</span>
+                    <span>Yuklash</span>
                     <input
                       type="file"
                       accept="image/*"

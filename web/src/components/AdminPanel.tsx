@@ -95,89 +95,98 @@ export const AdminPanel: React.FC = () => {
     if (file) processBannerFile(file);
   };
 
-  const handleBannerPaste = (e: React.ClipboardEvent) => {
-    const items = e.clipboardData?.items;
-    if (!items) return;
-    for (const item of items) {
-      if (item.type.startsWith('image/')) {
+  const handleBannerPaste = async (e: React.ClipboardEvent | ClipboardEvent) => {
+    const clipboardData = 'clipboardData' in e ? e.clipboardData : null;
+    if (!clipboardData) return;
+    const items = clipboardData.items;
+    let handled = false;
+    if (items) {
+      for (const item of Array.from(items)) {
+        if (item.type.startsWith('image/')) {
+          e.preventDefault();
+          const blob = item.getAsFile();
+          if (blob) {
+            await processBannerFile(blob);
+            handled = true;
+            break;
+          }
+        }
+      }
+    }
+    if (!handled) {
+      const text = clipboardData.getData('text/plain')?.trim();
+      if (text && (text.startsWith('http://') || text.startsWith('https://') || text.startsWith('data:image/'))) {
         e.preventDefault();
-        const blob = item.getAsFile();
-        if (blob) processBannerFile(blob);
-        return;
+        setBannerImageUrl(text);
       }
     }
   };
 
-  const handleSaveBanner = (e: React.FormEvent) => {
-    e.preventDefault();
-    updateBannerConfig({
-      image_url: bannerImageUrl.trim(),
-      title: bannerTitleInput.trim(),
-      subtitle: bannerSubtitleInput.trim(),
-      badge: bannerBadgeInput.trim(),
-      button_text: bannerButtonTextInput.trim(),
-    });
-    setBannerSuccessToast("✅ 21:9 Hero Banner sozlamalari muvaffaqiyatli saqlandi!");
-    setTimeout(() => setBannerSuccessToast(null), 3500);
+  /** Generic Ctrl+V paste handler — compresses and uploads, then calls setter */
+  const handleImagePasteFor = (setter: (url: string) => void) => async (e: React.ClipboardEvent | ClipboardEvent) => {
+    const clipboardData = 'clipboardData' in e ? e.clipboardData : null;
+    if (!clipboardData) return;
+    const items = clipboardData.items;
+    let handled = false;
+    if (items) {
+      for (const item of Array.from(items)) {
+        if (item.type.startsWith('image/')) {
+          e.preventDefault();
+          const blob = item.getAsFile();
+          if (!blob) return;
+          try {
+            const compressed = await compressImage(blob, 800, 0.75);
+            const publicUrl = await uploadImageToSupabase(compressed, `paste_${Date.now()}`);
+            setter(publicUrl);
+            handled = true;
+          } catch {
+            alert("Rasmni yuklashda xatolik yuz berdi");
+          }
+          break;
+        }
+      }
+    }
+    if (!handled) {
+      const text = clipboardData.getData('text/plain')?.trim();
+      if (text && (text.startsWith('http://') || text.startsWith('https://') || text.startsWith('data:image/'))) {
+        e.preventDefault();
+        setter(text);
+      }
+    }
   };
 
-  // Search & Filter States
-  const [searchTerm, setSearchTerm] = useState<string>('');
-  const [filterCategory, setFilterCategory] = useState<string>('all');
-
-  // Modals & Form States
-  const [selectedProofPreview, setSelectedProofPreview] = useState<string | null>(null);
-  
-  // Recipe Form State
-  const [showRecipeModal, setShowRecipeModal] = useState<boolean>(false);
-  const [editingRecipeId, setEditingRecipeId] = useState<string | null>(null);
-  const [recipeTitle, setRecipeTitle] = useState<string>('');
-  const [recipeTime, setRecipeTime] = useState<number>(30);
-  const [recipeDiff, setRecipeDiff] = useState<'oson' | 'orta' | 'qiyin'>('oson');
-  const [recipeImage, setRecipeImage] = useState<string>('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80');
-  const [recipeDesc, setRecipeDesc] = useState<string>('');
-  const [recipeIngredientsText, setRecipeIngredientsText] = useState<string>('');
-  const [recipeInstructionsText, setRecipeInstructionsText] = useState<string>('');
-
-  // Tale Form State
-  const [showTaleModal, setShowTaleModal] = useState<boolean>(false);
-  const [taleTitle, setTaleTitle] = useState<string>('');
-  const [taleAgeGroup, setTaleAgeGroup] = useState<'3-5' | '6-8' | '9-12'>('3-5');
-  const [taleCover, setTaleCover] = useState<string>('https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=600&q=80');
-  const [taleContentText, setTaleContentText] = useState<string>('');
-
-  // Lifehack Form State
-  const [showLifehackModal, setShowLifehackModal] = useState<boolean>(false);
-  const [lifehackTitle, setLifehackTitle] = useState<string>('');
-  const [lifehackCategory, setLifehackCategory] = useState<'karving' | 'oyinchoq_yasash' | 'uy_ishlari' | 'boshqa'>('karving');
-  const [lifehackDesc, setLifehackDesc] = useState<string>('');
-  const [lifehackImage, setLifehackImage] = useState<string>('https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=600&q=80');
-
-  // Riddle Form State
-  const [showRiddleModal, setShowRiddleModal] = useState<boolean>(false);
-  const [riddleQuestion, setRiddleQuestion] = useState<string>('');
-  const [riddleAnswer, setRiddleAnswer] = useState<string>('');
-  const [riddleOptions, setRiddleOptions] = useState<string>('Javob A, Javob B, Javob C');
-  const [riddleAgeGroup, setRiddleAgeGroup] = useState<'3-5' | '6-8' | '9-12'>('3-5');
-
-  /** Generic Ctrl+V paste handler — compresses and uploads, then calls setter */
-  const handleImagePasteFor = (setter: (url: string) => void) => async (e: React.ClipboardEvent) => {
-    const items = e.clipboardData?.items;
-    if (!items) return;
-    for (const item of items) {
-      if (item.type.startsWith('image/')) {
-        e.preventDefault();
-        const blob = item.getAsFile();
-        if (!blob) return;
-        try {
-          const compressed = await compressImage(blob, 800, 0.75);
-          const publicUrl = await uploadImageToSupabase(compressed, `paste_${Date.now()}`);
-          setter(publicUrl);
-        } catch {
-          alert("Rasmni yuklashda xatolik yuz berdi");
+  /** Direct clipboard button click helper */
+  const handleClipboardButtonClick = (setter: (url: string) => void, isBanner = false) => async () => {
+    try {
+      if (navigator.clipboard && navigator.clipboard.read) {
+        const items = await navigator.clipboard.read();
+        for (const item of items) {
+          const imageType = item.types.find(t => t.startsWith('image/'));
+          if (imageType) {
+            const blob = await item.getType(imageType);
+            const file = new File([blob], `clipboard_${Date.now()}.${imageType.split('/')[1] || 'png'}`, { type: imageType });
+            if (isBanner) {
+              await processBannerFile(file);
+            } else {
+              const compressed = await compressImage(file, 800, 0.75);
+              const publicUrl = await uploadImageToSupabase(compressed, `paste_${Date.now()}`);
+              setter(publicUrl);
+            }
+            return;
+          }
         }
-        return;
       }
+      if (navigator.clipboard && navigator.clipboard.readText) {
+        const text = await navigator.clipboard.readText();
+        const trimmed = text?.trim();
+        if (trimmed && (trimmed.startsWith('http://') || trimmed.startsWith('https://') || trimmed.startsWith('data:image/'))) {
+          setter(trimmed);
+          return;
+        }
+      }
+      alert("Buferda rasm topilmadi. Avval rasmni nusxalang (Ctrl+C).");
+    } catch {
+      alert("Rasm nusxalangan bo'lsa, Ctrl+V tugmalarini bosing");
     }
   };
 
@@ -577,6 +586,15 @@ export const AdminPanel: React.FC = () => {
                     className="hidden"
                   />
                 </label>
+
+                <button
+                  type="button"
+                  onClick={handleClipboardButtonClick(setBannerImageUrl, true)}
+                  className="px-3.5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-xl transition-colors shadow-xs flex items-center gap-1.5"
+                  title="Telegram Desktop / Buferdan rasmni joylash"
+                >
+                  <span>📋 Joylash (Paste)</span>
+                </button>
 
                 {bannerImageUrl && (
                   <button
@@ -991,15 +1009,24 @@ export const AdminPanel: React.FC = () => {
               </div>
 
               <div>
-                <label className="font-bold text-[#2D2A26] block mb-1">Rasm URL</label>
-                <input
-                  type="text"
-                  value={recipeImage}
-                  onChange={e => setRecipeImage(e.target.value)}
-                  onPaste={handleImagePasteFor(setRecipeImage)}
-                  placeholder="URL yoki Ctrl+V (📋 rasm qo'yish)"
-                  className="w-full px-3 py-2 border rounded-xl"
-                />
+                <label className="font-bold text-[#2D2A26] block mb-1">Rasm URL / Clipboard:</label>
+                <div className="flex items-center gap-2">
+                  <input
+                    type="text"
+                    value={recipeImage}
+                    onChange={e => setRecipeImage(e.target.value)}
+                    onPaste={handleImagePasteFor(setRecipeImage)}
+                    placeholder="URL yoki Ctrl+V (📋 rasm qo'yish)"
+                    className="flex-1 px-3 py-2 border rounded-xl"
+                  />
+                  <button
+                    type="button"
+                    onClick={handleClipboardButtonClick(setRecipeImage)}
+                    className="px-3 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-xl transition-colors shadow-2xs shrink-0 flex items-center gap-1"
+                  >
+                    <span>📋 Joylash</span>
+                  </button>
+                </div>
               </div>
 
               <div>
