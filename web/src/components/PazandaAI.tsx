@@ -39,15 +39,18 @@ import {
 } from 'lucide-react';
 
 const FOLDER_CATEGORIES = [
-  { id: 'all', title: "Barcha Retseptlar", emoji: "🍽️", color: "from-amber-500 to-rose-500", desc: "Barcha sara pazandalik taomlari" },
-  { id: 'Milliy Quyuq Taomlar', title: "Milliy Quyuq Taomlar", emoji: "🍲", color: "from-orange-500 to-amber-600", desc: "Palov, Norin, Qozon kabob..." },
-  { id: 'Sho\'rvalar va Suyuq Taomlar', title: "Sho'rvalar va Suyuq Taomlar", emoji: "🥣", color: "from-red-500 to-pink-600", desc: "Sho'rva, Mastava, Chuchvara..." },
-  { id: 'Xamir Ovqatlar va Somsa', title: "Xamir Ovqatlar va Somsa", emoji: "🥟", color: "from-[#DB2777] to-purple-600", desc: "Somsa, Manti, Lag'mon, Xonim..." },
-  { id: 'Salatlar va Gazaklar', title: "Salatlar va Gazaklar", emoji: "🥗", color: "from-emerald-500 to-teal-600", desc: "Achchiq-chuchuk, Bahor salati..." },
-  { id: 'Shirinliklar va Pishiriqlar', title: "Shirinliklar va Pishiriqlar", emoji: "🍰", color: "from-pink-500 to-rose-600", desc: "Pahlava, Chak-chak, Tortlar..." },
-  { id: 'Ichimliklar va Kompotlar', title: "Ichimliklar va Kompotlar", emoji: "🍹", color: "from-cyan-500 to-blue-600", desc: "Choy, Kompot, Sharbatlar..." },
-  { id: 'Bolalar va Parhez Taomlar', title: "Bolalar va Parhez", emoji: "👶", color: "from-purple-500 to-indigo-600", desc: "Parhez va bolalar taomlari..." },
-  { id: 'Tezkor 15-daqiqalik Taomlar', title: "Tezkor Taomlar", emoji: "⚡", color: "from-[#F59E0B] to-amber-500", desc: "Tez va oson pishar ovqatlar..." },
+  { id: 'Milliy Taomlar', title: "Milliy Taomlar", emoji: "🍚", color: "from-amber-500 to-orange-600", desc: "Palov, Manti, Somsa, Dimlama..." },
+  { id: 'Salatlar', title: "Salatlar", emoji: "🥗", color: "from-emerald-500 to-teal-600", desc: "Toshkent salati, Achichuk..." },
+  { id: 'Tortlar va Chizkeyklar', title: "Tortlar va Chizkeyklar", emoji: "🍰", color: "from-pink-500 to-rose-600", desc: "Medovik, Chizkeyklar, Tortlar..." },
+  { id: 'Piroglar va Tartlar', title: "Piroglar va Tartlar", emoji: "🥧", color: "from-amber-600 to-yellow-700", desc: "Mevali galetta, Tartlar, Piroglar..." },
+  { id: 'Pechenye va Biskvitlar', title: "Pechenye va Biskvitlar", emoji: "🍪", color: "from-yellow-500 to-amber-600", desc: "Şekerpare, Biskvit, Pechenyelar..." },
+  { id: 'Kekslar va Mafinlar', title: "Kekslar va Mafinlar", emoji: "🧁", color: "from-purple-500 to-pink-500", desc: "Mafinlar, Keks, Noni..." },
+  { id: 'Shirinliklar', title: "Shirinliklar", emoji: "🍩", color: "from-red-500 to-pink-600", desc: "Loqum, Sütlaç, Baqlava, Brauni..." },
+  { id: 'Nonushta va Pishiriqlar', title: "Nonushta va Pishiriqlar", emoji: "🍞", color: "from-orange-400 to-amber-500", desc: "Vafli, Mochi, Pishiriqlar..." },
+  { id: 'Go\'sht va Parranda Taomlari', title: "Go'sht va Parranda", emoji: "🍗", color: "from-red-600 to-amber-700", desc: "Tovuq, Gratin, Baliq taomlari..." },
+  { id: 'Garnirlar va Sabzavotli Taomlar', title: "Garnirlar va Sabzavotlar", emoji: "🥔", color: "from-green-600 to-lime-600", desc: "Pyure, Lobiya, Bouli..." },
+  { id: 'Ichimliklar', title: "Ichimliklar", emoji: "🍹", color: "from-cyan-500 to-blue-600", desc: "Agua Freska, Salqin ichimliklar..." },
+  { id: 'Muzqaymoq va Sovuq Desertlar', title: "Muzqaymoq & Desertlar", emoji: "🍨", color: "from-indigo-500 to-purple-600", desc: "Muzqaymoq, Sovuq desertlar..." },
 ];
 
 export const PazandaAI: React.FC = () => {
@@ -75,8 +78,15 @@ export const PazandaAI: React.FC = () => {
     setSelectedRecipeModal,
     isAdmin,
     updateRecipe,
-    deleteRecipe
+    deleteRecipe,
+    categoryCovers,
+    updateCategoryCover
   } = useApp();
+
+  // Category Cover Edit State (4:3 ratio)
+  const [editingCatCoverId, setEditingCatCoverId] = useState<string | null>(null);
+  const [catCoverUrlInput, setCatCoverUrlInput] = useState('');
+  const [isUploadingCatCover, setIsUploadingCatCover] = useState(false);
 
   useEffect(() => {
     if (selectedRecipeModal) {
@@ -707,7 +717,7 @@ const [customMinutesInput, setCustomMinutesInput] = useState<string>('20');
 
         <button
           onClick={() => setViewMode('match')}
-          className={`py-2 rounded-xl text-[11px] font-black transition-all flex flex-col items-center justify-center gap-0.5 min-h-[46px] relative overflow-hidden ${
+          className={`py-2 rounded-xl text-[11px] font-black transition-all flex flex-col items-center justify-center gap-0.5 min-h-[46px] relative overflow-hidden active:scale-97 ${
             viewMode === 'match'
               ? 'bg-gradient-to-r from-amber-500 via-pink-600 to-rose-600 text-white shadow-md ring-2 ring-pink-300'
               : 'bg-gradient-to-r from-amber-50 to-pink-50 text-[#DB2777] border border-amber-200 hover:bg-pink-100'
@@ -715,9 +725,10 @@ const [customMinutesInput, setCustomMinutesInput] = useState<string>('20');
         >
           <div className="flex items-center gap-1">
             <Sparkles className="w-3.5 h-3.5 text-amber-300 animate-pulse" />
-            <span className="truncate">{t("Masalliqlardan")}</span>
+            <span className="truncate">Pazanda AI</span>
+            <span className="text-amber-300 text-xs">👑</span>
           </div>
-          <span className="text-[8px] bg-amber-400 text-amber-950 px-1.5 py-0.2 rounded-full font-black uppercase tracking-wider">✨ Qidirish</span>
+          <span className="text-[8px] bg-amber-400 text-amber-950 px-1.5 py-0.2 rounded-full font-black uppercase tracking-wider">✨ Premium</span>
         </button>
 
         <button
@@ -1077,19 +1088,19 @@ const [customMinutesInput, setCustomMinutesInput] = useState<string>('20');
           {selectedFolderCategory === null && !searchQuery.trim() ? (
             <div className="space-y-4">
               
-              {/* Glowing Highlighted Banner for Masalliqlardan Search */}
+              {/* Glowing Highlighted Banner for Pazanda AI Premium Search */}
               <div
                 onClick={() => setViewMode('match')}
-                className="p-3.5 rounded-2xl bg-gradient-to-r from-amber-500 via-pink-600 to-rose-600 text-white shadow-lg cursor-pointer flex items-center justify-between group hover:scale-[1.01] transition-all relative overflow-hidden ring-2 ring-pink-400/50"
+                className="p-3.5 rounded-2xl bg-gradient-to-r from-amber-500 via-pink-600 to-rose-600 text-white shadow-lg cursor-pointer flex items-center justify-between group hover:scale-[1.01] active:scale-[0.98] transition-all relative overflow-hidden ring-2 ring-pink-400/50"
               >
                 <div className="flex items-center gap-3 relative z-10">
                   <div className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur flex items-center justify-center text-xl shadow-xs">
-                    ✨
+                    👑
                   </div>
                   <div>
                     <h4 className="font-black text-xs sm:text-sm text-white tracking-tight flex items-center gap-1.5">
-                      <span>Masalliqlardan Taom Qidirish</span>
-                      <span className="bg-amber-300 text-amber-950 font-black text-[9px] px-1.5 py-0.2 rounded-full uppercase tracking-wider">Tezkor</span>
+                      <span>Pazanda AI</span>
+                      <span className="bg-amber-300 text-amber-950 font-black text-[9px] px-1.5 py-0.2 rounded-full uppercase tracking-wider">👑 Premium</span>
                     </h4>
                     <p className="text-[10px] text-pink-100 mt-0.5">
                       Muzlatgichingizda bor masalliqlarni tanlang, mos taomlarni darhol topamiz!
@@ -1105,7 +1116,7 @@ const [customMinutesInput, setCustomMinutesInput] = useState<string>('20');
               <div className="flex items-center justify-between px-1">
                 <div>
                   <h3 className="font-black text-[#2E121D] text-sm">
-                    📂 Retseptlar Papkalari
+                    📂 Retseptlar Papkalari (12 ta Kategoriya)
                   </h3>
                   <p className="text-[10px] text-[#7C746B]">
                     Kategoriyani tanlab, kerakli taomlarni toping
@@ -1113,19 +1124,18 @@ const [customMinutesInput, setCustomMinutesInput] = useState<string>('20');
                 </div>
                 <button
                   onClick={() => setSelectedFolderCategory('all')}
-                  className="text-[11px] font-extrabold text-[#DB2777] bg-white hover:bg-pink-50 px-2.5 py-1 rounded-xl border border-pink-200 shadow-2xs transition-colors flex items-center gap-1"
+                  className="text-[11px] font-extrabold text-[#DB2777] bg-white hover:bg-pink-50 px-2.5 py-1 rounded-xl border border-pink-200 shadow-2xs transition-colors flex items-center gap-1 active:scale-95"
                 >
                   <span>Barchasi ({recipes.length})</span>
                   <ChevronRight className="w-3.5 h-3.5" />
                 </button>
               </div>
 
-              {/* Grid of Folder Cards */}
-              <div className="grid grid-cols-2 gap-2.5">
+              {/* Grid of 12 Folder Cards in 4:3 Aspect Ratio */}
+              <div className="grid grid-cols-2 gap-3">
                 {FOLDER_CATEGORIES.map(folder => {
-                  const count = folder.id === 'all'
-                    ? recipes.length
-                    : recipes.filter(r => r.kategoriya?.toLowerCase().trim() === folder.id.toLowerCase().trim() || (!r.kategoriya && folder.id === 'Milliy Quyuq Taomlar')).length;
+                  const count = recipes.filter(r => r.kategoriya?.toLowerCase().trim() === folder.id.toLowerCase().trim()).length;
+                  const coverImg = categoryCovers[folder.id];
 
                   return (
                     <motion.div
@@ -1133,29 +1143,51 @@ const [customMinutesInput, setCustomMinutesInput] = useState<string>('20');
                       whileHover={{ y: -3 }}
                       whileTap={{ scale: 0.97 }}
                       onClick={() => setSelectedFolderCategory(folder.id)}
-                      className="p-3 rounded-2xl bg-white border border-[#EFE8DC] hover:border-pink-300 shadow-xs cursor-pointer flex flex-col justify-between space-y-2.5 relative overflow-hidden group transition-all"
+                      className="rounded-2xl bg-white border border-[#EFE8DC] hover:border-pink-400 shadow-xs cursor-pointer flex flex-col justify-between overflow-hidden group transition-all relative"
                     >
-                      <div className="flex items-start justify-between">
-                        <div className={`w-11 h-11 rounded-2xl bg-gradient-to-br ${folder.color} flex items-center justify-center text-2xl shadow-xs group-hover:scale-105 transition-transform`}>
-                          {folder.emoji}
-                        </div>
-                        <span className="text-[10px] font-extrabold text-[#DB2777] bg-pink-50 px-2 py-0.5 rounded-full border border-pink-100">
+                      {/* 4:3 Aspect Ratio Cover Box */}
+                      <div className="w-full aspect-[4/3] relative overflow-hidden bg-gradient-to-br from-amber-100 to-pink-100 flex items-center justify-center">
+                        {coverImg ? (
+                          <img
+                            src={coverImg}
+                            alt={folder.title}
+                            referrerPolicy="no-referrer"
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          />
+                        ) : (
+                          <div className={`w-full h-full bg-gradient-to-br ${folder.color} flex items-center justify-center text-4xl shadow-inner group-hover:scale-105 transition-transform duration-300`}>
+                            <span className="filter drop-shadow-md">{folder.emoji}</span>
+                          </div>
+                        )}
+
+                        <span className="absolute top-2 right-2 text-[10px] font-black text-white bg-black/60 backdrop-blur px-2 py-0.5 rounded-full border border-white/20 shadow-xs">
                           {count} ta
                         </span>
+
+                        {isAdmin && (
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setEditingCatCoverId(folder.id);
+                              setCatCoverUrlInput(categoryCovers[folder.id] || '');
+                            }}
+                            className="absolute bottom-2 right-2 bg-amber-500 hover:bg-amber-600 text-white text-[9px] font-black px-2 py-1 rounded-lg border border-amber-300 shadow-md flex items-center gap-1 active:scale-90 z-20"
+                            title="Kategoriya rasmini o'zgartirish (4:3)"
+                          >
+                            <Pencil className="w-3 h-3" />
+                            <span>Rasm 4:3</span>
+                          </button>
+                        )}
                       </div>
 
-                      <div>
+                      <div className="p-2.5 space-y-0.5">
                         <h4 className="font-extrabold text-[#2E121D] text-xs leading-tight group-hover:text-[#DB2777] transition-colors line-clamp-1">
                           {folder.title}
                         </h4>
-                        <p className="text-[9px] text-[#7C746B] mt-0.5 line-clamp-1">
+                        <p className="text-[9px] text-[#7C746B] line-clamp-1">
                           {folder.desc}
                         </p>
-                      </div>
-
-                      <div className="pt-1 flex items-center justify-between text-[10px] font-extrabold text-[#9D4C6C]">
-                        <span>Papka</span>
-                        <span className="group-hover:translate-x-1 transition-transform">→</span>
                       </div>
                     </motion.div>
                   );
@@ -2317,6 +2349,143 @@ const [customMinutesInput, setCustomMinutesInput] = useState<string>('20');
                 </button>
               </div>
             </form>
+
+          </div>
+        </div>,
+        document.body
+      )}
+
+      {/* 4:3 CATEGORY COVER EDITOR MODAL */}
+      {editingCatCoverId && createPortal(
+        <div className="fixed inset-0 bg-black/70 backdrop-blur-xs z-[999] flex items-center justify-center p-4">
+          <div className="bg-white p-5 rounded-3xl max-w-sm w-full space-y-4 shadow-2xl animate-in zoom-in-95">
+            <div className="flex items-center justify-between border-b pb-2">
+              <div>
+                <h3 className="font-black text-sm text-[#2D2A26]">🖼️ Kategoriya Papka Rasmi (4:3)</h3>
+                <p className="text-[10px] text-gray-500 font-bold">{editingCatCoverId}</p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setEditingCatCoverId(null)}
+                className="p-1 text-gray-400 hover:text-gray-600"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* 4:3 Aspect Ratio Preview */}
+            <div className="space-y-1">
+              <label className="text-[10px] font-extrabold text-gray-600 block">4:3 O'lchamdagi Ko'rinishi (Live Preview):</label>
+              <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden bg-stone-900 border border-gray-200 relative shadow-inner">
+                {catCoverUrlInput ? (
+                  <img
+                    src={catCoverUrlInput}
+                    alt="Preview"
+                    referrerPolicy="no-referrer"
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center text-gray-400 text-xs font-bold">
+                    Rasm qo'yilmagan
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Upload Controls */}
+            <div className="space-y-3 pt-1">
+              <div>
+                <label className="text-[11px] font-bold text-gray-700 block mb-1">Rasm URL yoki Telegram Desktop / Bufer:</label>
+                <div className="flex items-center gap-2">
+                  <input
+                    type="text"
+                    value={catCoverUrlInput}
+                    onChange={e => setCatCoverUrlInput(e.target.value)}
+                    placeholder="https://..."
+                    className="flex-1 px-3 py-2 border rounded-xl text-xs font-bold"
+                  />
+                  <button
+                    type="button"
+                    onClick={async () => {
+                      try {
+                        if (navigator.clipboard && navigator.clipboard.read) {
+                          const items = await navigator.clipboard.read();
+                          for (const item of items) {
+                            const imageType = item.types.find(t => t.startsWith('image/'));
+                            if (imageType) {
+                              const blob = await item.getType(imageType);
+                              const compressed = await compressImage(blob, 800, 0.75);
+                              const publicUrl = await uploadImageToSupabase(compressed, `cat_cover_${Date.now()}`);
+                              setCatCoverUrlInput(publicUrl);
+                              return;
+                            }
+                          }
+                        }
+                        if (navigator.clipboard && navigator.clipboard.readText) {
+                          const txt = await navigator.clipboard.readText();
+                          if (txt && (txt.startsWith('http') || txt.startsWith('data:'))) {
+                            setCatCoverUrlInput(txt.trim());
+                            return;
+                          }
+                        }
+                        alert("Buferda rasm topilmadi. Ctrl+V bosing");
+                      } catch {
+                        alert("Rasm nusxalangan bo'lsa, Ctrl+V bosing");
+                      }
+                    }}
+                    className="px-3 py-2 bg-emerald-600 text-white rounded-xl text-xs font-bold hover:bg-emerald-700 shrink-0"
+                  >
+                    📋 Joylash
+                  </button>
+                </div>
+              </div>
+
+              <label className="w-full py-2.5 bg-pink-600 hover:bg-pink-700 text-white rounded-xl text-xs font-bold flex items-center justify-center gap-2 cursor-pointer shadow-xs">
+                <Upload className="w-4 h-4" />
+                <span>{isUploadingCatCover ? "Yuklanmoqda..." : "Kompyuter / Telegramdan Rasm Yuklash"}</span>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={async (e) => {
+                    const file = e.target.files?.[0];
+                    if (!file) return;
+                    try {
+                      setIsUploadingCatCover(true);
+                      const compressed = await compressImage(file, 800, 0.75);
+                      const publicUrl = await uploadImageToSupabase(compressed, `cat_cover_${Date.now()}`);
+                      setCatCoverUrlInput(publicUrl);
+                    } catch {
+                      alert("Rasmni yuklashda xatolik yuz berdi");
+                    } finally {
+                      setIsUploadingCatCover(false);
+                    }
+                  }}
+                  className="hidden"
+                />
+              </label>
+
+              <div className="flex items-center justify-end gap-2 pt-2 border-t">
+                <button
+                  type="button"
+                  onClick={() => setEditingCatCoverId(null)}
+                  className="px-4 py-2 bg-gray-200 text-gray-700 rounded-xl text-xs font-bold"
+                >
+                  Bekor Qilish
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (editingCatCoverId && catCoverUrlInput.trim()) {
+                      updateCategoryCover(editingCatCoverId, catCoverUrlInput.trim());
+                      setEditingCatCoverId(null);
+                    }
+                  }}
+                  className="px-5 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-xl text-xs font-black shadow-md"
+                >
+                  Saqlash (4:3)
+                </button>
+              </div>
+            </div>
 
           </div>
         </div>,

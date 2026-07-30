@@ -135,6 +135,10 @@ interface AppContextType {
   // Admin Verification Status
   isAdmin: boolean;
 
+  // Category Folder Covers (4:3)
+  categoryCovers: Record<string, string>;
+  updateCategoryCover: (categoryName: string, imageUrl: string) => void;
+
   // App Banner Config (21:9 Hero Banner)
   bannerConfig: BannerConfig;
   updateBannerConfig: (config: Partial<BannerConfig>) => void;
@@ -329,6 +333,39 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
           korsatmalari: edit.korsatmalari ? (Array.isArray(edit.korsatmalari) ? edit.korsatmalari : edit.korsatmalari.split('\n').filter(Boolean)) : r.korsatmalari,
         };
       }));
+    });
+  }, []);
+
+  const [categoryCovers, setCategoryCovers] = useState<Record<string, string>>(() => {
+    return loadStorage<Record<string, string>>('category_folder_covers', {});
+  });
+
+  const updateCategoryCover = (categoryName: string, imageUrl: string) => {
+    setCategoryCovers(prev => {
+      const updated = { ...prev, [categoryName]: imageUrl };
+      saveStorage('category_folder_covers', updated);
+      return updated;
+    });
+    // Sync with Supabase asynchronously
+    supabase.from('recipe_edits').upsert({
+      recipe_id: `cat_cover_${categoryName}`,
+      rasm_url: imageUrl,
+      nomi: categoryName,
+      updated_at: new Date().toISOString()
+    }).then(() => {});
+  };
+
+  useEffect(() => {
+    supabase.from('recipe_edits').select('*').like('recipe_id', 'cat_cover_%').then(({ data }) => {
+      if (data && data.length > 0) {
+        const covers: Record<string, string> = {};
+        data.forEach((item: any) => {
+          const catName = item.recipe_id.replace('cat_cover_', '');
+          if (item.rasm_url) covers[catName] = item.rasm_url;
+        });
+        setCategoryCovers(prev => ({ ...prev, ...covers }));
+        saveStorage('category_folder_covers', covers);
+      }
     });
   }, []);
 
@@ -1018,6 +1055,8 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         selectedAgeFilter,
         setSelectedAgeFilter,
         isAdmin,
+        categoryCovers,
+        updateCategoryCover,
         bannerConfig,
         updateBannerConfig,
         selectedRecipeModal,

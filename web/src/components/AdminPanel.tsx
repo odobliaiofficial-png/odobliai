@@ -361,9 +361,16 @@ export const AdminPanel: React.FC = () => {
               maxLength={4}
               placeholder="••••"
               value={pinInput}
+              autoFocus
               onChange={e => {
-                setPinInput(e.target.value);
+                const val = e.target.value;
+                setPinInput(val);
                 setPinError(false);
+                if (val.trim() === '1977') {
+                  setIsAuthenticated(true);
+                  localStorage.setItem('admin_mode', 'true');
+                  localStorage.setItem('admin_pin_unlocked', 'true');
+                }
               }}
               className="w-full text-center text-2xl font-black tracking-widest py-3 px-4 rounded-2xl border border-[#EFE8DC] focus:outline-none focus:ring-2 focus:ring-[#FF6B4A]"
             />
