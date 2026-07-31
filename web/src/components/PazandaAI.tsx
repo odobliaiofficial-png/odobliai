@@ -85,6 +85,13 @@ export const PazandaAI: React.FC = () => {
     updateCategoryCover
   } = useApp();
 
+  // Toast feedback
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const showToast = (msg: string) => {
+    setToastMessage(msg);
+    setTimeout(() => setToastMessage(null), 3000);
+  };
+
   // Category Cover Edit State (4:3 ratio)
   const [editingCatCoverId, setEditingCatCoverId] = useState<string | null>(null);
   const [catCoverUrlInput, setCatCoverUrlInput] = useState('');
@@ -102,12 +109,50 @@ export const PazandaAI: React.FC = () => {
   const [editKorsatmalar, setEditKorsatmalar] = useState('');
   const [isCompressingImage, setIsCompressingImage] = useState(false);
 
+  // Active Recipe modal & matchmaking
+  const [activeRecipe, setActiveRecipe] = useState<Recipe | null>(null);
+  const [showMatchedRecipesModal, setShowMatchedRecipesModal] = useState<boolean>(false);
+
+  // Tab mode: 'catalog' (Retseptlar) | 'match' (Masalliqlardan) | 'bozorlik' | 'timer'
+  const [customMinutesInput, setCustomMinutesInput] = useState<string>('20');
+  const [viewMode, setViewMode] = useState<'match' | 'catalog' | 'bozorlik' | 'timer'>('catalog');
+  const [selectedFolderCategory, setSelectedFolderCategory] = useState<string | null>(null);
+
+  // Search queries & Advanced Recipe Filters
+  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [ingredientSearch, setIngredientSearch] = useState<string>('');
+  const [timeFilter, setTimeFilter] = useState<'all' | 'quick' | 'medium' | 'long'>('all');
+  const [diffFilter, setDiffFilter] = useState<'all' | 'oson' | 'orta' | 'qiyin'>('all');
+
+  // Selected ingredient IDs for match mode
+  const [selectedIngredientIds, setSelectedIngredientIds] = useState<string[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<IngredientCategory | 'barchasi'>('barchasi');
+
+  // Automatic dish ingredient generator in Bozorlik tab
+  const [selectedDishRecipeId, setSelectedDishRecipeId] = useState<string>('');
+  const [dishPortions, setDishPortions] = useState<number>(4);
+  const [showDishSelectModal, setShowDishSelectModal] = useState<boolean>(false);
+  const [dishSearch, setDishSearch] = useState<string>('');
+
+  // Portion scaler and saved recipe IDs
+  const [savedRecipeIds, setSavedRecipeIds] = useState<string[]>([]);
+  const [portions, setPortions] = useState<number>(4);
+  const [selectedRecipeIngredients, setSelectedRecipeIngredients] = useState<string[]>([]);
+
+  const resetFiltersAndFolder = () => {
+    setSelectedFolderCategory(null);
+    setSearchQuery('');
+    setTimeFilter('all');
+    setDiffFilter('all');
+  };
+
   useEffect(() => {
     if (selectedRecipeModal) {
       setActiveRecipe(selectedRecipeModal);
       setSelectedRecipeModal(null);
     }
   }, [selectedRecipeModal]);
+
 
   const processImageFile = async (file: File) => {
     try {
@@ -1154,28 +1199,26 @@ export const PazandaAI: React.FC = () => {
             <div className="space-y-3">
               {/* Navigation Header with Back Button */}
               <div className="flex items-center justify-between bg-white p-2.5 rounded-2xl border border-[#EFE8DC] shadow-2xs">
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 min-w-0">
                   <button
-                    onClick={() => {
-                      setSelectedFolderCategory(null);
-                      setSearchQuery('');
-                    }}
+                    onClick={resetFiltersAndFolder}
                     className="px-2.5 py-1 rounded-xl bg-pink-50 text-[#DB2777] hover:bg-pink-100 transition-colors flex items-center gap-1 text-xs font-bold shrink-0"
                   >
                     <ArrowLeft className="w-4 h-4" />
                     <span>Papkalar</span>
                   </button>
-                  <div className="h-4 w-[1px] bg-gray-200" />
+                  <div className="h-4 w-[1px] bg-gray-200 shrink-0" />
                   <span className="font-black text-xs text-[#2E121D] truncate">
-                    {searchQuery ? `🔍 "${searchQuery}"` : (selectedFolderCategory === 'all' ? '🍽️ Barcha Retseptlar' : `📂 ${selectedFolderCategory}`)} ({catalogRecipes.length})
+                    {searchQuery
+                      ? `🔍 "${searchQuery}"`
+                      : (selectedFolderCategory
+                          ? (selectedFolderCategory === 'all' ? '🍽️ Barcha Retseptlar' : `📂 ${selectedFolderCategory}`)
+                          : '🔍 Filtrlangan Retseptlar')} ({catalogRecipes.length})
                   </span>
                 </div>
 
                 <button
-                  onClick={() => {
-                    setSelectedFolderCategory(null);
-                    setSearchQuery('');
-                  }}
+                  onClick={resetFiltersAndFolder}
                   className="text-[10px] font-extrabold text-[#DB2777] hover:underline shrink-0"
                 >
                   Chiqish ✕
