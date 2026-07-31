@@ -1,15 +1,16 @@
 import urllib.request
 import json
-from config import BOT_TOKEN, MINI_APP_URL
+import os
+from config import BOT_TOKEN
 
-LIVE_URL = "https://web-nine-livid-hkkpqpjfb1.vercel.app?v=290"
+LIVE_URL = os.getenv("MINI_APP_URL", "https://odobli-ai-web.vercel.app")
 
 def update_telegram_menu_button():
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/setChatMenuButton"
     payload = {
         "menu_button": {
             "type": "web_app",
-            "text": "Odobli.ai Mini App",
+            "text": "Pazanda AI Mini App",
             "web_app": {
                 "url": LIVE_URL
             }

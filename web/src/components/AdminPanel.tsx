@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
 import { Recipe, Tale } from '../types';
-import { compressImage, uploadImageToSupabase } from '../utils/imageCompressor';
+import { compressImage, uploadImageToSupabase, uploadImageWithStatus } from '../utils/imageCompressor';
 import {
   Shield,
   CheckCircle,
@@ -105,9 +105,11 @@ export const AdminPanel: React.FC = () => {
   const processBannerFile = async (file: File) => {
     try {
       setIsUploadingBanner(true);
-      const compressed = await compressImage(file, 1200, 0.8);
-      const publicUrl = await uploadImageToSupabase(compressed, `banner_${Date.now()}`);
-      setBannerImageUrl(publicUrl);
+      const compressed = await compressImage(file, 1600, 0.8);
+      const result = await uploadImageWithStatus(compressed, `banner_${Date.now()}`);
+      setBannerImageUrl(result.url);
+      setBannerSuccessToast(`✅ ${result.statusMessage} (${result.compressedSizeKB} KB)`);
+      setTimeout(() => setBannerSuccessToast(null), 4000);
     } catch (err) {
       alert("Rasmni yuklashda xatolik yuz berdi");
     } finally {
@@ -160,9 +162,9 @@ export const AdminPanel: React.FC = () => {
           const blob = item.getAsFile();
           if (!blob) return;
           try {
-            const compressed = await compressImage(blob, 800, 0.75);
-            const publicUrl = await uploadImageToSupabase(compressed, `paste_${Date.now()}`);
-            setter(publicUrl);
+            const compressed = await compressImage(blob, 1600, 0.8);
+            const result = await uploadImageWithStatus(compressed, `paste_${Date.now()}`);
+            setter(result.url);
             handled = true;
           } catch {
             alert("Rasmni yuklashda xatolik yuz berdi");
@@ -193,9 +195,9 @@ export const AdminPanel: React.FC = () => {
             if (isBanner) {
               await processBannerFile(file);
             } else {
-              const compressed = await compressImage(file, 800, 0.75);
-              const publicUrl = await uploadImageToSupabase(compressed, `paste_${Date.now()}`);
-              setter(publicUrl);
+              const compressed = await compressImage(file, 1600, 0.8);
+              const result = await uploadImageWithStatus(compressed, `paste_${Date.now()}`);
+              setter(result.url);
             }
             return;
           }

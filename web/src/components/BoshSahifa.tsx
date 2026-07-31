@@ -24,17 +24,19 @@ export const BoshSahifa: React.FC = () => {
     lifehacks,
     openRecipeModal,
     openLifehackModal,
-    bannerConfig
+    bannerConfig,
+    favoriteRecipeIds,
+    toggleFavoriteRecipe
   } = useApp();
 
-  const [favorites, setFavorites] = useState<Record<string, boolean>>({});
   const [showFilterModal, setShowFilterModal] = useState(false);
   const [filterSearch, setFilterSearch] = useState('');
 
   const toggleFavorite = (id: string, e: React.MouseEvent) => {
     e.stopPropagation();
-    setFavorites(prev => ({ ...prev, [id]: !prev[id] }));
+    toggleFavoriteRecipe(id);
   };
+
 
   const featuredRecipe1 = recipes[0];
   const featuredRecipe2 = recipes[1] || recipes[0];
@@ -185,7 +187,7 @@ export const BoshSahifa: React.FC = () => {
               <button
                 onClick={(e) => toggleFavorite(featuredRecipe1.id, e)}
                 className={`w-6 h-6 rounded-full bg-white/90 shadow-xs border border-pink-100 flex items-center justify-center absolute top-2 right-2 z-10 transition-transform active:scale-90 ${
-                  favorites[featuredRecipe1.id] ? 'text-rose-500 fill-rose-500' : 'text-stone-400'
+                  favoriteRecipeIds.includes(featuredRecipe1.id) ? 'text-rose-500 fill-rose-500' : 'text-stone-400'
                 }`}
               >
                 <Heart className="w-3.5 h-3.5" />
@@ -242,7 +244,7 @@ export const BoshSahifa: React.FC = () => {
               <button
                 onClick={(e) => toggleFavorite(featuredRecipe2.id, e)}
                 className={`w-6 h-6 rounded-full bg-white/90 shadow-xs border border-pink-100 flex items-center justify-center absolute top-2 right-2 z-10 transition-transform active:scale-90 ${
-                  favorites[featuredRecipe2.id] ? 'text-rose-500 fill-rose-500' : 'text-stone-400'
+                  favoriteRecipeIds.includes(featuredRecipe2.id) ? 'text-rose-500 fill-rose-500' : 'text-stone-400'
                 }`}
               >
                 <Heart className="w-3.5 h-3.5" />
@@ -299,7 +301,7 @@ export const BoshSahifa: React.FC = () => {
               <button
                 onClick={(e) => toggleFavorite(featuredLifehack1.id, e)}
                 className={`w-6 h-6 rounded-full bg-white/90 shadow-xs border border-pink-100 flex items-center justify-center absolute top-2 right-2 z-10 transition-transform active:scale-90 ${
-                  favorites[featuredLifehack1.id] ? 'text-rose-500 fill-rose-500' : 'text-stone-400'
+                  favoriteRecipeIds.includes(featuredLifehack1.id) ? 'text-rose-500 fill-rose-500' : 'text-stone-400'
                 }`}
               >
                 <Heart className="w-3.5 h-3.5" />
@@ -355,11 +357,12 @@ export const BoshSahifa: React.FC = () => {
               <button
                 onClick={(e) => toggleFavorite(featuredLifehack2.id, e)}
                 className={`w-6 h-6 rounded-full bg-white/90 shadow-xs border border-pink-100 flex items-center justify-center absolute top-2 right-2 z-10 transition-transform active:scale-90 ${
-                  favorites[featuredLifehack2.id] ? 'text-rose-500 fill-rose-500' : 'text-stone-400'
+                  favoriteRecipeIds.includes(featuredLifehack2.id) ? 'text-rose-500 fill-rose-500' : 'text-stone-400'
                 }`}
               >
                 <Heart className="w-3.5 h-3.5" />
               </button>
+
 
               <div>
                 <div className="aspect-[4/3] overflow-hidden rounded-xl mb-2 bg-emerald-50 relative">

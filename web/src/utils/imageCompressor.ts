@@ -2,6 +2,13 @@ import { supabase } from '../lib/supabase';
 
 const BUCKET = 'recipe-images';
 
+export interface UploadResult {
+  url: string;
+  storageType: 'r2' | 'supabase' | 'base64';
+  statusMessage: string;
+  compressedSizeKB?: number;
+}
+
 /** Convert a data URL (base64) to a Blob */
 const dataUrlToBlob = (dataUrl: string): Blob => {
   const [meta, b64] = dataUrl.split(',');
@@ -12,8 +19,13 @@ const dataUrlToBlob = (dataUrl: string): Blob => {
   return new Blob([arr], { type: mime });
 };
 
-/** Compress an image file on the client (Canvas → JPEG) */
-export const compressImage = (file: File, maxWidth = 800, quality = 0.75): Promise<string> => {
+/** Compress an image file on the client (Canvas → JPEG/WebP with max dimension limit 1600px) */
+export const compressImage = (
+  file: File,
+  maxDimension = 1600,
+  quality = 0.8,
+  format: 'image/jpeg' | 'image/webp' = 'image/jpeg'
+): Promise<string> => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -25,9 +37,15 @@ export const compressImage = (file: File, maxWidth = 800, quality = 0.75): Promi
         let width = img.width;
         let height = img.height;
 
-        if (width > maxWidth) {
-          height = Math.round((height * maxWidth) / width);
-          width = maxWidth;
+        // Limit longest side to maxDimension
+        if (width > maxDimension || height > maxDimension) {
+          if (width > height) {
+            height = Math.round((height * maxDimension) / width);
+            width = maxDimension;
+          } else {
+            width = Math.round((width * maxDimension) / height);
+            height = maxDimension;
+          }
         }
 
         canvas.width = width;
@@ -36,7 +54,7 @@ export const compressImage = (file: File, maxWidth = 800, quality = 0.75): Promi
         const ctx = canvas.getContext('2d');
         if (ctx) {
           ctx.drawImage(img, 0, 0, width, height);
-          const compressedDataUrl = canvas.toDataURL('image/jpeg', quality);
+          const compressedDataUrl = canvas.toDataURL(format, quality);
           resolve(compressedDataUrl);
         } else {
           resolve(e.target?.result as string);
@@ -52,11 +70,15 @@ export const compressImage = (file: File, maxWidth = 800, quality = 0.75): Promi
  * Upload a compressed data-URL image directly to Cloudflare R2 Storage via /api/upload.
  * Primary: Cloudflare R2 (100% Enterprise Reliability, 10GB Free Storage, 0$ Egress Fees).
  * Fallback: Supabase Storage, and lastly Data URL.
+ * Returns UploadResult with explicit storageType and statusMessage for Admin UI visibility.
  */
-export const uploadImageToSupabase = async (
+export const uploadImageWithStatus = async (
   dataUrl: string,
   recipeId: string
-): Promise<string> => {
+): Promise<UploadResult> => {
+  const sizeInBytes = Math.round((dataUrl.length * 3) / 4);
+  const compressedSizeKB = Math.round(sizeInBytes / 1024);
+
   // 1. Primary: Upload to Cloudflare R2 via /api/upload
   try {
     const telegramInitData = (window as any).Telegram?.WebApp?.initData;
@@ -74,9 +96,14 @@ export const uploadImageToSupabase = async (
 
     if (res.ok) {
       const json = await res.json();
-      if (json.url && json.url.startsWith('/api/')) {
+      if (json.url && (json.url.startsWith('/api/') || json.url.startsWith('http'))) {
         console.log('✅ Uploaded to Cloudflare R2 Storage:', json.url);
-        return json.url;
+        return {
+          url: json.url,
+          storageType: 'r2',
+          statusMessage: 'Cloudflare R2 ga saqlandi (CDN Active)',
+          compressedSizeKB,
+        };
       }
     } else {
       console.warn('/api/upload Cloudflare R2 status:', res.status);
@@ -88,7 +115,7 @@ export const uploadImageToSupabase = async (
   // 2. Fallback: Upload to Supabase Storage
   try {
     const blob = dataUrlToBlob(dataUrl);
-    const ext = blob.type === 'image/png' ? 'png' : 'jpg';
+    const ext = blob.type === 'image/webp' ? 'webp' : blob.type === 'image/png' ? 'png' : 'jpg';
     const path = `${recipeId}_${Date.now()}.${ext}`;
 
     const { error } = await supabase.storage
@@ -104,7 +131,12 @@ export const uploadImageToSupabase = async (
         .getPublicUrl(path);
 
       console.log('✅ Uploaded to Supabase Storage (Fallback):', urlData.publicUrl);
-      return urlData.publicUrl;
+      return {
+        url: urlData.publicUrl,
+        storageType: 'supabase',
+        statusMessage: 'Supabase Storage ga saqlandi (Fallback)',
+        compressedSizeKB,
+      };
     }
     console.warn('Supabase upload error:', error.message);
   } catch (err) {
@@ -112,5 +144,20 @@ export const uploadImageToSupabase = async (
   }
 
   // 3. Final Fallback: Base64 data URL
-  return dataUrl;
+  return {
+    url: dataUrl,
+    storageType: 'base64',
+    statusMessage: 'Base64 sifatida saqlandi (Lokal fallback)',
+    compressedSizeKB,
+  };
 };
+
+/** Backward compatible helper function */
+export const uploadImageToSupabase = async (
+  dataUrl: string,
+  recipeId: string
+): Promise<string> => {
+  const result = await uploadImageWithStatus(dataUrl, recipeId);
+  return result.url;
+};
+
