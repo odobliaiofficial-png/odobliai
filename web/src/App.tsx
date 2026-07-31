@@ -21,7 +21,71 @@ const ComponentLoader = () => (
 );
 
 const AppContent: React.FC = () => {
-  const { activeTab } = useApp();
+  const {
+    activeTab,
+    setActiveTab,
+    selectedRecipeModal,
+    setSelectedRecipeModal,
+    selectedLifehackId,
+    setSelectedLifehackId,
+    showPaymentModal,
+    setShowPaymentModal
+  } = useApp();
+
+  // Telegram WebApp BackButton & Hardware Back Button navigation listener
+  React.useEffect(() => {
+    const tg = (window as any).Telegram?.WebApp;
+    const backButton = tg?.BackButton;
+
+    const hasOpenModal = !!selectedRecipeModal || !!selectedLifehackId || showPaymentModal;
+    const isNotHome = activeTab !== 'home';
+    const shouldShowBack = hasOpenModal || isNotHome;
+
+    const handleBackAction = () => {
+      if (selectedRecipeModal) {
+        setSelectedRecipeModal(null);
+      } else if (selectedLifehackId) {
+        setSelectedLifehackId(null);
+      } else if (showPaymentModal) {
+        setShowPaymentModal(false);
+      } else if (activeTab !== 'home') {
+        setActiveTab('home');
+      }
+    };
+
+    if (shouldShowBack) {
+      if (backButton && typeof backButton.show === 'function') {
+        backButton.show();
+        if (typeof backButton.onClick === 'function') {
+          backButton.onClick(handleBackAction);
+        }
+      }
+      try {
+        window.history.pushState({ tab: activeTab, modal: hasOpenModal }, '');
+      } catch (err) {}
+    } else {
+      if (backButton && typeof backButton.hide === 'function') {
+        backButton.hide();
+      }
+    }
+
+    const handlePopState = (e: PopStateEvent) => {
+      if (shouldShowBack) {
+        handleBackAction();
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+
+    return () => {
+      if (backButton && typeof backButton.offClick === 'function') {
+        try {
+          backButton.offClick(handleBackAction);
+        } catch (err) {}
+      }
+      window.removeEventListener('popstate', handlePopState);
+    };
+  }, [activeTab, selectedRecipeModal, selectedLifehackId, showPaymentModal, setActiveTab, setSelectedRecipeModal, setSelectedLifehackId, setShowPaymentModal]);
 
   return (
     <div className="min-h-screen bg-[#FFF5F7] text-[#2E121D] font-sans antialiased selection:bg-[#DB2777]/20">
@@ -57,6 +121,7 @@ const AppContent: React.FC = () => {
     </div>
   );
 };
+
 
 export default function App() {
   return (

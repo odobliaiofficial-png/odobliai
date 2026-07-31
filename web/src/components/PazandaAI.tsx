@@ -38,6 +38,8 @@ import {
   Save
 } from 'lucide-react';
 
+
+
 const FOLDER_CATEGORIES = [
   { id: 'Milliy Taomlar', title: "Milliy Taomlar", emoji: "🍚", color: "from-amber-500 to-orange-600", desc: "Palov, Manti, Somsa, Dimlama..." },
   { id: 'Salatlar', title: "Salatlar", emoji: "🥗", color: "from-emerald-500 to-teal-600", desc: "Toshkent salati, Achichuk..." },
@@ -88,14 +90,7 @@ export const PazandaAI: React.FC = () => {
   const [catCoverUrlInput, setCatCoverUrlInput] = useState('');
   const [isUploadingCatCover, setIsUploadingCatCover] = useState(false);
 
-  useEffect(() => {
-    if (selectedRecipeModal) {
-      setActiveRecipe(selectedRecipeModal);
-      setSelectedRecipeModal(null);
-    }
-  }, [selectedRecipeModal]);
-
-    // Admin In-Place Recipe Edit State
+  // Admin In-Place Recipe Edit State
   const [adminEditingRecipe, setAdminEditingRecipe] = useState<Recipe | null>(null);
   const [editNomi, setEditNomi] = useState('');
   const [editKategoriya, setEditKategoriya] = useState('');
@@ -107,28 +102,20 @@ export const PazandaAI: React.FC = () => {
   const [editKorsatmalar, setEditKorsatmalar] = useState('');
   const [isCompressingImage, setIsCompressingImage] = useState(false);
 
-  const handleOpenAdminEdit = (rec: Recipe, e?: React.MouseEvent) => {
-    if (e) e.stopPropagation();
-    setAdminEditingRecipe(rec);
-    setEditNomi(rec.nomi);
-    setEditKategoriya(rec.kategoriya);
-    setEditVaqti(rec.tayyorlash_vaqti_daq);
-    setEditQiyinlik(rec.qiyinlik);
-    setEditRasmUrl(rec.rasm_url);
-    setEditTarif(rec.tarif_matni);
-    setEditMasalliqlar(rec.masalliqlar_matni);
-    setEditKorsatmalar(Array.isArray(rec.korsatmalari) ? rec.korsatmalari.join('\n') : rec.korsatmalari);
-  };
+  useEffect(() => {
+    if (selectedRecipeModal) {
+      setActiveRecipe(selectedRecipeModal);
+      setSelectedRecipeModal(null);
+    }
+  }, [selectedRecipeModal]);
 
   const processImageFile = async (file: File) => {
     try {
       setIsCompressingImage(true);
-      showToast("📷 Rasm siqilmoqda va serverga yuklanmoqda...");
-      const compressed = await compressImage(file, 800, 0.75);
-      const publicUrl = await uploadImageToSupabase(compressed, adminEditingRecipe?.id || `new_${Date.now()}`);
-      setEditRasmUrl(publicUrl);
-      showToast(publicUrl.startsWith('data:') ? "⚠️ Rasm faqat lokal saqlandi" : "✅ Rasm serverga muvaffaqiyatli yuklandi!");
-    } catch (err) {
+      const compressed = await compressImage(file);
+      const url = await uploadImageToSupabase(compressed);
+      setEditRasmUrl(url);
+    } catch (error) {
       showToast("❌ Rasmni yuklashda xatolik yuz berdi");
     } finally {
       setIsCompressingImage(false);
@@ -137,7 +124,7 @@ export const PazandaAI: React.FC = () => {
 
   const handleImageFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (file) processImageFile(file);
+    if (file) await processImageFile(file);
   };
 
   const handleImagePaste = async (e: ClipboardEvent | React.ClipboardEvent) => {
@@ -169,136 +156,6 @@ export const PazandaAI: React.FC = () => {
         showToast("✅ Rasm havolasi buferdan qo'yildi!");
       }
     }
-  };
-
-  // Window-level paste listener for Telegram Desktop
-  useEffect(() => {
-    if (!adminEditingRecipe) return;
-    const listener = (e: ClipboardEvent) => handleImagePaste(e);
-    window.addEventListener('paste', listener);
-    return () => window.removeEventListener('paste', listener);
-  }, [adminEditingRecipe]);
-
-  // Button handler for direct Async Clipboard API reading
-  const handlePasteFromClipboardButton = async () => {
-    try {
-      if (navigator.clipboard && navigator.clipboard.read) {
-        const items = await navigator.clipboard.read();
-        for (const item of items) {
-          const imageType = item.types.find(t => t.startsWith('image/'));
-          if (imageType) {
-            const blob = await item.getType(imageType);
-            const file = new File([blob], `clipboard_${Date.now()}.${imageType.split('/')[1] || 'png'}`, { type: imageType });
-            await processImageFile(file);
-            return;
-          }
-        }
-      }
-
-      if (navigator.clipboard && navigator.clipboard.readText) {
-        const text = await navigator.clipboard.readText();
-        const trimmed = text?.trim();
-        if (trimmed && (trimmed.startsWith('http://') || trimmed.startsWith('https://') || trimmed.startsWith('data:image/'))) {
-          setEditRasmUrl(trimmed);
-          showToast("✅ Buferdan rasm havolasi saqlandi!");
-          return;
-        }
-      }
-      showToast("ℹ️ Buferda rasm topilmadi. Avval rasmni nusxalang (Ctrl+C).");
-    } catch (err) {
-      showToast("👉 Ctrl+V tugmalarini bosing yoki rasm faylini tanlang");
-    }
-  };
-
-  const handleDragOver = (e: React.DragEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-  };
-
-  const handleDrop = (e: React.DragEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    const files = e.dataTransfer.files;
-    if (files && files[0] && files[0].type.startsWith('image/')) {
-      processImageFile(files[0]);
-    }
-  };
-
-  const handleSaveAdminEdit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!adminEditingRecipe) return;
-
-    const stepsArray = editKorsatmalar.split('\n').map(s => s.trim()).filter(Boolean);
-
-    const updated: Recipe = {
-      ...adminEditingRecipe,
-      nomi: editNomi.trim(),
-      kategoriya: editKategoriya,
-      tayyorlash_vaqti_daq: Number(editVaqti) || 30,
-      qiyinlik: editQiyinlik,
-      rasm_url: editRasmUrl.trim() || '🍲',
-      tarif_matni: editTarif.trim(),
-      masalliqlar_matni: editMasalliqlar.trim(),
-      korsatmalari: stepsArray.length > 0 ? stepsArray : [editTarif]
-    };
-
-    updateRecipe(updated);
-    if (activeRecipe?.id === updated.id) {
-      setActiveRecipe(updated);
-    }
-    setAdminEditingRecipe(null);
-    showToast("✅ Admin: Retsept muvaffaqiyatli saqlandi!");
-  };
-
-const [customMinutesInput, setCustomMinutesInput] = useState<string>('20');
-
-  // Tab mode: 'catalog' (Retseptlar) | 'match' (Masalliqlardan) | 'bozorlik' | 'timer'
-  const [viewMode, setViewMode] = useState<'match' | 'catalog' | 'bozorlik' | 'timer'>('catalog');
-  const [selectedFolderCategory, setSelectedFolderCategory] = useState<string | null>(null);
-
-  // Search queries
-  const [searchQuery, setSearchQuery] = useState<string>('');
-  const [ingredientSearch, setIngredientSearch] = useState<string>('');
-
-  const toggleFavorite = (id: string, e?: React.MouseEvent) => {
-    if (e) e.stopPropagation();
-    toggleFavoriteRecipe(id);
-    const isFav = favoriteRecipeIds.includes(id);
-    showToast(isFav ? "Sevimli retseptlardan olib tashlandi" : "Sevimli retseptlarga saqlandi! ❤️");
-  };
-
-  // Selected ingredient IDs for match mode (empty by default)
-  const [selectedIngredientIds, setSelectedIngredientIds] = useState<string[]>([]);
-
-  // Category filter
-  const [selectedCategory, setSelectedCategory] = useState<IngredientCategory | 'barchasi'>('barchasi');
-
-  // Active Recipe modal
-  const [activeRecipe, setActiveRecipe] = useState<Recipe | null>(null);
-  const [showMatchedRecipesModal, setShowMatchedRecipesModal] = useState<boolean>(false);
-
-  // State for automatic dish ingredient generator in Bozorlik tab (must be before useEffect that references it)
-  const [selectedDishRecipeId, setSelectedDishRecipeId] = useState<string>('');
-  const [dishPortions, setDishPortions] = useState<number>(4);
-  const [showDishSelectModal, setShowDishSelectModal] = useState<boolean>(false);
-  const [dishSearch, setDishSearch] = useState<string>('');
-
-  // Track saved recipes state to prevent double/triple clicks
-  const [savedRecipeIds, setSavedRecipeIds] = useState<string[]>([]);
-
-  // Portion scaler for recipe modal: 2, 4 (default), 6, 8, 12
-  const [portions, setPortions] = useState<number>(4);
-
-  // Checked ingredients inside recipe detail modal for custom shopping list export
-  const [selectedRecipeIngredients, setSelectedRecipeIngredients] = useState<string[]>([]);
-
-  // Toast feedback
-  const [toastMessage, setToastMessage] = useState<string | null>(null);
-
-  // Toast helper
-  const showToast = (msg: string) => {
-    setToastMessage(msg);
-    setTimeout(() => setToastMessage(null), 3000);
   };
 
   const [selectedShopCategory, setSelectedShopCategory] = useState<string>('barchasi');
@@ -384,7 +241,7 @@ const [customMinutesInput, setCustomMinutesInput] = useState<string>('20');
   };
 
   const categoryLabels: { id: IngredientCategory | 'barchasi'; label: string }[] = [
-    { id: 'barchasi', label: '✨ Barchasi' },
+
     { id: 'sabzavot', label: '🥦 Sabzavotlar' },
     { id: 'meva', label: '🍎 Mevalar' },
     { id: 'gosht', label: "🥩 Go'sht" },
@@ -532,7 +389,7 @@ const [customMinutesInput, setCustomMinutesInput] = useState<string>('20');
     }
   }, [activeRecipe, showMatchedRecipesModal, showDishSelectModal]);
 
-  // Catalog Recipes with Folder Category filtering
+  // Catalog Recipes with Folder Category, Search, Time & Difficulty filters
   const catalogRecipes = useMemo(() => {
     let published = recipes.filter(r => r.holat !== 'qoralama');
 
@@ -543,15 +400,34 @@ const [customMinutesInput, setCustomMinutesInput] = useState<string>('20');
       });
     }
 
-    if (!searchQuery.trim()) return published;
+    if (searchQuery.trim()) {
+      const q = searchQuery.toLowerCase().trim();
+      published = published.filter(r =>
+        r.nomi.toLowerCase().includes(q) ||
+        (r.tarif_matni && r.tarif_matni.toLowerCase().includes(q)) ||
+        (r.masalliqlar_matni && r.masalliqlar_matni.toLowerCase().includes(q))
+      );
+    }
 
-    const q = searchQuery.toLowerCase().trim();
-    return recipes.filter(r =>
-      r.nomi.toLowerCase().includes(q) ||
-      (r.tarif_matni && r.tarif_matni.toLowerCase().includes(q)) ||
-      (r.masalliqlar_matni && r.masalliqlar_matni.toLowerCase().includes(q))
-    );
-  }, [recipes, searchQuery, selectedFolderCategory]);
+    if (timeFilter !== 'all') {
+      published = published.filter(r => {
+        const minutes = r.tayyorlash_vaqti_daq || 30;
+        if (timeFilter === 'quick') return minutes < 30;
+        if (timeFilter === 'medium') return minutes >= 30 && minutes <= 60;
+        if (timeFilter === 'long') return minutes > 60;
+        return true;
+      });
+    }
+
+    if (diffFilter !== 'all') {
+      published = published.filter(r => {
+        const diff = (r.qiyinlik || 'orta').toLowerCase();
+        return diff === diffFilter.toLowerCase();
+      });
+    }
+
+    return published;
+  }, [recipes, searchQuery, selectedFolderCategory, timeFilter, diffFilter]);
 
   // Parsed ingredient items for active recipe modal
   const recipeIngredientItems = useMemo(() => {
@@ -1062,7 +938,7 @@ const [customMinutesInput, setCustomMinutesInput] = useState<string>('20');
 
       {/* MODE 1 (MAIN): CATALOG WITH GRID CATEGORY FOLDERS & SEARCH */}
       {viewMode === 'catalog' && (
-        <div className="space-y-4">
+        <div className="space-y-3.5">
           
           {/* Search Bar Input */}
           <div className="relative">
@@ -1084,8 +960,87 @@ const [customMinutesInput, setCustomMinutesInput] = useState<string>('20');
             )}
           </div>
 
-          {/* FOLDERS GRID MODE (When no folder is selected & no active search query) */}
-          {selectedFolderCategory === null && !searchQuery.trim() ? (
+          {/* Mukammal Filtrlar Paneli (Vaqt va Qiyinlik boyicha) */}
+          <div className="bg-white p-3 rounded-2xl border border-pink-100 shadow-2xs space-y-2">
+            {/* Tayyorlash Vaqti */}
+            <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar">
+              <span className="text-[10px] font-black text-slate-400 uppercase tracking-wider shrink-0 mr-1">Vaqt:</span>
+              {[
+                { id: 'all', label: 'Barchasi' },
+                { id: 'quick', label: '⚡ <30 daq' },
+                { id: 'medium', label: "⏱️ 30-60 daq" },
+                { id: 'long', label: "🍲 >60 daq" },
+              ].map(f => (
+                <button
+                  key={f.id}
+                  onClick={() => setTimeFilter(f.id as any)}
+                  className={`px-3 py-1 rounded-xl text-[11px] font-extrabold whitespace-nowrap transition-all shadow-2xs ${
+                    timeFilter === f.id
+                      ? 'bg-[#DB2777] text-white shadow-xs'
+                      : 'bg-pink-50/60 text-[#9D4C6C] hover:bg-pink-100 border border-pink-100'
+                  }`}
+                >
+                  {f.label}
+                </button>
+              ))}
+            </div>
+
+            {/* Qiyinlik Darajasi */}
+            <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pt-1 border-t border-pink-50">
+              <span className="text-[10px] font-black text-slate-400 uppercase tracking-wider shrink-0 mr-1">Qiyinlik:</span>
+              {[
+                { id: 'all', label: 'Barchasi' },
+                { id: 'oson', label: '🟢 Oson' },
+                { id: 'orta', label: "🟡 O'rtacha" },
+                { id: 'qiyin', label: "🔴 Murakkab" },
+              ].map(f => (
+                <button
+                  key={f.id}
+                  onClick={() => setDiffFilter(f.id as any)}
+                  className={`px-3 py-1 rounded-xl text-[11px] font-extrabold whitespace-nowrap transition-all shadow-2xs ${
+                    diffFilter === f.id
+                      ? 'bg-[#DB2777] text-white shadow-xs'
+                      : 'bg-pink-50/60 text-[#9D4C6C] hover:bg-pink-100 border border-pink-100'
+                  }`}
+                >
+                  {f.label}
+                </button>
+              ))}
+            </div>
+
+            {/* Active Filters summary bar */}
+            {(timeFilter !== 'all' || diffFilter !== 'all' || searchQuery || selectedFolderCategory) && (
+              <div className="flex items-center justify-between pt-1 border-t border-pink-100 text-[11px]">
+                <div className="flex items-center gap-1.5 flex-wrap">
+                  <span className="font-bold text-[#831843]">Filtr:</span>
+                  {timeFilter !== 'all' && (
+                    <span className="bg-pink-100 text-[#DB2777] px-2 py-0.5 rounded-lg font-black border border-pink-200">
+                      {timeFilter === 'quick' ? '⚡ <30m' : timeFilter === 'medium' ? '⏱️ 30-60m' : '🍲 >60m'}
+                    </span>
+                  )}
+                  {diffFilter !== 'all' && (
+                    <span className="bg-pink-100 text-[#DB2777] px-2 py-0.5 rounded-lg font-black border border-pink-200 capitalize">
+                      {diffFilter}
+                    </span>
+                  )}
+                </div>
+                <button
+                  onClick={() => {
+                    setTimeFilter('all');
+                    setDiffFilter('all');
+                    setSearchQuery('');
+                    setSelectedFolderCategory(null);
+                  }}
+                  className="text-[#DB2777] font-black hover:underline shrink-0 text-[10.5px]"
+                >
+                  Tozalash ✕
+                </button>
+              </div>
+            )}
+          </div>
+
+          {/* FOLDERS GRID MODE (When no folder, no active search query, and default time/diff filters) */}
+          {selectedFolderCategory === null && !searchQuery.trim() && timeFilter === 'all' && diffFilter === 'all' ? (
             <div className="space-y-4">
               
               {/* Glowing Highlighted Banner for Pazanda AI Premium Search */}

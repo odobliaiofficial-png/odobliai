@@ -55,33 +55,26 @@ export const Lifehacklar: React.FC = () => {
         </div>
       </div>
 
-      {/* Category Chips with pr-6 padding to prevent truncation */}
+      {/* Category Chips with solid background styles */}
       <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 px-1 pr-6">
         {categories.map(cat => {
           const isActive = selectedCat === cat.id;
           return (
-            <motion.button
+            <button
               key={cat.id}
-              whileTap={{ scale: 0.95 }}
               onClick={() => setSelectedCat(cat.id)}
-              className={`relative px-4 py-2 rounded-full text-xs font-extrabold whitespace-nowrap min-h-[38px] transition-colors ${
+              className={`px-4 py-2 rounded-2xl text-xs font-black whitespace-nowrap min-h-[38px] transition-all shadow-2xs active:scale-95 ${
                 isActive
-                  ? 'text-white'
-                  : 'bg-white text-[#9D4C6C] border border-[#FCE7F3] hover:bg-pink-50'
+                  ? 'bg-gradient-to-r from-[#DB2777] to-[#EC4899] text-white shadow-md border border-pink-400'
+                  : 'bg-white text-[#6B4E5B] border border-pink-200 hover:bg-pink-50'
               }`}
             >
-              {isActive && (
-                <motion.div
-                  layoutId="activeLifehackCatPill"
-                  transition={{ type: 'spring', bounce: 0.15, duration: 0.35 }}
-                  className="absolute inset-0 bg-[#DB2777] rounded-full shadow-xs -z-10"
-                />
-              )}
               {t(cat.label)}
-            </motion.button>
+            </button>
           );
         })}
       </div>
+
 
       {/* Lifehack Cards - Entire card is clickable for seamless touch UX */}
       <div className="space-y-3">
