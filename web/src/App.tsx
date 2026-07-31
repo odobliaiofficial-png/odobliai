@@ -29,7 +29,12 @@ const AppContent: React.FC = () => {
     selectedLifehackId,
     setSelectedLifehackId,
     showPaymentModal,
-    setShowPaymentModal
+    setShowPaymentModal,
+    selectedFolderCategory,
+    searchQuery,
+    timeFilter,
+    diffFilter,
+    resetPazandaFilters
   } = useApp();
 
   // Telegram WebApp BackButton & Hardware Back Button navigation listener
@@ -38,8 +43,9 @@ const AppContent: React.FC = () => {
     const backButton = tg?.BackButton;
 
     const hasOpenModal = !!selectedRecipeModal || !!selectedLifehackId || showPaymentModal;
+    const hasPazandaSubNav = activeTab === 'pazanda' && (selectedFolderCategory !== null || searchQuery.trim() !== '' || timeFilter !== 'all' || diffFilter !== 'all');
     const isNotHome = activeTab !== 'home';
-    const shouldShowBack = hasOpenModal || isNotHome;
+    const shouldShowBack = hasOpenModal || hasPazandaSubNav || isNotHome;
 
     const handleBackAction = () => {
       if (selectedRecipeModal) {
@@ -48,6 +54,8 @@ const AppContent: React.FC = () => {
         setSelectedLifehackId(null);
       } else if (showPaymentModal) {
         setShowPaymentModal(false);
+      } else if (hasPazandaSubNav) {
+        resetPazandaFilters();
       } else if (activeTab !== 'home') {
         setActiveTab('home');
       }
@@ -61,7 +69,7 @@ const AppContent: React.FC = () => {
         }
       }
       try {
-        window.history.pushState({ tab: activeTab, modal: hasOpenModal }, '');
+        window.history.pushState({ tab: activeTab, modal: hasOpenModal, subNav: hasPazandaSubNav }, '');
       } catch (err) {}
     } else {
       if (backButton && typeof backButton.hide === 'function') {
@@ -85,7 +93,22 @@ const AppContent: React.FC = () => {
       }
       window.removeEventListener('popstate', handlePopState);
     };
-  }, [activeTab, selectedRecipeModal, selectedLifehackId, showPaymentModal, setActiveTab, setSelectedRecipeModal, setSelectedLifehackId, setShowPaymentModal]);
+  }, [
+    activeTab,
+    selectedRecipeModal,
+    selectedLifehackId,
+    showPaymentModal,
+    selectedFolderCategory,
+    searchQuery,
+    timeFilter,
+    diffFilter,
+    setActiveTab,
+    setSelectedRecipeModal,
+    setSelectedLifehackId,
+    setShowPaymentModal,
+    resetPazandaFilters
+  ]);
+
 
   return (
     <div className="min-h-screen bg-[#FFF5F7] text-[#2E121D] font-sans antialiased selection:bg-[#DB2777]/20">

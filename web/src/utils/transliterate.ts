@@ -15,6 +15,32 @@ export function latinToCyrillic(str: string): string {
 
   // 2. High-frequency Uzbek word & term dictionary
   const exactDictionary: [string, string][] = [
+    ['Milliy Taomlar', 'Миллий Таомлар'], ['milliy taomlar', 'миллий таомлар'],
+    ['Salatlar', 'Салатлар'], ['salatlar', 'салатлар'],
+    ['Tortlar va Chizkeyklar', 'Тортлар ва Чизкейклар'], ['tortlar va chizkeyklar', 'тортлар ва чизкейклар'],
+    ['Piroglar va Tartlar', 'Пироглар ва Тартлар'], ['piroglar va tartlar', 'пироглар ва тартлар'],
+    ['Pechenye va Biskvitlar', 'Печенье ва Бисквитлар'], ['pechenye va biskvitlar', 'печенье ва бисквитлар'],
+    ['Kekslar va Mafinlar', 'Кекслар ва Мафинлар'], ['kekslar va mafinlar', 'кекслар ва мафинлар'],
+    ['Shirinliklar', 'Ширинликлар'], ['shirinliklar', 'ширинликлар'],
+    ['Nonushta va Pishiriqlar', 'Нонушта ва Пишириқлар'], ['nonushta va pishiriqlar', 'нонушта ва пишириқлар'],
+    ["Go'sht va Parranda Taomlari", "Гўшт ва Парранда Таомлари"], ["go'sht va parranda taomlari", "гўшт ва парранда таомлари"],
+    ["Garnirlar va Sabzavotli Taomlar", "Гарнирлар ва Сабзавотли Таомлар"], ["garnirlar va sabzavotli taomlar", "гарнирлар ва сабзавотли таомлари"],
+    ['Ichimliklar', 'Ичимликлар'], ['ichimliklar', 'ичимликлар'],
+    ['Muzqaymoq va Sovuq Desertlar', 'Музқаймоқ ва Совуқ Десертлар'], ['muzqaymoq va sovuq desertlar', 'музқаймоқ ва совуқ десертлар'],
+    ['Suyuq Taomlar', 'Суюқ Таомлар'], ['suyuq taomlar', 'суюқ таомлар'],
+    ['Quyuq Taomlar', 'Қуюқ Таомлар'], ['quyuq taomlar', 'қуюқ таомлар'],
+    ['Papkalar', 'Папкалар'], ['papkalar', 'папкалар'],
+    ['Chiqish', 'Чиқиш'], ['chiqish', 'чиқиш'],
+    ['Karving', 'Карвинг'], ['karving', 'карвинг'],
+    ["O'yinchoq yasash", "Ўйинчоқ ясаш"], ["o'yinchoq yasash", "ўйинчоқ ясаш"],
+    ['Uy ishlari', 'Уй ишлари'], ['uy ishlari', 'уй ишлари'],
+    ['Sabzavotlar', 'Сабзавотлар'], ['sabzavotlar', 'сабзавотлар'],
+    ['Sabzavot', 'Сабзавот'], ['sabzavot', 'сабзавот'],
+    ['Mevalar', 'Мевалар'], ['mevalar', 'мевалар'],
+    ['Meva', 'Мева'], ['meva', 'мева'],
+    ["Go'sht", "Гўшт"], ["go'sht", "гўшт"], ['gosht', 'гўшт'],
+    ['Sut & Tuxum', 'Сут & Тухум'], ['sut & tuxum', 'сут & тухум'],
+    ['dukkakli', 'даккакли'], ['qandolat', 'қандолат'],
     ['Bozorlik', 'Бозорлик'], ['bozorlik', 'бозорлик'],
     ['Retseptlar', 'Рецептлар'], ['retseptlar', 'рецептлар'],
     ['Retsept', 'Рецепт'], ['retsept', 'рецепт'],
@@ -177,7 +203,8 @@ export function cyrillicToLatin(str: string): string {
 export function translateText(text: any, script: ScriptType): string {
   if (text === null || text === undefined) return '';
   if (typeof text !== 'string') return String(text);
-  if (script === 'kirill') {
+  const s = String(script || '').toLowerCase();
+  if (s === 'kirill' || s === 'cyril' || s === 'kr' || s === 'cyrillic' || s.includes('kir') || s.includes('cyr')) {
     return latinToCyrillic(text);
   }
   return text;

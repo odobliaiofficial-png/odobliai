@@ -140,10 +140,22 @@ interface AppContextType {
   categoryCovers: Record<string, string>;
   updateCategoryCover: (categoryName: string, imageUrl: string) => void;
 
+  // Pazanda AI Sub-navigation Filters
+  selectedFolderCategory: string | null;
+  setSelectedFolderCategory: (cat: string | null) => void;
+  searchQuery: string;
+  setSearchQuery: (q: string) => void;
+  timeFilter: 'all' | 'quick' | 'medium' | 'long';
+  setTimeFilter: (f: 'all' | 'quick' | 'medium' | 'long') => void;
+  diffFilter: 'all' | 'oson' | 'orta' | 'qiyin';
+  setDiffFilter: (f: 'all' | 'oson' | 'orta' | 'qiyin') => void;
+  resetPazandaFilters: () => void;
+
   // App Banner Config (21:9 Hero Banner)
   bannerConfig: BannerConfig;
   updateBannerConfig: (config: Partial<BannerConfig>) => void;
 }
+
 
 const defaultBannerConfig: BannerConfig = {
   image_url: '',
@@ -476,7 +488,6 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       saveStorage('category_folder_covers', updated);
       return updated;
     });
-    // Sync with Supabase asynchronously
     supabase.from('recipe_edits').upsert({
       recipe_id: `cat_cover_${categoryName}`,
       rasm_url: imageUrl,
@@ -587,6 +598,19 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [selectedTaleModal, setSelectedTaleModal] = useState<Tale | null>(null);
   const [selectedLifehackId, setSelectedLifehackId] = useState<string | null>(null);
 
+  // Pazanda AI sub-navigation filter states
+  const [selectedFolderCategory, setSelectedFolderCategory] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [timeFilter, setTimeFilter] = useState<'all' | 'quick' | 'medium' | 'long'>('all');
+  const [diffFilter, setDiffFilter] = useState<'all' | 'oson' | 'orta' | 'qiyin'>('all');
+
+  const resetPazandaFilters = () => {
+    setSelectedFolderCategory(null);
+    setSearchQuery('');
+    setTimeFilter('all');
+    setDiffFilter('all');
+  };
+
   const openRecipeModal = (r: Recipe) => {
     setSelectedRecipeModal(r);
     setActiveTab('pazanda');
@@ -693,52 +717,6 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [rewardDetails, setRewardDetails] = useState<RewardDetails | null>(null);
   const [showPaymentModal, setShowPaymentModal] = useState<boolean>(false);
 
-  // Sync to localStorage
-  useEffect(() => {
-    localStorage.setItem('odobli_routine_tasks', JSON.stringify(routineTasks));
-  }, [routineTasks]);
-
-  useEffect(() => {
-    localStorage.setItem('odobli_badges', JSON.stringify(badges));
-  }, [badges]);
-
-  useEffect(() => {
-    localStorage.setItem('odobli_user', JSON.stringify(user));
-  }, [user]);
-
-  useEffect(() => {
-    localStorage.setItem('odobli_progress', JSON.stringify(progress));
-  }, [progress]);
-
-  useEffect(() => {
-    localStorage.setItem('odobli_script', JSON.stringify(script));
-  }, [script]);
-
-  useEffect(() => {
-    localStorage.setItem('odobli_recipes', JSON.stringify(recipes));
-    localStorage.setItem('pazanda_recipes', JSON.stringify(recipes));
-  }, [recipes]);
-
-  useEffect(() => {
-    localStorage.setItem('odobli_tales', JSON.stringify(tales));
-  }, [tales]);
-
-  useEffect(() => {
-    localStorage.setItem('odobli_lifehacks', JSON.stringify(lifehacks));
-  }, [lifehacks]);
-
-  useEffect(() => {
-    localStorage.setItem('odobli_payments', JSON.stringify(paymentProofs));
-  }, [paymentProofs]);
-
-  useEffect(() => {
-    localStorage.setItem('odobli_completed_items', JSON.stringify(completedItemIds));
-  }, [completedItemIds]);
-
-  useEffect(() => {
-    localStorage.setItem('odobli_shopping_list', JSON.stringify(shoppingList));
-  }, [shoppingList]);
-
   useEffect(() => {
     localStorage.setItem('odobli_favorite_recipes', JSON.stringify(favoriteRecipeIds));
   }, [favoriteRecipeIds]);
@@ -789,6 +767,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
     return null;
   };
+
 
   const syncTelegramUser = () => {
     const tgUser = extractTelegramUser();

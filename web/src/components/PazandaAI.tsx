@@ -82,7 +82,16 @@ export const PazandaAI: React.FC = () => {
     updateRecipe,
     deleteRecipe,
     categoryCovers,
-    updateCategoryCover
+    updateCategoryCover,
+    selectedFolderCategory,
+    setSelectedFolderCategory,
+    searchQuery,
+    setSearchQuery,
+    timeFilter,
+    setTimeFilter,
+    diffFilter,
+    setDiffFilter,
+    resetPazandaFilters
   } = useApp();
 
   // Toast feedback
@@ -116,13 +125,9 @@ export const PazandaAI: React.FC = () => {
   // Tab mode: 'catalog' (Retseptlar) | 'match' (Masalliqlardan) | 'bozorlik' | 'timer'
   const [customMinutesInput, setCustomMinutesInput] = useState<string>('20');
   const [viewMode, setViewMode] = useState<'match' | 'catalog' | 'bozorlik' | 'timer'>('catalog');
-  const [selectedFolderCategory, setSelectedFolderCategory] = useState<string | null>(null);
 
   // Search queries & Advanced Recipe Filters
-  const [searchQuery, setSearchQuery] = useState<string>('');
   const [ingredientSearch, setIngredientSearch] = useState<string>('');
-  const [timeFilter, setTimeFilter] = useState<'all' | 'quick' | 'medium' | 'long'>('all');
-  const [diffFilter, setDiffFilter] = useState<'all' | 'oson' | 'orta' | 'qiyin'>('all');
 
   // Selected ingredient IDs for match mode
   const [selectedIngredientIds, setSelectedIngredientIds] = useState<string[]>([]);
@@ -139,19 +144,11 @@ export const PazandaAI: React.FC = () => {
   const [portions, setPortions] = useState<number>(4);
   const [selectedRecipeIngredients, setSelectedRecipeIngredients] = useState<string[]>([]);
 
-  const resetFiltersAndFolder = () => {
-    setSelectedFolderCategory(null);
-    setSearchQuery('');
-    setTimeFilter('all');
-    setDiffFilter('all');
-  };
 
   useEffect(() => {
-    if (selectedRecipeModal) {
-      setActiveRecipe(selectedRecipeModal);
-      setSelectedRecipeModal(null);
-    }
+    setActiveRecipe(selectedRecipeModal);
   }, [selectedRecipeModal]);
+
 
 
   const processImageFile = async (file: File) => {
@@ -1183,10 +1180,10 @@ export const PazandaAI: React.FC = () => {
 
                       <div className="p-2.5 space-y-0.5">
                         <h4 className="font-extrabold text-[#2E121D] text-xs leading-tight group-hover:text-[#DB2777] transition-colors line-clamp-1">
-                          {folder.title}
+                          {t(folder.title)}
                         </h4>
                         <p className="text-[9px] text-[#7C746B] line-clamp-1">
-                          {folder.desc}
+                          {t(folder.desc)}
                         </p>
                       </div>
                     </motion.div>
@@ -1201,27 +1198,27 @@ export const PazandaAI: React.FC = () => {
               <div className="flex items-center justify-between bg-white p-2.5 rounded-2xl border border-[#EFE8DC] shadow-2xs">
                 <div className="flex items-center gap-2 min-w-0">
                   <button
-                    onClick={resetFiltersAndFolder}
+                    onClick={resetPazandaFilters}
                     className="px-2.5 py-1 rounded-xl bg-pink-50 text-[#DB2777] hover:bg-pink-100 transition-colors flex items-center gap-1 text-xs font-bold shrink-0"
                   >
                     <ArrowLeft className="w-4 h-4" />
-                    <span>Papkalar</span>
+                    <span>{t("Papkalar")}</span>
                   </button>
                   <div className="h-4 w-[1px] bg-gray-200 shrink-0" />
                   <span className="font-black text-xs text-[#2E121D] truncate">
                     {searchQuery
                       ? `🔍 "${searchQuery}"`
                       : (selectedFolderCategory
-                          ? (selectedFolderCategory === 'all' ? '🍽️ Barcha Retseptlar' : `📂 ${selectedFolderCategory}`)
-                          : '🔍 Filtrlangan Retseptlar')} ({catalogRecipes.length})
+                          ? (selectedFolderCategory === 'all' ? t("🍽️ Barcha Retseptlar") : `📂 ${t(selectedFolderCategory)}`)
+                          : t("🔍 Filtrlangan Retseptlar"))} ({catalogRecipes.length})
                   </span>
                 </div>
 
                 <button
-                  onClick={resetFiltersAndFolder}
+                  onClick={resetPazandaFilters}
                   className="text-[10px] font-extrabold text-[#DB2777] hover:underline shrink-0"
                 >
-                  Chiqish ✕
+                  {t("Chiqish ✕")}
                 </button>
               </div>
 
@@ -1247,7 +1244,7 @@ export const PazandaAI: React.FC = () => {
                       key={recipe.id}
                       whileHover={{ y: -2 }}
                       whileTap={{ scale: 0.985 }}
-                      onClick={() => setActiveRecipe(recipe)}
+                      onClick={() => setSelectedRecipeModal(recipe)}
                       className="card-3d p-2.5 cursor-pointer flex flex-col justify-between group relative bg-white rounded-2xl border border-[#EFE8DC]"
                     >
                       <div>
