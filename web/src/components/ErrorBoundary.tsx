@@ -32,11 +32,6 @@ export class ErrorBoundary extends Component<Props, State> {
 
   public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     console.error("Uncaught error:", error, errorInfo);
-    try {
-      localStorage.clear();
-    } catch (e) {
-      console.error(e);
-    }
   }
 
   private handleReset = () => {
@@ -46,7 +41,7 @@ export class ErrorBoundary extends Component<Props, State> {
     } catch (e) {
       console.error(e);
     }
-    window.location.href = window.location.origin + window.location.pathname + '?admin=true&v=' + Date.now();
+    window.location.href = window.location.origin + window.location.pathname + '?v=' + Date.now();
   };
 
   public render() {

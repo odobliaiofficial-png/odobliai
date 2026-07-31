@@ -5,7 +5,7 @@ import { useApp } from '../context/AppContext';
 import { Flame, Star, ShieldCheck, Sparkles, Search, X, ChevronRight, ChefHat, BookOpen, Lightbulb } from 'lucide-react';
 
 export const Header: React.FC = () => {
-  const { user, progress, script, setScript, t, activeTab, setActiveTab, recipes, lifehacks, openRecipeModal, openLifehackModal, isAdmin } = useApp();
+  const { user, progress, script, setScript, t, activeTab, setActiveTab, recipes, tales, lifehacks, openRecipeModal, openLifehackModal, isAdmin } = useApp();
   const [showSearchModal, setShowSearchModal] = useState(false);
   const [globalSearch, setGlobalSearch] = useState('');
 
@@ -19,6 +19,10 @@ export const Header: React.FC = () => {
 
   const filteredLifehacks = lifehacks.filter(l => 
     globalSearch.trim() && l.sarlavha.toLowerCase().includes(globalSearch.toLowerCase())
+  );
+
+  const filteredTales = tales.filter(tale =>
+    globalSearch.trim() && tale.sarlavha.toLowerCase().includes(globalSearch.toLowerCase())
   );
 
   return (

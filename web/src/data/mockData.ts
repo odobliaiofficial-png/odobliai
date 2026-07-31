@@ -1,4 +1,4 @@
-import { Ingredient, Recipe, Tale, Lifehack, Riddle, MathProblem } from '../types';
+import { Ingredient, RecipeSeed, Tale, Lifehack, Riddle, MathProblem } from '../types';
 
 export const initialIngredients: Ingredient[] = [
   // 1. Sabzavotlar, Ildizmevalar va Ko'katlar (Vegetables, Roots & Greens)
@@ -168,7 +168,7 @@ export const initialIngredients: Ingredient[] = [
   { id: "ing_pirog_korji", nomi: "Tayyor pirog korji", kategoriya: "dukkakli", icon: "🥧" }
 ];
 
-export const initialRecipes: Recipe[] = [
+export const initialRecipes: RecipeSeed[] = [
   {
     "source": "MiniApp",
     "id": "rec_01_toshkent_palov",

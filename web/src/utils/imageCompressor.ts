@@ -59,9 +59,13 @@ export const uploadImageToSupabase = async (
 ): Promise<string> => {
   // 1. Primary: Upload to Cloudflare R2 via /api/upload
   try {
+    const telegramInitData = (window as any).Telegram?.WebApp?.initData;
     const res = await fetch('/api/upload', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        ...(telegramInitData ? { Authorization: `tma ${telegramInitData}` } : {}),
+      },
       body: JSON.stringify({
         imageBase64: dataUrl,
         filename: `${recipeId}_${Date.now()}.jpg`,

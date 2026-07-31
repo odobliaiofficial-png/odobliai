@@ -14,7 +14,11 @@ export const INGREDIENT_SUBSTITUTIONS: Record<string, string> = {
   'Un': 'O\'rniga manniy krupasi (manka) yoki suli yormasidan foydalanish mumkin.'
 };
 
-export const MOCK_RECIPES: Recipe[] = initialRecipes;
+export const MOCK_RECIPES: Recipe[] = initialRecipes.map(recipe => ({
+  ...recipe,
+  rasm_url: recipe.rasm_url || '',
+  required_ingredient_ids: recipe.required_ingredient_ids || []
+}));
 
 export const MOCK_ERTAKLAR: Ertak[] = [
   {

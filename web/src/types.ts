@@ -25,6 +25,8 @@ export interface User {
   is_premium: boolean;
   premium_until: string | null;
   created_at: string;
+  is_admin?: boolean;
+  role?: string;
 }
 
 export interface UserProgress {
@@ -63,7 +65,14 @@ export interface Recipe {
   holat: 'qoralama' | 'nashr';
   required_ingredient_ids: string[];
   optional_ingredient_ids?: string[];
+  kategoriya?: string;
+  source?: string;
 }
+
+export type RecipeSeed = Omit<Recipe, 'rasm_url' | 'required_ingredient_ids'> & {
+  rasm_url?: string;
+  required_ingredient_ids?: string[];
+};
 
 export interface TalePage {
   id: string;
@@ -71,6 +80,7 @@ export interface TalePage {
   tartib_raqami: number;
   rasm_url: string;
   matn: string;
+  kategoriya?: string;
 }
 
 export interface Tale {
@@ -82,6 +92,7 @@ export interface Tale {
   muallif?: string;
   sahifalar: TalePage[];
   created_at: string;
+  kategoriya?: string;
 }
 
 export type LifehackCategory = 'karving' | 'oyinchoq_yasash' | 'uy_ishlari' | 'boshqa';
@@ -104,6 +115,7 @@ export interface Riddle {
   yosh_toifasi: '3-5' | '6-8' | '9-12';
   qiyinlik: 'oson' | 'orta' | 'qiyin';
   izoh?: string;
+  kategoriya?: string;
 }
 
 export interface MathProblem {
@@ -113,6 +125,7 @@ export interface MathProblem {
   notogri_variantlar: string[];
   yosh_toifasi: '3-5' | '6-8' | '9-12';
   tushuntirish?: string;
+  kategoriya?: string;
 }
 
 export interface PaymentProof {

@@ -1,18 +1,23 @@
 import { S3Client, GetObjectCommand } from '@aws-sdk/client-s3';
 
-const accountId = 'ff193c88523c7bd026a0c6ba6237c519';
-const accessKeyId = '112da4273a6597cb913fbd66e90cc202';
-const secretAccessKey = 'c9a635a1f2cf3a3bad06c5a923e8baa61c1a4e383da318507de4e24b3538a4cb';
-const bucketName = 'recipe-images';
+function getR2Config() {
+  const { R2_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY, R2_BUCKET_NAME } = process.env;
+  if (!R2_ACCOUNT_ID || !R2_ACCESS_KEY_ID || !R2_SECRET_ACCESS_KEY || !R2_BUCKET_NAME) {
+    throw new Error('R2 storage is not configured');
+  }
+  return { R2_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY, R2_BUCKET_NAME };
+}
 
-const s3Client = new S3Client({
-  region: 'auto',
-  endpoint: `https://${accountId}.r2.cloudflarestorage.com`,
-  credentials: {
-    accessKeyId,
-    secretAccessKey,
-  },
-});
+function getS3Client(config) {
+  return new S3Client({
+    region: 'auto',
+    endpoint: `https://${config.R2_ACCOUNT_ID}.r2.cloudflarestorage.com`,
+    credentials: {
+      accessKeyId: config.R2_ACCESS_KEY_ID,
+      secretAccessKey: config.R2_SECRET_ACCESS_KEY,
+    },
+  });
+}
 
 export default async function handler(req, res) {
   const { key } = req.query;
@@ -21,12 +26,13 @@ export default async function handler(req, res) {
   }
 
   try {
+    const config = getR2Config();
     const command = new GetObjectCommand({
-      Bucket: bucketName,
+      Bucket: config.R2_BUCKET_NAME,
       Key: String(key),
     });
 
-    const response = await s3Client.send(command);
+    const response = await getS3Client(config).send(command);
 
     res.setHeader('Content-Type', response.ContentType || 'image/jpeg');
     res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');

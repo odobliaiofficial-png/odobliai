@@ -6,6 +6,7 @@ import {
   ScriptType,
   ActiveTab,
   Recipe,
+  RecipeSeed,
   Ingredient,
   Tale,
   Lifehack,
@@ -198,6 +199,12 @@ const defaultShoppingList: ShoppingItem[] = [
   { id: 'shop_3', nomi: 'Lazer Guruch', miqdori: '1 kg', bajarildi: true },
 ];
 
+const normalizeRecipe = (recipe: RecipeSeed): Recipe => ({
+  ...recipe,
+  rasm_url: recipe.rasm_url || '',
+  required_ingredient_ids: recipe.required_ingredient_ids || []
+});
+
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -293,14 +300,14 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     };
 
     if (!Array.isArray(saved) || saved.length === 0) {
-      return initialRecipes.map(applyEdit);
+      return initialRecipes.map(normalizeRecipe).map(applyEdit);
     }
     
     // Create map of saved modified recipes
     const savedMap = new Map(saved.map(r => [r.id, r]));
     
     // Merge: for every system recipe in initialRecipes, use initialRec with saved field overrides
-    const merged = initialRecipes.map(initialRec => {
+    const merged = initialRecipes.map(normalizeRecipe).map(initialRec => {
       const savedRec = savedMap.get(initialRec.id);
       if (savedRec) {
         return applyEdit({ ...initialRec, ...savedRec });

@@ -144,11 +144,11 @@ export const PazandaAI: React.FC = () => {
     const clipboardData = 'clipboardData' in e ? e.clipboardData : null;
     if (!clipboardData) return;
 
-    const items = clipboardData.items;
+    const items = clipboardData.items as DataTransferItemList;
     let handled = false;
 
     if (items) {
-      for (const item of Array.from(items)) {
+      for (const item of Array.from(items) as DataTransferItem[]) {
         if (item.type.startsWith('image/')) {
           e.preventDefault();
           const blob = item.getAsFile();
@@ -2414,7 +2414,8 @@ const [customMinutesInput, setCustomMinutesInput] = useState<string>('20');
                             const imageType = item.types.find(t => t.startsWith('image/'));
                             if (imageType) {
                               const blob = await item.getType(imageType);
-                              const compressed = await compressImage(blob, 800, 0.75);
+                              const file = new File([blob], `clipboard_${Date.now()}.${imageType.split('/')[1] || 'png'}`, { type: imageType });
+                              const compressed = await compressImage(file, 800, 0.75);
                               const publicUrl = await uploadImageToSupabase(compressed, `cat_cover_${Date.now()}`);
                               setCatCoverUrlInput(publicUrl);
                               return;

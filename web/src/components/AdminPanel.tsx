@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
-import { Recipe, Lifehack, Ingredient } from '../types';
+import { Recipe, Tale } from '../types';
 import { compressImage, uploadImageToSupabase } from '../utils/imageCompressor';
 import {
   Shield,
@@ -46,10 +46,13 @@ export const AdminPanel: React.FC = () => {
     updateRecipe,
     deleteRecipe,
     toggleRecipeStatus,
+    tales,
+    addTale,
     lifehacks,
     addLifehack,
     deleteLifehack,
     toggleLifehackStatus,
+    addRiddle,
     ingredients,
     addIngredient,
     grantUserPremium,
@@ -67,6 +70,35 @@ export const AdminPanel: React.FC = () => {
 
   // Sub-tabs navigation
   const [activeAdminTab, setActiveAdminTab] = useState<'recipes' | 'banner' | 'lifehacks' | 'users' | 'dashboard'>('recipes');
+  const [searchTerm, setSearchTerm] = useState('');
+
+  // Recipe editor state
+  const [showRecipeModal, setShowRecipeModal] = useState(false);
+  const [editingRecipeId, setEditingRecipeId] = useState<string | null>(null);
+  const [recipeTitle, setRecipeTitle] = useState('');
+  const [recipeTime, setRecipeTime] = useState(25);
+  const [recipeDiff, setRecipeDiff] = useState<Recipe['qiyinlik']>('oson');
+  const [recipeImage, setRecipeImage] = useState('');
+  const [recipeDesc, setRecipeDesc] = useState('');
+  const [recipeIngredientsText, setRecipeIngredientsText] = useState('');
+  const [recipeInstructionsText, setRecipeInstructionsText] = useState('');
+
+  // Content editor state
+  const [showTaleModal, setShowTaleModal] = useState(false);
+  const [taleTitle, setTaleTitle] = useState('');
+  const [taleAgeGroup, setTaleAgeGroup] = useState<Tale['yosh_toifasi']>('3-5');
+  const [taleCover, setTaleCover] = useState('');
+  const [taleContentText, setTaleContentText] = useState('');
+  const [showLifehackModal, setShowLifehackModal] = useState(false);
+  const [lifehackTitle, setLifehackTitle] = useState('');
+  const [lifehackDesc, setLifehackDesc] = useState('');
+  const [lifehackImage, setLifehackImage] = useState('');
+  const [lifehackCategory, setLifehackCategory] = useState<'karving' | 'oyinchoq_yasash' | 'uy_ishlari' | 'boshqa'>('boshqa');
+  const [riddleQuestion, setRiddleQuestion] = useState('');
+  const [riddleAnswer, setRiddleAnswer] = useState('');
+  const [riddleOptions, setRiddleOptions] = useState('');
+  const [riddleAgeGroup, setRiddleAgeGroup] = useState<'3-5' | '6-8' | '9-12'>('3-5');
+  const [, setShowRiddleModal] = useState(false);
 
   // Banner Form State
   const [bannerTitleInput, setBannerTitleInput] = useState<string>(bannerConfig?.title || '');
@@ -98,10 +130,10 @@ export const AdminPanel: React.FC = () => {
   const handleBannerPaste = async (e: React.ClipboardEvent | ClipboardEvent) => {
     const clipboardData = 'clipboardData' in e ? e.clipboardData : null;
     if (!clipboardData) return;
-    const items = clipboardData.items;
+    const items = clipboardData.items as DataTransferItemList;
     let handled = false;
     if (items) {
-      for (const item of Array.from(items)) {
+      for (const item of Array.from(items) as DataTransferItem[]) {
         if (item.type.startsWith('image/')) {
           e.preventDefault();
           const blob = item.getAsFile();
@@ -126,10 +158,10 @@ export const AdminPanel: React.FC = () => {
   const handleImagePasteFor = (setter: (url: string) => void) => async (e: React.ClipboardEvent | ClipboardEvent) => {
     const clipboardData = 'clipboardData' in e ? e.clipboardData : null;
     if (!clipboardData) return;
-    const items = clipboardData.items;
+    const items = clipboardData.items as DataTransferItemList;
     let handled = false;
     if (items) {
-      for (const item of Array.from(items)) {
+      for (const item of Array.from(items) as DataTransferItem[]) {
         if (item.type.startsWith('image/')) {
           e.preventDefault();
           const blob = item.getAsFile();
@@ -200,6 +232,19 @@ export const AdminPanel: React.FC = () => {
     } else {
       setPinError(true);
     }
+  };
+
+  const handleSaveBanner = (e: React.FormEvent) => {
+    e.preventDefault();
+    updateBannerConfig({
+      image_url: bannerImageUrl.trim(),
+      title: bannerTitleInput.trim(),
+      subtitle: bannerSubtitleInput.trim(),
+      badge: bannerBadgeInput.trim(),
+      button_text: bannerButtonTextInput.trim()
+    });
+    setBannerSuccessToast('Banner sozlamalari saqlandi');
+    window.setTimeout(() => setBannerSuccessToast(null), 2500);
   };
 
   // Recipe Handlers
