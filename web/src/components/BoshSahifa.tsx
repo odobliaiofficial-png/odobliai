@@ -26,7 +26,8 @@ export const BoshSahifa: React.FC = () => {
     openLifehackModal,
     bannerConfig,
     favoriteRecipeIds,
-    toggleFavoriteRecipe
+    toggleFavoriteRecipe,
+    setShowPaymentModal
   } = useApp();
 
   const [showFilterModal, setShowFilterModal] = useState(false);
@@ -37,11 +38,37 @@ export const BoshSahifa: React.FC = () => {
     toggleFavoriteRecipe(id);
   };
 
+  const handleBannerClick = () => {
+    const action = bannerConfig?.action_type || 'pazanda';
+    if (action === 'external_link' && bannerConfig?.external_url) {
+      window.open(bannerConfig.external_url, '_blank');
+    } else if (action === 'lifehacklar') {
+      setActiveTab('lifehacklar');
+    } else if (action === 'premium') {
+      setShowPaymentModal(true);
+    } else {
+      setActiveTab('pazanda');
+    }
+  };
 
-  const featuredRecipe1 = recipes[0];
-  const featuredRecipe2 = recipes[1] || recipes[0];
-  const featuredLifehack1 = lifehacks[0];
-  const featuredLifehack2 = lifehacks[1] || lifehacks[0];
+  // Daily Stable Recommendation Algorithm (based on day of year)
+  const getDayOfYear = () => {
+    const now = new Date();
+    const start = new Date(now.getFullYear(), 0, 0);
+    const diff = (now.getTime() - start.getTime()) + ((start.getTimezoneOffset() - now.getTimezoneOffset()) * 60 * 1000);
+    return Math.floor(diff / (1000 * 60 * 60 * 24));
+  };
+
+  const dayOfYear = getDayOfYear();
+
+  const milliyRecipes = recipes.filter(r => r.kategoriya === 'Milliy Taomlar');
+  const quickRecipes = recipes.filter(r => r.tayyorlash_vaqti_daq <= 25);
+
+  const featuredRecipe1 = milliyRecipes.length > 0 ? milliyRecipes[dayOfYear % milliyRecipes.length] : recipes[0];
+  const featuredRecipe2 = quickRecipes.length > 0 ? quickRecipes[(dayOfYear + 1) % quickRecipes.length] : recipes[1] || recipes[0];
+  const featuredLifehack1 = lifehacks.length > 0 ? lifehacks[dayOfYear % lifehacks.length] : lifehacks[0];
+  const featuredLifehack2 = lifehacks.length > 1 ? lifehacks[(dayOfYear + 1) % lifehacks.length] : lifehacks[0];
+
 
   const categories = [
     { 
@@ -150,9 +177,10 @@ export const BoshSahifa: React.FC = () => {
 
           <div className="flex items-center justify-between">
             <button
-              onClick={() => setActiveTab('pazanda')}
+              onClick={handleBannerClick}
               className="btn-gold-pill px-3 py-1 text-[10.5px] font-black flex items-center gap-1 shadow-md active:scale-95 transition-all"
             >
+
               <span>{t(banner.button_text || "Retseptlarni Ko'rish")}</span>
               <ArrowUpRight className="w-3 h-3" />
             </button>

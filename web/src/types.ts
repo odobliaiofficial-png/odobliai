@@ -1,4 +1,4 @@
-export type ScriptType = 'lotin' | 'kirill';
+export type ScriptType = 'lotin' | 'kirill';
 
 export interface BannerConfig {
   image_url: string;
@@ -6,6 +6,9 @@ export interface BannerConfig {
   subtitle: string;
   badge: string;
   button_text: string;
+  action_type?: 'pazanda' | 'recipes' | 'lifehacklar' | 'premium' | 'external_link';
+  external_url?: string;
+  is_active?: boolean;
 }
 
 export interface Child {
@@ -15,6 +18,7 @@ export interface Child {
 }
 
 export interface User {
+
   id: string;
   telegram_id: number;
   username: string;

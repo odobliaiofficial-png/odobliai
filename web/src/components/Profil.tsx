@@ -20,7 +20,7 @@ export const Profil: React.FC = () => {
   };
 
   return (
-    <div className="space-y-4 pb-28 pt-2">
+    <div className="space-y-4 pb-32 pt-2">
       
       {/* Compact Profile & Subscription Card */}
       <div className="card-pink p-4 rounded-3xl space-y-3.5 shadow-xs relative overflow-hidden bg-white">
@@ -80,8 +80,8 @@ export const Profil: React.FC = () => {
                   )}
                 </div>
               )}
-              <p className="text-[11px] text-slate-500 font-medium truncate">
-                @{user.username || 'user'} • ID: {user.telegram_id}
+              <p className="text-xs text-slate-500 font-medium truncate">
+                @{user.username || 'user'}
               </p>
             </div>
           </div>
@@ -91,25 +91,6 @@ export const Profil: React.FC = () => {
           }`}>
             {user.is_premium ? `✨ ${t("Premium")}` : `⏳ ${t("Sinov davri")}`}
           </span>
-        </div>
-
-        {/* Micro Stats Bar */}
-        <div className="grid grid-cols-2 gap-2 pt-2 border-t border-slate-100">
-          <div className="flex items-center gap-2 bg-orange-50/80 p-2.5 rounded-2xl border border-orange-100">
-            <Flame className="w-4 h-4 text-orange-500 fill-orange-500 flex-shrink-0" />
-            <div className="min-w-0">
-              <p className="text-[10px] text-slate-500 font-semibold">{t("Streak")}</p>
-              <p className="text-xs font-black text-slate-900">{progress.joriy_streak} {t("kun")}</p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-2 bg-amber-50/80 p-2.5 rounded-2xl border border-amber-100">
-            <Star className="w-4 h-4 text-amber-500 fill-amber-400 flex-shrink-0" />
-            <div className="min-w-0">
-              <p className="text-[10px] text-slate-500 font-semibold">{t("Ballar")}</p>
-              <p className="text-xs font-black text-slate-900">{progress.jami_ball} {t("ball")}</p>
-            </div>
-          </div>
         </div>
 
         {/* Subscription Trigger Button */}
@@ -130,7 +111,7 @@ export const Profil: React.FC = () => {
               <span className="text-2xl">👑</span>
               <div className="text-left">
                 <h3 className="font-extrabold text-white text-xs">Admin Boshqaruv Paneli</h3>
-                <p className="text-[10px] text-amber-100 font-medium">Baza, retseptlar va kontentni boshqarish (ID: {user.telegram_id})</p>
+                <p className="text-[10px] text-amber-100 font-medium">Baza, retseptlar va kontentni boshqarish</p>
               </div>
             </div>
             <button
@@ -240,35 +221,12 @@ export const Profil: React.FC = () => {
         )}
       </div>
 
-      
-      {/* Botga Taklif Qilish & Ulashish */}
-      <div className="card-pink p-3.5 rounded-3xl space-y-2.5 shadow-2xs border border-pink-100 bg-gradient-to-r from-amber-500 to-orange-500 text-white">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <span className="text-2xl">🎁</span>
-            <div>
-              <h3 className="font-extrabold text-white text-xs">Pazanda AI Botini Do'stlarga Ulashish</h3>
-              <p className="text-[10px] text-amber-100 font-medium">Yaqinlaringizga aql-idrokli retseptlar botini ulashing!</p>
-            </div>
-          </div>
-        </div>
-
-        <a
-          href="https://t.me/share/url?url=https://t.me/Pazandaaibot&text=Pazanda%20AI%20-%20Aql-idrokli%20Oila%20va%20Pazandalik%20Yordamchisi!%2060%2B%20mazali%20retseptlar%20va%20bozorlik%20ro'yxati"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-full py-2.5 px-4 bg-white text-orange-600 rounded-2xl font-black text-xs flex items-center justify-center gap-2 shadow-sm hover:bg-orange-50 active:scale-98 transition-all"
-        >
-          <span>✈️ Telegram'da Do'stlarga Ulashish</span>
-        </a>
-      </div>
-
       {/* Sozlamalar: Ismni tahrirlash & Alifbo Skripti */}
       <div className="card-pink p-3.5 rounded-3xl space-y-2.5 shadow-2xs border border-pink-100">
         <div className="flex items-center justify-between">
           <h3 className="font-extrabold text-[#2E121D] text-xs flex items-center gap-1.5">
             <Globe className="w-4 h-4 text-[#DB2777]" />
-            <span>{t("Sozlamalar va Profil")}</span>
+            <span>{t("Sozlamalar va Til")}</span>
           </h3>
           <span className="text-[10px] text-[#9D4C6C] font-semibold">{t("Sozlamalar")}</span>
         </div>
@@ -318,40 +276,26 @@ export const Profil: React.FC = () => {
         </div>
       </div>
 
-      {/* Unvonlar va Nishonlar */}
+      {/* Yordam va Bog'lanish */}
       <div className="card-pink p-3.5 rounded-3xl space-y-2.5 shadow-2xs border border-pink-100">
         <div className="flex items-center justify-between">
           <h3 className="font-extrabold text-[#2E121D] text-xs flex items-center gap-1.5">
-            <span>{t("Unvonlar va Nishonlar")}</span>
-            <span className="text-amber-500 font-extrabold text-xs">🏆</span>
+            <span>{t("Yordam va Qo'llab-quvvatlash")}</span>
+            <span className="text-emerald-600 font-extrabold text-xs">💬</span>
           </h3>
-          <span className="text-[11px] text-[#9D4C6C] font-bold">
-            {badges.filter(b => b.ochilgan).length} / {badges.length} {t("ochilgan")}
-          </span>
         </div>
-
-        <div className="grid grid-cols-2 gap-2">
-          {badges.map(badge => (
-            <div
-              key={badge.id}
-              className={`p-2.5 rounded-2xl border transition-all ${
-                badge.ochilgan
-                  ? 'bg-amber-50/70 border-amber-200 text-[#2E121D]'
-                  : 'bg-gray-50/60 border-gray-200 text-gray-400 opacity-60'
-              }`}
-            >
-              <div className="flex items-center gap-2">
-                <span className="text-xl">{badge.icon}</span>
-                <div className="min-w-0">
-                  <p className="font-extrabold text-xs truncate">{t(badge.nomi)}</p>
-                  <p className="text-[10px] text-[#8C8479] truncate">{t(badge.talab)}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+        <a
+          href="https://t.me/Pazandaaibot"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-full py-2.5 px-4 bg-pink-50 text-[#DB2777] hover:bg-pink-100 rounded-2xl font-extrabold text-xs flex items-center justify-center gap-2 transition-all active:scale-98 border border-pink-200"
+        >
+          <span>✈️ Telegram Yordamchi Botga Murojaat Etish</span>
+        </a>
       </div>
+
     </div>
   );
 };
+
 

@@ -1,16 +1,24 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { AppProvider, useApp } from './context/AppContext';
 import { Header } from './components/Header';
 import { BottomNav } from './components/BottomNav';
 import { BoshSahifa } from './components/BoshSahifa';
 import { PazandaAI } from './components/PazandaAI';
-import { Lifehacklar } from './components/Lifehacklar';
-import { Profil } from './components/Profil';
-import { AdminPanel } from './components/AdminPanel';
 
 import { PaymentModal } from './components/PaymentModal';
 import { RewardModal } from './components/RewardModal';
 import { DynamicIslandTimer } from './components/DynamicIslandTimer';
+
+// Code-splitting via React.lazy for instant initial load on Telegram WebViews
+const Lifehacklar = lazy(() => import('./components/Lifehacklar').then(m => ({ default: m.Lifehacklar })));
+const Profil = lazy(() => import('./components/Profil').then(m => ({ default: m.Profil })));
+const AdminPanel = lazy(() => import('./components/AdminPanel').then(m => ({ default: m.AdminPanel })));
+
+const ComponentLoader = () => (
+  <div className="flex items-center justify-center py-20">
+    <div className="w-7 h-7 border-3 border-[#DB2777] border-t-transparent rounded-full animate-spin"></div>
+  </div>
+);
 
 const AppContent: React.FC = () => {
   const { activeTab } = useApp();
@@ -29,11 +37,13 @@ const AppContent: React.FC = () => {
 
         {/* Main View Area based on Active Tab */}
         <main className="flex-1 px-4 pt-3">
-          {activeTab === 'home' && <BoshSahifa />}
-          {activeTab === 'pazanda' && <PazandaAI />}
-          {activeTab === 'lifehacklar' && <Lifehacklar />}
-          {activeTab === 'profil' && <Profil />}
-          {activeTab === 'admin' && <AdminPanel />}
+          <Suspense fallback={<ComponentLoader />}>
+            {activeTab === 'home' && <BoshSahifa />}
+            {activeTab === 'pazanda' && <PazandaAI />}
+            {activeTab === 'lifehacklar' && <Lifehacklar />}
+            {activeTab === 'profil' && <Profil />}
+            {activeTab === 'admin' && <AdminPanel />}
+          </Suspense>
         </main>
 
         {/* Fixed Mobile Bottom Bar */}
@@ -55,3 +65,4 @@ export default function App() {
     </AppProvider>
   );
 }
+

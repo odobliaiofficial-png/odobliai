@@ -98,9 +98,12 @@ export const AdminPanel: React.FC = () => {
   const [bannerSubtitleInput, setBannerSubtitleInput] = useState<string>(bannerConfig?.subtitle || '');
   const [bannerBadgeInput, setBannerBadgeInput] = useState<string>(bannerConfig?.badge || '');
   const [bannerButtonTextInput, setBannerButtonTextInput] = useState<string>(bannerConfig?.button_text || '');
+  const [bannerActionType, setBannerActionType] = useState<'pazanda' | 'recipes' | 'lifehacklar' | 'premium' | 'external_link'>(bannerConfig?.action_type || 'pazanda');
+  const [bannerExternalUrl, setBannerExternalUrl] = useState<string>(bannerConfig?.external_url || '');
   const [bannerImageUrl, setBannerImageUrl] = useState<string>(bannerConfig?.image_url || '');
   const [isUploadingBanner, setIsUploadingBanner] = useState<boolean>(false);
   const [bannerSuccessToast, setBannerSuccessToast] = useState<string | null>(null);
+
 
   const processBannerFile = async (file: File) => {
     try {
@@ -224,11 +227,14 @@ export const AdminPanel: React.FC = () => {
       title: bannerTitleInput.trim(),
       subtitle: bannerSubtitleInput.trim(),
       badge: bannerBadgeInput.trim(),
-      button_text: bannerButtonTextInput.trim()
+      button_text: bannerButtonTextInput.trim(),
+      action_type: bannerActionType,
+      external_url: bannerExternalUrl.trim()
     });
     setBannerSuccessToast('Banner sozlamalari saqlandi');
     window.setTimeout(() => setBannerSuccessToast(null), 2500);
   };
+
 
   // Recipe Handlers
   const handleOpenRecipeModal = (recipeToEdit?: Recipe) => {
@@ -669,6 +675,33 @@ export const AdminPanel: React.FC = () => {
                 />
               </div>
             </div>
+
+            <div className="space-y-1">
+              <label className="text-xs font-bold text-stone-700">Tugma Harakati (CTA Action):</label>
+              <select
+                value={bannerActionType}
+                onChange={e => setBannerActionType(e.target.value as any)}
+                className="w-full text-xs p-2.5 rounded-xl border border-stone-200 bg-white focus:outline-none focus:border-[#DB2777] font-semibold"
+              >
+                <option value="pazanda">🍲 Pazanda AI / Retseptlar Bo'limi</option>
+                <option value="lifehacklar">💡 Lifehacklar Bo'limi</option>
+                <option value="premium">👑 Premium Obuna Oynasi</option>
+                <option value="external_link">🔗 Tashqi Havola (Telegram Link / Vebsayt)</option>
+              </select>
+            </div>
+
+            {bannerActionType === 'external_link' && (
+              <div className="space-y-1 bg-amber-50/70 p-3 rounded-2xl border border-amber-200">
+                <label className="text-xs font-bold text-amber-900">Tashqi URL / Telegram Link:</label>
+                <input
+                  type="url"
+                  value={bannerExternalUrl}
+                  onChange={e => setBannerExternalUrl(e.target.value)}
+                  placeholder="https://t.me/Pazandaaibot"
+                  className="w-full text-xs p-2.5 rounded-xl border border-amber-300 bg-white focus:outline-none focus:border-[#DB2777]"
+                />
+              </div>
+            )}
 
             <button
               type="submit"

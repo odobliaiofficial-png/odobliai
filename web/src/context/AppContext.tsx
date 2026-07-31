@@ -150,8 +150,12 @@ const defaultBannerConfig: BannerConfig = {
   title: "Pazanda AI — Mazali Retseptlar",
   subtitle: "Uydagi masalliqlardan milliy va mazali taomlar tayyorlang.",
   badge: "AQL-IDROK PAZANDA",
-  button_text: "Retseptlarni Ko'rish"
+  button_text: "Retseptlarni Ko'rish",
+  action_type: 'pazanda',
+  external_url: '',
+  is_active: true
 };
+
 
 const defaultUser: User = {
   id: 'usr_user_1',
