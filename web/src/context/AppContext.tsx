@@ -199,8 +199,120 @@ const defaultShoppingList: ShoppingItem[] = [
   { id: 'shop_3', nomi: 'Lazer Guruch', miqdori: '1 kg', bajarildi: true },
 ];
 
+// Canonical category plan for the recipe folders in the Mini App. Keeping the
+// mapping here protects the curated structure from stale browser/Supabase data
+// written by earlier versions of the application.
+const RECIPE_CATEGORY_OVERRIDES: Record<string, string> = {
+  // 🍚 Milliy Taomlar
+  rec_01_toshkent_palov: 'Milliy Taomlar',
+  rec_02_samarqand_sofi: 'Milliy Taomlar',
+  rec_03_fargona_devzira: 'Milliy Taomlar',
+  rec_04_buxoro_baxsh: 'Milliy Taomlar',
+  rec_05_xiva_shivit_oshi: 'Milliy Taomlar',
+  rec_06_xorazm_tuxum_barak: 'Milliy Taomlar',
+  rec_07_chuchvara: 'Milliy Taomlar',
+  rec_08_manti: 'Milliy Taomlar',
+  rec_09_xonim: 'Milliy Taomlar',
+  rec_10_mastava: 'Milliy Taomlar',
+  rec_11_qaynatma_shorva: 'Milliy Taomlar',
+  rec_12_dimlama_original: 'Milliy Taomlar',
+  rec_13_qozon_kabob: 'Milliy Taomlar',
+  rec_14_shashlik: 'Milliy Taomlar',
+  rec_15_tandir_somsa: 'Milliy Taomlar',
+
+  // 🥗 Salatlar
+  rec_16_toshkent_salat: 'Salatlar',
+  rec_17_achichuk: 'Salatlar',
+  rec_hd_049_sour_cream_onion_potato_salad: 'Salatlar',
+
+  // 🍰 Tortlar va chizkeyklar
+  rec_18_medovik: 'Tortlar va Chizkeyklar',
+  rec_hd_044_chhena_poda: 'Tortlar va Chizkeyklar',
+  rec_hd_046_creole_apple_cheesecake: 'Tortlar va Chizkeyklar',
+  rec_hd_050_frozen_avocado_cake: 'Tortlar va Chizkeyklar',
+
+  // 🥧 Piroglar va tartlar
+  rec_hd_041_perfect_pie_crust: 'Piroglar va Tartlar',
+  rec_hd_048_tomato_roasted_garlic_pie: 'Piroglar va Tartlar',
+  rec_hd_053_fresh_fruit_tart: 'Piroglar va Tartlar',
+  rec_hd_054_pear_hazelnut_tart: 'Piroglar va Tartlar',
+  rec_hd_056_summer_tomato_ricotta_tart: 'Piroglar va Tartlar',
+  rec_hd_057_fruit_galette: 'Piroglar va Tartlar',
+  rec_hd_058_red_date_cake: 'Piroglar va Tartlar',
+  rec_hd_075_cabbage_potato_pie: 'Piroglar va Tartlar',
+  rec_hd_082_lemon_meringue_pie: 'Piroglar va Tartlar',
+  rec_hd_083_chocolate_pudding_pie: 'Piroglar va Tartlar',
+  rec_hd_084_blind_baked_pie_crust: 'Piroglar va Tartlar',
+  rec_hd_085_banana_cream_pie: 'Piroglar va Tartlar',
+  rec_hd_091_black_bottom_hazelnut_pie: 'Piroglar va Tartlar',
+
+  // 🍪 Pechenye va biskvitlar
+  rec_tr_005_sekerpare: 'Pechenye va Biskvitlar',
+  rec_hd_065_sour_cream_onion_biscuits: 'Pechenye va Biskvitlar',
+  rec_hd_066_salty_buckwheat_chocolate_cookies: 'Pechenye va Biskvitlar',
+  rec_hd_070_sourdough_key_lime_ricotta_cookies: 'Pechenye va Biskvitlar',
+  rec_hd_079_double_chocolate_rye_cookies: 'Pechenye va Biskvitlar',
+  rec_hd_088_pastel_butter_cookies: 'Pechenye va Biskvitlar',
+  rec_hd_089_iranian_rice_cookies: 'Pechenye va Biskvitlar',
+
+  // 🧁 Kekslar va mafinlar
+  rec_hd_051_chocolate_zucchini_cake: 'Kekslar va Mafinlar',
+  rec_hd_068_orange_chocolate_loaf_cake: 'Kekslar va Mafinlar',
+  rec_hd_069_whipped_cream_cake: 'Kekslar va Mafinlar',
+  rec_hd_072_blueberry_lemon_corn_muffins: 'Kekslar va Mafinlar',
+  rec_hd_073_swirl_spice_cake: 'Kekslar va Mafinlar',
+  rec_hd_078_english_muffin_breakfast_sandwich: 'Kekslar va Mafinlar',
+  rec_hd_092_olive_oil_apple_cake: 'Kekslar va Mafinlar',
+
+  // 🍩 Shirinliklar
+  rec_tr_001_baklava: 'Shirinliklar',
+  rec_tr_002_lokum: 'Shirinliklar',
+  rec_tr_003_sutlac: 'Shirinliklar',
+  rec_tr_004_revani: 'Shirinliklar',
+  rec_tr_006_tulumba: 'Shirinliklar',
+  rec_tr_007_kunefe: 'Shirinliklar',
+  rec_tr_008_lokma: 'Shirinliklar',
+  rec_tr_009_kazandibi: 'Shirinliklar',
+  rec_tr_010_muhallebi: 'Shirinliklar',
+  rec_tr_011_irmik_helvasi: 'Shirinliklar',
+  rec_tr_012_asure: 'Shirinliklar',
+  rec_tr_013_pismaniye: 'Shirinliklar',
+  rec_hd_042_peanut_butter_cookies: 'Shirinliklar',
+  rec_hd_064_camouflage_fudge_brownies: 'Shirinliklar',
+  rec_hd_077_chocolate_almond_fudge: 'Shirinliklar',
+  rec_hd_081_sourdough_rye_brownies: 'Shirinliklar',
+
+  // 🍞 Nonushta va pishiriqlar
+  rec_hd_067_mochi_cake: 'Nonushta va Pishiriqlar',
+  rec_hd_071_cinnamon_sugar_sourdough_waffles: 'Nonushta va Pishiriqlar',
+
+  // 🍗 Go'sht va parranda taomlari
+  rec_hd_043_chicken_potato_gratin: "Go'sht va Parranda Taomlari",
+  rec_hd_052_dakgangjeong: "Go'sht va Parranda Taomlari",
+  rec_hd_076_salmon_with_dates: "Go'sht va Parranda Taomlari",
+
+  // 🥔 Garnirlar va sabzavotli taomlar
+  rec_hd_045_creamy_mashed_potatoes: 'Garnirlar va Sabzavotli Taomlar',
+  rec_hd_047_coconut_creamed_corn: 'Garnirlar va Sabzavotli Taomlar',
+  rec_hd_059_kong_jaban: 'Garnirlar va Sabzavotli Taomlar',
+  rec_hd_063_scallion_pancakes: 'Garnirlar va Sabzavotli Taomlar',
+  rec_hd_074_coffee_spice_mix: 'Garnirlar va Sabzavotli Taomlar',
+  rec_hd_086_coconut_creamed_greens: 'Garnirlar va Sabzavotli Taomlar',
+  rec_hd_087_charred_sweet_potatoes: 'Garnirlar va Sabzavotli Taomlar',
+  rec_hd_090_sweet_potato_bowls: 'Garnirlar va Sabzavotli Taomlar',
+
+  // 🍹 Ichimliklar
+  rec_hd_060_lagrimas_de_la_virgen: 'Ichimliklar',
+  rec_hd_061_guava_grapefruit_agua_fresca: 'Ichimliklar',
+  rec_hd_062_aguas_frescas: 'Ichimliklar',
+
+  // 🍨 Muzqaymoq va sovuq desertlar
+  rec_hd_055_salted_pistachio_crumble: 'Muzqaymoq va Sovuq Desertlar',
+};
+
 const normalizeRecipe = (recipe: RecipeSeed): Recipe => ({
   ...recipe,
+  kategoriya: RECIPE_CATEGORY_OVERRIDES[recipe.id] || recipe.kategoriya,
   rasm_url: recipe.rasm_url || '',
   required_ingredient_ids: recipe.required_ingredient_ids || []
 });
@@ -244,30 +356,21 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     return saved && typeof saved === 'object' ? { ...defaultProgress, ...saved } : defaultProgress;
   });
   const [script, setScriptState] = useState<ScriptType>(() => loadStorage('script', 'lotin'));
-  const [activeTab, setActiveTab] = useState<ActiveTab>(() => {
-    if (typeof window !== 'undefined') {
-      const urlParams = new URLSearchParams(window.location.search);
-      if (urlParams.get('admin') === 'true' || urlParams.get('mode') === 'admin' || window.location.hash.includes('admin')) {
-        return 'admin';
-      }
-    }
-    return 'home';
-  });
+  // The public web URL always opens the regular Mini App view. Admin controls
+  // are exposed only after Telegram supplies the owner account in a Mini App.
+  const [activeTab, setActiveTab] = useState<ActiveTab>('home');
   const [selectedAgeFilter, setSelectedAgeFilter] = useState<string>('Barchasi');
 
-  // Admin Security verification (Telegram ID: 8544023815 or PC Browser Admin mode)
+  // Admin Security verification: a normal browser cannot unlock this panel via
+  // a query string, hash, PIN or browser storage. Telegram Desktop is supported
+  // because it launches the same official Mini App environment.
   const isAdmin = React.useMemo(() => {
-    if (typeof window !== 'undefined') {
-      const urlParams = new URLSearchParams(window.location.search);
-      if (urlParams.get('admin') === 'true' || urlParams.get('mode') === 'admin' || window.location.hash.includes('admin')) {
-        return true;
-      }
-      if (localStorage.getItem('admin_mode') === 'true') {
-        return true;
-      }
-    }
-    return String(user.telegram_id) === '8544023815' || user.is_admin === true || (user as any).role === 'admin';
-  }, [user]);
+    if (typeof window === 'undefined') return false;
+    const tg = (window as any).Telegram?.WebApp;
+    const telegramUserId = tg?.initDataUnsafe?.user?.id;
+    const launchedInsideTelegram = typeof tg?.initData === 'string' && tg.initData.length > 0;
+    return launchedInsideTelegram && String(telegramUserId) === '8544023815';
+  }, []);
 
   // Datasets safely initialized with Array.isArray checks and fresh system item mapping
   const [ingredients, setIngredients] = useState<Ingredient[]>(() => {
@@ -292,7 +395,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         ...base,
         rasm_url: edit.rasm_url || r.rasm_url,
         nomi: edit.nomi || r.nomi,
-        kategoriya: edit.kategoriya || r.kategoriya,
+        kategoriya: RECIPE_CATEGORY_OVERRIDES[r.id] || edit.kategoriya || r.kategoriya,
         tayyorlash_vaqti_daq: edit.tayyorlash_vaqti_daq || r.tayyorlash_vaqti_daq,
         qiyinlik: edit.qiyinlik || r.qiyinlik,
         tarif_matni: edit.tarif_matni || r.tarif_matni,
@@ -348,7 +451,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
           ...r,
           rasm_url: edit.rasm_url || r.rasm_url,
           nomi: edit.nomi || r.nomi,
-          kategoriya: edit.kategoriya || r.kategoriya,
+          kategoriya: RECIPE_CATEGORY_OVERRIDES[r.id] || edit.kategoriya || r.kategoriya,
           tayyorlash_vaqti_daq: edit.tayyorlash_vaqti_daq || r.tayyorlash_vaqti_daq,
           qiyinlik: edit.qiyinlik || r.qiyinlik,
           tarif_matni: edit.tarif_matni || r.tarif_matni,

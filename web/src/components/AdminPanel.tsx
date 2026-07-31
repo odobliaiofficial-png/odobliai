@@ -13,8 +13,6 @@ import {
   Sparkles,
   Trash2,
   Edit3,
-  Lock,
-  Unlock,
   Download,
   Users,
   BookOpen,
@@ -27,7 +25,6 @@ import {
   Check,
   TrendingUp,
   DollarSign,
-  AlertCircle,
   X,
   Clock,
   Layers,
@@ -60,13 +57,9 @@ export const AdminPanel: React.FC = () => {
     setActiveTab,
     bannerConfig,
     updateBannerConfig,
+    isAdmin,
     t
   } = useApp();
-
-  // Security Lock Gate
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-  const [pinInput, setPinInput] = useState<string>('');
-  const [pinError, setPinError] = useState<boolean>(false);
 
   // Sub-tabs navigation
   const [activeAdminTab, setActiveAdminTab] = useState<'recipes' | 'banner' | 'lifehacks' | 'users' | 'dashboard'>('recipes');
@@ -222,18 +215,6 @@ export const AdminPanel: React.FC = () => {
     }
   };
 
-  // PIN Unlock Verification
-  const handlePinSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (pinInput === '1977') {
-      setIsAuthenticated(true);
-      setPinError(false);
-      localStorage.setItem('admin_mode', 'true');
-    } else {
-      setPinError(true);
-    }
-  };
-
   const handleSaveBanner = (e: React.FormEvent) => {
     e.preventDefault();
     updateBannerConfig({
@@ -385,54 +366,28 @@ export const AdminPanel: React.FC = () => {
     setShowRiddleModal(false);
   };
 
-  // Lock Screen view
-  if (!isAuthenticated) {
+  // This component can only be used from the owner's authenticated Telegram
+  // Mini App session. Public browser/PIN access is intentionally unavailable.
+  if (!isAdmin) {
     return (
       <div className="min-h-[70vh] flex items-center justify-center p-4">
         <div className="bg-white/90 backdrop-blur-md p-6 rounded-3xl border border-[#EFE8DC] shadow-xl max-w-sm w-full text-center space-y-4">
-          <div className="w-14 h-14 bg-amber-100 text-amber-700 rounded-full flex items-center justify-center mx-auto shadow-inner">
-            <Lock className="w-7 h-7" />
+          <div className="w-14 h-14 bg-rose-100 text-rose-700 rounded-full flex items-center justify-center mx-auto shadow-inner text-2xl">
+            🔒
           </div>
           <div>
-            <h3 className="text-lg font-black text-[#2D2A26]">Admin Kirish Himoyasi</h3>
+            <h3 className="text-lg font-black text-[#2D2A26]">Admin panel faqat Telegram MiniApp’da</h3>
             <p className="text-xs text-[#7C746B] mt-1">
-              Boshqaruv paneliga kirish uchun maxfiy PIN-kodni kiriting
+              Boshqaruv uchun botni Telegram ichidan, egasi akkaunti bilan oching.
             </p>
           </div>
-
-          <form onSubmit={handlePinSubmit} className="space-y-3 pt-2">
-            <input
-              type="password"
-              maxLength={4}
-              placeholder="••••"
-              value={pinInput}
-              autoFocus
-              onChange={e => {
-                const val = e.target.value;
-                setPinInput(val);
-                setPinError(false);
-                if (val.trim() === '1977') {
-                  setIsAuthenticated(true);
-                  localStorage.setItem('admin_mode', 'true');
-                  localStorage.setItem('admin_pin_unlocked', 'true');
-                }
-              }}
-              className="w-full text-center text-2xl font-black tracking-widest py-3 px-4 rounded-2xl border border-[#EFE8DC] focus:outline-none focus:ring-2 focus:ring-[#FF6B4A]"
-            />
-
-            {pinError && (
-              <p className="text-xs text-rose-600 font-bold flex items-center justify-center gap-1">
-                <AlertCircle className="w-3.5 h-3.5" /> Noto'g'ri PIN-kod! Qaytadan urinib ko'ring.
-              </p>
-            )}
-
-            <button
-              type="submit"
-              className="w-full py-3 bg-gradient-to-r from-[#FF6B4A] to-[#FF8E72] text-white font-extrabold rounded-2xl shadow-md hover:opacity-95 transition-opacity"
-            >
-              Kirish va Boshqarish
-            </button>
-          </form>
+          <button
+            type="button"
+            onClick={() => setActiveTab('home')}
+            className="w-full py-3 bg-gradient-to-r from-[#FF6B4A] to-[#FF8E72] text-white font-extrabold rounded-2xl shadow-md active:scale-[0.98] transition-transform"
+          >
+            Bosh sahifaga qaytish
+          </button>
         </div>
       </div>
     );

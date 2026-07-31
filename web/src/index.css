@@ -47,9 +47,11 @@
   will-change: transform;
 }
 
-.card-premium:hover, .card-pink:hover {
-  border-color: #F472B6;
-  box-shadow: 0 10px 28px -4px rgba(219, 39, 119, 0.14), 0 2px 6px -1px rgba(0, 0, 0, 0.03);
+@media (hover: hover) and (pointer: fine) {
+  .card-premium:hover, .card-pink:hover {
+    border-color: #F472B6;
+    box-shadow: 0 10px 28px -4px rgba(219, 39, 119, 0.14), 0 2px 6px -1px rgba(0, 0, 0, 0.03);
+  }
 }
 
 .card-premium:active, .card-pink:active {
@@ -76,10 +78,12 @@
   will-change: transform;
 }
 
-.btn-burgundy-pill:hover, .btn-rose-pill:hover {
-  background-color: #BE185D;
-  transform: translateY(-1px);
-  box-shadow: 0 6px 18px rgba(219, 39, 119, 0.42);
+@media (hover: hover) and (pointer: fine) {
+  .btn-burgundy-pill:hover, .btn-rose-pill:hover {
+    background-color: #BE185D;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(219, 39, 119, 0.42);
+  }
 }
 
 .btn-burgundy-pill:active, .btn-rose-pill:active {
@@ -98,10 +102,12 @@
   will-change: transform;
 }
 
-.btn-gold-pill:hover {
-  background: linear-gradient(135deg, #D97706 0%, #B45309 100%);
-  transform: translateY(-1px);
-  box-shadow: 0 6px 18px rgba(245, 158, 11, 0.48);
+@media (hover: hover) and (pointer: fine) {
+  .btn-gold-pill:hover {
+    background: linear-gradient(135deg, #D97706 0%, #B45309 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(245, 158, 11, 0.48);
+  }
 }
 
 .btn-gold-pill:active {
@@ -150,5 +156,29 @@
   }
   100% {
     background-position: -200% 0;
+  }
+}
+
+/* Telegram WebView interaction polish: instant touch response without forcing
+   layout-changing animation on individual components. */
+button,
+[role="button"] {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+button:not(:disabled):active,
+[role="button"]:active {
+  filter: brightness(0.98);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
   }
 }

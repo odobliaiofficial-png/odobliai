@@ -47,10 +47,10 @@ const FOLDER_CATEGORIES = [
   { id: 'Kekslar va Mafinlar', title: "Kekslar va Mafinlar", emoji: "🧁", color: "from-purple-500 to-pink-500", desc: "Mafinlar, Keks, Noni..." },
   { id: 'Shirinliklar', title: "Shirinliklar", emoji: "🍩", color: "from-red-500 to-pink-600", desc: "Loqum, Sütlaç, Baqlava, Brauni..." },
   { id: 'Nonushta va Pishiriqlar', title: "Nonushta va Pishiriqlar", emoji: "🍞", color: "from-orange-400 to-amber-500", desc: "Vafli, Mochi, Pishiriqlar..." },
-  { id: 'Go\'sht va Parranda Taomlari', title: "Go'sht va Parranda", emoji: "🍗", color: "from-red-600 to-amber-700", desc: "Tovuq, Gratin, Baliq taomlari..." },
-  { id: 'Garnirlar va Sabzavotli Taomlar', title: "Garnirlar va Sabzavotlar", emoji: "🥔", color: "from-green-600 to-lime-600", desc: "Pyure, Lobiya, Bouli..." },
+  { id: 'Go\'sht va Parranda Taomlari', title: "Go'sht va Parranda Taomlari", emoji: "🍗", color: "from-red-600 to-amber-700", desc: "Tovuq, Gratin, Baliq taomlari..." },
+  { id: 'Garnirlar va Sabzavotli Taomlar', title: "Garnirlar va Sabzavotli Taomlar", emoji: "🥔", color: "from-green-600 to-lime-600", desc: "Pyure, Lobiya, Bouli..." },
   { id: 'Ichimliklar', title: "Ichimliklar", emoji: "🍹", color: "from-cyan-500 to-blue-600", desc: "Agua Freska, Salqin ichimliklar..." },
-  { id: 'Muzqaymoq va Sovuq Desertlar', title: "Muzqaymoq & Desertlar", emoji: "🍨", color: "from-indigo-500 to-purple-600", desc: "Muzqaymoq, Sovuq desertlar..." },
+  { id: 'Muzqaymoq va Sovuq Desertlar', title: "Muzqaymoq va Sovuq Desertlar", emoji: "🍨", color: "from-indigo-500 to-purple-600", desc: "Muzqaymoq, Sovuq desertlar..." },
 ];
 
 export const PazandaAI: React.FC = () => {
