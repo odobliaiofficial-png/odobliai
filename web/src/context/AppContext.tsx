@@ -280,7 +280,9 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   const [recipes, setRecipes] = useState<Recipe[]>(() => {
     const saved = loadStorage<Recipe[]>('recipes', []);
-    const cachedEdits = loadStorage<Record<string, any>>('supabase_recipe_edits_cache', {});
+    // Versioned cache intentionally starts fresh to discard incomplete records
+    // written by earlier releases.
+    const cachedEdits = loadStorage<Record<string, any>>('supabase_recipe_edits_cache_v2', {});
 
     const applyEdit = (r: Recipe) => {
       const edit = cachedEdits[r.id];
@@ -306,11 +308,18 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     // Create map of saved modified recipes
     const savedMap = new Map(saved.map(r => [r.id, r]));
     
-    // Merge: for every system recipe in initialRecipes, use initialRec with saved field overrides
+    // System recipes are canonical content. Older app versions cached incomplete
+    // copies in localStorage, so never let a cached system record overwrite its
+    // title, description, ingredients, steps, or image.
     const merged = initialRecipes.map(normalizeRecipe).map(initialRec => {
       const savedRec = savedMap.get(initialRec.id);
       if (savedRec) {
-        return applyEdit({ ...initialRec, ...savedRec });
+        return applyEdit({
+          ...initialRec,
+          holat: savedRec.holat === 'qoralama' || savedRec.holat === 'nashr'
+            ? savedRec.holat
+            : initialRec.holat
+        });
       }
       return applyEdit(initialRec);
     });
@@ -329,7 +338,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       
       const editsObj: Record<string, any> = {};
       data.forEach((e: any) => { editsObj[e.recipe_id] = e; });
-      saveStorage('supabase_recipe_edits_cache', editsObj);
+      saveStorage('supabase_recipe_edits_cache_v2', editsObj);
 
       const editsMap = new Map(data.map((e: any) => [e.recipe_id, e]));
       setRecipes(prev => prev.map(r => {
@@ -835,7 +844,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       return next;
     });
 
-    const cached = loadStorage<Record<string, any>>('supabase_recipe_edits_cache', {});
+    const cached = loadStorage<Record<string, any>>('supabase_recipe_edits_cache_v2', {});
     cached[recipe.id] = {
       recipe_id: recipe.id,
       rasm_url: recipe.rasm_url,
@@ -847,7 +856,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       masalliqlar_matni: recipe.masalliqlar_matni,
       korsatmalari: Array.isArray(recipe.korsatmalari) ? recipe.korsatmalari.join('\n') : recipe.korsatmalari,
     };
-    saveStorage('supabase_recipe_edits_cache', cached);
+    saveStorage('supabase_recipe_edits_cache_v2', cached);
 
     // Persist to Supabase so all users see the change
     supabase.from('recipe_edits').upsert({
