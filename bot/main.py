@@ -21,10 +21,29 @@ from aiogram.types import BotCommand
 
 logging.basicConfig(level=logging.INFO)
 
+from aiohttp import web
+
+async def handle_health_check(request):
+    return web.Response(text="🤖 Odobli.ai Telegram Bot is Live and Running!", status=200)
+
+async def start_web_server():
+    port = int(os.environ.get("PORT", 10000))
+    app = web.Application()
+    app.router.add_get("/", handle_health_check)
+    app.router.add_get("/health", handle_health_check)
+    runner = web.AppRunner(app)
+    await runner.setup()
+    site = web.TCPSite(runner, "0.0.0.0", port)
+    await site.start()
+    logging.info(f"🌐 Health check HTTP server listening on port {port}")
+
 async def main():
     if not config.BOT_TOKEN or config.BOT_TOKEN == "YOUR_BOT_TOKEN_HERE":
         print("⚠️ BOT_TOKEN sozlanmagan! Iltimos, config.py yoki .env faylini sozlang.")
         return
+
+    # Start HTTP Health Check server for Render Web Service
+    await start_web_server()
 
     bot = Bot(token=config.BOT_TOKEN)
     dp = Dispatcher()
