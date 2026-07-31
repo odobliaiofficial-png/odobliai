@@ -192,7 +192,8 @@ export const initialRecipes: Recipe[] = [
       "g",
       "sht, qazi va bedana tuxumlari bilan bezating."
     ],
-    "kategoriya": "Milliy Taomlar"
+    "kategoriya": "Milliy Taomlar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -213,7 +214,8 @@ export const initialRecipes: Recipe[] = [
       ",",
       "ng sabzi va eng tepasiga yumshoq go"
     ],
-    "kategoriya": "Milliy Taomlar"
+    "kategoriya": "Milliy Taomlar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -232,7 +234,8 @@ export const initialRecipes: Recipe[] = [
       ",",
       ","
     ],
-    "kategoriya": "Milliy Taomlar"
+    "kategoriya": "Milliy Taomlar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -254,7 +257,8 @@ export const initialRecipes: Recipe[] = [
       "katlarni solib aralashtiring va ustidan yuvilgan guruch bilan issiq suv quying.",
       "Baland olovda suvini torttirgach, qopqog"
     ],
-    "kategoriya": "Milliy Taomlar"
+    "kategoriya": "Milliy Taomlar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -272,7 +276,8 @@ export const initialRecipes: Recipe[] = [
       "Yashil xamirni 1mm yupqalikda yoyib ugra kesing va qaynoq suvda 2-3 daqiqa qaynatib chaying.",
       "Sovuq yashil ugralar ustidan issiq vaju qaylasini quying va sarimsoqli suzma bilan torting."
     ],
-    "kategoriya": "Milliy Taomlar"
+    "kategoriya": "Milliy Taomlar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -290,7 +295,8 @@ export const initialRecipes: Recipe[] = [
       "Xamirni yupqa yoyib yumaloq kesing va yarim oy shaklida chetini yopishtirib, teshik qoldiring.",
       "Teshikdan suyuq tuxumni quying, tezda yopishtiring va zudlik bilan qaynoq sho"
     ],
-    "kategoriya": "Milliy Taomlar"
+    "kategoriya": "Milliy Taomlar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -308,7 +314,8 @@ export const initialRecipes: Recipe[] = [
       ",",
       "r bulyonda chuchvaralarni 5-7 daqiqa qaynatib, bulyoni va qatiq bilan birga suzing."
     ],
-    "kategoriya": "Milliy Taomlar"
+    "kategoriya": "Milliy Taomlar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -328,7 +335,8 @@ export const initialRecipes: Recipe[] = [
       ",",
       "da pishiring."
     ],
-    "kategoriya": "Milliy Taomlar"
+    "kategoriya": "Milliy Taomlar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -347,7 +355,8 @@ export const initialRecipes: Recipe[] = [
       ",",
       "laklarga bo"
     ],
-    "kategoriya": "Milliy Taomlar"
+    "kategoriya": "Milliy Taomlar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -365,7 +374,8 @@ export const initialRecipes: Recipe[] = [
       ",",
       "katlar sepib torting."
     ],
-    "kategoriya": "Milliy Taomlar"
+    "kategoriya": "Milliy Taomlar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -383,7 +393,8 @@ export const initialRecipes: Recipe[] = [
       ",",
       "sht va sabzavotlarni alohida suzib, bulyonni ko"
     ],
-    "kategoriya": "Milliy Taomlar"
+    "kategoriya": "Milliy Taomlar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -401,7 +412,8 @@ export const initialRecipes: Recipe[] = [
       ",",
       "z sharbatida dimlang."
     ],
-    "kategoriya": "Milliy Taomlar"
+    "kategoriya": "Milliy Taomlar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -420,7 +432,8 @@ export const initialRecipes: Recipe[] = [
       ",",
       "shtni terib, 100ml suv quying va past olovda 50 daqiqa dimlang."
     ],
-    "kategoriya": "Milliy Taomlar"
+    "kategoriya": "Milliy Taomlar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -439,7 +452,8 @@ export const initialRecipes: Recipe[] = [
       ",",
       "mirida tez-tez buraverib 10-12 daqiqa qizartirib pishiring."
     ],
-    "kategoriya": "Milliy Taomlar"
+    "kategoriya": "Milliy Taomlar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -458,7 +472,8 @@ export const initialRecipes: Recipe[] = [
       "laklarini yoyib filling soling va uchburchak tuging.",
       "200°C pechda yoki tandirda 35-40 daqiqa qizarguncha pishiring."
     ],
-    "kategoriya": "Milliy Taomlar"
+    "kategoriya": "Milliy Taomlar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -478,7 +493,8 @@ export const initialRecipes: Recipe[] = [
       "lguncha qovuring.",
       "Masalliqlarni mayonez bilan aralashtirib, ustini qarsildoq piyoz bilan bezating."
     ],
-    "kategoriya": "Salatlar"
+    "kategoriya": "Salatlar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -494,7 +510,8 @@ export const initialRecipes: Recipe[] = [
       "Shirin pomidorlarni pichoqda yupqa parrak qilib kesing.",
       "Piyoz, pomidor va ko"
     ],
-    "kategoriya": "Salatlar"
+    "kategoriya": "Salatlar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -513,7 +530,8 @@ export const initialRecipes: Recipe[] = [
       "Smetana, qaymoq va shakar upasidan yengil krem tayyorlang.",
       "Qavatlarga krem surtib yig"
     ],
-    "kategoriya": "Tortlar va Chizkeyklar"
+    "kategoriya": "Tortlar va Chizkeyklar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -533,7 +551,8 @@ export const initialRecipes: Recipe[] = [
       "180°C ga qizdirilgan pechda oltin-zarhal rangga kirguncha (35-45 daqiqa) pishiring.",
       "Pechdan chiqqan issiq baqlava ustiga sovuq qiyomni quying va 2-4 soat shimilishi uchun qoldiring."
     ],
-    "kategoriya": "Shirinliklar"
+    "kategoriya": "Shirinliklar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -554,7 +573,8 @@ export const initialRecipes: Recipe[] = [
       "rtburchak qolipga quyib, to",
       ","
     ],
-    "kategoriya": "Shirinliklar"
+    "kategoriya": "Shirinliklar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -573,7 +593,8 @@ export const initialRecipes: Recipe[] = [
       "Xohishga ko",
       ","
     ],
-    "kategoriya": "Shirinliklar"
+    "kategoriya": "Shirinliklar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -596,7 +617,8 @@ export const initialRecipes: Recipe[] = [
       "Qiyom to",
       "laklarga bo"
     ],
-    "kategoriya": "Shirinliklar"
+    "kategoriya": "Shirinliklar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -616,7 +638,8 @@ export const initialRecipes: Recipe[] = [
       "Pechda oltin rangga kirguncha pishiring.",
       "Pechdan chiqqan issiq pechenyelar ustiga sovuq qiyom quying."
     ],
-    "kategoriya": "Pechenye va Biskvitlar"
+    "kategoriya": "Pechenye va Biskvitlar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -638,7 +661,8 @@ export const initialRecipes: Recipe[] = [
       "Qovurilgan tulumbalarni darhol sovuq qiyomga solib shimitib oling.",
       "Xizmat qilishdan oldin ortiqcha qiyomni to"
     ],
-    "kategoriya": "Shirinliklar"
+    "kategoriya": "Shirinliklar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -658,7 +682,8 @@ export const initialRecipes: Recipe[] = [
       ",",
       ","
     ],
-    "kategoriya": "Shirinliklar"
+    "kategoriya": "Shirinliklar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -678,7 +703,8 @@ export const initialRecipes: Recipe[] = [
       "Bir necha daqiqa qiyomni shimgach, suzib oling.",
       "Issiq va yangi holida xizmat qiling."
     ],
-    "kategoriya": "Shirinliklar"
+    "kategoriya": "Shirinliklar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -696,7 +722,8 @@ export const initialRecipes: Recipe[] = [
       ",",
       "laklab, karamellangan tarafini yuqoriga ag"
     ],
-    "kategoriya": "Shirinliklar"
+    "kategoriya": "Shirinliklar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -714,7 +741,8 @@ export const initialRecipes: Recipe[] = [
       "Idishlarga quyib sovuting.",
       "Ustiga dolchin yoki maydalangan pista sepib xizmat qiling."
     ],
-    "kategoriya": "Shirinliklar"
+    "kategoriya": "Shirinliklar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -733,7 +761,8 @@ export const initialRecipes: Recipe[] = [
       "Olovni o",
       "i yopiq holda dam bering."
     ],
-    "kategoriya": "Shirinliklar"
+    "kategoriya": "Shirinliklar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -752,7 +781,8 @@ export const initialRecipes: Recipe[] = [
       ",",
       "oq va anor donalari bilan bezang."
     ],
-    "kategoriya": "Shirinliklar"
+    "kategoriya": "Shirinliklar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -772,7 +802,8 @@ export const initialRecipes: Recipe[] = [
       ",",
       "plar shaklida taxlang."
     ],
-    "kategoriya": "Shirinliklar"
+    "kategoriya": "Shirinliklar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -790,7 +821,8 @@ export const initialRecipes: Recipe[] = [
       "plang.",
       "Plyonkaga o"
     ],
-    "kategoriya": "Piroglar va Tartlar"
+    "kategoriya": "Piroglar va Tartlar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -809,7 +841,8 @@ export const initialRecipes: Recipe[] = [
       ",",
       "lguncha pishiring."
     ],
-    "kategoriya": "Shirinliklar"
+    "kategoriya": "Shirinliklar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -827,7 +860,8 @@ export const initialRecipes: Recipe[] = [
       ",",
       ","
     ],
-    "kategoriya": "Go'sht va Parranda Taomlari"
+    "kategoriya": "Go'sht va Parranda Taomlari",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -844,7 +878,8 @@ export const initialRecipes: Recipe[] = [
       "Kesh",
       ","
     ],
-    "kategoriya": "Tortlar va Chizkeyklar"
+    "kategoriya": "Tortlar va Chizkeyklar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -861,7 +896,8 @@ export const initialRecipes: Recipe[] = [
       ",",
       "shib silliq krem holatiga keltiring."
     ],
-    "kategoriya": "Garnirlar va Sabzavotli Taomlar"
+    "kategoriya": "Garnirlar va Sabzavotli Taomlar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -878,7 +914,8 @@ export const initialRecipes: Recipe[] = [
       "Olmalarni saryog",
       ","
     ],
-    "kategoriya": "Tortlar va Chizkeyklar"
+    "kategoriya": "Tortlar va Chizkeyklar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -895,7 +932,8 @@ export const initialRecipes: Recipe[] = [
       ",",
       "lagi bilan torting."
     ],
-    "kategoriya": "Garnirlar va Sabzavotli Taomlar"
+    "kategoriya": "Garnirlar va Sabzavotli Taomlar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -912,7 +950,8 @@ export const initialRecipes: Recipe[] = [
       "Pishloq, mayonez, ziravorlar va sarimsoqni aralashtiring.",
       "Qolipga pishloqli krem va pomidorlarni qatlam qilib tizib, 190°C pechda 1 soat pishiring."
     ],
-    "kategoriya": "Piroglar va Tartlar"
+    "kategoriya": "Piroglar va Tartlar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -928,7 +967,8 @@ export const initialRecipes: Recipe[] = [
       "Kartoshkalarni sousga solib aralashtiring va sovuting.",
       "Dasturxonga tortish oldidan ustiga uvalangan chipslarni seping."
     ],
-    "kategoriya": "Salatlar"
+    "kategoriya": "Salatlar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -944,7 +984,8 @@ export const initialRecipes: Recipe[] = [
       ",",
       ","
     ],
-    "kategoriya": "Tortlar va Chizkeyklar"
+    "kategoriya": "Tortlar va Chizkeyklar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -961,7 +1002,8 @@ export const initialRecipes: Recipe[] = [
       "Qolipga quyib, ustidan shokolad va yong",
       ","
     ],
-    "kategoriya": "Kekslar va Mafinlar"
+    "kategoriya": "Kekslar va Mafinlar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -978,7 +1020,8 @@ export const initialRecipes: Recipe[] = [
       ",",
       ","
     ],
-    "kategoriya": "Go'sht va Parranda Taomlari"
+    "kategoriya": "Go'sht va Parranda Taomlari",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -993,7 +1036,8 @@ export const initialRecipes: Recipe[] = [
       "Sut, tuxum sarig",
       ","
     ],
-    "kategoriya": "Piroglar va Tartlar"
+    "kategoriya": "Piroglar va Tartlar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -1010,7 +1054,8 @@ export const initialRecipes: Recipe[] = [
       ",",
       "rik qiyomini surting."
     ],
-    "kategoriya": "Piroglar va Tartlar"
+    "kategoriya": "Piroglar va Tartlar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -1032,7 +1077,8 @@ export const initialRecipes: Recipe[] = [
       "Kichik tovada asalni qizdiring — 4 daqiqa davomida pufakchalar chiqarib biroz to",
       ","
     ],
-    "kategoriya": "Muzqaymoq va Sovuq Desertlar"
+    "kategoriya": "Muzqaymoq va Sovuq Desertlar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -1054,7 +1100,8 @@ export const initialRecipes: Recipe[] = [
       "Sovigan korj ichiga rikotta kremini tekis yoying. Ustiga pomidor bo",
       "i tomizing va murch seping."
     ],
-    "kategoriya": "Piroglar va Tartlar"
+    "kategoriya": "Piroglar va Tartlar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -1076,7 +1123,8 @@ export const initialRecipes: Recipe[] = [
       ",",
       "lguncha pishiring."
     ],
-    "kategoriya": "Piroglar va Tartlar"
+    "kategoriya": "Piroglar va Tartlar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -1095,7 +1143,8 @@ export const initialRecipes: Recipe[] = [
       "shib past tezlikda aralashtiring. Qolipga quyib, 175°C pechda 25–30 daqiqa pishiring.",
       "Glazur: Idishda qaymoq, saryog"
     ],
-    "kategoriya": "Piroglar va Tartlar"
+    "kategoriya": "Piroglar va Tartlar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -1114,7 +1163,8 @@ export const initialRecipes: Recipe[] = [
       "lib qoladi).",
       "Suyuqligi quyuq va yaltiroq holatga kelguncha yana 5-10 daqiqa pishiring. Sovutib, muzlatgichga qo"
     ],
-    "kategoriya": "Garnirlar va Sabzavotli Taomlar"
+    "kategoriya": "Garnirlar va Sabzavotli Taomlar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -1133,7 +1183,8 @@ export const initialRecipes: Recipe[] = [
       "Dasturxonga tortish oldidan to",
       "ralgan olma, banan, apelsin, salat barglari hamda limon sharbatini qo"
     ],
-    "kategoriya": "Ichimliklar"
+    "kategoriya": "Ichimliklar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -1154,7 +1205,8 @@ export const initialRecipes: Recipe[] = [
       ",",
       "ldirib, ustidan ichimlikni quying va rozmarin shoxchasi bilan bezating."
     ],
-    "kategoriya": "Ichimliklar"
+    "kategoriya": "Ichimliklar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -1175,7 +1227,8 @@ export const initialRecipes: Recipe[] = [
       ",",
       "laklari bilan sovuq holda torting."
     ],
-    "kategoriya": "Ichimliklar"
+    "kategoriya": "Ichimliklar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -1198,7 +1251,8 @@ export const initialRecipes: Recipe[] = [
       "Qolgan xamir va yog",
       "laklarga bo"
     ],
-    "kategoriya": "Garnirlar va Sabzavotli Taomlar"
+    "kategoriya": "Garnirlar va Sabzavotli Taomlar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -1223,7 +1277,8 @@ export const initialRecipes: Recipe[] = [
       "165°C pechda 22–25 daqiqa pishiring. Sovugach bo",
       "ling."
     ],
-    "kategoriya": "Shirinliklar"
+    "kategoriya": "Shirinliklar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -1245,7 +1300,8 @@ export const initialRecipes: Recipe[] = [
       "Listga tizib, ustiga eritilgan saryog",
       "lguncha pishiring."
     ],
-    "kategoriya": "Pechenye va Biskvitlar"
+    "kategoriya": "Pechenye va Biskvitlar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -1265,7 +1321,8 @@ export const initialRecipes: Recipe[] = [
       "Pechni 190°C ga qizdiring. Xamirdan 2 osh qoshiqlik shariklar yasab, listga 5 cm masofada tizib chiqing.",
       "190°C pechda 8–10 daqiqa chetlari tillarang bo"
     ],
-    "kategoriya": "Pechenye va Biskvitlar"
+    "kategoriya": "Pechenye va Biskvitlar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -1286,7 +1343,8 @@ export const initialRecipes: Recipe[] = [
       ",",
       "lguncha pishiring. To"
     ],
-    "kategoriya": "Nonushta va Pishiriqlar"
+    "kategoriya": "Nonushta va Pishiriqlar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -1306,7 +1364,8 @@ export const initialRecipes: Recipe[] = [
       ",",
       "ying. Keks pishgach, issiq holda ustiga va yon atroflariga apelsinli qiyomni cho"
     ],
-    "kategoriya": "Kekslar va Mafinlar"
+    "kategoriya": "Kekslar va Mafinlar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -1329,7 +1388,8 @@ export const initialRecipes: Recipe[] = [
       "kib qolmasin).",
       "Qolipga quyib, 175°C pechda 25–35 daqiqa pishiring. 10 daqiqa sovutib, agdarib oling va shakar kukuni bilan bezating."
     ],
-    "kategoriya": "Kekslar va Mafinlar"
+    "kategoriya": "Kekslar va Mafinlar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -1355,7 +1415,8 @@ export const initialRecipes: Recipe[] = [
       "lguncha ko",
       ","
     ],
-    "kategoriya": "Pechenye va Biskvitlar"
+    "kategoriya": "Pechenye va Biskvitlar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -1376,7 +1437,8 @@ export const initialRecipes: Recipe[] = [
       "dan surting va dolchinli shakar aralashmasiga ikkala tarafini botirib oling.",
       "Tayyor vaflilarni ananas, mevalar hamda kokos qiyg"
     ],
-    "kategoriya": "Nonushta va Pishiriqlar"
+    "kategoriya": "Nonushta va Pishiriqlar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -1396,7 +1458,8 @@ export const initialRecipes: Recipe[] = [
       ",",
       "lguncha pishiring. Sim panjarada sovutib uzating."
     ],
-    "kategoriya": "Kekslar va Mafinlar"
+    "kategoriya": "Kekslar va Mafinlar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -1418,7 +1481,8 @@ export const initialRecipes: Recipe[] = [
       ",",
       "pirtirib glazur tayyorlang va keks ustidan quying."
     ],
-    "kategoriya": "Kekslar va Mafinlar"
+    "kategoriya": "Kekslar va Mafinlar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -1435,7 +1499,8 @@ export const initialRecipes: Recipe[] = [
       "Pishiriqlar, kekslar va shirinliklarga xushbo",
       "m berish uchun foydalaning. (Xona haroratida 1 oy saqlash mumkin)."
     ],
-    "kategoriya": "Kekslar va Mafinlar"
+    "kategoriya": "Kekslar va Mafinlar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -1458,7 +1523,8 @@ export const initialRecipes: Recipe[] = [
       ",",
       "lguncha pishiring."
     ],
-    "kategoriya": "Piroglar va Tartlar"
+    "kategoriya": "Piroglar va Tartlar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -1479,7 +1545,8 @@ export const initialRecipes: Recipe[] = [
       ",",
       "katlar va bodringli salat bilan birga torting."
     ],
-    "kategoriya": "Go'sht va Parranda Taomlari"
+    "kategoriya": "Go'sht va Parranda Taomlari",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -1501,7 +1568,8 @@ export const initialRecipes: Recipe[] = [
       "Muzlatgichda kamida 1 soat qotirib, so",
       "laklarga bo"
     ],
-    "kategoriya": "Shirinliklar"
+    "kategoriya": "Shirinliklar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -1523,7 +1591,8 @@ export const initialRecipes: Recipe[] = [
       ",",
       "yib, pechda pishloq eriguncha 5 daqiqa isiting. Ustiga qovurilgan piyoz qo"
     ],
-    "kategoriya": "Kekslar va Mafinlar"
+    "kategoriya": "Kekslar va Mafinlar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -1550,7 +1619,8 @@ export const initialRecipes: Recipe[] = [
       ",",
       "lguncha pishiring. Sim panjarada sovutib dasturxonga torting."
     ],
-    "kategoriya": "Piroglar va Tartlar"
+    "kategoriya": "Piroglar va Tartlar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -1571,7 +1641,8 @@ export const initialRecipes: Recipe[] = [
       "rtasi biroz yumshoq bo",
       "laklarga bo"
     ],
-    "kategoriya": "Shirinliklar"
+    "kategoriya": "Shirinliklar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -1593,7 +1664,8 @@ export const initialRecipes: Recipe[] = [
       "Issiq kremni korjga quying, ustiga meringa kremini tekis yoyib, sanchqi bilan cho",
       "lguncha pishiring."
     ],
-    "kategoriya": "Piroglar va Tartlar"
+    "kategoriya": "Piroglar va Tartlar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -1613,7 +1685,8 @@ export const initialRecipes: Recipe[] = [
       "Puddingni sovigan korjga quyib, 2 soat muzlatgichda qotiring.",
       "Dasturxonga tortish oldidan qaymoq va 2 osh qoshiq shakarni ko"
     ],
-    "kategoriya": "Piroglar va Tartlar"
+    "kategoriya": "Piroglar va Tartlar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -1633,7 +1706,8 @@ export const initialRecipes: Recipe[] = [
       ",",
       "liq qarsildoq tillarang bo"
     ],
-    "kategoriya": "Piroglar va Tartlar"
+    "kategoriya": "Piroglar va Tartlar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -1654,7 +1728,8 @@ export const initialRecipes: Recipe[] = [
       ",",
       "pirtirilgan qaymoq va banan bo"
     ],
-    "kategoriya": "Piroglar va Tartlar"
+    "kategoriya": "Piroglar va Tartlar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -1675,7 +1750,8 @@ export const initialRecipes: Recipe[] = [
       ",",
       "ichlari va kashnich seping."
     ],
-    "kategoriya": "Garnirlar va Sabzavotli Taomlar"
+    "kategoriya": "Garnirlar va Sabzavotli Taomlar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -1695,7 +1771,8 @@ export const initialRecipes: Recipe[] = [
       "Pishgan kartoshkalarni laganga tizib, ustiga asalli saryog",
       "li yog"
     ],
-    "kategoriya": "Garnirlar va Sabzavotli Taomlar"
+    "kategoriya": "Garnirlar va Sabzavotli Taomlar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -1714,7 +1791,8 @@ export const initialRecipes: Recipe[] = [
       "pirtirib rangli shakar kukuni tayyorlang.",
       "Sovigan pechenyelarni rangli shakar kukunlariga botirib oling."
     ],
-    "kategoriya": "Pechenye va Biskvitlar"
+    "kategoriya": "Pechenye va Biskvitlar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -1734,7 +1812,8 @@ export const initialRecipes: Recipe[] = [
       ",",
       ","
     ],
-    "kategoriya": "Pechenye va Biskvitlar"
+    "kategoriya": "Pechenye va Biskvitlar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -1752,7 +1831,8 @@ export const initialRecipes: Recipe[] = [
       "Limon sharbati, tuz va murch solib aralashtiring.",
       "Idishlarga pishgan guruchni solib, ustidan kartoshkali va nohotli taomni quying."
     ],
-    "kategoriya": "Garnirlar va Sabzavotli Taomlar"
+    "kategoriya": "Garnirlar va Sabzavotli Taomlar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -1770,7 +1850,8 @@ export const initialRecipes: Recipe[] = [
       "pirtiring. Maydalangan fundukni qo",
       ","
     ],
-    "kategoriya": "Piroglar va Tartlar"
+    "kategoriya": "Piroglar va Tartlar",
+    "holat": "nashr"
   },
   {
     "source": "MiniApp",
@@ -1790,7 +1871,8 @@ export const initialRecipes: Recipe[] = [
       "shib xamir holiga keltiring.",
       "Qolipga quyib, ustiga ajratilgan ziravor va 2 choy qoshiq shakar aralashmasini seping. 175°C pechda 60–70 daqiqa pishiring."
     ],
-    "kategoriya": "Kekslar va Mafinlar"
+    "kategoriya": "Kekslar va Mafinlar",
+    "holat": "nashr"
   }
 ];
 

@@ -423,7 +423,7 @@ const [customMinutesInput, setCustomMinutesInput] = useState<string>('20');
 
   // Matchmaking Algorithm (Ranks 100% full matches, missing 1, and all partial matches)
   const matchingResults = useMemo(() => {
-    const publishedRecipes = recipes.filter(r => r.holat === 'nashr');
+    const publishedRecipes = recipes.filter(r => r.holat !== 'qoralama');
     
     const fullMatch: { recipe: Recipe; missingNames: string[]; matchPercent: number }[] = [];
     const missingOne: { recipe: Recipe; missingNames: string[]; matchPercent: number }[] = [];
@@ -534,11 +534,11 @@ const [customMinutesInput, setCustomMinutesInput] = useState<string>('20');
 
   // Catalog Recipes with Folder Category filtering
   const catalogRecipes = useMemo(() => {
-    let published = recipes.filter(r => r.holat === 'nashr');
+    let published = recipes.filter(r => r.holat !== 'qoralama');
 
     if (selectedFolderCategory && selectedFolderCategory !== 'all') {
       published = published.filter(r => {
-        const cat = r.kategoriya || 'Milliy Quyuq Taomlar';
+        const cat = r.kategoriya || 'Milliy Taomlar';
         return cat.toLowerCase().trim() === selectedFolderCategory.toLowerCase().trim();
       });
     }
@@ -548,8 +548,8 @@ const [customMinutesInput, setCustomMinutesInput] = useState<string>('20');
     const q = searchQuery.toLowerCase().trim();
     return recipes.filter(r =>
       r.nomi.toLowerCase().includes(q) ||
-      r.tarif_matni.toLowerCase().includes(q) ||
-      r.masalliqlar_matni.toLowerCase().includes(q)
+      (r.tarif_matni && r.tarif_matni.toLowerCase().includes(q)) ||
+      (r.masalliqlar_matni && r.masalliqlar_matni.toLowerCase().includes(q))
     );
   }, [recipes, searchQuery, selectedFolderCategory]);
 
@@ -1943,7 +1943,7 @@ const [customMinutesInput, setCustomMinutesInput] = useState<string>('20');
             {/* Dish List */}
             <div className="flex-1 overflow-y-auto space-y-2 pr-1 no-scrollbar pt-1">
               {recipes
-                .filter(r => r.holat === 'nashr' && r.nomi.toLowerCase().includes(dishSearch.toLowerCase()))
+                .filter(r => r.holat !== 'qoralama' && r.nomi.toLowerCase().includes(dishSearch.toLowerCase()))
                 .map(r => {
                   const isSelected = selectedDishRecipeId === r.id;
                   return (

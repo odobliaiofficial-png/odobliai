@@ -277,9 +277,10 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
     const applyEdit = (r: Recipe) => {
       const edit = cachedEdits[r.id];
-      if (!edit) return r;
+      const base = { ...r, holat: r.holat || 'nashr' };
+      if (!edit) return base;
       return {
-        ...r,
+        ...base,
         rasm_url: edit.rasm_url || r.rasm_url,
         nomi: edit.nomi || r.nomi,
         kategoriya: edit.kategoriya || r.kategoriya,
@@ -296,10 +297,16 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     }
     
     // Create map of saved modified recipes
-    const savedMap = new Map(saved.map(r => [r.id, applyEdit(r)]));
+    const savedMap = new Map(saved.map(r => [r.id, r]));
     
-    // Merge: for every system recipe in initialRecipes, use saved edited version if exists
-    const merged = initialRecipes.map(initialRec => savedMap.get(initialRec.id) || applyEdit(initialRec));
+    // Merge: for every system recipe in initialRecipes, use initialRec with saved field overrides
+    const merged = initialRecipes.map(initialRec => {
+      const savedRec = savedMap.get(initialRec.id);
+      if (savedRec) {
+        return applyEdit({ ...initialRec, ...savedRec });
+      }
+      return applyEdit(initialRec);
+    });
     
     // Include any new custom recipes
     const initialIds = new Set(initialRecipes.map(r => r.id));
