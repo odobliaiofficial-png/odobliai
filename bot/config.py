@@ -28,7 +28,7 @@ class Config:
     
     # Webhook
     WEBHOOK_HOST: str = os.getenv("WEBHOOK_HOST", "")
-    WEBHOOK_PATH: str = f"/webhook/{BOT_TOKEN}"
+    WEBHOOK_PATH: str = f"/webhook/{os.getenv('WEBHOOK_SECRET', 'odobli_sec_wh_path')}"
     WEBHOOK_URL: str = f"{WEBHOOK_HOST}{WEBHOOK_PATH}"
     
     # Server
@@ -47,9 +47,10 @@ ADMIN_ID = config.ADMIN_ID
 SUPABASE_URL = config.SUPABASE_URL
 SUPABASE_KEY = config.SUPABASE_KEY
 MINI_APP_URL = config.WEBAPP_URL
-CARD_NUMBER = config.PAYMENT_CARD
-SUBSCRIPTION_PRICE_SOM = config.PREMIUM_PRICE
+CARD_NUMBER = config.CARD_NUMBER
+PAYMENT_CARD = config.PAYMENT_CARD
 PREMIUM_PRICE = config.PREMIUM_PRICE
+
 PREMIUM_DAYS = config.PREMIUM_DAYS
 TRIAL_DAYS = config.TRIAL_DAYS
-PAYMENT_CARD = config.PAYMENT_CARD
+SUBSCRIPTION_PRICE_SOM = config.PREMIUM_PRICE

@@ -147,7 +147,7 @@ export const uploadImageWithStatus = async (
   return {
     url: dataUrl,
     storageType: 'base64',
-    statusMessage: 'Base64 sifatida saqlandi (Lokal fallback)',
+    statusMessage: '⚠️ Bulutga ulanib bo\'lmadi, vaqtincha lokal keshda saqlandi',
     compressedSizeKB,
   };
 };
