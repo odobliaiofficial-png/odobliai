@@ -4,6 +4,23 @@ import { useApp } from '../context/AppContext';
 import { Lifehack, LifehackCategory } from '../types';
 import { Lightbulb, Sparkles, ChevronDown, ChevronUp, CheckCircle2, Folder, FolderOpen, ArrowLeft } from 'lucide-react';
 
+const Category3DIcon: React.FC<{ icon3d: string; emoji: string; alt: string }> = ({ icon3d, emoji, alt }) => {
+  const [failed, setFailed] = useState(false);
+
+  if (failed || !icon3d) {
+    return <span className="text-2xl filter drop-shadow-xs">{emoji}</span>;
+  }
+
+  return (
+    <img
+      src={icon3d}
+      alt={alt}
+      onError={() => setFailed(true)}
+      className="w-full h-full object-contain filter drop-shadow-xs"
+    />
+  );
+};
+
 export const Lifehacklar: React.FC = () => {
   const { lifehacks, t, selectedLifehackId, setSelectedLifehackId, categoryCovers, lifehackBannerConfig } = useApp();
   const [selectedCat, setSelectedCat] = useState<LifehackCategory | 'barchasi' | null>(null);
@@ -59,66 +76,67 @@ export const Lifehacklar: React.FC = () => {
       id: 'pishirish_asoslari',
       label: 'Pishirish asoslari',
       icon: '🍳',
-      icon3d: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Food/Cooking.png',
+      icon3d: 'https://cdn.jsdelivr.net/gh/Tarikul-Islam-Anik/Animated-Fluent-Emojis/Emojis/Food/Cooking.png',
       desc: "Sautéing, Boiling, Sous Vide, soda bilan go'shtni yumshatish hamda tarozida un tortish"
     },
     {
       id: 'oshxona_sirlari',
       label: 'Oshxona sirlari',
       icon: '🧂',
-      icon3d: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Food/Salt.png',
+      icon3d: 'https://cdn.jsdelivr.net/gh/Tarikul-Islam-Anik/Animated-Fluent-Emojis/Emojis/Food/Salt.png',
       desc: "Leidenfrost effekti, Toum, palov damlash, Tahini va yog'dagi piyoz filtri sirlari"
     },
     {
       id: 'mahsulotlarni_saqlash',
       label: 'Mahsulotlarni saqlash',
       icon: '🌿',
-      icon3d: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Food/Herb.png',
+      icon3d: 'https://cdn.jsdelivr.net/gh/Tarikul-Islam-Anik/Animated-Fluent-Emojis/Emojis/Food/Herb.png',
       desc: "Nonni saqlash, bulyon uchun paket, ko'katlarni guldasta va nam sochiqda saqlash"
     },
     {
       id: 'tezkor_usullar',
       label: 'Tezkor usullar',
       icon: '⚡',
-      icon3d: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Symbols/High%20Voltage.png',
+      icon3d: 'https://cdn.jsdelivr.net/gh/Tarikul-Islam-Anik/Animated-Fluent-Emojis/Emojis/Symbols/High%20Voltage.png',
       desc: "Buttermilk tayyorlash, archilgan sarimsoq va protivenda tezkor pishirish"
     },
     {
       id: 'masalliqlarni_tejash',
       label: 'Masalliqlarni tejash',
       icon: '♻️',
-      icon3d: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Money%20Bag.png',
+      icon3d: 'https://cdn.jsdelivr.net/gh/Tarikul-Islam-Anik/Animated-Fluent-Emojis/Emojis/Objects/Money%20Bag.png',
       desc: "Akvafaba, tuxum o'rinbosarlari (zig'ir urug'i, banan), feta suvi va sitrus zest"
     },
     {
       id: 'karving',
       label: 'Karving',
       icon: '🎨',
-      icon3d: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Activities/Artist%20Palette.png',
+      icon3d: 'https://cdn.jsdelivr.net/gh/Tarikul-Islam-Anik/Animated-Fluent-Emojis/Emojis/Activities/Artist%20Palette.png',
       desc: "Sabzavot va mevalardan bayramona bezaklar yasash"
     },
     {
       id: 'oyinchoq_yasash',
       label: "O'yinchoq yasash",
       icon: '🧸',
-      icon3d: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Teddy%20Bear.png',
+      icon3d: 'https://cdn.jsdelivr.net/gh/Tarikul-Islam-Anik/Animated-Fluent-Emojis/Emojis/Objects/Teddy%20Bear.png',
       desc: "Farzandlar bilan qiziqarli o'yinchoqlar yasash"
     },
     {
       id: 'uy_ishlari',
       label: 'Uy ishlari',
       icon: '🏠',
-      icon3d: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Travel%20and%20places/House.png',
+      icon3d: 'https://cdn.jsdelivr.net/gh/Tarikul-Islam-Anik/Animated-Fluent-Emojis/Emojis/Travel%20and%20places/House.png',
       desc: "Xonani tartiblash, tozalash va ro'zg'or sirlari"
     },
     {
       id: 'boshqa',
       label: 'Boshqa',
       icon: '📦',
-      icon3d: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Package.png',
+      icon3d: 'https://cdn.jsdelivr.net/gh/Tarikul-Islam-Anik/Animated-Fluent-Emojis/Emojis/Objects/Package.png',
       desc: "Boshqa turli xil foydali maslahatlar"
     },
   ];
+
 
   const getCategoryCount = (catId: LifehackCategory | 'barchasi') => {
     if (catId === 'barchasi') {
@@ -229,12 +247,9 @@ export const Lifehacklar: React.FC = () => {
                         />
                       ) : (
                         <div className="w-13 h-13 rounded-2xl bg-gradient-to-br from-pink-100/90 via-white to-rose-100/90 border border-pink-200/80 flex items-center justify-center p-2 flex-shrink-0 shadow-2xs group-hover:scale-110 transition-transform duration-300">
-                          <img
-                            src={cat.icon3d}
-                            alt={cat.label}
-                            className="w-full h-full object-contain filter drop-shadow-xs"
-                          />
+                          <Category3DIcon icon3d={cat.icon3d} emoji={cat.icon} alt={cat.label} />
                         </div>
+
                       )}
 
                       <div className="min-w-0 flex-1">
