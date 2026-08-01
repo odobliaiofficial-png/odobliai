@@ -30,6 +30,8 @@ export function latinToCyrillic(str: string): string {
     ['Suyuq Taomlar', 'Суюқ Таомлар'], ['suyuq taomlar', 'суюқ таомлар'],
     ['Quyuq Taomlar', 'Қуюқ Таомлар'], ['quyuq taomlar', 'қуюқ таомлар'],
     ['Retsept Filtrlari va Saralash', 'Рецепт Фильтрлари ва Саралаш'],
+    ['Pishirish asoslari', 'Пишириш асослари'], ['pishirish asoslari', 'пишириш асослари'],
+    ['Pishirish', 'Пишириш'], ['pishirish', 'пишириш'],
     ['Kategoriya (Papka)', 'Категория (Папка)'],
     ['Tayyorlash Vaqti', 'Тайёрлаш Вақти'],
     ['Qiyinlik Darajasi', 'Қийинлик Даражаси'],

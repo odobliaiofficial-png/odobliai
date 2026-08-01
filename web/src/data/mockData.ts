@@ -2227,6 +2227,99 @@ export const initialTales: Tale[] = [
 
 export const initialLifehacks: Lifehack[] = [
   {
+    id: 'lh_pishirish_texnikalari_1',
+    sarlavha: 'Asosiy pishirish texnikalari (1-qism)',
+    tavsif_matni: "Sautéing (Tez qovurish), Boiling (Kuchli qaynatish) va Simmering (Sekin qaynatish) qoidalari.",
+    rasm_url: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=600&q=80',
+    kategoriya: 'pishirish_asoslari',
+    bosqichlar: [
+      "Sautéing (Tez qovurish): Tova va yog'ni oldindan yaxshi qizdiring. Tovaga bir vaqtda juda ko'p masalliq solmang (suv chiqarib dimlanib qolmasligi uchun).",
+      "Boiling (Kuchli qaynatish - 100°C): Makaron (pasta) pishirishda suv shiddatli qaynab turishi kerak. Sabzavot va nozik masalliqlar uchun esa sekinroq qaynash ma'qul.",
+      "Simmering (Muntazam sekin qaynatish - 82-93°C): Suv yuzasida pufakchalar sekin qalqib chiqadi. Sho'rva, dimlama va quyuq souslarni pishirish uchun eng maqbul usul."
+    ],
+    holat: 'nashr'
+  },
+  {
+    id: 'lh_pishirish_texnikalari_2',
+    sarlavha: 'Suyuqlikda dimlash va Pechda pishirish',
+    tavsif_matni: "Braising (Sekin dimlash), Roasting (Duxovka) va Grilling (Grill): Qattiq go'sht va sabzavotlar siri.",
+    rasm_url: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80',
+    kategoriya: 'pishirish_asoslari',
+    bosqichlar: [
+      "Braising (Suyuqlikda sekin dimlash): Go'shtni avval yuqori olovda qizartirib oling, so'ngra ozgina bulyon quyib, 135-160°C da 2-4 soat past haroratda sekin pishiring.",
+      "Roasting (Duxovkada pishirish - 160-230°C): Yuqori harorat mahsulot yuzasida qarsillama qobiq hosil qiladi, pastroq harorat ichigacha bir xil pishiradi.",
+      "Grilling (Grillda pishirish): Grill panjarasi oldindan yaxshilab qizdiriladi. Yupqa go'shtlar tik issiqlikda, qalin bo'laklar esa yonlama issiqlikda pishiriladi."
+    ],
+    holat: 'nashr'
+  },
+  {
+    id: 'lh_pishirish_texnikalari_3',
+    sarlavha: 'Bug\'da va yog\'da pishirish texnikalari',
+    tavsif_matni: "Steaming (Bug'), Poaching (Iliq suv) va Deep Frying (Mo'l yog'): Vitaminlarni saqlash va qovurish.",
+    rasm_url: 'https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=600&q=80',
+    kategoriya: 'pishirish_asoslari',
+    bosqichlar: [
+      "Steaming (Bug'da pishirish): Masalliqni suvga botirmasdan bug' issiqligida pishirish. Vitamin, shira va natural ta'mni maksimal saqlab qoladi.",
+      "Poaching (70-82°C iliq suvda pishirish): Suv qaynamaydi va pufak hosil qilmaydi. Tuxum (pashot), baliq va nozik mevalar uchun qo'llaniladi.",
+      "Deep Frying (Mo'l yog'da qovurish - 175-190°C): Yog' haroratini nazorat qiling, masalliqni birdaniga to'ldirmang. Pishgach yog'i oqishi uchun sim panjaraga oling."
+    ],
+    holat: 'nashr'
+  },
+  {
+    id: 'lh_tam_qatlamlari',
+    sarlavha: 'Ta\'m qatlamlarini bosqichma-bosqich hosil qilish',
+    tavsif_matni: "Aromatiklar, Bloom (ziravorlarni qizdirish), Deglazing hamda taomga yakuniy nordonlik va ko'kat berish.",
+    rasm_url: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=600&q=80',
+    kategoriya: 'pishirish_asoslari',
+    bosqichlar: [
+      "Aromatiklar (Sabzavotli asos): Avval piyoz, sarimsoq, zanjabil va seldereyni yog'da yengil qovurib oling.",
+      "Ziravorlarni qizdirish (Bloom): Ziravorlarni issiq yog'ga solib, ularning efir yog'lari va xushbo'y hidini chiqarib oling.",
+      "Tova tubini eritish (Deglazing): Tova tubiga yopishib qolgan mazali qoldiqlarni (fond) ozgina bulyon yoki sharbat solib eritib, sousga aylantiring.",
+      "Yakuniy urg'u: Taom pishishi oxirida limon suvi yoki sirka kabi nordonlik hamda yangi uzilgan ko'katlar qo'shing."
+    ],
+    holat: 'nashr'
+  },
+  {
+    id: 'lh_tam_berish_sirlari',
+    sarlavha: 'Pishirish jarayonida ta\'m berish sirlari',
+    tavsif_matni: "Tuzdan to'g'ri foydalanish, Kislota va Yog' balansi hamda Umami ta'm chuqurligi.",
+    rasm_url: 'https://images.unsplash.com/photo-1532336414038-cf19250c5757?auto=format&fit=crop&w=600&q=80',
+    kategoriya: 'pishirish_asoslari',
+    bosqichlar: [
+      "Tuz: Eng muhim ziravor. Uni faqat pishirish oxirida emas, balki har bir bosqichda oz-ozdan solib borish kerak.",
+      "Doimiy tatib ko'rish: Pishirish jarayonida taomni tez-tez tatib ko'ring va ta'm muvozanatini tekshiring.",
+      "Kislota va Yog': Nordonlik (limon, sirka) taomga tetiklik beradi va og'ir yog'lilikni kesadi; yog' esa ta'mni og'izda yaxshi tarqatuvchi vositadir.",
+      "Umami: Soya sousi, qo'ziqorin, pomidor va Parmezan pishlog'i taomga chuqurlik va to'yingan ta'm bag'ishlaydi."
+    ],
+    holat: 'nashr'
+  },
+  {
+    id: 'lh_mise_en_place',
+    sarlavha: 'Mise en Place (Pishirish oldi tayyorgarligi)',
+    tavsif_matni: "Professional oshpazlar intizomi va oshxona ish unumdorligi (Workflow).",
+    rasm_url: 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=600&q=80',
+    kategoriya: 'pishirish_asoslari',
+    bosqichlar: [
+      "Mise en Place ('Hamma narsa o'z o'rnida'): Retseptni to'liq o'qing, barcha masalliqlarni yuvib, archib va o'lchab alohida idishlarga ajratib oling.",
+      "Ish yo'nalishi (Workflow): Chapdan o'ngga qarab tashkillashtiriladi: Masalliqni qabul qilish -> Tayyorlash -> Pishirish -> Suzish -> Tortish.",
+      "Xavfsizlik va tozalik: Xom go'sht ishlanadigan joyni sabzavotlar joyidan ayri tuting hamda pishirish davomida ish joyini tozalab boring."
+    ],
+    holat: 'nashr'
+  },
+  {
+    id: 'lh_professional_texnikalar',
+    sarlavha: 'Murakkab professional oshpazlik texnikalari',
+    tavsif_matni: "Sous Vide (Vakuum), Confit (Yog'da sekin) va Silliq tova souslari tayyorlash.",
+    rasm_url: 'https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=600&q=80',
+    kategoriya: 'pishirish_asoslari',
+    bosqichlar: [
+      "Sous Vide (Vakuumda pishirish): Masalliqni vakuumli xaltada harorati aniq belgilangan issiq suvli maxsus apparatda pishirish. Har bir nuqtasigacha bir xil pishadi.",
+      "Confit (Yog'da sekin pishirish): Masalliqni juda past haroratda (90-120°C) o'z yog'iga to'liq botirgan holda, soatlab yumshaguncha pishirish.",
+      "Deglazing va Tova souslari: Tova tubiga yopishgan ta'mlarni eritib, sekin qaynatib quyultirish va sovuq saryog' solib yaltiroq, silliq sous hosil qilish."
+    ],
+    holat: 'nashr'
+  },
+  {
     id: 'lh_atirgul',
     sarlavha: 'Sabzavotlardan atirgul qilish',
     tavsif_matni: "Sabzi va bodring bo'lakchalaridan bayramona dasturxon uchun go'zal atirgul shaklini yasash siri.",

@@ -99,7 +99,8 @@ export interface Tale {
   kategoriya?: string;
 }
 
-export type LifehackCategory = 'karving' | 'oyinchoq_yasash' | 'uy_ishlari' | 'boshqa';
+export type LifehackCategory = 'pishirish_asoslari' | 'karving' | 'oyinchoq_yasash' | 'uy_ishlari' | 'boshqa';
+
 
 export interface Lifehack {
   id: string;

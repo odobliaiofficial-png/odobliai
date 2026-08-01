@@ -18,11 +18,13 @@ export const Lifehacklar: React.FC = () => {
 
   const categories: { id: LifehackCategory | 'barchasi'; label: string }[] = [
     { id: 'barchasi', label: 'Barchasi' },
+    { id: 'pishirish_asoslari', label: 'Pishirish asoslari' },
     { id: 'karving', label: 'Karving' },
     { id: 'oyinchoq_yasash', label: "O'yinchoq yasash" },
     { id: 'uy_ishlari', label: 'Uy ishlari' },
     { id: 'boshqa', label: 'Boshqa' },
   ];
+
 
   const filteredHacks = lifehacks.filter(lh => {
     if (lh.holat !== 'nashr') return false;

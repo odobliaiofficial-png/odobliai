@@ -86,7 +86,8 @@ export const AdminPanel: React.FC = () => {
   const [lifehackTitle, setLifehackTitle] = useState('');
   const [lifehackDesc, setLifehackDesc] = useState('');
   const [lifehackImage, setLifehackImage] = useState('');
-  const [lifehackCategory, setLifehackCategory] = useState<'karving' | 'oyinchoq_yasash' | 'uy_ishlari' | 'boshqa'>('boshqa');
+  const [lifehackCategory, setLifehackCategory] = useState<'pishirish_asoslari' | 'karving' | 'oyinchoq_yasash' | 'uy_ishlari' | 'boshqa'>('pishirish_asoslari');
+
   const [riddleQuestion, setRiddleQuestion] = useState('');
   const [riddleAnswer, setRiddleAnswer] = useState('');
   const [riddleOptions, setRiddleOptions] = useState('');
