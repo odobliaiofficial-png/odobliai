@@ -19,11 +19,16 @@ export const Lifehacklar: React.FC = () => {
   const categories: { id: LifehackCategory | 'barchasi'; label: string }[] = [
     { id: 'barchasi', label: 'Barchasi' },
     { id: 'pishirish_asoslari', label: 'Pishirish asoslari' },
+    { id: 'oshxona_sirlari', label: 'Oshxona sirlari' },
+    { id: 'mahsulotlarni_saqlash', label: 'Mahsulotlarni saqlash' },
+    { id: 'tezkor_usullar', label: 'Tezkor usullar' },
+    { id: 'masalliqlarni_tejash', label: 'Masalliqlarni tejash' },
     { id: 'karving', label: 'Karving' },
     { id: 'oyinchoq_yasash', label: "O'yinchoq yasash" },
     { id: 'uy_ishlari', label: 'Uy ishlari' },
     { id: 'boshqa', label: 'Boshqa' },
   ];
+
 
 
   const filteredHacks = lifehacks.filter(lh => {

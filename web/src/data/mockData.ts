@@ -2227,6 +2227,77 @@ export const initialTales: Tale[] = [
 
 export const initialLifehacks: Lifehack[] = [
   {
+    id: 'lh_oshxona_sirlari_1',
+    sarlavha: 'Professional oshpazlik sirlari (1-qism)',
+    tavsif_matni: "Ziravorlarni qizdirib olish, Parmezan po'stlog'i, sousni sovuq sariyog' bilan yakunlash hamda limon suvi bilan tetiklashtirish.",
+    rasm_url: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=600&q=80',
+    kategoriya: 'oshxona_sirlari',
+    bosqichlar: [
+      "Ziravorlarni qizdirib olish: Ziravorlarni tuyish yoki taomga solishdan oldin quruq tovada biroz qizdirilsa, ularning efir yog'lari to'liq ochiladi.",
+      "Parmezan po'stlog'ini ishlatish: Parmezan (yoki qattiq pishloq) po'stlog'ini sho'rva va dimlamalarga solib pishirilsa, taomga chuqur va boy ta'm bag'ishlaydi.",
+      "Sousni sovuq sariyog' bilan yakunlash: Sous pishishi oxirida olovdan olinadi va unga sovuq sariyog' solib tez-tez aralashtirilsa, yaltiroq va silliq bo'ladi.",
+      "Nordonlik bilan taomni tetiklashtirish: Taom pishishi oxirida ozgina limon suvi yoki sirka tomizilsa, ta'm tiniqlashadi va yog'liligi kesiladi."
+    ],
+    holat: 'nashr'
+  },
+  {
+    id: 'lh_oshxona_sirlari_2',
+    sarlavha: 'Professional oshpazlik sirlari (2-qism)',
+    tavsif_matni: "Makaronni yuvmaslik, go'shtni yupqa kesish, qiymani tatib ko'rish, Roux va kotlet o'rtasini botiq qilish.",
+    rasm_url: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80',
+    kategoriya: 'oshxona_sirlari',
+    bosqichlar: [
+      "Makaronni suvda yuvmaslik: Pishgan makaron yuzasidagi kraxmal sousning makaronga yaxshi yopishishiga yordam beradi.",
+      "Go'shtni biroz muzlatib kesish: Go'shtni yupqa kesish uchun pichoq bilan kesishdan oldin muzlatgichning muzxonasida 20-30 daqiqa ushlab turing.",
+      "Qiymani avval tatib ko'rish: Kotlet qiymasining kichik bir bo'lagini tovada qovurib, tuzi va ziravorini to'g'rilab oling.",
+      "Roux va Sabzavotlarni blanching qilish: Un va sariyog'ni qovurib roux tayyorlab qo'ying; sabzavotlar yorqin rangi saqlanishi uchun qaynoq suvdan so'ng muzli suvga soling.",
+      "Kotlet o'rtasini botiq qilish: Gamburger kotletining o'rtasini barmog'ingiz bilan botiq qilsangiz, bir xil yassi pishadi."
+    ],
+    holat: 'nashr'
+  },
+  {
+    id: 'lh_mahsulotlarni_saqlash_1',
+    sarlavha: 'Mahsulotlarni saqlash layfhaklari',
+    tavsif_matni: "Bulyon uchun paket yig'ish, ko'katlarni guldasta kabi va nam sochiqda uzoq saqlash.",
+    rasm_url: 'https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&w=600&q=80',
+    kategoriya: 'mahsulotlarni_saqlash',
+    bosqichlar: [
+      "Bulyon uchun paket: Sabzavot po'choqlari, poyalari va suyaklarni muzlatgich paketiga yig'ib boring va mazali bulyon qaynatib oling.",
+      "Ko'katlarni guldasta kabi saqlash: Rayhon, kashnich, petrushkalarni poyasi bilan suvli stakanga solib saqlasangiz uzoq vaqt yangidek turadi.",
+      "Nam sochiq usuli: Ko'katlarni biroz namlangan qog'oz sochiqqa o'rab muzlatgichga qo'yish so'lishining oldini oladi.",
+      "Sana qo'yish: Muzlatgichga qo'yiladigan barcha idish va paketlarga tayyorlangan sanasini yozib qo'ying."
+    ],
+    holat: 'nashr'
+  },
+  {
+    id: 'lh_tezkor_usullar_1',
+    sarlavha: 'Ishni yengillashtiruvchi tezkor usullar',
+    tavsif_matni: "Archilgan sarimsoq, tayyor souslarni boyitish, protivenda pishirish va partiya bilan issiq ushlash.",
+    rasm_url: 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=600&q=80',
+    kategoriya: 'tezkor_usullar',
+    bosqichlar: [
+      "Archilgan sarimsoq: Pishiriladigan taomlar uchun oldindan archib qo'yilgan sarimsoqdan foydalanish vaqtni tejaydi.",
+      "Tayyor souslarni boyitish: Do'kondan olingan tayyor souslarga yangi ko'katlar, sariyog' yoki sarimsoq qo'shib ta'mini sezilarli yaxshilang.",
+      "Protivenda pishirish: Go'sht va sabzavotlarni bitta protivenga terib duxovkada pishirish idish-tovoq yuvishni kamaytiradi.",
+      "Partiya bilan pishirishda issiq ushlash: Katta hajmda kotlet yoki steyk qovurayotganda, pishganlarini duxovkada 120°C haroratda sersuv va issiq ushlang."
+    ],
+    holat: 'nashr'
+  },
+  {
+    id: 'lh_masalliqlarni_tejash_1',
+    sarlavha: 'Masalliqlarni tejash va qayta ishlatish',
+    tavsif_matni: "So'ligan ko'katlarni tiriltirish, Akvafaba (noxat suvi), Feta pishlog'i suvi va Sitrus po'stlog'i.",
+    rasm_url: 'https://images.unsplash.com/photo-1590779033100-9f60a05a013d?auto=format&fit=crop&w=600&q=80',
+    kategoriya: 'masalliqlarni_tejash',
+    bosqichlar: [
+      "So'ligan ko'katlarni tiriltirish: So'lib qolgan ko'katlarni muzli suvga 10-15 daqiqa solib qo'ysangiz qayta qarsillama va tetik holatga keladi.",
+      "Akvafaba (Aquafaba): Konservalangan noxat suvini tuxum oqi o'rnida ko'pirtirib, pishiriq va bezaklarda ishlatishingiz mumkin.",
+      "Feta pishlog'i suvi: Feta yoki brynza pishlog'i sho'r suvini to'kib tashlamay, makaron uchun sous tayyorlashda ishlatishingiz mumkin.",
+      "Sitrus po'stlog'i (Zest): Limon yoki apelsin sharbatini siqishdan oldin, uning xushbo'y po'stlog'ini qirib muzlatib qo'ying."
+    ],
+    holat: 'nashr'
+  },
+  {
     id: 'lh_pishirish_texnikalari_1',
     sarlavha: 'Asosiy pishirish texnikalari (1-qism)',
     tavsif_matni: "Sautéing (Tez qovurish), Boiling (Kuchli qaynatish) va Simmering (Sekin qaynatish) qoidalari.",

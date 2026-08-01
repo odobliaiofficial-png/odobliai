@@ -1194,6 +1194,10 @@ export const AdminPanel: React.FC = () => {
                   className="w-full px-3 py-2 border rounded-xl bg-white"
                 >
                   <option value="pishirish_asoslari">Pishirish asoslari</option>
+                  <option value="oshxona_sirlari">Oshxona sirlari</option>
+                  <option value="mahsulotlarni_saqlash">Mahsulotlarni saqlash</option>
+                  <option value="tezkor_usullar">Tezkor usullar</option>
+                  <option value="masalliqlarni_tejash">Masalliqlarni tejash</option>
                   <option value="karving">Karving</option>
                   <option value="oyinchoq_yasash">O'yinchoq yasash</option>
                   <option value="uy_ishlari">Uy ishlari</option>
