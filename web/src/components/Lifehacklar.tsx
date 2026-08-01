@@ -5,7 +5,7 @@ import { Lifehack, LifehackCategory } from '../types';
 import { Lightbulb, Sparkles, ChevronDown, ChevronUp, CheckCircle2, Folder, FolderOpen, ArrowLeft } from 'lucide-react';
 
 export const Lifehacklar: React.FC = () => {
-  const { lifehacks, t, selectedLifehackId, setSelectedLifehackId, categoryCovers } = useApp();
+  const { lifehacks, t, selectedLifehackId, setSelectedLifehackId, categoryCovers, lifehackBannerConfig } = useApp();
   const [selectedCat, setSelectedCat] = useState<LifehackCategory | 'barchasi' | null>(null);
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
@@ -19,6 +19,40 @@ export const Lifehacklar: React.FC = () => {
       setSelectedLifehackId(null);
     }
   }, [selectedLifehackId, lifehacks]);
+
+  // Telegram Native Back Button & Browser History Handling (1-step back to folder directory)
+  useEffect(() => {
+    const tg = (window as any).Telegram?.WebApp;
+    const backButton = tg?.BackButton;
+
+    if (selectedCat !== null) {
+      if (backButton) {
+        backButton.show();
+        const handleTelegramBack = () => {
+          setSelectedCat(null);
+        };
+        backButton.onClick(handleTelegramBack);
+
+        return () => {
+          backButton.offClick(handleTelegramBack);
+          backButton.hide();
+        };
+      }
+
+      window.history.pushState({ lifehackFolder: selectedCat }, '');
+      const handlePopState = () => {
+        setSelectedCat(null);
+      };
+      window.addEventListener('popstate', handlePopState);
+      return () => {
+        window.removeEventListener('popstate', handlePopState);
+      };
+    } else {
+      if (backButton) {
+        backButton.hide();
+      }
+    }
+  }, [selectedCat]);
 
   const categories: { id: LifehackCategory; label: string; icon: string; desc: string }[] = [
     { id: 'pishirish_asoslari', label: 'Pishirish asoslari', icon: '🍳', desc: "Sautéing, Boiling, Sous Vide, soda bilan go'shtni yumshatish hamda tarozida un tortish" },
@@ -63,23 +97,28 @@ export const Lifehacklar: React.FC = () => {
             exit={{ opacity: 0, y: -10 }}
             className="space-y-4"
           >
-            {/* Header Banner */}
-            <div className="card-burgundy-banner p-4 rounded-2xl flex items-center justify-between shadow-xs">
+            {/* Header Banner - Pink Vibrant Style */}
+            <div className="bg-gradient-to-r from-[#BE185D] via-[#DB2777] to-[#E11D48] p-4 rounded-2xl flex items-center justify-between shadow-md shadow-pink-500/20 border border-pink-400/30 text-white">
               <div>
                 <span className="badge-gold text-xs font-extrabold px-2.5 py-0.5 rounded-full inline-block mb-1">
-                  💡 {t("Foydali Maslahatlar")}
+                  {lifehackBannerConfig?.badge || "💡 Foydali Maslahatlar"}
                 </span>
                 <h2 className="text-base font-extrabold text-white tracking-tight leading-tight">
-                  {t("Oila & Ro'zg'or Lifehacklari")}
+                  {t(lifehackBannerConfig?.title || "Oila & Ro'zg'or Lifehacklari")}
                 </h2>
                 <p className="text-xs text-white/90 mt-1 max-w-[240px]">
-                  {t("Oshxona, hunarmandchilik va ro'zg'or papkalari")}
+                  {t(lifehackBannerConfig?.subtitle || "Oshxona, hunarmandchilik va ro'zg'or papkalari")}
                 </p>
               </div>
-              <div className="w-12 h-12 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center text-2xl shadow-xs">
-                📁
+              <div className="w-12 h-12 rounded-xl bg-white/20 border border-white/30 flex items-center justify-center text-2xl shadow-xs backdrop-blur-xs flex-shrink-0">
+                {lifehackBannerConfig?.icon_or_url && (lifehackBannerConfig.icon_or_url.startsWith('http') || lifehackBannerConfig.icon_or_url.startsWith('/') || lifehackBannerConfig.icon_or_url.startsWith('data:')) ? (
+                  <img src={lifehackBannerConfig.icon_or_url} alt="Banner" className="w-full h-full object-cover rounded-xl" />
+                ) : (
+                  <span>{lifehackBannerConfig?.icon_or_url || '📁'}</span>
+                )}
               </div>
             </div>
+
 
             {/* Barchasi All Folder Card */}
             <motion.div

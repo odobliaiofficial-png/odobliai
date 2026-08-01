@@ -57,9 +57,86 @@ export const AdminPanel: React.FC = () => {
     setActiveTab,
     bannerConfig,
     updateBannerConfig,
+    lifehackBannerConfig,
+    updateLifehackBannerConfig,
+    categoryCovers,
+    updateCategoryCover,
     isAdmin,
     t
   } = useApp();
+
+  // Lifehack Banner Form State
+  const [lifehackBannerBadgeInput, setLifehackBannerBadgeInput] = useState<string>(lifehackBannerConfig?.badge || '💡 Foydali Maslahatlar');
+  const [lifehackBannerTitleInput, setLifehackBannerTitleInput] = useState<string>(lifehackBannerConfig?.title || "Oila & Ro'zg'or Lifehacklari");
+  const [lifehackBannerSubtitleInput, setLifehackBannerSubtitleInput] = useState<string>(lifehackBannerConfig?.subtitle || "Oshxona, hunarmandchilik va ro'zg'or papkalari");
+  const [lifehackBannerIconInput, setLifehackBannerIconInput] = useState<string>(lifehackBannerConfig?.icon_or_url || '📁');
+  const [isUploadingLifehackBanner, setIsUploadingLifehackBanner] = useState<boolean>(false);
+  const [lifehackBannerSuccessToast, setLifehackBannerSuccessToast] = useState<string | null>(null);
+
+  // Category Folder Covers Editor State
+  const [selectedCategoryForCover, setSelectedCategoryForCover] = useState<string>('pishirish_asoslari');
+  const [categoryCoverInput, setCategoryCoverInput] = useState<string>(categoryCovers?.[selectedCategoryForCover] || '');
+  const [isUploadingCategoryCover, setIsUploadingCategoryCover] = useState<boolean>(false);
+  const [categoryCoverSuccessToast, setCategoryCoverSuccessToast] = useState<string | null>(null);
+
+  useEffect(() => {
+    setCategoryCoverInput(categoryCovers?.[selectedCategoryForCover] || '');
+  }, [selectedCategoryForCover, categoryCovers]);
+
+  const processLifehackBannerFile = async (file: File) => {
+    try {
+      setIsUploadingLifehackBanner(true);
+      const compressed = await compressImage(file, 1600, 0.8);
+      const result = await uploadImageWithStatus(compressed, `lh_banner_${Date.now()}`);
+      setLifehackBannerIconInput(result.url);
+      setLifehackBannerSuccessToast(`✅ ${result.statusMessage} (${result.compressedSizeKB} KB)`);
+      setTimeout(() => setLifehackBannerSuccessToast(null), 4000);
+    } catch (err) {
+      alert("Rasmni yuklashda xatolik yuz berdi");
+    } finally {
+      setIsUploadingLifehackBanner(false);
+    }
+  };
+
+  const handleLifehackBannerImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) processLifehackBannerFile(file);
+  };
+
+  const handleSaveLifehackBanner = (e: React.FormEvent) => {
+    e.preventDefault();
+    updateLifehackBannerConfig({
+      badge: lifehackBannerBadgeInput.trim(),
+      title: lifehackBannerTitleInput.trim(),
+      subtitle: lifehackBannerSubtitleInput.trim(),
+      icon_or_url: lifehackBannerIconInput.trim(),
+    });
+    setLifehackBannerSuccessToast("✅ Lifehacklar banneri muvaffaqiyatli saqlandi!");
+    setTimeout(() => setLifehackBannerSuccessToast(null), 4000);
+  };
+
+  const processCategoryCoverFile = async (file: File) => {
+    try {
+      setIsUploadingCategoryCover(true);
+      const compressed = await compressImage(file, 800, 0.85);
+      const result = await uploadImageWithStatus(compressed, `cat_cover_${selectedCategoryForCover}_${Date.now()}`);
+      setCategoryCoverInput(result.url);
+      updateCategoryCover(selectedCategoryForCover, result.url);
+      setCategoryCoverSuccessToast(`✅ ${result.statusMessage} (${result.compressedSizeKB} KB)`);
+      setTimeout(() => setCategoryCoverSuccessToast(null), 4000);
+    } catch (err) {
+      alert("Papka muqovasini yuklashda xatolik");
+    } finally {
+      setIsUploadingCategoryCover(false);
+    }
+  };
+
+  const handleSaveCategoryCover = (e: React.FormEvent) => {
+    e.preventDefault();
+    updateCategoryCover(selectedCategoryForCover, categoryCoverInput.trim());
+    setCategoryCoverSuccessToast("✅ Papka muqovasi saqlandi!");
+    setTimeout(() => setCategoryCoverSuccessToast(null), 4000);
+  };
 
   // Sub-tabs navigation
   const [activeAdminTab, setActiveAdminTab] = useState<'recipes' | 'banner' | 'lifehacks' | 'users' | 'dashboard'>('recipes');
@@ -712,6 +789,222 @@ export const AdminPanel: React.FC = () => {
             </button>
 
           </form>
+
+          {/* SECTION LIFEHACKS BANNER MANAGEMENT */}
+          <div className="bg-white p-5 rounded-3xl border border-[#EFE8DC] shadow-sm space-y-5 mt-6">
+            <div className="flex items-center justify-between border-b border-pink-100 pb-3">
+              <div>
+                <h3 className="text-base font-black text-[#2E121D] flex items-center gap-2">
+                  <Sparkles className="w-5 h-5 text-[#DB2777]" />
+                  <span>💡 Lifehacklar Bo'limi Banner Sozlamalari</span>
+                </h3>
+                <p className="text-xs text-stone-500 mt-0.5">
+                  Lifehacklar bo'limi tepadagi pushti bannerining matn va rasm/ikonkalarini yangilang.
+                </p>
+              </div>
+            </div>
+
+            {lifehackBannerSuccessToast && (
+              <div className="p-3 bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold rounded-2xl animate-in fade-in">
+                {lifehackBannerSuccessToast}
+              </div>
+            )}
+
+            {/* Live Lifehack Banner Preview */}
+            <div className="space-y-2">
+              <span className="text-xs font-black text-stone-700 uppercase tracking-wider">
+                📱 Lifehacklar Sahifasidagi Ko'rinishi (Live Preview):
+              </span>
+              <div className="bg-gradient-to-r from-[#BE185D] via-[#DB2777] to-[#E11D48] p-4 rounded-2xl flex items-center justify-between shadow-md shadow-pink-500/20 border border-pink-400/30 text-white">
+                <div>
+                  <span className="badge-gold text-xs font-extrabold px-2.5 py-0.5 rounded-full inline-block mb-1">
+                    {lifehackBannerBadgeInput || "💡 Foydali Maslahatlar"}
+                  </span>
+                  <h2 className="text-base font-extrabold text-white tracking-tight leading-tight">
+                    {lifehackBannerTitleInput || "Oila & Ro'zg'or Lifehacklari"}
+                  </h2>
+                  <p className="text-xs text-white/90 mt-1 max-w-[240px]">
+                    {lifehackBannerSubtitleInput || "Oshxona, hunarmandchilik va ro'zg'or papkalari"}
+                  </p>
+                </div>
+                <div className="w-12 h-12 rounded-xl bg-white/20 border border-white/30 flex items-center justify-center text-2xl shadow-xs backdrop-blur-xs flex-shrink-0">
+                  {lifehackBannerIconInput && (lifehackBannerIconInput.startsWith('http') || lifehackBannerIconInput.startsWith('/') || lifehackBannerIconInput.startsWith('data:')) ? (
+                    <img src={lifehackBannerIconInput} alt="Icon" className="w-full h-full object-cover rounded-xl" />
+                  ) : (
+                    <span>{lifehackBannerIconInput || '📁'}</span>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            <form onSubmit={handleSaveLifehackBanner} className="space-y-4 pt-2">
+              {/* Image upload field */}
+              <div className="bg-pink-50/50 p-4 rounded-2xl border border-pink-100 space-y-2">
+                <label className="text-xs font-black text-[#2E121D] flex items-center gap-1.5">
+                  <Upload className="w-4 h-4 text-[#DB2777]" />
+                  <span>Banner Ikonkasi yoki Rasm URL:</span>
+                </label>
+                
+                <div className="flex items-center gap-3">
+                  <label className="px-4 py-2.5 bg-[#DB2777] hover:bg-[#BE185D] text-white text-xs font-bold rounded-xl cursor-pointer transition-colors shadow-xs flex items-center gap-1.5">
+                    <Upload className="w-4 h-4" />
+                    <span>{isUploadingLifehackBanner ? "Yuklanmoqda..." : "Galareyadan Rasm Tanlash"}</span>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={handleLifehackBannerImageUpload}
+                      disabled={isUploadingLifehackBanner}
+                      className="hidden"
+                    />
+                  </label>
+
+                  <button
+                    type="button"
+                    onClick={handleClipboardButtonClick(setLifehackBannerIconInput)}
+                    className="px-3.5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-xl transition-colors shadow-xs flex items-center gap-1.5"
+                  >
+                    <span>📋 Joylash (Paste)</span>
+                  </button>
+                </div>
+
+                <input
+                  type="text"
+                  value={lifehackBannerIconInput}
+                  onChange={e => setLifehackBannerIconInput(e.target.value)}
+                  placeholder="URL yoki Emoji (masalan: 📁, 💡)"
+                  className="w-full text-xs p-2.5 rounded-xl border border-pink-200 bg-white focus:outline-none focus:border-[#DB2777]"
+                />
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                <div className="space-y-1">
+                  <label className="text-xs font-bold text-stone-700">Beyj (Badge) Matni:</label>
+                  <input
+                    type="text"
+                    value={lifehackBannerBadgeInput}
+                    onChange={e => setLifehackBannerBadgeInput(e.target.value)}
+                    className="w-full text-xs p-2.5 rounded-xl border border-stone-200 focus:outline-none focus:border-[#DB2777]"
+                  />
+                </div>
+
+                <div className="space-y-1">
+                  <label className="text-xs font-bold text-stone-700">Sarlavha (Title):</label>
+                  <input
+                    type="text"
+                    value={lifehackBannerTitleInput}
+                    onChange={e => setLifehackBannerTitleInput(e.target.value)}
+                    className="w-full text-xs p-2.5 rounded-xl border border-stone-200 focus:outline-none focus:border-[#DB2777]"
+                  />
+                </div>
+
+                <div className="space-y-1">
+                  <label className="text-xs font-bold text-stone-700">Kichik Tavsif (Subtitle):</label>
+                  <input
+                    type="text"
+                    value={lifehackBannerSubtitleInput}
+                    onChange={e => setLifehackBannerSubtitleInput(e.target.value)}
+                    className="w-full text-xs p-2.5 rounded-xl border border-stone-200 focus:outline-none focus:border-[#DB2777]"
+                  />
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                className="w-full py-3 bg-gradient-to-r from-[#DB2777] to-[#F472B6] hover:from-[#BE185D] hover:to-[#DB2777] text-white text-xs font-black rounded-2xl shadow-md transition-all active:scale-98"
+              >
+                ✅ Lifehack Bannerini Saqlash
+              </button>
+            </form>
+          </div>
+
+          {/* SECTION CATEGORY FOLDER COVERS EDITOR */}
+          <div className="bg-white p-5 rounded-3xl border border-[#EFE8DC] shadow-sm space-y-5 mt-6">
+            <div className="flex items-center justify-between border-b border-pink-100 pb-3">
+              <div>
+                <h3 className="text-base font-black text-[#2E121D] flex items-center gap-2">
+                  <Folder className="w-5 h-5 text-[#DB2777]" />
+                  <span>📁 Papkalar Kategoriyalari Muqovasi (Covers Editor)</span>
+                </h3>
+                <p className="text-xs text-stone-500 mt-0.5">
+                  Har bir kategoriya papkasiga galareyadan rasm yuklang yoki emoji qo'ying (R2 ga saqlanadi).
+                </p>
+              </div>
+            </div>
+
+            {categoryCoverSuccessToast && (
+              <div className="p-3 bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold rounded-2xl animate-in fade-in">
+                {categoryCoverSuccessToast}
+              </div>
+            )}
+
+            <form onSubmit={handleSaveCategoryCover} className="space-y-4 pt-2">
+              <div className="space-y-1">
+                <label className="text-xs font-bold text-stone-700">Kategoriyani Tanlang:</label>
+                <select
+                  value={selectedCategoryForCover}
+                  onChange={e => setSelectedCategoryForCover(e.target.value)}
+                  className="w-full text-xs p-2.5 rounded-xl border border-stone-200 bg-white focus:outline-none focus:border-[#DB2777] font-bold"
+                >
+                  <option value="pishirish_asoslari">🍳 Pishirish asoslari</option>
+                  <option value="oshxona_sirlari">🧂 Oshxona sirlari</option>
+                  <option value="mahsulotlarni_saqlash">🌿 Mahsulotlarni saqlash</option>
+                  <option value="tezkor_usullar">⚡ Tezkor usullar</option>
+                  <option value="masalliqlarni_tejash">♻️ Masalliqlarni tejash</option>
+                  <option value="karving">🎨 Karving</option>
+                  <option value="oyinchoq_yasash">🧸 O'yinchoq yasash</option>
+                  <option value="uy_ishlari">🏠 Uy ishlari</option>
+                  <option value="boshqa">📦 Boshqa</option>
+                </select>
+              </div>
+
+              <div className="bg-pink-50/50 p-4 rounded-2xl border border-pink-100 space-y-2">
+                <label className="text-xs font-black text-[#2E121D] flex items-center gap-1.5">
+                  <Upload className="w-4 h-4 text-[#DB2777]" />
+                  <span>Papka Muqovasi (Rasm URL yoki Emoji):</span>
+                </label>
+                
+                <div className="flex items-center gap-3">
+                  <label className="px-4 py-2.5 bg-[#DB2777] hover:bg-[#BE185D] text-white text-xs font-bold rounded-xl cursor-pointer transition-colors shadow-xs flex items-center gap-1.5">
+                    <Upload className="w-4 h-4" />
+                    <span>{isUploadingCategoryCover ? "Yuklanmoqda..." : "Galareyadan Rasm Yuklash"}</span>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => {
+                        const file = e.target.files?.[0];
+                        if (file) processCategoryCoverFile(file);
+                      }}
+                      disabled={isUploadingCategoryCover}
+                      className="hidden"
+                    />
+                  </label>
+
+                  <button
+                    type="button"
+                    onClick={handleClipboardButtonClick(setCategoryCoverInput)}
+                    className="px-3.5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-xl transition-colors shadow-xs flex items-center gap-1.5"
+                  >
+                    <span>📋 Joylash (Paste)</span>
+                  </button>
+                </div>
+
+                <input
+                  type="text"
+                  value={categoryCoverInput}
+                  onChange={e => setCategoryCoverInput(e.target.value)}
+                  placeholder="https://... yoki 🍳"
+                  className="w-full text-xs p-2.5 rounded-xl border border-pink-200 bg-white focus:outline-none focus:border-[#DB2777]"
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="w-full py-3 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white text-xs font-black rounded-2xl shadow-md transition-all active:scale-98"
+              >
+                ✅ Papka Muqovasini Saqlash
+              </button>
+            </form>
+          </div>
         </div>
       )}
 
@@ -1186,6 +1479,7 @@ export const AdminPanel: React.FC = () => {
                   className="w-full px-3 py-2 border rounded-xl"
                 />
               </div>
+
               <div>
                 <label className="font-bold text-[#2D2A26] block mb-1">Kategoriya</label>
                 <select
@@ -1204,6 +1498,7 @@ export const AdminPanel: React.FC = () => {
                   <option value="boshqa">Boshqa</option>
                 </select>
               </div>
+
               <div>
                 <label className="font-bold text-[#2D2A26] block mb-1">Maslahat matni</label>
                 <textarea
@@ -1213,14 +1508,49 @@ export const AdminPanel: React.FC = () => {
                   className="w-full px-3 py-2 border rounded-xl"
                 />
               </div>
-              <div>
-                <label className="font-bold text-[#2D2A26] block mb-1">Rasm URL yoki Emoji (ixtiyoriy)</label>
+
+              <div className="bg-pink-50/50 p-3 rounded-2xl border border-pink-100 space-y-2">
+                <label className="font-bold text-[#2D2A26] block">Rasm URL yoki Emoji (ixtiyoriy)</label>
+                
+                <div className="flex items-center gap-2">
+                  <label className="px-3 py-2 bg-[#DB2777] hover:bg-[#BE185D] text-white text-[11px] font-bold rounded-xl cursor-pointer transition-colors shadow-xs flex items-center gap-1">
+                    <Upload className="w-3.5 h-3.5" />
+                    <span>Galareyadan Yuklash</span>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={async (e) => {
+                        const file = e.target.files?.[0];
+                        if (file) {
+                          try {
+                            const compressed = await compressImage(file, 1200, 0.8);
+                            const result = await uploadImageWithStatus(compressed, `lh_${Date.now()}`);
+                            setLifehackImage(result.url);
+                            alert(`✅ ${result.statusMessage}`);
+                          } catch {
+                            alert("Rasmni yuklashda xatolik");
+                          }
+                        }
+                      }}
+                      className="hidden"
+                    />
+                  </label>
+
+                  <button
+                    type="button"
+                    onClick={handleClipboardButtonClick(setLifehackImage)}
+                    className="px-3 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-[11px] font-bold rounded-xl transition-colors shadow-xs flex items-center gap-1"
+                  >
+                    <span>📋 Joylash</span>
+                  </button>
+                </div>
+
                 <input
                   type="text"
                   placeholder="https://... yoki 🍳"
                   value={lifehackImage}
                   onChange={e => setLifehackImage(e.target.value)}
-                  className="w-full px-3 py-2 border rounded-xl"
+                  className="w-full px-3 py-2 border rounded-xl bg-white"
                 />
               </div>
 

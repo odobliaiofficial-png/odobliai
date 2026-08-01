@@ -154,7 +154,26 @@ interface AppContextType {
   // App Banner Config (21:9 Hero Banner)
   bannerConfig: BannerConfig;
   updateBannerConfig: (config: Partial<BannerConfig>) => void;
+
+  // Lifehack Banner Config
+  lifehackBannerConfig: LifehackBannerConfig;
+  updateLifehackBannerConfig: (config: Partial<LifehackBannerConfig>) => void;
 }
+
+export interface LifehackBannerConfig {
+  badge: string;
+  title: string;
+  subtitle: string;
+  icon_or_url: string;
+}
+
+export const defaultLifehackBannerConfig: LifehackBannerConfig = {
+  badge: '💡 Foydali Maslahatlar',
+  title: "Oila & Ro'zg'or Lifehacklari",
+  subtitle: "Oshxona, hunarmandchilik va ro'zg'or papkalari",
+  icon_or_url: '📁'
+};
+
 
 
 const defaultBannerConfig: BannerConfig = {
@@ -548,6 +567,46 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       return updated;
     });
   };
+
+  const [lifehackBannerConfig, setLifehackBannerConfig] = useState<LifehackBannerConfig>(() => {
+    const saved = loadStorage<LifehackBannerConfig>('lifehack_banner_config', defaultLifehackBannerConfig);
+    return saved && typeof saved === 'object' ? { ...defaultLifehackBannerConfig, ...saved } : defaultLifehackBannerConfig;
+  });
+
+  useEffect(() => {
+    saveStorage('lifehack_banner_config', lifehackBannerConfig);
+  }, [lifehackBannerConfig]);
+
+  useEffect(() => {
+    supabase.from('recipe_edits').select('*').eq('recipe_id', 'app_lifehack_banner_config').single().then(({ data }) => {
+      if (data && data.tarif_matni) {
+        try {
+          const parsed = JSON.parse(data.tarif_matni);
+          if (parsed && typeof parsed === 'object') {
+            setLifehackBannerConfig(prev => ({ ...defaultLifehackBannerConfig, ...prev, ...parsed }));
+          }
+        } catch (e) {}
+      }
+    });
+  }, []);
+
+  const updateLifehackBannerConfig = (config: Partial<LifehackBannerConfig>) => {
+    setLifehackBannerConfig(prev => {
+      const updated = { ...prev, ...config };
+      saveStorage('lifehack_banner_config', updated);
+      supabase.from('recipe_edits').upsert({
+        recipe_id: 'app_lifehack_banner_config',
+        nomi: 'Lifehack Banner Config',
+        tarif_matni: JSON.stringify(updated),
+        rasm_url: updated.icon_or_url || '',
+        updated_at: new Date().toISOString(),
+      }, { onConflict: 'recipe_id' }).then(({ error }) => {
+        if (error) console.warn('Supabase lifehack banner sync error:', error.message);
+      });
+      return updated;
+    });
+  };
+
 
   const [tales, setTales] = useState<Tale[]>(() => {
     const saved = loadStorage<Tale[]>('tales', initialTales);
@@ -1185,6 +1244,8 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         resetPazandaFilters,
         bannerConfig,
         updateBannerConfig,
+        lifehackBannerConfig,
+        updateLifehackBannerConfig,
         selectedRecipeModal,
         setSelectedRecipeModal,
         openRecipeModal,
