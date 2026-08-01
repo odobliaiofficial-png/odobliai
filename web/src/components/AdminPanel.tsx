@@ -1193,6 +1193,7 @@ export const AdminPanel: React.FC = () => {
                   onChange={e => setLifehackCategory(e.target.value as any)}
                   className="w-full px-3 py-2 border rounded-xl bg-white"
                 >
+                  <option value="pishirish_asoslari">Pishirish asoslari</option>
                   <option value="karving">Karving</option>
                   <option value="oyinchoq_yasash">O'yinchoq yasash</option>
                   <option value="uy_ishlari">Uy ishlari</option>

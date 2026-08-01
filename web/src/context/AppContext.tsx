@@ -551,12 +551,20 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   const [tales, setTales] = useState<Tale[]>(() => {
     const saved = loadStorage<Tale[]>('tales', initialTales);
-    return Array.isArray(saved) && saved.length > 0 ? saved : initialTales;
+    if (!Array.isArray(saved) || saved.length === 0) return initialTales;
+    const existingIds = new Set(saved.map(item => item.id));
+    const missing = initialTales.filter(item => !existingIds.has(item.id));
+    return [...missing, ...saved];
   });
+
   const [lifehacks, setLifehacks] = useState<Lifehack[]>(() => {
     const saved = loadStorage<Lifehack[]>('lifehacks', initialLifehacks);
-    return Array.isArray(saved) && saved.length > 0 ? saved : initialLifehacks;
+    if (!Array.isArray(saved) || saved.length === 0) return initialLifehacks;
+    const existingIds = new Set(saved.map(item => item.id));
+    const missing = initialLifehacks.filter(item => !existingIds.has(item.id));
+    return [...missing, ...saved];
   });
+
   const [riddles, setRiddles] = useState<Riddle[]>(() => {
     const saved = loadStorage<Riddle[]>('riddles', initialRiddles);
     return Array.isArray(saved) && saved.length > 0 ? saved : initialRiddles;

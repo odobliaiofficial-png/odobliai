@@ -90,13 +90,20 @@ export const Lifehacklar: React.FC = () => {
               className="card-pink p-3.5 rounded-2xl hover:border-[#DB2777] transition-all cursor-pointer select-none active:bg-pink-50/50"
             >
               <div className="flex gap-3 items-start">
-                <img
-                  src={lh.rasm_url}
-                  alt={lh.sarlavha}
-                  referrerPolicy="no-referrer"
-                  loading="lazy"
-                  className="w-16 h-16 object-cover rounded-xl flex-shrink-0 shadow-2xs border border-pink-100"
-                />
+                {lh.rasm_url && (lh.rasm_url.startsWith('http') || lh.rasm_url.startsWith('/') || lh.rasm_url.startsWith('data:')) ? (
+                  <img
+                    src={lh.rasm_url}
+                    alt={lh.sarlavha}
+                    referrerPolicy="no-referrer"
+                    loading="lazy"
+                    className="w-16 h-16 object-cover rounded-xl flex-shrink-0 shadow-2xs border border-pink-100"
+                  />
+                ) : (
+                  <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-pink-100 via-rose-50 to-pink-200 border border-pink-200 flex items-center justify-center text-3xl shrink-0 shadow-2xs">
+                    {lh.rasm_url || '💡'}
+                  </div>
+                )}
+
                 <div className="flex-1 min-w-0">
                   <span className="text-[11px] font-extrabold text-[#DB2777] bg-pink-100 px-2 py-0.5 rounded-md border border-pink-200 uppercase">
                     {t(lh.kategoriya)}
