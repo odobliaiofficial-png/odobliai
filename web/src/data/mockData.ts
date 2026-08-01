@@ -1897,8 +1897,203 @@ export const initialRecipes: Recipe[] = [
     ],
     holat: 'nashr',
     required_ingredient_ids: ['ing_qovun', 'ing_noxat', 'ing_pishloq', 'ing_limon']
+  },
+  {
+    id: 'rec_hd_112_avocado_peanut_butter_brownies',
+    nomi: "Avokado va Yer-yong'oq Pishlog'li Brauni",
+    tayyorlash_vaqti_daq: 45,
+    qiyinlik: 'oson',
+    kategoriya: 'Pechenye va Biskvitlar',
+    rasm_url: '🥑',
+    tarif_matni: "Avokado, yer-yong'oq pastasi, kakao va suli unidan tayyorlanadigan tabiiy shirin va parhezbop brauni.",
+    masalliqlar_matni: "2 dona avokado\n2 dona tuxum (biroz ko'pirtirilgan)\n30 ml kokos yog'i (eritilgan)\n120 ml klyon siropi (yoki asal)\n1 choy qoshiq vanil\n30 g vanilli protein kukuni (yoki qatqaloq un)\n60 g suli uni yoki bodom uni\n25 g kakao kukuni\nYarim choy qoshiq qabartma kukun (Razrixlitel)\nChorak choy qoshiq tuz\n30 g yer-yong'oq pastasi (peanut butter)",
+    korsatmalari: [
+      "Pechni 175°C ga qizdiring. Pishirish qolipiga yog' surting.",
+      "Chuqur idishda avokado, tuxum, kokos yog'i, klyon siropi va vanilni mikserda silliq bo'lguncha ko'pirtiring.",
+      "Alohida idishda suli uni, protein kukuni, kakao, qabartma kukun (Razrixlitel) va tuzni aralashtiring.",
+      "Suyuq va quruq masalliqlarni birlashtirib yumshoq xamir qoring va qolipga quying.",
+      "Ustiga yer-yong'oq pastasidan tomizib, pichoq bilan aralashtirib naqsh hosil qiling.",
+      "175°C pechda 30–35 daqiqa pishiring."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_avokado', 'ing_tuxum', 'ing_kakao', 'ing_un', 'ing_bodom']
+  },
+  {
+    id: 'rec_hd_113_potato_mustard_greens_tart',
+    nomi: 'Kartoshka va Xardal Bargli Tart',
+    tayyorlash_vaqti_daq: 70,
+    qiyinlik: 'orta',
+    kategoriya: 'Piroglar va Tartlar',
+    rasm_url: '🥔',
+    tarif_matni: "Qat-kat filo xamiri tubida ingichka kartoshka parraklari, xardal barglari (yoki ispanoq), echki pishlog'i va tuxumli sous.",
+    masalliqlar_matni: "4 varaq qat-kat xamir (filo xamiri)\n1 dona katta kartoshka (ingichka parrak qilingan)\n120 ml qatiq (yoki buttermilk)\nTuz va qora murch\n15 ml o'simlik yog'i\n1 dona piyoz (to'g'ralgan)\n150 g xardal barglari (yoki ispanoq)\n2 dona tuxum + 3 dona tuxum oqi\n120 ml yog'siz sut\n2 choy qoshiq timyan\n60 g echki pishlog'i (yoki brynza/feta)",
+    korsatmalari: [
+      "Pechni 190°C ga qizdiring. Tart qolipiga filo xamirini yoying.",
+      "Idishda ingichka kesilgan kartoshkalarni qatiq, tuz va murch bilan aralashtiring.",
+      "Tovada yog'ni qizdirib, piyozni 2 daqiqa qovuring. Xardal barglarini solib, 5 daqiqa yumshaguncha qovuring.",
+      "Qolip tubiga kartoshka parraklarining yarmini va ko'katlarning yarmini tizib chiqing. Qolgan kartoshka va ko'katlarni ikkinchi qatlam qilib soling.",
+      "Idishda tuxumlar, tuxum oqlari, sut, timyan, tuz va murch ko'pirtirilib, kartoshkalar ustidan quyiladi. Ustiga pishloq bo'laklari solinadi.",
+      "190°C pechda 45–60 daqiqa kartoshkalar pishguncha pishiring. 15 daqiqa sovutib kasing."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_kartoshka', 'ing_piyoz', 'ing_ismaloq', 'ing_tuxum', 'ing_sut', 'ing_pishloq']
+  },
+  {
+    id: 'rec_hd_114_buddha_bowl_sweet_potato',
+    nomi: 'Shirin Kartoshka va Nohotli Budda Bouli',
+    tayyorlash_vaqti_daq: 45,
+    qiyinlik: 'orta',
+    kategoriya: 'Garnirlar va Sabzavotli Taomlar',
+    rasm_url: '🥗',
+    tarif_matni: "Pechda pishirilgan shirin kartoshka (batat), qarsildoq ziravorli noxot, kinoa hamda bulg'ori va kunchutli taxini sousli boul.",
+    masalliqlar_matni: "Sous uchun:\n1 dona bulg'ori murchi (to'g'ralgan), 1 tish sarimsoq, 60 g taxini (kunchut pastasi), 3 osh qoshiq limon sharbati, 1 osh qoshiq zaytun yog'i, tuz, murch, 60 ml suv\nAsosiy taom uchun:\n200 g kinoa (yoki guruch), 700 g shirin kartoshka (batat, kubik kesilgan), 1.5 osh qoshiq kokos yog'i, 2 choy qoshiq klyon siropi, 1 choy qoshiq apelsin rendasi\nQovurilgan nohot va ko'kat uchun:\n1 banka (400 g) nohot, 1 osh qoshiq zaytun yog'i, paprika, kumin, achchiq murch, tuz, 1 bog' mangold ko'kati (yoki ispanoq), 4 tish sarimsoq",
+    korsatmalari: [
+      "Blenderda bulg'ori murchi, sarimsoq, taxini, limon sharbati, zaytun yog'i, 60 ml suv, tuz va murch ko'pirtirilib, silliq sous tayyorlanadi.",
+      "Pechni 215°C ga qizdiring. Kinoani (yoki guruchni) suvda pishirib oling.",
+      "Shirin kartoshkani eritilgan kokos yog'i, klyon siropi, apelsin rendasi va tuz bilan aralashtirib, listda 30-35 daqiqa pechda pishiring.",
+      "Nohotni zaytun yog'i, paprika, kumin, achchiq murch va tuz bilan aralashtirib, listda kartoshka bilan birga 15-20 daqiqa qarsildoq bo'lguncha pishiring.",
+      "Tovada yog'da sarimsoq va achchiq murch qovuriladi, mangold ko'kati solinib 3-4 daqiqa dimlanadi.",
+      "Idishlarga pishgan kinoa, shirin kartoshka, qarsildoq nohot va ko'katlar solinib, ustidan taxini sousi quyib tortiladi."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_kartoshka', 'ing_noxat', 'ing_guruch', 'ing_sarimsoq', 'ing_limon', 'ing_ismaloq']
+  },
+  {
+    id: 'rec_hd_115_sweet_potato_lamb_bowl',
+    nomi: "Shirin Kartoshka, Qiymali Qo'y Go'shti va Qo'ziqorinli Bouli",
+    tayyorlash_vaqti_daq: 35,
+    qiyinlik: 'orta',
+    kategoriya: "Go'sht va Parranda Taomlari",
+    rasm_url: '🍲',
+    tarif_matni: "Bug'da pishirilgan ezilgan shirin kartoshka, xushbo'y ziravorli qo'y go'shti qiymasi, qo'ziqorin va limonli yogurtli sous.",
+    masalliqlar_matni: "1 dona katta shirin kartoshka (batat)\nYarim dona fenxel (ingichka to'g'ralgan)\nYarim dona qizil piyoz (ingichka to'g'ralgan)\n60 ml olma sirkasi, 45 ml zaytun yog'i\n225 g qo'y go'shti qiymasi\n1 choy qoshiq kumin, yarim choy qoshiq dolchin, 1 choy qoshiq achchiq murch, tuz\n225 g qo'ziqorin (to'g'ralgan)\n120 g yogurt, 2 osh qoshiq limon sharbati, Yalpiz barglari",
+    korsatmalari: [
+      "Qozonda bug'da shirin kartoshkani 20–25 daqiqa yumshaguncha pishirib oling.",
+      "Idishda fenxel, qizil piyoz, sirka va tuzni aralashtirib 15 daqiqa marinatlang.",
+      "Tovada 2 osh qoshiq yog'da qo'y go'shti qiymasi, kumin, dolchin, murch va tuzni 4 daqiqa qizartirib qovuring. Qo'ziqorinlarni solib, yana 5 daqiqa birga qovuring.",
+      "Kichik idishda yogurt, limon sharbati, 1 osh qoshiq yog' va tuzni ko'pirtirib sous tayyorlang.",
+      "Shirin kartoshkani teng ikkiga bo'lib idishlarga soling va sanchqi bilan ezib yassilang. Ustiga yogurt sousi, qiyma va qo'ziqorinli aralashma, marinatlangal piyoz va yalpiz qo'yib torting."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_kartoshka', 'ing_qoy', 'ing_qiyma', 'ing_qoziqorin', 'ing_yogurt', 'ing_limon', 'ing_piyoz']
+  },
+  {
+    id: 'rec_hd_116_apple_calvados_tart',
+    nomi: 'Olmali va Kalvadosli Frantsuzcha Galetta',
+    tayyorlash_vaqti_daq: 60,
+    qiyinlik: 'orta',
+    kategoriya: 'Piroglar va Tartlar',
+    rasm_url: '🍎',
+    tarif_matni: "Olmali pyure ustiga qat-qat tizilgan yangi olma bo'laklari, saryog' va kalvadosli ko'pirtirilgan qaymoq bilan tortiladigan galetta.",
+    masalliqlar_matni: "1 dona tayyor galetta xamiri\n800 g gala olmasi (ingichka parrak kesilgan)\n2 choy qoshiq limon sharbati\n70 g shakar (+ 10 g sepish uchun)\n200 g olmali sous (applesauce)\n45 g saryog'\n2 osh qoshiq olma djem/jem\n240 ml sovuq qaymoq\n1 osh qoshiq shakar kukuni\n2 osh qoshiq kalvados (yoki olma sharbati/likyor)",
+    korsatmalari: [
+      "Pechni 220°C ga qizdiring. Xamirni pergamentli listda yoying va 30 daqiqa muzlatgichda tindiring.",
+      "Olmalarni archib ingichka kesing. Limon sharbati va 70 g shakar bilan aralashtiring.",
+      "Xamir ustiga olmali sousni surting (chetlaridan 5 cm joy qoldiring). Ustiga olma bo'laklarini tizib chiqing.",
+      "Xamir chetlarini olmalar ustiga buking. Ustiga saryog' bo'lakchalarini qo'yib, xamir chetlariga 10 g shakar seping.",
+      "220°C pechda 40–45 daqiqa tillarang bo'lguncha pishiring.",
+      "Pishgach, ustiga eritilgan olma djemini surting.",
+      "Mikserda qaymoq va shakar kukunini ko'pirtiring, kalvados qo'shing. Galettani kalvadosli qaymoq bilan torting."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_olma', 'ing_un', 'ing_saryog', 'ing_shakar', 'ing_qaymoq', 'ing_limon']
+  },
+  {
+    id: 'rec_hd_117_black_bottom_brownie_cookies',
+    nomi: 'Tvorogli va Shokoladli Brauni Pechenye',
+    tayyorlash_vaqti_daq: 45,
+    qiyinlik: 'orta',
+    kategoriya: 'Pechenye va Biskvitlar',
+    rasm_url: '🍫',
+    tarif_matni: "Quyuq brauni xamiri va o'rtasida tvorogli pishloq (cream cheese) va shokolad bo'laklaridan iborat krem mag'izli pechenye.",
+    masalliqlar_matni: "Brauni xamiri uchun:\n225 g shakar, 80 g kakao kukuni, 150 g saryog', 1 choy qoshiq tuz, yarim choy qoshiq vanil, 2 dona sovuq tuxum, 65 g un\nTvorogli mag'iz uchun:\n115 g cream cheese (tvorogli pishloq), 40 g shakar, 1.5 choy qoshiq kraxmal, chimdim tuz, 40 g maydalangan achchiq shokolad",
+    korsatmalari: [
+      "Idishda shakar, kakao, saryog' va tuzni issiq suvli qozoncha ustida saryog' eriguncha eritib olib, 5 daqiqa sovuting.",
+      "Vanil va tuxumlarni bittalab qo'shib mikserda ko'pirtiring. Unni solib, yarqiragan xamir bo'lguncha 1 daqiqa aralashtiring. Ustini yopib 8 soat muzlatgichda sovuting.",
+      "Mikserda cream cheese, shakar, kraxmal va tuzni ko'pirtiring. Maydalangan shokoladni qo'shing. Buni ham 8 soat muzlatgichda qotiring.",
+      "Pechni 175°C ga qizdiring. Brauni xamiridan 20 dona sharik yasang. O'rtasini bosing va 1 choy qoshiqdan tvorogli krem solib, chetlarini yoping.",
+      "Pergamentli listga tizib, 175°C pechda 12–14 daqiqa pishiring. Ustiga tuz seping."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_shokolad', 'ing_kakao', 'ing_un', 'ing_saryog', 'ing_shakar', 'ing_pishloq', 'ing_tuxum']
+  },
+  {
+    id: 'rec_hd_118_bourbon_pretzel_truffles',
+    nomi: 'Shokoladli va Perezelli Konfetlar (Tryufel)',
+    tayyorlash_vaqti_daq: 30,
+    qiyinlik: 'oson',
+    kategoriya: 'Shirinliklar',
+    rasm_url: '🍬',
+    tarif_matni: "Achchiq shokolad ganashi, maydalangan qarsildoq perezel krakeri va karamellangan shakarli qoplamali shohona tryufel.",
+    masalliqlar_matni: "180 ml qaymoq\n600 g achchiq shokolad (maydalangan)\n100 g qarsildoq perezel (maydalangan)\nYarim choy qoshiq tuz\n80 ml burbon (yoki xohishga ko'ra sirop)\n220 g jigarrang shakar + 2 osh qoshiq burbon (shakarli qoplama uchun)",
+    korsatmalari: [
+      "Qozonda qaymoqni qaynatib oling. Idishdagi maydalangan shokolad ustiga quying va issiq suvli qozoncha ustida eritib oling.",
+      "Eritilgan shokoladga maydalangan perezel, tuz va 80 ml burbonni qo'shib aralashtiring. 2-3 soat muzlatgichda qotiring.",
+      "Burbonli shakar: Pechni 160°C ga qizdiring. Jigarrang shakar va 2 osh qoshiq burbonni aralashtirib, listda 30 daqiqa qarsildoq bo'lguncha pishiring va sovutib maydalang.",
+      "Qotgan shokoladli massadan choy qoshiq yordamida shariklar yasang va burbonli shakarga botirib oling. 30 daqiqa muzlatgichda qotiring."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_shokolad', 'ing_qaymoq', 'ing_shakar', 'ing_pechenye', 'ing_tuz']
+  },
+  {
+    id: 'rec_hd_119_kimchi_scallion_pancakes',
+    nomi: 'Kimchi va Yashil Piyozli Qarsildoq Pirojkalar',
+    tayyorlash_vaqti_daq: 25,
+    qiyinlik: 'orta',
+    kategoriya: 'Nonushta va Pishiriqlar',
+    rasm_url: '🥞',
+    tarif_matni: "Muzday gazlangan suvli xamirdan tayyorlanadigan to'g'ralgan kimchi, yashil piyoz va maxsus soya sousli Koreyscha qarsildoq quymoqlar.",
+    masalliqlar_matni: "Sous uchun:\n2 osh qoshiq soya sousi, 2 osh qoshiq guruch sirkasi, yarim choy qoshiq kunchut yog'i, yarim choy qoshiq shakar, achchiq murch, yashil piyoz\nXamir va ichlik uchun:\n125 g un, 60 g guruch uni, yarim choy qoshiq tuz, 1 dona tuxum, 240 ml muzday gazlangan suv, 60 ml kimchi suvi, 150 g kimchi (to'g'ralgan), 4 dona yashil piyoz, 1 dona achchiq qizil qalampir, 60 ml o'simlik yog'i",
+    korsatmalari: [
+      "Idishda soya sousi, sirka, kunchut yog'i, shakar, murch va 2 osh qoshiq suvni aralashtirib sous tayyorlang.",
+      "Katta idishda ikki xil un, tuz, tuxum, muzday gazlangan suv va kimchi suvini ko'pirtirib xamir qoring. To'g'ralgan kimchi, piyoz va qalampirni solib aralashtiring.",
+      "Tovada 1 osh qoshiq yog'ni qizdiring. Yarim stakan xamirdan quyib, past-o'rta olovda 2-3 daqiqa har bir tarafini tillarang va qarsildoq bo'lguncha qovuring.",
+      "Qolgan xamir va yog' bilan yana pirojkalar pishiring. Bo'laklab, sous bilan torting."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_un', 'ing_guruch_uni', 'ing_tuxum', 'ing_kok_piyoz', 'ing_qalampir']
+  },
+  {
+    id: 'rec_hd_120_matcha_almond_cookies',
+    nomi: 'Matcha Choyli va Bodomli Pechenye',
+    tayyorlash_vaqti_daq: 35,
+    qiyinlik: 'oson',
+    kategoriya: 'Pechenye va Biskvitlar',
+    rasm_url: '🍵',
+    tarif_matni: "Bodom pastasi va unli xamir markazida xushbo'y matcha yashil choyi va shakar kukunli krem solingan yaponcha pechenye.",
+    masalliqlar_matni: "Pechenye uchun:\n1.5 choy qoshiq tuxum o'rnini bosuvchi kukun (yoki 1 dona tuxum), 150 g bodom pastasi, 120 ml agava siropi (yoki asal), 75 g o'simlik saryog'i, yarim choy qoshiq vanil, yarim choy qoshiq bodom ekstrakti, 150 g un, yarim choy qoshiq tuz\nKrem uchun:\n1 osh qoshiq matcha choy kukuni, 2 osh qoshiq suyuq qaymoq, 115 g o'simlik saryog'i, 350 g shakar kukuni",
+    korsatmalari: [
+      "Pechni 165°C ga qizdiring. Listni yog'lang.",
+      "Idishda bodom pastasi, agava siropi va saryog'ni krem holatiga kelguncha ko'pirtiring. Vanil, bodom ekstrakti, un va tuzni solib yumshoq xamir qoring.",
+      "Xamirdan kichik shariklar yasab listga tizing. Barmog'ingiz bilan har bir pechenye o'rtasini bosing (chuqurcha hosil qiling).",
+      "165°C pechda 15 daqiqa pishirib sovuting.",
+      "Krem: Kichik idishda matcha kukuni va qaymoqni aralashtiring. Mikserda saryog', shakar kukuni va matcha pastasini ko'pirtirib yashil krem tayyorlang.",
+      "Sovigan pechenyelarning chuqurchasiga matcha kremini solib chiqib torting."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_bodom', 'ing_un', 'ing_saryog', 'ing_shakar_kukuni', 'ing_qaymoq']
+  },
+  {
+    id: 'rec_hd_121_cheesy_hand_pies',
+    nomi: 'Pishloqli mini-Pirojkalar',
+    tayyorlash_vaqti_daq: 50,
+    qiyinlik: 'orta',
+    kategoriya: 'Nonushta va Pishiriqlar',
+    rasm_url: '🥐',
+    tarif_matni: "Qarsildoq uvalanuvchan xamir konvertlari ichida motsarella, feta pishlog'i va ukropli issiq pishloqli mini-pirojkalar.",
+    masalliqlar_matni: "Xamir uchun:\n310 g un, 2 choy qoshiq tuz, 225 g muzlatilgan saryog', 180 ml muzday suv\nIchlik uchun:\n2 dona tuxum, 115 g feta pishlog'i (yoki brynza), 170 g motsarella pishlog'i (qirilgan), 3 osh qoshiq ukrop, murch va tuz",
+    korsatmalari: [
+      "Idishda un va tuzni aralashtiring. Muzlatilgan saryog'ni qirg'ichdan unli idishga chiqarib, barmoqlar bilan ezib, uvoq holiga keltiring. Muzday suv quyib xamir holiga keltiring va 1 soat muzlatgichda tindiring.",
+      "Idishda tuxumlarni ko'pirtiring. Yarmini chetga suring. Qolgan tuxumga feta pishlog'ini ezib soling, motsarella, ukrop, murch va tuz qo'shib aralashtiring.",
+      "Pechni 175°C ga qizdiring. Xamirni ikkiga bo'lib, unlangan stolda to'rtburchak qilib yoying. 16 ta kvadrat bo'lakka bo'ling.",
+      "Kvadratlar chetiga ko'pirtirilgan tuxum surtib, o'rtasiga pishloqli ichlikdan soling. Uchburchak yoki to'rtburchak qilib buking va sanchqi bilan chetlarini bosing.",
+      "Ustiga tuxum surtib, pichoq bilan 3 ta kichik kesik qiling. Pergamentli listda 175°C pechda 30–35 daqiqa tillarang bo'lguncha pishiring."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_un', 'ing_saryog', 'ing_tuxum', 'ing_pishloq', 'ing_kokatlar']
   }
 ];
+
 
 
 export const initialTales: Tale[] = [
