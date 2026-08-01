@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { useApp } from '../context/AppContext';
 import { Lifehack, LifehackCategory } from '../types';
-import { Lightbulb, Sparkles, ChevronDown, ChevronUp, CheckCircle2 } from 'lucide-react';
+import { Lightbulb, Sparkles, ChevronDown, ChevronUp, CheckCircle2, Folder, FolderOpen } from 'lucide-react';
 
 export const Lifehacklar: React.FC = () => {
   const { lifehacks, t, selectedLifehackId, setSelectedLifehackId } = useApp();
@@ -16,20 +16,25 @@ export const Lifehacklar: React.FC = () => {
     }
   }, [selectedLifehackId]);
 
-  const categories: { id: LifehackCategory | 'barchasi'; label: string }[] = [
-    { id: 'barchasi', label: 'Barchasi' },
-    { id: 'pishirish_asoslari', label: 'Pishirish asoslari' },
-    { id: 'oshxona_sirlari', label: 'Oshxona sirlari' },
-    { id: 'mahsulotlarni_saqlash', label: 'Mahsulotlarni saqlash' },
-    { id: 'tezkor_usullar', label: 'Tezkor usullar' },
-    { id: 'masalliqlarni_tejash', label: 'Masalliqlarni tejash' },
-    { id: 'karving', label: 'Karving' },
-    { id: 'oyinchoq_yasash', label: "O'yinchoq yasash" },
-    { id: 'uy_ishlari', label: 'Uy ishlari' },
-    { id: 'boshqa', label: 'Boshqa' },
+  const categories: { id: LifehackCategory | 'barchasi'; label: string; icon: string }[] = [
+    { id: 'barchasi', label: 'Barchasi', icon: '📁' },
+    { id: 'pishirish_asoslari', label: 'Pishirish asoslari', icon: '🍳' },
+    { id: 'oshxona_sirlari', label: 'Oshxona sirlari', icon: '🧂' },
+    { id: 'mahsulotlarni_saqlash', label: 'Mahsulotlarni saqlash', icon: '🌿' },
+    { id: 'tezkor_usullar', label: 'Tezkor usullar', icon: '⚡' },
+    { id: 'masalliqlarni_tejash', label: 'Masalliqlarni tejash', icon: '♻️' },
+    { id: 'karving', label: 'Karving', icon: '🎨' },
+    { id: 'oyinchoq_yasash', label: "O'yinchoq yasash", icon: '🧸' },
+    { id: 'uy_ishlari', label: 'Uy ishlari', icon: '🏠' },
+    { id: 'boshqa', label: 'Boshqa', icon: '📦' },
   ];
 
-
+  const getCategoryCount = (catId: LifehackCategory | 'barchasi') => {
+    if (catId === 'barchasi') {
+      return lifehacks.filter(lh => lh.holat === 'nashr').length;
+    }
+    return lifehacks.filter(lh => lh.holat === 'nashr' && lh.kategoriya === catId).length;
+  };
 
   const filteredHacks = lifehacks.filter(lh => {
     if (lh.holat !== 'nashr') return false;
@@ -62,25 +67,55 @@ export const Lifehacklar: React.FC = () => {
         </div>
       </div>
 
-      {/* Category Chips with solid background styles */}
-      <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 px-1 pr-6">
+      {/* Category Folders - Smartphone Folder Capsules (Uzunchoq ingichka papka kartochkalari) */}
+      <div className="flex items-center gap-2.5 overflow-x-auto no-scrollbar py-2 px-1 pr-6 snap-x">
         {categories.map(cat => {
           const isActive = selectedCat === cat.id;
+          const count = getCategoryCount(cat.id);
+
           return (
             <button
               key={cat.id}
               onClick={() => setSelectedCat(cat.id)}
-              className={`px-4 py-2 rounded-2xl text-xs font-black whitespace-nowrap min-h-[38px] transition-all shadow-2xs active:scale-95 ${
+              className={`group relative flex items-center gap-2.5 px-3.5 py-2 rounded-2xl text-xs font-black whitespace-nowrap min-h-[44px] shrink-0 transition-all duration-200 snap-start shadow-xs active:scale-95 border ${
                 isActive
-                  ? 'bg-gradient-to-r from-[#DB2777] to-[#EC4899] text-white shadow-md border border-pink-400'
-                  : 'bg-white text-[#6B4E5B] border border-pink-200 hover:bg-pink-50'
+                  ? 'bg-gradient-to-r from-[#BE185D] via-[#DB2777] to-[#E11D48] text-white border-pink-400/80 shadow-md shadow-pink-500/25 ring-2 ring-pink-300/40'
+                  : 'bg-white/95 text-[#4A2031] border-pink-200/90 hover:bg-pink-50/80 hover:border-pink-300 hover:shadow-xs'
               }`}
             >
-              {t(cat.label)}
+              {/* Smartphone Folder Notch / Icon Container */}
+              <div
+                className={`w-7 h-7 rounded-xl flex items-center justify-center text-sm font-extrabold flex-shrink-0 transition-transform duration-200 group-hover:scale-105 ${
+                  isActive
+                    ? 'bg-white/20 text-white border border-white/30 backdrop-blur-xs'
+                    : 'bg-gradient-to-br from-pink-100 to-pink-50 text-[#DB2777] border border-pink-200/60 shadow-2xs'
+                }`}
+              >
+                {isActive ? (
+                  <FolderOpen className="w-4 h-4 text-amber-200 fill-amber-300/30 shrink-0" />
+                ) : (
+                  <span>{cat.icon}</span>
+                )}
+              </div>
+
+              {/* Folder Title */}
+              <span className="tracking-tight leading-none font-black">{t(cat.label)}</span>
+
+              {/* Folder Item Count Tag */}
+              <span
+                className={`px-2 py-0.5 rounded-full text-[10px] font-extrabold tracking-wide flex-shrink-0 ${
+                  isActive
+                    ? 'bg-white/25 text-amber-200 border border-white/30'
+                    : 'bg-pink-100/80 text-[#BE185D] border border-pink-200/60'
+                }`}
+              >
+                {count}
+              </span>
             </button>
           );
         })}
       </div>
+
 
 
       {/* Lifehack Cards - Entire card is clickable for seamless touch UX */}

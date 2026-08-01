@@ -2227,6 +2227,137 @@ export const initialTales: Tale[] = [
 
 export const initialLifehacks: Lifehack[] = [
   {
+    id: 'lh_gosht_yumshoq_soda',
+    sarlavha: "Go'shtni tishda chaynaladigan pambiqdek yumshoq qilish",
+    tavsif_matni: "Pishirish sodasi (baking soda) yordamida mol va qo'y go'shtini sersuv va yumshoq qilish siri.",
+    rasm_url: '🥩',
+    kategoriya: 'pishirish_asoslari',
+    bosqichlar: [
+      "450 gramm (1 funt) to'g'ralgan mol yoki qo'y go'shtiga 1 choy qoshiq pishirish sodasi (baking soda) sepib aralashtiring.",
+      "Muzlatgichda 30-40 daqiqa qoldiring. Soda go'sht yuzasidagi pH darajasini oshirib, oqsillarning torayib suvni chiqarib yuborishiga yo'l qo'ymaydi.",
+      "Pishirishdan oldin go'shtni sovuq suvda yaxshilab yuvib tashlang.",
+      "Qog'oz sochiqda quritib olib, odatdagidek pishiring."
+    ],
+    holat: 'nashr'
+  },
+  {
+    id: 'lh_leidenfrost_effekti',
+    sarlavha: "Tova va qozonga ovqat yopishmasligi siri (Leidenfrost effekti)",
+    tavsif_matni: "Quruq tovani yaxshi qizdirish va sovuq yog' quyish orqali tabiiy yopishmaydigan qatlam hosil qilish.",
+    rasm_url: '🍳',
+    kategoriya: 'oshxona_sirlari',
+    bosqichlar: [
+      "Qovurishdan oldin tova yoki qozonni quruq holida yaxshilab qizdirib oling.",
+      "Tova yetarlicha qiziganini bilish uchun bir-ikki tomchi suv tomizib ko'ring: agar suv bug'lanib ketmay, sharcha bo'lib dumalab 'raqsga tushsa', tova tayyor.",
+      "Shundan keyin issiq tovaga sovuq yog' quying.",
+      "Yog' metalldagi mikroskopik g'ovaklarni to'ldirib, ovqat yopishmaydigan tabiiy qatlam hosil qiladi."
+    ],
+    holat: 'nashr'
+  },
+  {
+    id: 'lh_nonni_saqlash',
+    sarlavha: "Nonni xolodilnikda saqlamang (U yerda non tez qotadi)",
+    tavsif_matni: "Kraxmal retrogradatsiyasi va nonni to'g'ri saqlash hamda qayta yumshatish usuli.",
+    rasm_url: '🍞',
+    kategoriya: 'mahsulotlarni_saqlash',
+    bosqichlar: [
+      "Nonni hech qachon xolodilnikning oddiy javoniga qo'ymang (0°C dan 4°C gacha kraxmal molekulalari eng tez kristallashib non qotadi).",
+      "Nonni xona haroratida saqlang yoki uzoq muddatga muzxonaga (-18°C) qo'ying.",
+      "Qotgan nonni pechda yoki tosterda biroz isitsangiz, kraxmal vaqtincha yumshab, non yana yangidek bo meva bo'ladi."
+    ],
+    holat: 'nashr'
+  },
+  {
+    id: 'lh_dona_dona_palov',
+    sarlavha: "Qozonda sochma (dona-dona) palov pishirish siri",
+    tavsif_matni: "Guruch ezilib bo'tqa bo'lib ketmasligi uchun zirvak va bug'da damlash siri.",
+    rasm_url: '🍲',
+    kategoriya: 'oshxona_sirlari',
+    bosqichlar: [
+      "Zirvak tayyor bo'lgach, guruchni ustidan tekis solib, mutlaqo aralashtirmaslik kerak.",
+      "Guruch suvni tortib bo'lgach, uni o'rtaga tepalik qilib to'plang va tayoqcha bilan teshiklar oching.",
+      "Qopqog'ini zich yoping. Bu usul bug'ning bir maromda aylanishini ta'minlab, guruchni dona-dona va havodor qiladi."
+    ],
+    holat: 'nashr'
+  },
+  {
+    id: 'lh_yog_hidini_yoqotish',
+    sarlavha: "Paxta yoki o'simlik yog'idagi yoqimsiz hidni yo'qotish",
+    tavsif_matni: "Qizigan yog'ga piyoz solib qovurish orqali yog'ni tabiiy uglerod filtri bilan tozalash.",
+    rasm_url: '🧅',
+    kategoriya: 'oshxona_sirlari',
+    bosqichlar: [
+      "Qozonga yog' solib qizdirayotganda bitta tozalangan butun piyozni soling.",
+      "Piyozni qorayguncha qovurib olib tashlang.",
+      "Qovurilgan piyoz tabiiy uglerod filtri vazifasini bajarib, yog'dagi yoqimsiz hidlarni va uchuvchi moddalarni o'ziga tortib oladi."
+    ],
+    holat: 'nashr'
+  },
+  {
+    id: 'lh_buttermilk_tayyorlash',
+    sarlavha: "Uy sharoitida 'Buttermilk' (Sariyog' suti) o'rinbosarini qilish",
+    tavsif_matni: "Sutga limon suvi yoki sirka qo'shib pishiriqlar uchun yumshoq ivigan sut tayyorlash.",
+    rasm_url: '🥛',
+    kategoriya: 'tezkor_usullar',
+    bosqichlar: [
+      "1 stakan oddiy sutga 1 osh qoshiq limon sharbati yoki oq sirka qo'shing.",
+      "Bir necha daqiqa kuting. Sut ivib, pishiriqlarni g'ovak va yumshoq qiluvchi ajoyib buttermilkka aylanadi.",
+      "Agar sut bo'lmasa, oddiy qatiq yoki kefir ishlatish ham mukammal natija beradi."
+    ],
+    holat: 'nashr'
+  },
+  {
+    id: 'lh_tuxum_orinbosarlari',
+    sarlavha: "Xamirga tuxum yetmay qolganda ishlatiladigan layfhak",
+    tavsif_matni: "Zig'ir/chia urug'i, olma pyuresi, ezilgan banan yoki mayonez bilan tuxumni almashtirish.",
+    rasm_url: '🥚',
+    kategoriya: 'masalliqlarni_tejash',
+    bosqichlar: [
+      "1 dona tuxum o'rniga: 1 osh qoshiq maydalangan zig'ir urug'i (flaxseed) yoki chia urug'ini 3 osh qoshiq suv bilan aralashtirib, 5 daqiqa dindiring.",
+      "Urug'dagi yelimsimon modda tuxum kabi xamirni mahkam ushlab turadi.",
+      "Shuningdek, 1/4 stakan olma pyuresi, ezilgan banan yoki 1 osh qoshiq mayonez ham xamirga yumshoqlik va namlik beradi."
+    ],
+    holat: 'nashr'
+  },
+  {
+    id: 'lh_unni_tarozida_tortish',
+    sarlavha: "Pishiriqlar o'xshashi uchun unni stakanda emas, tarozida tortish",
+    tavsif_matni: "Pishiriqlar har doim mukammal chiqishi uchun un zichligi va o'lchov siri (1 stakan = 120g).",
+    rasm_url: '⚖️',
+    kategoriya: 'pishirish_asoslari',
+    bosqichlar: [
+      "Unni stakan bilan o'lchaganda zichligiga qarab 1 stakan un 110 grammdan 165 grammgacha farq qilishi mumkin.",
+      "Pishiriqlar har doim bir xil va mukammal chiqishi uchun unni oshxona tarozisida tortish tavsiya etiladi.",
+      "Retseptlarda 1 stakan un deganda odatda 120 gramm nazarda tutiladi."
+    ],
+    holat: 'nashr'
+  },
+  {
+    id: 'lh_toum_sarimsoq_sousi',
+    sarlavha: "Sarimsoqli sous (Toum) achchiq va taxir bo'lib qolmasligi siri",
+    tavsif_matni: "Sarimsoq murtagini olib tashlash va sovuq masalliqlardan foydalanish siri.",
+    rasm_url: '🧄',
+    kategoriya: 'oshxona_sirlari',
+    bosqichlar: [
+      "Sarimsoq pallalarining o'rtasidagi yashil murtagini olib tashlang. Aynan shu murtak sousga achchiq va taxir ta'm beradi.",
+      "Blender tishlari qizib ketib sous ajralib ketmasligi uchun har doim sovuq masalliqlardan va sovuq idishdan foydalaning."
+    ],
+    holat: 'nashr'
+  },
+  {
+    id: 'lh_tahini_iliq_suv',
+    sarlavha: "Kunjut pastasi (Tahini) ivib, quyulib qolmasligi uchun iliq suv siri",
+    tavsif_matni: "32°C iliq suv va limon sharbati yordamida silliq tahini sousini tayyorlash.",
+    rasm_url: '🥣',
+    kategoriya: 'oshxona_sirlari',
+    bosqichlar: [
+      "Muzdek suv quyish xatodir; sovuq suv kunjut yog'ini qotirib, sousni keshtalab qo'yadi.",
+      "Buning o'rniga 32°C atrofidagi iliq suv va limon sharbatidan foydalaning.",
+      "Tuzni aralashtirish jarayonida emas, sous tayyor bo'lgandan keyin qo'shsangiz, tarkibi ajralib ketmaydi."
+    ],
+    holat: 'nashr'
+  },
+  {
     id: 'lh_oshxona_sirlari_1',
     sarlavha: 'Professional oshpazlik sirlari (1-qism)',
     tavsif_matni: "Ziravorlarni qizdirib olish, Parmezan po'stlog'i, sousni sovuq sariyog' bilan yakunlash hamda limon suvi bilan tetiklashtirish.",
