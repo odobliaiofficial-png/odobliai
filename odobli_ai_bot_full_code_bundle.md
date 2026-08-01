@@ -3921,6 +3921,40 @@ export const PazandaAI: React.FC = () => {
         </div>
       )}
 
+      {/* Floating Match Dock (High-Conversion UX) */}
+      {viewMode === 'match' && selectedIngredientIds.length > 0 && (
+        <motion.div
+          initial={{ y: 80, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          className="fixed bottom-16 left-4 right-4 z-40 max-w-md mx-auto"
+        >
+          <div className="bg-gradient-to-r from-rose-900 via-pink-900 to-rose-950 p-3.5 rounded-2xl flex items-center justify-between shadow-2xl border border-pink-400/40 text-white backdrop-blur-xl">
+            <div>
+              <p className="text-xs font-black text-amber-300 flex items-center gap-1.5">
+                <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+                <span>{matchingResults.fullMatch.length} ta taom 100% tayyorlanadi!</span>
+              </p>
+              <p className="text-[10px] text-pink-100/90 mt-0.5">
+                Jami {selectedIngredientIds.length} ta masalliq tanlandi
+              </p>
+            </div>
+            <button
+              onClick={() => {
+                try {
+                  (window as any).Telegram?.WebApp?.HapticFeedback?.impactOccurred('medium');
+                } catch (e) {}
+                const el = document.getElementById('recipe-results');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-amber-950 font-black px-3.5 py-1.5 rounded-xl text-xs flex items-center gap-1 shadow-md active:scale-95 transition-transform shrink-0"
+            >
+              <span>Natijalar</span>
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
+        </motion.div>
+      )}
+
       {/* MODE 1 (MAIN): CATALOG WITH GRID CATEGORY FOLDERS & SEARCH */}
       {viewMode === 'catalog' && (
         <div className="space-y-3.5">
