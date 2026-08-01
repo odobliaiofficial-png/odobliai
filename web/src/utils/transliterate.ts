@@ -32,9 +32,9 @@ export function latinToCyrillic(str: string): string {
     ['Retsept Filtrlari va Saralash', 'Рецепт Фильтрлари ва Саралаш'],
     ['Pishirish asoslari', 'Пишириш асослари'], ['pishirish asoslari', 'пишириш асослари'],
     ['Oshxona sirlari', 'Ошхона сирлари'], ['oshxona sirlari', 'ошхона сирлари'],
-    ['Mahsulotlarni saqlash', 'Маҳsulotlarni сақлаш'], ['mahsulotlarni saqlash', 'маҳsulotlarni сақлаш'],
+    ['Mahsulotlarni saqlash', 'Маҳсулотларни сақлаш'], ['mahsulotlarni saqlash', 'маҳсулотларни сақлаш'],
     ['Tezkor usullar', 'Тезкор усуллар'], ['tezkor usullar', 'тезкор усуллар'],
-    ['Masalliqlarni tejash', 'Масаллиқlarni тежаш'], ['masalliqlarni tejash', 'масаллиқlarni тежаш'],
+    ['Masalliqlarni tejash', 'Масаллиқларни тежаш'], ['masalliqlarni tejash', 'масаллиқларни тежаш'],
     ['Pishirish', 'Пишириш'], ['pishirish', 'пишириш'],
 
     ['Kategoriya (Papka)', 'Категория (Папка)'],
@@ -86,7 +86,7 @@ export function latinToCyrillic(str: string): string {
     ['Unvonlar', 'Унвонлар'], ['unvonlar', 'унвонлар'],
     ['Nishonlar', 'Нишонлар'], ['nishonlar', 'нишонлар'],
     ['Streak', 'Стрик'], ['streak', 'стрик'],
-    ['Ballar', 'Баллlar'], ['ballar', 'балллар'],
+    ['Ballar', 'Баллар'], ['ballar', 'баллар'],
     ['Kishilik', 'Кишилик'], ['kishilik', 'кишилик'],
     ['Kishi', 'Киши'], ['kishi', 'киши'],
     ['Daqiqa', 'Дақиқа'], ['daqiqa', 'дақиқа'],
@@ -99,6 +99,15 @@ export function latinToCyrillic(str: string): string {
     ['Buxoro', 'Бухоро'], ['buxoro', 'бухоро'],
     ['Xiva', 'Хива'], ['xiva', 'хива'],
     ['Xorazm', 'Хоразм'], ['xorazm', 'хоразм'],
+    ['Retseptlar Katalogi', 'Рецептлар Каталоги'], ['retseptlar katalogi', 'рецептлар каталоги'],
+    ['Aqlli Pazanda AI', 'Ақлли Пазанда AI'], ['aqlli pazanda ai', 'ақлли пазанда AI'],
+    ["Bozorlikka saqlash", "Бозорликка сақлаш"], ["bozorlikka saqlash", "бозорликка сақлаш"],
+    ["Bozorlikka qo'shish", "Бозорликка қўшиш"], ["bozorlikka qo'shish", "бозорликка қўшиш"],
+    ["Bozorlik ro'yxati", "Бозорлик рўйхати"], ["bozorlik ro'yxati", "бозорлик рўйхати"],
+    ["Bosqichma-bosqich tayyorlanishi", "Босқичма-босқич тайёрланиши"],
+    ["Masalliqlar reestri", "Масаллиқлар реестри"],
+    ["kishi uchun", "киши учун"],
+    ["Kategoriyalar", "Категориялар"], ["kategoriyalar", "категориялар"],
   ];
 
   for (const [lat, cyr] of exactDictionary) {

@@ -129,9 +129,11 @@ export const PazandaAI: React.FC = () => {
   const [activeRecipe, setActiveRecipe] = useState<Recipe | null>(null);
   const [showMatchedRecipesModal, setShowMatchedRecipesModal] = useState<boolean>(false);
 
-  // Tab mode: 'catalog' (Retseptlar) | 'match' (Masalliqlardan) | 'bozorlik' | 'timer'
+  // Tab mode: 'catalog' (Retseptlar) | 'match' (Masalliqlardan)
   const [customMinutesInput, setCustomMinutesInput] = useState<string>('20');
   const [viewMode, setViewMode] = useState<'match' | 'catalog' | 'bozorlik' | 'timer'>('catalog');
+  const [showBozorlikModal, setShowBozorlikModal] = useState(false);
+  const [showTimerModal, setShowTimerModal] = useState(false);
 
   // Search queries & Advanced Recipe Filters
   const [ingredientSearch, setIngredientSearch] = useState<string>('');
@@ -1262,11 +1264,11 @@ export const PazandaAI: React.FC = () => {
               {/* Folders Section Header */}
               <div className="flex items-center justify-between px-1">
                 <div>
-                  <h3 className="font-black text-[#2E121D] text-sm">
-                    📂 Retseptlar Papkalari (12 ta Kategoriya)
+                  <h3 className="font-extrabold text-[#2E121D] text-sm">
+                    {t("Kategoriyalar")}
                   </h3>
                   <p className="text-[10px] text-[#7C746B]">
-                    Kategoriyani tanlab, kerakli taomlarni toping
+                    {t("Kategoriyani tanlab, kerakli taomlarni toping")}
                   </p>
                 </div>
                 <button
@@ -1473,11 +1475,10 @@ export const PazandaAI: React.FC = () => {
         </div>
       )}
 
-      {/* MODE 3: BOZORLIK RO'YXATI (SMART SHOPPING LIST IN PAZANDA AI) */}
-      {viewMode === 'bozorlik' && (
-        <div className="space-y-4">
-          
-          <div className="bg-gradient-to-br from-[#FFFDF9] to-[#FFF5EE] p-4.5 rounded-3xl border border-[#FFD8C8] shadow-2xs space-y-3">
+      {/* MODE 3: BOZORLIK RO'YXATI (now shown as floating modal) */}
+      {showBozorlikModal && createPortal(
+        <div className="fixed inset-0 z-[9999] bg-black/60 backdrop-blur-xs flex items-end justify-center animate-in fade-in duration-200" onClick={(e) => { if (e.target === e.currentTarget) setShowBozorlikModal(false); }}>
+        <div className="bg-[#FFFDF9] w-full max-w-md max-h-[85vh] overflow-y-auto rounded-t-3xl p-5 space-y-4 border-t border-pink-100 shadow-2xl">
             <div className="flex items-center justify-between border-b border-[#FFD8C8] pb-3">
               <div className="flex items-center gap-2">
                 <div className="w-9 h-9 rounded-2xl bg-[#FF6B4A] text-white flex items-center justify-center shadow-xs">
@@ -1485,13 +1486,20 @@ export const PazandaAI: React.FC = () => {
                 </div>
                 <div>
                   <h3 className="font-black text-[#2D2A26] text-base">
-                    {t("Aql-idrokli Bozorlik Ro'yxati")} 🛒
+                    {t("Bozorlik Ro'yxati")} 🛒
                   </h3>
                   <p className="text-xs text-[#7C746B]">
                     {t("Retseptlardan yoki o'zingiz kiritgan masalliqlar ro'yxati")}
                   </p>
                 </div>
               </div>
+              <button
+                onClick={() => setShowBozorlikModal(false)}
+                className="p-1.5 rounded-full bg-pink-50 hover:bg-pink-100 text-[#DB2777] transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
 
               {shoppingList.length > 0 && (
                 <button
@@ -1505,7 +1513,6 @@ export const PazandaAI: React.FC = () => {
                   {t("Tozalash")}
                 </button>
               )}
-            </div>
 
             {/* Automatic Recipe Ingredient Generator Form */}
             <div className="card-pink p-3.5 rounded-2xl space-y-3">
@@ -1712,12 +1719,14 @@ export const PazandaAI: React.FC = () => {
 
           </div>
 
-        </div>
+        </div>,
+        document.body
       )}
 
-      {/* MODE 4: OSHXONA TAYMERI (KITCHEN TIMER IN PAZANDA AI) */}
-      {viewMode === 'timer' && (
-        <div className="space-y-4">
+      {/* MODE 4: OSHXONA TAYMERI (now shown as modal) */}
+      {showTimerModal && createPortal(
+        <div className="fixed inset-0 z-[9999] bg-black/60 backdrop-blur-xs flex items-end justify-center animate-in fade-in duration-200" onClick={(e) => { if (e.target === e.currentTarget) setShowTimerModal(false); }}>
+        <div className="bg-[#FFFDF9] w-full max-w-md max-h-[85vh] overflow-y-auto rounded-t-3xl p-5 space-y-4 border-t border-pink-100 shadow-2xl">
           
           <div className="bg-gradient-to-b from-[#2E121D] via-[#4C1D2F] to-[#2E121D] text-white p-5 rounded-3xl border border-pink-500/20 shadow-xl text-center space-y-4">
             
@@ -1845,7 +1854,48 @@ export const PazandaAI: React.FC = () => {
           </div>
 
         </div>
+        </div>,
+        document.body
       )}
+
+      {/* Floating Bozorlik FAB + Mini-Timer Widget (Always visible, non-intrusive) */}
+      <div className="fixed right-3 bottom-[80px] z-40 flex flex-col items-end gap-2.5" style={{ maxWidth: 'calc(100vw - 24px)' }}>
+        
+        {/* Floating Mini-Timer (only shows when timer is running or paused with time left) */}
+        {(isTimerRunning || timerSeconds > 0) && (
+          <motion.button
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={() => setShowTimerModal(true)}
+            className="flex items-center gap-2 bg-[#2E121D] text-white pl-3 pr-4 py-2 rounded-full shadow-xl border border-pink-500/30"
+          >
+            <TimerIcon className={`w-4 h-4 text-[#FBBF24] ${isTimerRunning ? 'animate-pulse' : ''}`} />
+            <span className="text-xs font-black font-mono tracking-wider text-[#FBBF24]">
+              {String(Math.floor(timerSeconds / 60)).padStart(2, '0')}:{String(timerSeconds % 60).padStart(2, '0')}
+            </span>
+          </motion.button>
+        )}
+
+        {/* Floating Bozorlik FAB */}
+        <motion.button
+          whileTap={{ scale: 0.9 }}
+          onClick={() => {
+            try {
+              (window as any).Telegram?.WebApp?.HapticFeedback?.impactOccurred('light');
+            } catch (e) {}
+            setShowBozorlikModal(true);
+          }}
+          className="relative w-12 h-12 bg-[#FF6B4A] text-white rounded-full shadow-xl flex items-center justify-center active:bg-[#E8593A] transition-colors border-2 border-white/30"
+        >
+          <ShoppingCart className="w-5 h-5" />
+          {pendingCount > 0 && (
+            <span className="absolute -top-1 -right-1 w-5 h-5 bg-[#DB2777] text-white text-[10px] font-black rounded-full flex items-center justify-center shadow-md border border-white">
+              {pendingCount}
+            </span>
+          )}
+        </motion.button>
+      </div>
 
       {/* Recipe Detail Modal Mounted via React Portal */}
       {activeRecipe && createPortal(
@@ -1989,14 +2039,14 @@ export const PazandaAI: React.FC = () => {
                 </h4>
 
                 {savedRecipeIds.includes(activeRecipe.id) ? (
-                  <span className="text-xs font-black bg-emerald-600 text-white px-3 py-1 rounded-xl shadow-2xs flex items-center gap-1">
+                  <span className="text-xs font-black bg-emerald-600 text-white px-3 py-1 rounded-xl shadow-2xs flex items-center gap-1 whitespace-nowrap shrink-0">
                     <CheckCircle2 className="w-3.5 h-3.5 text-white" />
                     {t("Saqlandi ✓")}
                   </span>
                 ) : (
                   <button
                     onClick={() => addRecipeIngredientsToShoppingList(selectedRecipeIngredients)}
-                    className="text-xs font-extrabold bg-[#FF6B4A] text-white px-2.5 py-1 rounded-xl shadow-2xs hover:bg-[#E8593A] transition-colors flex items-center gap-1"
+                    className="text-xs font-extrabold bg-[#FF6B4A] text-white px-2.5 py-1 rounded-xl shadow-2xs hover:bg-[#E8593A] transition-colors flex items-center gap-1 whitespace-nowrap shrink-0"
                   >
                     <ShoppingCart className="w-3.5 h-3.5" />
                     {t("Bozorlikka saqlash")}
