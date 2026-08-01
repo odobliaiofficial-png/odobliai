@@ -16,53 +16,40 @@ export const BottomNav: React.FC = () => {
 
   return (
     <nav className="fixed bottom-3 left-3 right-3 z-50 max-w-md mx-auto">
-      {/* Translucent Rose-Quartz Glass Dock Container */}
-      <div className="p-1.5 rounded-full flex items-center justify-between shadow-[0_12px_40px_rgba(46,18,29,0.45)] relative bg-[#2E121D]/80 backdrop-blur-2xl border border-white/25 overflow-hidden">
-        
-        {/* Subtle Ambient Glass Dock Glow Background */}
-        <div className="absolute inset-0 bg-gradient-to-r from-pink-600/20 via-rose-500/10 to-amber-500/20 pointer-events-none rounded-full" />
-
+      {/* Original Vibrant Pink Gradient Dock Container */}
+      <div className="p-1.5 rounded-full flex items-center justify-between shadow-2xl relative bg-gradient-to-r from-[#BE185D] via-[#DB2777] to-[#E11D48] backdrop-blur-xl border border-pink-300/40">
         {navItems.map((item) => {
           const isActive = activeTab === item.id;
           return (
             <motion.button
               key={item.id}
-              whileTap={{ scale: 0.88 }}
+              whileTap={{ scale: 0.90 }}
               onClick={() => setActiveTab(item.id)}
-              className={`relative flex items-center justify-center transition-all duration-300 py-2.5 ${
+              className={`relative z-10 flex items-center justify-center transition-all duration-200 py-2.5 ${
                 isActive
-                  ? 'text-white font-black px-4 text-xs'
-                  : 'text-white/60 hover:text-white px-3 text-xs'
+                  ? 'text-[#DB2777] font-black px-3.5 text-xs'
+                  : 'text-white/85 hover:text-white px-2.5 text-xs'
               }`}
             >
-              {/* ULTRA-CRYSTAL LIQUID GLASS BUBBLE LENS (Haqiqiy Tiniq Suyuq Shisha Qabariq) */}
+              {/* Vibrant White Active Bubble Lens (Silliq sirpanuvchi oq shaffof tugma) */}
               {isActive && (
                 <motion.div
-                  layoutId="crystalLiquidBubble"
-                  transition={{ type: 'spring', stiffness: 420, damping: 27 }}
-                  className="absolute inset-0 rounded-full bg-gradient-to-b from-white/30 via-white/10 to-white/5 backdrop-blur-xl border border-white/90 shadow-[0_10px_30px_rgba(219,39,119,0.5),inset_0_2px_8px_rgba(255,255,255,1),inset_0_-2px_8px_rgba(255,255,255,0.25)] ring-1 ring-white/60 overflow-hidden"
-                >
-                  {/* Top Glass Lens Curved Highlight Glare */}
-                  <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/70 via-white/20 to-transparent pointer-events-none rounded-t-full" />
-                  {/* Bottom Refraction Glow */}
-                  <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-pink-400/30 to-transparent pointer-events-none rounded-b-full" />
-                </motion.div>
+                  layoutId="activeTabBubblePill"
+                  transition={{ type: 'spring', stiffness: 450, damping: 28 }}
+                  className="absolute inset-0 bg-white rounded-full shadow-lg border border-pink-100 -z-10"
+                />
               )}
 
-              <motion.div
-                animate={{ scale: isActive ? 1.15 : 1 }}
-                transition={{ type: 'spring', stiffness: 500, damping: 25 }}
-                className="relative z-10 shrink-0 drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)] flex items-center justify-center"
-              >
+              <div className="shrink-0 drop-shadow-xs flex items-center justify-center">
                 {item.icon}
-              </motion.div>
+              </div>
 
               {isActive && (
                 <motion.span
-                  initial={{ opacity: 0, x: -5, scale: 0.85 }}
-                  animate={{ opacity: 1, x: 0, scale: 1 }}
-                  transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-                  className="relative z-10 ml-1.5 text-[11.5px] leading-none font-black tracking-tight whitespace-nowrap text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ type: 'spring', bounce: 0, duration: 0.2 }}
+                  className="ml-1.5 text-[11.5px] leading-none tracking-tight font-black whitespace-nowrap text-[#DB2777]"
                 >
                   {t(item.label)}
                 </motion.span>
@@ -74,3 +61,4 @@ export const BottomNav: React.FC = () => {
     </nav>
   );
 };
+
