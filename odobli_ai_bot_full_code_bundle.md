@@ -3093,9 +3093,49 @@ export const PazandaAI: React.FC = () => {
   const [selectedRecipeIngredients, setSelectedRecipeIngredients] = useState<string[]>([]);
 
 
+  const handleCloseRecipeModal = () => {
+    try {
+      (window as any).Telegram?.WebApp?.HapticFeedback?.impactOccurred('light');
+    } catch (e) {}
+    setActiveRecipe(null);
+    setSelectedRecipeModal(null);
+  };
+
   useEffect(() => {
-    setActiveRecipe(selectedRecipeModal);
+    if (selectedRecipeModal) {
+      setActiveRecipe(selectedRecipeModal);
+    }
   }, [selectedRecipeModal]);
+
+  // Telegram Native Back Button & Browser History Handling for Recipe Modal
+  useEffect(() => {
+    const tg = (window as any).Telegram?.WebApp;
+    const backButton = tg?.BackButton;
+
+    if (activeRecipe !== null) {
+      if (backButton) {
+        backButton.show();
+        const handleTelegramBack = () => {
+          handleCloseRecipeModal();
+        };
+        backButton.onClick(handleTelegramBack);
+
+        return () => {
+          backButton.offClick(handleTelegramBack);
+          backButton.hide();
+        };
+      }
+
+      window.history.pushState({ recipeModal: activeRecipe.id }, '');
+      const handlePopState = () => {
+        handleCloseRecipeModal();
+      };
+      window.addEventListener('popstate', handlePopState);
+      return () => {
+        window.removeEventListener('popstate', handlePopState);
+      };
+    }
+  }, [activeRecipe]);
 
 
 
@@ -4746,7 +4786,7 @@ export const PazandaAI: React.FC = () => {
             <div className="sticky top-0 z-30 flex items-center justify-between bg-[#FFFDF9]/95 backdrop-blur-md pb-3 pt-1 -mt-2 -mx-2 px-2 border-b border-[#EFE8DC]">
               <motion.button
                 whileTap={{ scale: 0.93 }}
-                onClick={() => setActiveRecipe(null)}
+                onClick={handleCloseRecipeModal}
                 className="px-3.5 py-1.5 text-[#DB2777] bg-pink-50 hover:bg-pink-100 rounded-full transition-colors flex items-center gap-1.5 text-xs font-extrabold border border-pink-200 shadow-2xs"
               >
                 <ArrowLeft className="w-4 h-4" />
