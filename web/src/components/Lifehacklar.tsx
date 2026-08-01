@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useApp } from '../context/AppContext';
-import { Lifehack, LifehackCategory } from '../types';
-import { Lightbulb, Sparkles, ChevronDown, ChevronUp, CheckCircle2, Folder, FolderOpen, ArrowLeft, Loader2 } from 'lucide-react';
+import { LifehackCategory } from '../types';
+import { ChevronDown, ArrowLeft, Folder, CheckCircle2 } from 'lucide-react';
 
 const Category3DIcon: React.FC<{ icon3d: string; emoji: string; alt: string }> = ({ icon3d, emoji, alt }) => {
   const [failed, setFailed] = useState(false);
@@ -203,30 +203,6 @@ export const Lifehacklar: React.FC = () => {
               </div>
             </div>
 
-            {/* Barchasi All Folder Card */}
-            <motion.div
-              whileTap={{ scale: 0.96 }}
-              onClick={() => handleSelectCat('barchasi')}
-              className="bg-gradient-to-r from-pink-500 via-rose-500 to-pink-600 p-4 rounded-2xl text-white shadow-md cursor-pointer transition-all flex items-center justify-between group active:scale-98"
-            >
-              <div className="flex items-center gap-3.5">
-                <div className="w-12 h-12 rounded-2xl bg-white/20 border border-white/30 flex items-center justify-center p-2 flex-shrink-0 shadow-sm group-hover:scale-105 transition-transform duration-300">
-                  <Category3DIcon icon3d="https://cdn.jsdelivr.net/gh/Tarikul-Islam-Anik/Animated-Fluent-Emojis/Emojis/Objects/Folder.png" emoji="📁" alt="3D Folder" />
-                </div>
-                <div>
-                  <h3 className="font-extrabold text-white text-sm leading-tight">
-                    {t("Barcha Maslahatlar")}
-                  </h3>
-                  <p className="text-xs text-white/90 mt-0.5">
-                    {t("Barcha kategoriyalardagi sirlarni ko'rish")}
-                  </p>
-                </div>
-              </div>
-              <span className="px-3 py-1 rounded-full text-xs font-black bg-white/20 text-white border border-white/30 backdrop-blur-xs flex-shrink-0">
-                {getCategoryCount('barchasi')} {t("ta")}
-              </span>
-            </motion.div>
-
             {/* Section Header */}
             <div className="flex items-center justify-between px-1 pt-1">
               <h3 className="text-xs font-extrabold text-[#6B4E5B] uppercase tracking-wider flex items-center gap-1.5">
@@ -281,47 +257,51 @@ export const Lifehacklar: React.FC = () => {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -20 }}
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
             className="space-y-4"
           >
-            {/* Sticky Top Navigation Bar */}
-            <div className="sticky top-0 z-20 bg-gradient-to-r from-[#BE185D] via-[#DB2777] to-[#E11D48] p-3.5 rounded-2xl flex items-center justify-between shadow-md shadow-pink-500/20 border border-pink-400/30 text-white backdrop-blur-md">
+            {/* 1. SHAFFOF STICKY HEADER (Glassmorphism Shisha Effekt) */}
+            <div className="sticky top-0 z-20 glass-header border-b border-pink-100/80 px-3.5 py-3 flex items-center gap-3 shadow-xs">
               <button
                 onClick={() => {
                   triggerHaptic();
                   setSelectedCat(null);
                 }}
-                className="flex items-center gap-2 text-xs font-extrabold text-white bg-white/20 hover:bg-white/30 px-3 py-1.5 rounded-xl transition-all active:scale-95 border border-white/25 shadow-sm"
+                className="p-2 rounded-full bg-white shadow-2xs active:scale-90 transition-transform border border-pink-100 text-[#DB2777]"
               >
-                <ArrowLeft className="w-4 h-4 text-amber-200" />
-                <span>{t("Papkalarga Qaytish")}</span>
+                <ArrowLeft className="w-5 h-5" />
               </button>
-
-              <div className="flex items-center gap-2 text-right">
-                <div>
-                  <span className="badge-gold text-[10px] font-extrabold px-2 py-0.5 rounded-full inline-block mb-0.5">
-                    📁 {getCategoryCount(selectedCat)} {t("ta maslahat")}
-                  </span>
-                  <h3 className="text-sm font-extrabold text-white tracking-tight flex items-center gap-1.5 justify-end">
-                    <span>{selectedCat === 'barchasi' ? t("Barcha Maslahatlar") : t(activeCategoryObj?.label || '')}</span>
-                  </h3>
-                </div>
-                {activeCategoryObj?.icon3d && (
-                  <img src={activeCategoryObj.icon3d} alt="3D icon" className="w-8 h-8 object-contain filter drop-shadow-sm flex-shrink-0" />
-                )}
+              <div className="flex-1 min-w-0">
+                <h3 className="font-extrabold text-[#2E121D] text-sm leading-tight truncate">
+                  {selectedCat === 'barchasi' ? t("Barcha Maslahatlar") : t(activeCategoryObj?.label || '')}
+                </h3>
+                <p className="text-[10px] text-[#9D4C6C] font-medium">
+                  {filteredHacks.length} {t("ta foydali maslahat")}
+                </p>
               </div>
             </div>
 
-            {/* Lifehack Cards Inside This Folder */}
-            <div className="space-y-3">
+            {/* 2. TOZA VA MINIMALIST KARTALAR RO'YXATI */}
+            <div className="space-y-3 px-1">
               {filteredHacks.length === 0 ? (
-                <div className="text-center py-12 bg-white rounded-2xl border border-pink-200 p-6 shadow-sm">
-                  <div className="text-4xl mb-2">📭</div>
+                /* Professional Actionable Empty State */
+                <div className="text-center py-14 px-6 bg-white rounded-3xl border border-dashed border-pink-200 mt-4 shadow-2xs">
+                  <div className="text-4xl mb-3">🧐</div>
                   <h4 className="font-extrabold text-[#2E121D] text-sm">
-                    {t("Ushbu papkada hozircha maslahatlar yo'q")}
+                    {t("Bu papka hozircha bo'sh")}
                   </h4>
-                  <p className="text-xs text-[#9D4C6C] mt-1">
-                    {t("Tez orada yangi sirlar joylashtiriladi")}
+                  <p className="text-xs text-[#9D4C6C] mt-1 mb-4">
+                    {t("Tez orada yangi foydali sirlar joylashtiriladi.")}
                   </p>
+                  <button
+                    onClick={() => {
+                      triggerHaptic();
+                      setSelectedCat(null);
+                    }}
+                    className="btn-rose-pill px-5 py-2 text-xs font-bold shadow-sm active:scale-95 transition-transform"
+                  >
+                    {t("Boshqa papkalarni ko'rish")}
+                  </button>
                 </div>
               ) : (
                 filteredHacks.map(lh => {
@@ -329,83 +309,95 @@ export const Lifehacklar: React.FC = () => {
                   return (
                     <motion.div
                       key={lh.id}
-                      whileTap={{ scale: 0.98 }}
+                      layout
                       onClick={() => toggleExpand(lh.id)}
-                      className="bg-white p-4 rounded-2xl border border-pink-200/90 hover:border-[#DB2777] shadow-sm transition-all cursor-pointer select-none active:bg-pink-50/40"
+                      className="card-pink p-3.5 rounded-2xl cursor-pointer select-none border border-pink-200/90 hover:border-[#DB2777] shadow-xs active:bg-pink-50/40 transition-colors"
                     >
-                      <div className="flex gap-3.5 items-start">
-                        {lh.rasm_url && (lh.rasm_url.startsWith('http') || lh.rasm_url.startsWith('/') || lh.rasm_url.startsWith('data:')) ? (
-                          <img
-                            src={lh.rasm_url}
-                            alt={lh.sarlavha}
-                            referrerPolicy="no-referrer"
-                            loading="lazy"
-                            className="w-16 h-16 object-cover rounded-xl flex-shrink-0 shadow-sm border border-pink-100"
-                          />
-                        ) : (
-                          <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-pink-100 via-rose-50 to-pink-200 border border-pink-200 flex items-center justify-center text-3xl shrink-0 shadow-sm">
-                            {lh.rasm_url || '💡'}
-                          </div>
-                        )}
+                      {/* Yopiq Holat: Faqat Rasm, Sarlavha hamda ChevronDown */}
+                      <div className="flex items-center gap-3">
+                        <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-pink-100 via-rose-50 to-pink-200 border border-pink-200 flex items-center justify-center text-2xl shrink-0 shadow-xs overflow-hidden">
+                          {lh.rasm_url && (lh.rasm_url.startsWith('http') || lh.rasm_url.startsWith('/') || lh.rasm_url.startsWith('data:')) ? (
+                            <img
+                              src={lh.rasm_url}
+                              alt={lh.sarlavha}
+                              referrerPolicy="no-referrer"
+                              loading="lazy"
+                              className="w-full h-full object-cover"
+                            />
+                          ) : (
+                            <span>{lh.rasm_url || '💡'}</span>
+                          )}
+                        </div>
 
                         <div className="flex-1 min-w-0">
-                          <span className="text-[10px] font-extrabold text-[#DB2777] bg-pink-100 px-2 py-0.5 rounded-md border border-pink-200 uppercase">
-                            {t(lh.kategoriya)}
-                          </span>
-                          <h3 className="font-extrabold text-[#2E121D] text-sm mt-1 leading-snug">
+                          <h3 className="font-extrabold text-[#2E121D] text-sm leading-snug line-clamp-2">
                             {t(lh.sarlavha)}
                           </h3>
-                          <p className="text-xs text-[#9D4C6C] mt-1 leading-relaxed">
-                            {t(lh.tavsif_matni)}
-                          </p>
                         </div>
-                      </div>
 
-                      {/* Expand Action Indicator */}
-                      <div className="w-full mt-3 pt-2.5 border-t border-pink-100 flex items-center justify-between text-xs font-extrabold text-[#DB2777]">
-                        <span>{isExpanded ? t("Bosqichlarni yashirish") : t("Batafsil bosqichlarni ko'rish")}</span>
-                        {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-                      </div>
-
-                      {/* Step-by-step content */}
-                      {isExpanded && (
-                        <div
-                          onClick={(e) => e.stopPropagation()}
-                          className="mt-3 pt-3 border-t border-dashed border-pink-200 space-y-2 animate-in fade-in"
+                        {/* Silliq Aylanuvchi Chevron Down */}
+                        <motion.div
+                          animate={{ rotate: isExpanded ? 180 : 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="shrink-0 p-1 text-[#9D4C6C]"
                         >
-                          {lh.bosqichlar && lh.bosqichlar.length > 0 && (
-                            <>
-                              <h4 className="font-extrabold text-xs text-[#2E121D] uppercase tracking-wider mb-2">
-                                📋 {t("Ketma-ketlik bosqichlari")}:
-                              </h4>
-                              {lh.bosqichlar.map((step, idx) => (
-                                <div key={idx} className="flex items-start gap-2.5 text-xs font-medium text-[#374151] bg-pink-50/50 p-3 rounded-xl border border-pink-100">
-                                  <span className="w-5 h-5 rounded-full bg-[#DB2777] text-white font-extrabold text-[10px] flex items-center justify-center shrink-0 mt-0.5">
-                                    {idx + 1}
-                                  </span>
-                                  <span className="leading-relaxed flex-1">{t(step)}</span>
-                                </div>
-                              ))}
-                            </>
-                          )}
+                          <ChevronDown className="w-5 h-5" />
+                        </motion.div>
+                      </div>
 
-                          {lh.foydali_lahzalar && lh.foydali_lahzalar.length > 0 && (
-                            <div className="mt-3 pt-2 border-t border-pink-100">
-                              <h5 className="text-[11px] font-extrabold text-emerald-800 uppercase tracking-wider mb-1.5">
-                                ✨ {t("Foydali jihatlari")}:
-                              </h5>
-                              <div className="flex flex-wrap gap-1.5">
-                                {lh.foydali_lahzalar.map((tip, idx) => (
-                                  <span key={idx} className="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200 flex items-center gap-1">
-                                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-                                    {t(tip)}
-                                  </span>
-                                ))}
-                              </div>
+                      {/* Ochiq Holat: Tavsif, Bosqichlar va Foydali lahzalar */}
+                      <AnimatePresence initial={false}>
+                        {isExpanded && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.25, ease: "easeInOut" }}
+                            className="overflow-hidden"
+                          >
+                            <div
+                              onClick={(e) => e.stopPropagation()}
+                              className="pt-3 mt-3 border-t border-pink-100 space-y-3"
+                            >
+                              <p className="text-xs text-[#9D4C6C] leading-relaxed">
+                                {t(lh.tavsif_matni)}
+                              </p>
+
+                              {lh.bosqichlar && lh.bosqichlar.length > 0 && (
+                                <div className="space-y-2">
+                                  <h4 className="text-[10px] font-black text-[#2E121D] uppercase tracking-wider">
+                                    📋 {t("Ketma-ketlik bosqichlari")}:
+                                  </h4>
+                                  {lh.bosqichlar.map((step, idx) => (
+                                    <div key={idx} className="flex items-start gap-2.5 text-xs font-medium text-[#374151] bg-pink-50/50 p-2.5 rounded-xl border border-pink-100">
+                                      <span className="w-5 h-5 rounded-full bg-[#DB2777] text-white font-extrabold text-[10px] flex items-center justify-center shrink-0 mt-0.5">
+                                        {idx + 1}
+                                      </span>
+                                      <span className="leading-relaxed flex-1">{t(step)}</span>
+                                    </div>
+                                  ))}
+                                </div>
+                              )}
+
+                              {lh.foydali_lahzalar && lh.foydali_lahzalar.length > 0 && (
+                                <div className="pt-2 border-t border-pink-100">
+                                  <h5 className="text-[10px] font-extrabold text-emerald-800 uppercase tracking-wider mb-1.5">
+                                    ✨ {t("Foydali jihatlari")}:
+                                  </h5>
+                                  <div className="flex flex-wrap gap-1.5">
+                                    {lh.foydali_lahzalar.map((tip, idx) => (
+                                      <span key={idx} className="text-[10.5px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200 flex items-center gap-1">
+                                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                                        {t(tip)}
+                                      </span>
+                                    ))}
+                                  </div>
+                                </div>
+                              )}
                             </div>
-                          )}
-                        </div>
-                      )}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
                     </motion.div>
                   );
                 })
