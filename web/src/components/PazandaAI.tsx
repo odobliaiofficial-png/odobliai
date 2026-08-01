@@ -35,7 +35,9 @@ import {
   X,
   Pencil,
   Upload,
-  Save
+  Save,
+  SlidersHorizontal,
+  Filter
 } from 'lucide-react';
 
 
@@ -128,6 +130,8 @@ export const PazandaAI: React.FC = () => {
 
   // Search queries & Advanced Recipe Filters
   const [ingredientSearch, setIngredientSearch] = useState<string>('');
+  const [isFilterExpanded, setIsFilterExpanded] = useState<boolean>(false);
+
 
   // Selected ingredient IDs for match mode
   const [selectedIngredientIds, setSelectedIngredientIds] = useState<string[]>([]);
@@ -982,102 +986,239 @@ export const PazandaAI: React.FC = () => {
       {viewMode === 'catalog' && (
         <div className="space-y-3.5">
           
-          {/* Search Bar Input */}
-          <div className="relative">
-            <Search className="w-4 h-4 text-[#8C8479] absolute left-3.5 top-1/2 -translate-y-1/2" />
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={e => setSearchQuery(e.target.value)}
-              placeholder={t("Retsept yoki masalliq nomini yozing...")}
-              className="w-full pl-10 pr-9 py-3 rounded-2xl bg-white border border-[#EFE8DC] text-xs focus:outline-none focus:border-[#DB2777] shadow-2xs font-bold text-[#2E121D]"
-            />
-            {searchQuery && (
-              <button
-                onClick={() => setSearchQuery('')}
-                className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-gray-400 hover:text-gray-600 rounded-full"
+          {/* Search Bar Input & Filter Button */}
+          <div className="space-y-2">
+            <div className="flex items-center gap-2">
+              {/* Search Bar Input */}
+              <div className="relative flex-1">
+                <Search className="w-4 h-4 text-[#8C8479] absolute left-3.5 top-1/2 -translate-y-1/2" />
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={e => setSearchQuery(e.target.value)}
+                  placeholder={t("Retsept yoki masalliq nomini yozing...")}
+                  className="w-full pl-10 pr-9 py-3 rounded-2xl bg-white border border-[#EFE8DC] text-xs focus:outline-none focus:border-[#DB2777] shadow-2xs font-bold text-[#2E121D]"
+                />
+                {searchQuery && (
+                  <button
+                    onClick={() => setSearchQuery('')}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-gray-400 hover:text-gray-600 rounded-full"
+                  >
+                    <X className="w-3.5 h-3.5" />
+                  </button>
+                )}
+              </div>
+
+              {/* Expandable Filter Toggle Button */}
+              <motion.button
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setIsFilterExpanded(prev => !prev)}
+                className={`px-3.5 py-3 rounded-2xl text-xs font-black flex items-center gap-1.5 border transition-all shadow-2xs shrink-0 ${
+                  isFilterExpanded || (selectedFolderCategory !== null || timeFilter !== 'all' || diffFilter !== 'all')
+                    ? 'bg-[#DB2777] text-white border-[#DB2777] shadow-md'
+                    : 'bg-white text-[#2E121D] border-[#EFE8DC] hover:border-pink-300'
+                }`}
               >
-                <X className="w-3.5 h-3.5" />
-              </button>
-            )}
-          </div>
-
-          {/* Mukammal Filtrlar Paneli (Vaqt va Qiyinlik boyicha) */}
-          <div className="bg-white p-3 rounded-2xl border border-pink-100 shadow-2xs space-y-2">
-            {/* Tayyorlash Vaqti */}
-            <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar">
-              <span className="text-[10px] font-black text-slate-400 uppercase tracking-wider shrink-0 mr-1">Vaqt:</span>
-              {[
-                { id: 'all', label: 'Barchasi' },
-                { id: 'quick', label: '⚡ <30 daq' },
-                { id: 'medium', label: "⏱️ 30-60 daq" },
-                { id: 'long', label: "🍲 >60 daq" },
-              ].map(f => (
-                <button
-                  key={f.id}
-                  onClick={() => setTimeFilter(f.id as any)}
-                  className={`px-3 py-1 rounded-xl text-[11px] font-extrabold whitespace-nowrap transition-all shadow-2xs ${
-                    timeFilter === f.id
-                      ? 'bg-[#DB2777] text-white shadow-xs'
-                      : 'bg-pink-50/60 text-[#9D4C6C] hover:bg-pink-100 border border-pink-100'
-                  }`}
-                >
-                  {f.label}
-                </button>
-              ))}
+                <SlidersHorizontal className="w-4 h-4" />
+                <span>{t("Filtrlar")}</span>
+                {(selectedFolderCategory !== null || timeFilter !== 'all' || diffFilter !== 'all') && (
+                  <span className="w-5 h-5 rounded-full bg-white text-[#DB2777] text-[10px] font-black flex items-center justify-center shadow-2xs">
+                    {(selectedFolderCategory !== null ? 1 : 0) + (timeFilter !== 'all' ? 1 : 0) + (diffFilter !== 'all' ? 1 : 0)}
+                  </span>
+                )}
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${isFilterExpanded ? 'rotate-180' : ''}`} />
+              </motion.button>
             </div>
 
-            {/* Qiyinlik Darajasi */}
-            <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pt-1 border-t border-pink-50">
-              <span className="text-[10px] font-black text-slate-400 uppercase tracking-wider shrink-0 mr-1">Qiyinlik:</span>
-              {[
-                { id: 'all', label: 'Barchasi' },
-                { id: 'oson', label: '🟢 Oson' },
-                { id: 'orta', label: "🟡 O'rtacha" },
-                { id: 'qiyin', label: "🔴 Murakkab" },
-              ].map(f => (
-                <button
-                  key={f.id}
-                  onClick={() => setDiffFilter(f.id as any)}
-                  className={`px-3 py-1 rounded-xl text-[11px] font-extrabold whitespace-nowrap transition-all shadow-2xs ${
-                    diffFilter === f.id
-                      ? 'bg-[#DB2777] text-white shadow-xs'
-                      : 'bg-pink-50/60 text-[#9D4C6C] hover:bg-pink-100 border border-pink-100'
-                  }`}
-                >
-                  {f.label}
-                </button>
-              ))}
-            </div>
-
-            {/* Active Filters summary bar */}
-            {(timeFilter !== 'all' || diffFilter !== 'all' || searchQuery || selectedFolderCategory) && (
-              <div className="flex items-center justify-between pt-1 border-t border-pink-100 text-[11px]">
+            {/* Active Filters Pill Bar (When collapsed but active) */}
+            {!isFilterExpanded && (selectedFolderCategory !== null || timeFilter !== 'all' || diffFilter !== 'all' || searchQuery) && (
+              <div className="flex items-center justify-between px-3 py-2 bg-pink-50/90 rounded-2xl border border-pink-200 text-xs">
                 <div className="flex items-center gap-1.5 flex-wrap">
-                  <span className="font-bold text-[#831843]">Filtr:</span>
+                  <span className="font-extrabold text-[#DB2777]">{t("Filtr")}:</span>
+                  {selectedFolderCategory && (
+                    <span className="bg-white text-[#DB2777] px-2 py-0.5 rounded-lg font-black border border-pink-200 text-[10.5px]">
+                      📂 {t(selectedFolderCategory)}
+                    </span>
+                  )}
                   {timeFilter !== 'all' && (
-                    <span className="bg-pink-100 text-[#DB2777] px-2 py-0.5 rounded-lg font-black border border-pink-200">
+                    <span className="bg-white text-[#DB2777] px-2 py-0.5 rounded-lg font-black border border-pink-200 text-[10.5px]">
                       {timeFilter === 'quick' ? '⚡ <30m' : timeFilter === 'medium' ? '⏱️ 30-60m' : '🍲 >60m'}
                     </span>
                   )}
                   {diffFilter !== 'all' && (
-                    <span className="bg-pink-100 text-[#DB2777] px-2 py-0.5 rounded-lg font-black border border-pink-200 capitalize">
-                      {diffFilter}
+                    <span className="bg-white text-[#DB2777] px-2 py-0.5 rounded-lg font-black border border-pink-200 text-[10.5px] capitalize">
+                      {t(diffFilter)}
                     </span>
                   )}
                 </div>
                 <button
-                  onClick={() => {
-                    setTimeFilter('all');
-                    setDiffFilter('all');
-                    setSearchQuery('');
-                    setSelectedFolderCategory(null);
-                  }}
-                  className="text-[#DB2777] font-black hover:underline shrink-0 text-[10.5px]"
+                  onClick={resetPazandaFilters}
+                  className="text-[#DB2777] font-black hover:underline shrink-0 text-[10.5px] ml-2"
                 >
-                  Tozalash ✕
+                  {t("Filtrni tozalash")} ✕
                 </button>
               </div>
+            )}
+
+            {/* Expanded Stacked Tagma-Tag Filter Panel */}
+            {isFilterExpanded && (
+              <motion.div
+                initial={{ opacity: 0, y: -8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                className="bg-white rounded-3xl p-4 border border-pink-200 shadow-xl space-y-4 text-left"
+              >
+                <div className="flex items-center justify-between border-b border-pink-100 pb-2.5">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 rounded-xl bg-pink-100 text-[#DB2777] flex items-center justify-center shadow-2xs">
+                      <SlidersHorizontal className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <h3 className="font-black text-xs text-[#2E121D]">{t("Retsept Filtrlari va Saralash")}</h3>
+                      <p className="text-[10px] text-[#7C746B] font-medium">{t("Tagma-tag bo'limlardan tanlang")}</p>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => setIsFilterExpanded(false)}
+                    className="w-7 h-7 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-500 font-black flex items-center justify-center text-xs"
+                  >
+                    ✕
+                  </button>
+                </div>
+
+                {/* 1. KATEGORIYA / PAPKA FILTRI (Tagma-tag stacked list) */}
+                <div className="space-y-1.5">
+                  <label className="text-[11px] font-black text-[#DB2777] block">
+                    📂 {t("Kategoriya (Papka)")}
+                  </label>
+                  <div className="space-y-1.5 max-h-52 overflow-y-auto no-scrollbar pr-1">
+                    <button
+                      onClick={() => setSelectedFolderCategory(null)}
+                      className={`w-full p-2.5 rounded-2xl border text-left text-xs font-extrabold flex items-center justify-between transition-all ${
+                        selectedFolderCategory === null
+                          ? 'bg-pink-50 border-[#DB2777] text-[#DB2777] shadow-xs ring-1 ring-[#DB2777]'
+                          : 'bg-stone-50/70 border-stone-200 text-[#2E121D] hover:bg-pink-50/40'
+                      }`}
+                    >
+                      <div className="flex items-center gap-2.5">
+                        <span className="text-base">🍽️</span>
+                        <span>{t("Barcha Kategoriyalar")}</span>
+                      </div>
+                      {selectedFolderCategory === null && <Check className="w-4 h-4 text-[#DB2777]" />}
+                    </button>
+
+                    {FOLDER_CATEGORIES.map(folder => {
+                      const isSel = selectedFolderCategory?.toLowerCase().trim() === folder.id.toLowerCase().trim();
+                      const count = recipes.filter(r => r.kategoriya?.toLowerCase().trim() === folder.id.toLowerCase().trim()).length;
+                      return (
+                        <button
+                          key={folder.id}
+                          onClick={() => setSelectedFolderCategory(folder.id)}
+                          className={`w-full p-2.5 rounded-2xl border text-left text-xs font-extrabold flex items-center justify-between transition-all ${
+                            isSel
+                              ? 'bg-pink-50 border-[#DB2777] text-[#DB2777] shadow-xs ring-1 ring-[#DB2777]'
+                              : 'bg-stone-50/70 border-stone-200 text-[#2E121D] hover:bg-pink-50/40'
+                          }`}
+                        >
+                          <div className="flex items-center gap-2.5 min-w-0">
+                            <span className="text-base shrink-0">{folder.emoji}</span>
+                            <span className="truncate">{t(folder.title)}</span>
+                          </div>
+                          <div className="flex items-center gap-1.5 shrink-0">
+                            <span className="text-[10px] text-gray-500 font-extrabold bg-white px-2 py-0.5 rounded-lg border">{count} {t("ta")}</span>
+                            {isSel && <Check className="w-4 h-4 text-[#DB2777]" />}
+                          </div>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* 2. TAYYORLASH VAQTI (Tagma-tag stacked cards) */}
+                <div className="space-y-1.5 border-t border-pink-100 pt-3">
+                  <label className="text-[11px] font-black text-[#DB2777] block">
+                    ⏱️ {t("Tayyorlash Vaqti")}
+                  </label>
+                  <div className="space-y-1.5">
+                    {[
+                      { id: 'all', icon: '🌐', label: 'Barcha vaqtlar (Har qanday)' },
+                      { id: 'quick', icon: '⚡', label: 'Tezkor retseptlar (30 daqiqadan kam)' },
+                      { id: 'medium', icon: '⏱️', label: "O'rtacha retseptlar (30-60 daqiqa)" },
+                      { id: 'long', icon: '🍲', label: "Uzoq pishadigan taomlar (60 daqiqadan ko'p)" },
+                    ].map(f => {
+                      const isSel = timeFilter === f.id;
+                      return (
+                        <button
+                          key={f.id}
+                          onClick={() => setTimeFilter(f.id as any)}
+                          className={`w-full p-2.5 rounded-2xl border text-left text-xs font-extrabold flex items-center justify-between transition-all ${
+                            isSel
+                              ? 'bg-pink-50 border-[#DB2777] text-[#DB2777] shadow-xs ring-1 ring-[#DB2777]'
+                              : 'bg-stone-50/70 border-stone-200 text-[#2E121D] hover:bg-pink-50/40'
+                          }`}
+                        >
+                          <div className="flex items-center gap-2.5">
+                            <span className="text-base">{f.icon}</span>
+                            <span>{t(f.label)}</span>
+                          </div>
+                          {isSel && <Check className="w-4 h-4 text-[#DB2777]" />}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* 3. QIYINLIK DARAJASI (Tagma-tag stacked cards) */}
+                <div className="space-y-1.5 border-t border-pink-100 pt-3">
+                  <label className="text-[11px] font-black text-[#DB2777] block">
+                    📊 {t("Qiyinlik Darajasi")}
+                  </label>
+                  <div className="space-y-1.5">
+                    {[
+                      { id: 'all', icon: '🌐', label: 'Barcha qiyinlik darajalari' },
+                      { id: 'oson', icon: '🟢', label: 'Oson (Boshlovchilar uchun)' },
+                      { id: 'orta', icon: '🟡', label: "O'rtacha (Oshxona tajribasi borlar)" },
+                      { id: 'qiyin', icon: '🔴', label: "Murakkab (Professional oshpazlar)" },
+                    ].map(f => {
+                      const isSel = diffFilter === f.id;
+                      return (
+                        <button
+                          key={f.id}
+                          onClick={() => setDiffFilter(f.id as any)}
+                          className={`w-full p-2.5 rounded-2xl border text-left text-xs font-extrabold flex items-center justify-between transition-all ${
+                            isSel
+                              ? 'bg-pink-50 border-[#DB2777] text-[#DB2777] shadow-xs ring-1 ring-[#DB2777]'
+                              : 'bg-stone-50/70 border-stone-200 text-[#2E121D] hover:bg-pink-50/40'
+                          }`}
+                        >
+                          <div className="flex items-center gap-2.5">
+                            <span className="text-base">{f.icon}</span>
+                            <span>{t(f.label)}</span>
+                          </div>
+                          {isSel && <Check className="w-4 h-4 text-[#DB2777]" />}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Bottom Action Controls */}
+                <div className="flex items-center justify-between pt-3 border-t border-pink-100 gap-2">
+                  <button
+                    onClick={resetPazandaFilters}
+                    className="px-4 py-2.5 rounded-2xl bg-pink-100/70 hover:bg-pink-200 text-[#DB2777] text-xs font-black transition-colors"
+                  >
+                    {t("Filtrni tozalash")} ↺
+                  </button>
+
+                  <button
+                    onClick={() => setIsFilterExpanded(false)}
+                    className="flex-1 py-2.5 rounded-2xl bg-[#DB2777] hover:bg-[#BE185D] text-white text-xs font-black shadow-md transition-colors text-center"
+                  >
+                    {t("Filtrni qo'llash")} ✓
+                  </button>
+                </div>
+              </motion.div>
             )}
           </div>
 
