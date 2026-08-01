@@ -1,5 +1,7 @@
 import { compressImage, uploadImageToSupabase } from '../utils/imageCompressor';
+import { fuzzyMatchSearch } from '../utils/searchNormalizer';
 import React, { useState, useMemo, useEffect } from 'react';
+
 import { createPortal } from 'react-dom';
 import { motion } from 'motion/react';
 import { useApp } from '../context/AppContext';
@@ -276,7 +278,7 @@ export const PazandaAI: React.FC = () => {
     }
     if (
       name.includes('zira') || name.includes('murch') || name.includes('tuz') || 
-      name.includes('ziravor') || name.includes('lavr') || 
+    name.includes('ziravor') || name.includes('lavr') || 
       name.includes('kunjut') || name.includes('paprika') || name.includes('zirk') || 
       name.includes('mayiz') || name.includes('dolchin') || name.includes('zafron') || 
       name.includes('yongoq') || name.includes('bodom') || name.includes('pista') || name.includes('turshak') || name.includes('kardamon') || name.includes('funtuk')
@@ -287,7 +289,7 @@ export const PazandaAI: React.FC = () => {
   };
 
   const categoryLabels: { id: IngredientCategory | 'barchasi'; label: string }[] = [
-
+    { id: 'barchasi', label: '✨ Barchasi' },
     { id: 'sabzavot', label: '🥦 Sabzavotlar' },
     { id: 'meva', label: '🍎 Mevalar' },
     { id: 'gosht', label: "🥩 Go'sht" },
@@ -311,15 +313,14 @@ export const PazandaAI: React.FC = () => {
     );
   };
 
-  // Filtered ingredients
+  // Filtered ingredients with Smart Typo Tolerance & Fuzzy Search
   const filteredIngredients = useMemo(() => {
     let list = ingredients;
     if (selectedCategory !== 'barchasi') {
       list = list.filter(i => i.kategoriya === selectedCategory);
     }
     if (ingredientSearch.trim()) {
-      const q = ingredientSearch.toLowerCase().trim();
-      list = list.filter(i => i.nomi.toLowerCase().includes(q));
+      list = list.filter(i => fuzzyMatchSearch(i.nomi, ingredientSearch));
     }
     return list;
   }, [ingredients, selectedCategory, ingredientSearch]);
@@ -343,7 +344,6 @@ export const PazandaAI: React.FC = () => {
       const matchedIds = required.filter(id => selectedIngredientIds.includes(id));
       const missingIds = required.filter(id => !selectedIngredientIds.includes(id));
 
-      // Must have at least 1 matching ingredient
       if (matchedIds.length === 0) return;
 
       const matchPercent = Math.round((matchedIds.length / required.length) * 100);
@@ -351,50 +351,10 @@ export const PazandaAI: React.FC = () => {
       const resolveIngredientName = (id: string): string => {
         const found = ingredients.find(ing => ing.id === id);
         if (found) return found.nomi;
-        const idMap: Record<string, string> = {
-          'ing_un': "Bug'doy uni",
-          'ing_saryog': "Sariyog'",
-          'ing_shakar': "Shakar",
-          'ing_tuxum': "Tovuq tuxumi",
-          'ing_qatiq': "Qatiq",
-          'ing_sut': "Sut",
-          'ing_qaymoq': "Qaymoq",
-          'ing_pista': "Pista",
-          'ing_olxori': "Olxo'ri",
-          'ing_malina': "Malina",
-          'ing_kassava': "Kassava",
-          'ing_kokos_suti': "Kokos suti",
-          'ing_kokos_qirindisi': "Kokos qirindisi",
-          'ing_granola': "Granola",
-          'ing_mango': "Mango",
-          'ing_kokos_qaymogi': "Kokos qaymog'i",
-          'ing_tvorojniy_pishloq': "Tvorojniy pishloq",
-          'ing_avokado': "Avokado",
-          'ing_laym': "Laym",
-          'ing_bodom_uni': "Bodom uni",
-          'ing_funtuk': "Funtuk yong'og'i",
-          'ing_kardamon': "Kardamon (Hil)",
-          'ing_yalpiz_ekstrakti': "Yalpiz ekstrakti",
-          'ing_zukkini': "Zukkini (Qovoqcha)",
-          'ing_nok': "Nok",
-          'ing_qulupnay': "Qulupnay",
-          'ing_sgushchenka': "Quyultirilgan sut",
-          'ing_yongoq': "Yong'oq mag'zi",
-          'ing_suzma': "Suzma / Chakka",
-          'ing_limon': "Limon",
-          'ing_yalpiz': "Yalpiz",
-          'ing_yogi': "O'simlik yog'i"
-        };
-        if (idMap[id]) return idMap[id];
-        if (id.startsWith('ing_')) {
-          const raw = id.replace('ing_', '').replace(/_/g, ' ');
-          return raw.charAt(0).toUpperCase() + raw.slice(1);
-        }
         return id;
       };
 
       const missingNames = missingIds.map(id => resolveIngredientName(id));
-
       const matchItem = { recipe, missingNames, matchPercent };
 
       if (missingIds.length === 0) {
@@ -406,13 +366,12 @@ export const PazandaAI: React.FC = () => {
       }
     });
 
-    // Sort partial matches by highest match percentage
     partialMatch.sort((a, b) => b.matchPercent - a.matchPercent);
-
     const allMatches = [...fullMatch, ...missingOne, ...partialMatch];
 
     return { fullMatch, missingOne, partialMatch, allMatches };
   }, [recipes, selectedIngredientIds, ingredients]);
+
 
   // Lock body scroll whenever any modal is open — bulletproof iOS Safari / Telegram WebView fix
   useEffect(() => {
@@ -447,11 +406,10 @@ export const PazandaAI: React.FC = () => {
     }
 
     if (searchQuery.trim()) {
-      const q = searchQuery.toLowerCase().trim();
       published = published.filter(r =>
-        r.nomi.toLowerCase().includes(q) ||
-        (r.tarif_matni && r.tarif_matni.toLowerCase().includes(q)) ||
-        (r.masalliqlar_matni && r.masalliqlar_matni.toLowerCase().includes(q))
+        fuzzyMatchSearch(r.nomi, searchQuery) ||
+        (r.tarif_matni && fuzzyMatchSearch(r.tarif_matni, searchQuery)) ||
+        (r.masalliqlar_matni && fuzzyMatchSearch(r.masalliqlar_matni, searchQuery))
       );
     }
 
@@ -478,7 +436,6 @@ export const PazandaAI: React.FC = () => {
   // Parsed ingredient items for active recipe modal
   const recipeIngredientItems = useMemo(() => {
     if (!activeRecipe) return [];
-    // Split masalliqlar_matni by comma or newline
     const items = activeRecipe.masalliqlar_matni
       .split(/,|\n/)
       .map(str => str.trim())
@@ -486,8 +443,8 @@ export const PazandaAI: React.FC = () => {
     return items;
   }, [activeRecipe]);
 
-  // Initialize selected recipe ingredients when active recipe changes
   useEffect(() => {
+
     if (activeRecipe) {
       const items = activeRecipe.masalliqlar_matni
         .split(/,|\n/)

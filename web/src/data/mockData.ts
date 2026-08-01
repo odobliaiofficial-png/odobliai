@@ -169,9 +169,9 @@ export const initialIngredients: Ingredient[] = [
   { id: "ing_shaftoli", nomi: "Oq Shaftoli", kategoriya: "meva", icon: "🍑" },
   { id: "ing_makkajoxori", nomi: "Makkajo'xori", kategoriya: "sabzavot", icon: "🌽" },
   { id: "ing_qovun", nomi: "Shirin Qovun", kategoriya: "meva", icon: "🍈" },
-  { id: "ing_avokado", nomi: "Avokado", kategoriya: "sabzavot", icon: "🥑" },
   { id: "ing_bekon", nomi: "Bekon", kategoriya: "gosht", icon: "🥓" }
 ];
+
 
 
 export const initialRecipes: Recipe[] = [
