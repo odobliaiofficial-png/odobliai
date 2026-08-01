@@ -165,8 +165,14 @@ export const initialIngredients: Ingredient[] = [
   { id: "ing_jigarrang_shakar", nomi: "Jigarrang shakar", kategoriya: "qandolat", icon: "🍬" },
   { id: "ing_olma", nomi: "Nordon Olma", kategoriya: "meva", icon: "🍎" },
   { id: "ing_klyukva", nomi: "Klyukva / Qizil smorodina", kategoriya: "meva", icon: "🍒" },
-  { id: "ing_pirog_korji", nomi: "Tayyor pirog korji", kategoriya: "dukkakli", icon: "🥧" }
+  { id: "ing_pirog_korji", nomi: "Tayyor pirog korji", kategoriya: "dukkakli", icon: "🥧" },
+  { id: "ing_shaftoli", nomi: "Oq Shaftoli", kategoriya: "meva", icon: "🍑" },
+  { id: "ing_makkajoxori", nomi: "Makkajo'xori", kategoriya: "sabzavot", icon: "🌽" },
+  { id: "ing_qovun", nomi: "Shirin Qovun", kategoriya: "meva", icon: "🍈" },
+  { id: "ing_avokado", nomi: "Avokado", kategoriya: "sabzavot", icon: "🥑" },
+  { id: "ing_bekon", nomi: "Bekon", kategoriya: "gosht", icon: "🥓" }
 ];
+
 
 export const initialRecipes: Recipe[] = [
 {
@@ -1708,8 +1714,192 @@ export const initialRecipes: Recipe[] = [
     holat: 'nashr',
     required_ingredient_ids: ['ing_shakar', 'ing_olma', 'ing_un', 'ing_tuxum']
   },
-
+  {
+    id: 'rec_hd_102_creamy_mushroom_pasta',
+    nomi: "Qarsildoq Qo'ziqorinli Qaymoqli Pasta",
+    tayyorlash_vaqti_daq: 25,
+    qiyinlik: 'orta',
+    kategoriya: 'Garnirlar va Sabzavotli Taomlar',
+    rasm_url: '🍝',
+    tarif_matni: "Tillarang qarsildoq qo'ziqorinlar, spagetti, qaymoq, limon sharbati va parmezan pishlog'idan tayyorlanadigan mayin va xushbo'y pasta.",
+    masalliqlar_matni: "60 ml zaytun yog'i\n450 g har xil qo'ziqorin (shampinyon, veshenka)\n1 choy qoshiq tuz\n2 dona sharlot piyoz (mayda to'g'ralgan)\n450 g spagetti\n120 ml qaymoq\nYarim dona limon sharbati va rendasi\n30 g petrushka ko'kati\n30 g saryog'\n15 g parmezan pishlog'i (qirilgan)\nQora murch",
+    korsatmalari: [
+      "Tovada 30 ml yog'ni qizdirib, qo'ziqorinlarning yarmini 5 daqiqa tillarang va qarsildoq bo'lguncha qovurib oling. Tuz seping. Qolgan yog' va qo'ziqorinlar bilan ham shunday qiling.",
+      "Olovni pasaytirib, barcha qo'ziqorinlarni tovaga qaytaring. Piyozni solib, 2 daqiqa yumshaguncha qovuring.",
+      "Qozonda tuzli suvni qaynatib, spagettini pishirib oling (suvidan 240 ml olib qo'ying).",
+      "Pishgan spagettini qo'ziqorinli tovaga soling. Qaymoq va 240 ml makaron suvidan quyib, o'rta olovda 3 daqiqa sous quyulguncha aralashtiring.",
+      "Olovdan olib limon sharbati, rendasi, petrushka, saryog', parmezan pishlog'i va murch solib aralashtiring."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_qoziqorin', 'ing_makaron', 'ing_qaymoq', 'ing_saryog', 'ing_pishloq', 'ing_limon']
+  },
+  {
+    id: 'rec_hd_103_fall_fruit_galette',
+    nomi: 'Kuzgi Mevali Galetta',
+    tayyorlash_vaqti_daq: 60,
+    qiyinlik: 'orta',
+    kategoriya: 'Piroglar va Tartlar',
+    rasm_url: '🥧',
+    tarif_matni: "Ingichka kesilgan olma, fenxel urug'i, olma sirkasi va vanil bilan pishiriladigan qarsildoq frantsuzcha galetta.",
+    masalliqlar_matni: "2 choy qoshiq fenxel urug'i\n1 choy qoshiq tuz\n70 g shakar (+ sepish uchun)\n900 g olma (ingichka parrak kesilgan)\n1 osh qoshiq olma sirkasi\n1 choy qoshiq vanil\n1 dona tayyor galetta xamiri\n1 osh qoshiq qaymoq",
+    korsatmalari: [
+      "Pechni 200°C ga qizdiring. Fenxel urug'larini tovada 3 daqiqa qovurib maydalang.",
+      "Idishda fenxel, tuz va 70 g shakarni aralashtiring. Olma bo'laklarini qo'shib aralashtiring. Sirka va vanilni soling.",
+      "Xamirni pergament ustida yoyib, o'rtasiga olma aralashmasini tizib chiqing (chetlaridan 7 cm joy qoldiring).",
+      "Xamir chetlarini olmalar ustiga buking. Ustiga qaymoq surtib, shakar seping.",
+      "Pech haroratini 190°C ga tushirib, 45–50 daqiqa tillarang bo'lguncha pishiring. 2 soat sovutib torting."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_olma', 'ing_un', 'ing_saryog', 'ing_shakar', 'ing_qaymoq']
+  },
+  {
+    id: 'rec_hd_104_extra_flaky_dough',
+    nomi: 'Qarsildoq Pirog Xamiri',
+    tayyorlash_vaqti_daq: 20,
+    qiyinlik: 'oson',
+    kategoriya: 'Piroglar va Tartlar',
+    rasm_url: '🥧',
+    tarif_matni: "Har qanday shirin va tuzli piroglar uchun kat-kat va o'ta qarsildoq universal xamir tayyorlash retsepti.",
+    masalliqlar_matni: "1.5 choy qoshiq shakar\nChorak choy qoshiq tuz\n180 g un\n170 g sovuq saryog' (bo'lingan)\n60 ml muzday suv",
+    korsatmalari: [
+      "Idishda shakar, tuz va unni aralashtiring. Sovuq saryog'ni unga belang va stolda juvala bilan ezib ingichka bo'lakchalar holiga keltiring.",
+      "Aralashmaga 60 ml muzday suv quyib, xamir holiga keltiring.",
+      "Xamirni to'rtburchak qilib yoyib, xat konvertidek uchga taxlang. Bu jarayonni 3 marta takrorlang (kat-kat bo'lishi uchun).",
+      "Xamirni plyonkaga o'rab, 30 daqiqa muzlatgichda tindiring. Yoyib piroglarga ishlatishingiz mumkin."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_un', 'ing_saryog', 'ing_shakar', 'ing_tuz']
+  },
+  {
+    id: 'rec_hd_105_killer_chocolate_cake',
+    nomi: 'Shokoladli Super Tort',
+    tayyorlash_vaqti_daq: 70,
+    qiyinlik: 'orta',
+    kategoriya: 'Tortlar va Chizkeyklar',
+    rasm_url: '🍫',
+    tarif_matni: "Eritilgan achchiq shokolad, qatiqli xamir va maxsus shokoladli saryog'li krem bilan boyitilgan afsonaviy shokoladli tort.",
+    masalliqlar_matni: "Xamir uchun:\n240 g saryog' (xonaki haroratda)\n300 g un, 50 g kakao kukuni, 1.5 choy qoshiq qabartma kukun (Razrixlitel), yarim choy qoshiq soda, yarim choy qoshiq tuz\n400 ml qatiq, 2 choy qoshiq vanil, 450 g jigarrang shakar, 3 dona tuxum\n225 g achchiq shokolad (eritilgan)\nKrem uchun:\n140 g saryog', 120 g shakar kukuni, 115 g achchiq shokolad (eritilgan va sovutilgan), 2 osh qoshiq soya sousi, 1 choy qoshiq vanil",
+    korsatmalari: [
+      "Pechni 175°C ga qizdiring. 23x33 cm qolipni yog'lang.",
+      "Idishda un, kakao, qabartma kukun (Razrixlitel), soda va tuzni elang.",
+      "Mikserda 240 g saryog' va jigarrang shakarni 2 daqiqa ko'pirtiring. Tuxumlarni bittalab qo'shing.",
+      "Unli aralashma va qatiqni navbatma-navbat qo'shib aralashtiring. Eritilgan shokoladni soling.",
+      "Qolipga quyib, 175°C pechda 40 daqiqa pishiring va 2 soat sovuting.",
+      "Krem: Mikserda saryog'ni ko'pirtiring. Shakar kukuni, eritilgan shokolad, soya sousi va vanilni qo'shib 30 soniya ko'pirtiring. Sovigan tort ustiga surting."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_shokolad', 'ing_un', 'ing_saryog', 'ing_qatiq', 'ing_tuxum', 'ing_kakao']
+  },
+  {
+    id: 'rec_hd_106_sweet_potato_breakfast_bowl',
+    nomi: 'Shirin Kartoshkali Noshtabop Boul',
+    tayyorlash_vaqti_daq: 50,
+    qiyinlik: 'oson',
+    kategoriya: 'Nonushta va Pishiriqlar',
+    rasm_url: '🥣',
+    tarif_matni: "Pechda pishirilgan shirin kartoshka (batat) pyuresi, qarsildoq bekon, chernika mevalari, banan va bodomli energiya manbai.",
+    masalliqlar_matni: "900 g shirin kartoshka (batat)\n225 g bekon\n30 ml kokos suti\n1 choy qoshiq vanil\nBir chimdim tuz\n150 g chernika\n1 dona pishgan banan\n30 g to'g'ralgan bodom",
+    korsatmalari: [
+      "Pechni 200°C ga qizdiring. Shirin kartoshkalarni pergamentli listda 45 daqiqa pechda pishirib sovuting. Bekonni ham pechda qizartirib pishiring va to'g'rang.",
+      "Shirin kartoshka po'stini archib, mag'zini kombaynga soling. Kokos suti, vanil va tuz qo'shib 30 soniya silliq pyure bo'lguncha ezib oling.",
+      "Pyureni idishlarga solib, ustidan to'g'ralgan bekon, chernika, banan va bodom bo'laklarini qo'yib dasturxonga torting."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_kartoshka', 'ing_bekon', 'ing_banan', 'ing_bodom']
+  },
+  {
+    id: 'rec_hd_107_frozen_margarita_pie',
+    nomi: 'Muzlatilgan Margarita Pirogi',
+    tayyorlash_vaqti_daq: 20,
+    qiyinlik: 'oson',
+    kategoriya: 'Piroglar va Tartlar',
+    rasm_url: '🥧',
+    tarif_matni: "Kreker korji ustidagi nordon-shirin laym, ko'pirtirilgan qaymoq va quyultirilgan sutli salqin muzlatilgan pirog.",
+    masalliqlar_matni: "Korj uchun:\n85 g saryog', 10 dona grek krekeri uvoqlari, 40 g shakar, chorak choy qoshiq tuz\nKrem uchun:\n180 ml sovuq qaymoq, 4 dona laym sharbati (120 ml) va rendasi, 1 banka (400 g) quyultirilgan sut (kondensirovannoye moloko), 3 osh qoshiq tekila (xohishga ko'ra)",
+    korsatmalari: [
+      "Kreker uvoqlari, eritilgan saryog', shakar va tuzni aralashtirib pirog qolipiga presslang. 20 daqiqa muzlatgichda qotiring.",
+      "Mikserda qaymoqni quyuq bo'lguncha ko'pirtiring.",
+      "Idishda laym sharbati, quyultirilgan sut, tekila va tuzni aralashtiring. Ko'pirtirilgan qaymoqni ohista qo'shib spatula bilan aralashtiring.",
+      "Kremni korj ustiga quyib, laym rendasi seping. Muzlatgichda kamida 8 soat muzlating."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_pechenye', 'ing_saryog', 'ing_qaymoq', 'ing_sut', 'ing_limon']
+  },
+  {
+    id: 'rec_hd_108_grilled_corn_basil_butter',
+    nomi: "Reyhanli Saryog'li Makkajo'xori",
+    tayyorlash_vaqti_daq: 25,
+    qiyinlik: 'oson',
+    kategoriya: 'Garnirlar va Sabzavotli Taomlar',
+    rasm_url: '🌽',
+    tarif_matni: "Olovda qizartirib pishirilgan xushbo'y rayhon va timyanli saryog' surtilgan shirin makkajo'xori so'talari.",
+    masalliqlar_matni: "1.5 osh qoshiq to'g'ralgan reyhan (basil)\nYarim choy qoshiq timyan\n85 g saryog' (yumshatilgan)\n8 so'ta makkajo'xori\nTuz",
+    korsatmalari: [
+      "Yumshoq saryog'ga to'g'ralgan reyhan va timyanni solib aralashtiring.",
+      "Makkajo'xori so'talarini olovda yoki tovada 15–18 daqiqa har bir tarafini qizartirib pishirib oling.",
+      "Issiq makkajo'xorilarga reyhanli saryog' surtib, tuz seping va issiq holda torting."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_makkajoxori', 'ing_saryog', 'ing_rayhon', 'ing_tuz']
+  },
+  {
+    id: 'rec_hd_109_halloumi_sweet_potato_burger',
+    nomi: 'Xallumi Pishloqli va Shirin Kartoshkali Burger',
+    tayyorlash_vaqti_daq: 40,
+    qiyinlik: 'orta',
+    kategoriya: "Go'sht va Parranda Taomlari",
+    rasm_url: '🍔',
+    tarif_matni: "Shirin kartoshka va kale kotleti, qizartirilgan Xallumi pishloq bo'lagi va ezilgan avokado bilan tayyorlanadigan foydali burger.",
+    masalliqlar_matni: "500 g shirin kartoshka (batat)\n175 g kale ko'kati (to'g'ralgan)\n1 osh qoshiq zaytun yog'i\n8 dona yashil piyoz, 2 tish sarimsoq, 1 dona achchiq qizil qalampir, kashnich\n2 osh qoshiq un, 50 g kunchut\n250 g xallumi pishlog'i (bo'laklangan)\n4 dona burger noni, 1 dona pishgan avokado (ezilgan), tuz, murch",
+    korsatmalari: [
+      "Shirin kartoshkani suvda 15 daqiqa qaynatib ezib oling. Kale ko'katini 4 daqiqa qaynatib to'g'rang.",
+      "Tovada yashil piyoz, sarimsoq va qalampirni 2-3 daqiqa qovuring. Kashnich soling.",
+      "Idishda kartoshka, kale, qovurilgan sabzavotlar, un, tuz va murch bilan kotlet xamiri tayyorlang. 4 ta burger shaklini berib, kunchutga bulang va 30 daqiqa muzlatgichda tindiring.",
+      "Kotletlarni tovada 3–4 daqiqa har bir tarafini qizartirib qovuring.",
+      "Xallumi pishlog'ini quruq tovada 2 daqiqa qizartirib oling.",
+      "Burger nonlariga ezilgan avokado surtib, kotlet va xallumi pishlog'ini qo'yib yoping."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_kartoshka', 'ing_pishloq', 'ing_avokado', 'ing_un', 'ing_sarimsoq']
+  },
+  {
+    id: 'rec_hd_110_white_peach_ice_cream',
+    nomi: 'Oq Shaftoli va Vanilli Muzqaymoq',
+    tayyorlash_vaqti_daq: 45,
+    qiyinlik: 'orta',
+    kategoriya: 'Muzqaymoq va Sovuq Desertlar',
+    rasm_url: '🍨',
+    tarif_matni: "Pishirilgan oq shaftoli pyuresi, vanilli sut va tuxum sarig'i kremidan tayyorlanadigan tabiiy uy muzqaymog'i.",
+    masalliqlar_matni: "1 litr suv, 330 g shakar\n1.2 kg oq shaftoli\n500 ml sut, 250 ml qaymoq, 1 choy qoshiq vanil\n8 dona tuxum sarig'i, 150 g shakar\n60 ml burbon (yoki xohishga ko'ra sirop)",
+    korsatmalari: [
+      "Qozonda suv va 330 g shakarni eritib qaynating. Shaftolilarni solib 15–20 daqiqa qaynatib yumshating. Archib, yarmini blenderda ezib pyure qiling, yarmini sovutib qo'ying.",
+      "Qozonchada sut, qaymoq va vanilni qaynash darajasiga keltiring.",
+      "Idishda tuxum sariqlari va 150 g shakarni ko'pirtiring. Issiq sutli aralashmani quyib ko'pirtiring va past olovda 8 daqiqa quyulguncha pishirib sovuting.",
+      "Kremga shaftoli pyuresi va burbonni aralashtiring. Qolipga quyib 8 soat muzlatgichda muzlating.",
+      "Muzqaymoqni bo'laklab blenderda bir marta ko'pirtirib, yana 1 soat qotiring. Pishgan shaftolilar bilan torting."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_shaftoli', 'ing_sut', 'ing_qaymoq', 'ing_tuxum', 'ing_shakar']
+  },
+  {
+    id: 'rec_hd_111_cantaloupe_snap_pea_salad',
+    nomi: 'Qovun, Noxot Dukkagi va Rikotta Salati',
+    tayyorlash_vaqti_daq: 15,
+    qiyinlik: 'oson',
+    kategoriya: 'Salatlar',
+    rasm_url: '🥗',
+    tarif_matni: "Shirin qovun parraklari, qarsildoq noxot dukkagi, rikotta pishlog'i va estragon bargli tetiklashtiruvchi salat.",
+    masalliqlar_matni: "700 g shirin qovun (ingichka parrak qilingan)\n225 g shirin noxot dukkagi (ingichka to'g'ralgan)\n225 g rikotta pishlog'i (yoki sho'r pishloq bo'laklari)\n3 osh qoshiq estragon barglari\nZaytun yog'i, limon sharbati, tuz, achchiq murch",
+    korsatmalari: [
+      "Qovun po'stini archib, ingichka parraklarga bo'ling.",
+      "Laganda qovun bo'laklari, noxot dukkaklari, pishloq va estragon barglarini aralashtiring.",
+      "Ustidan zaytun yog'i, limon sharbati, tuz va achchiq murch seping."
+    ],
+    holat: 'nashr',
+    required_ingredient_ids: ['ing_qovun', 'ing_noxat', 'ing_pishloq', 'ing_limon']
+  }
 ];
+
 
 export const initialTales: Tale[] = [
   {
