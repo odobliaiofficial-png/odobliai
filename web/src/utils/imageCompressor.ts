@@ -74,13 +74,17 @@ export const compressImage = (
  */
 export const uploadImageWithStatus = async (
   dataUrl: string,
-  recipeId: string
+  recipeId: string,
+  onProgress?: (status: string) => void
 ): Promise<UploadResult> => {
   const sizeInBytes = Math.round((dataUrl.length * 3) / 4);
   const compressedSizeKB = Math.round(sizeInBytes / 1024);
 
+  onProgress?.("Rasm siqilmoqda...");
+
   // 1. Primary: Upload to Cloudflare R2 via /api/upload
   try {
+    onProgress?.("Cloudflare R2 ga yuklanmoqda...");
     const telegramInitData = (window as any).Telegram?.WebApp?.initData;
     const res = await fetch('/api/upload', {
       method: 'POST',
@@ -98,6 +102,7 @@ export const uploadImageWithStatus = async (
       const json = await res.json();
       if (json.url && (json.url.startsWith('/api/') || json.url.startsWith('http'))) {
         console.log('✅ Uploaded to Cloudflare R2 Storage:', json.url);
+        onProgress?.("✅ Rasm R2 ga saqlandi!");
         return {
           url: json.url,
           storageType: 'r2',
@@ -114,6 +119,7 @@ export const uploadImageWithStatus = async (
 
   // 2. Fallback: Upload to Supabase Storage
   try {
+    onProgress?.("Supabase zaxira xotirasiga yuklanmoqda...");
     const blob = dataUrlToBlob(dataUrl);
     const ext = blob.type === 'image/webp' ? 'webp' : blob.type === 'image/png' ? 'png' : 'jpg';
     const path = `${recipeId}_${Date.now()}.${ext}`;
@@ -131,6 +137,7 @@ export const uploadImageWithStatus = async (
         .getPublicUrl(path);
 
       console.log('✅ Uploaded to Supabase Storage (Fallback):', urlData.publicUrl);
+      onProgress?.("✅ Rasm Supabase ga saqlandi!");
       return {
         url: urlData.publicUrl,
         storageType: 'supabase',
@@ -144,6 +151,7 @@ export const uploadImageWithStatus = async (
   }
 
   // 3. Final Fallback: Base64 data URL
+  onProgress?.("⚠️ Bulutga ulanib bo'lmadi, lokal saqlandi");
   return {
     url: dataUrl,
     storageType: 'base64',

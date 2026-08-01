@@ -76,6 +76,20 @@ export const AdminPanel: React.FC = () => {
   const [isUploadingLifehackBanner, setIsUploadingLifehackBanner] = useState<boolean>(false);
   const [lifehackBannerSuccessToast, setLifehackBannerSuccessToast] = useState<string | null>(null);
 
+  const [deleteConfirmItem, setDeleteConfirmItem] = useState<{ type: 'recipe' | 'lifehack'; id: string; title: string } | null>(null);
+
+  const triggerHaptic = (type: 'light' | 'medium' | 'heavy' | 'success' = 'light') => {
+    try {
+      const haptic = (window as any).Telegram?.WebApp?.HapticFeedback;
+      if (!haptic) return;
+      if (type === 'success') {
+        haptic.notificationOccurred('success');
+      } else {
+        haptic.impactOccurred(type);
+      }
+    } catch (e) {}
+  };
+
   // Category Folder Covers Editor State
   const [selectedCategoryForCover, setSelectedCategoryForCover] = useState<string>('pishirish_asoslari');
   const [categoryCoverInput, setCategoryCoverInput] = useState<string>(categoryCovers?.[selectedCategoryForCover] || '');
@@ -1590,7 +1604,47 @@ export const AdminPanel: React.FC = () => {
         </div>
       )}
 
-      
+      {/* Delete Confirmation Modal */}
+      {deleteConfirmItem && (
+        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4">
+          <div className="bg-white rounded-3xl p-6 max-w-sm w-full space-y-4 shadow-2xl border border-red-100 text-center animate-in zoom-in-95">
+            <div className="w-14 h-14 bg-red-100 text-red-600 rounded-full flex items-center justify-center mx-auto text-2xl shadow-inner">
+              <Trash2 className="w-7 h-7" />
+            </div>
+            <div>
+              <h3 className="font-extrabold text-gray-900 text-base">O'chirishni tasdiqlang</h3>
+              <p className="text-xs text-gray-600 mt-1">
+                Rostdan ham <span className="font-bold text-red-600">"{deleteConfirmItem.title}"</span> elementini bazadan o'chirmoqchimisiz?
+              </p>
+            </div>
+            <div className="flex gap-2 pt-2">
+              <button
+                type="button"
+                onClick={() => setDeleteConfirmItem(null)}
+                className="flex-1 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-2xl text-xs transition-colors"
+              >
+                Bekor qilish
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  if (deleteConfirmItem.type === 'recipe') {
+                    deleteRecipe(deleteConfirmItem.id);
+                  } else {
+                    deleteLifehack(deleteConfirmItem.id);
+                  }
+                  triggerHaptic('success');
+                  setDeleteConfirmItem(null);
+                }}
+                className="flex-1 py-2.5 bg-red-600 hover:bg-red-700 text-white font-bold rounded-2xl text-xs transition-colors shadow-md"
+              >
+                Ha, O'chirish
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 };
