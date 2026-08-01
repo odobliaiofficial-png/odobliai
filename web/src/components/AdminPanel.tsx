@@ -30,8 +30,10 @@ import {
   Clock,
   Layers,
   Image,
-  Upload
+  Upload,
+  Folder
 } from 'lucide-react';
+
 
 export const AdminPanel: React.FC = () => {
   const {
