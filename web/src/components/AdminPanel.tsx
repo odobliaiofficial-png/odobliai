@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+
 import { useApp } from '../context/AppContext';
 import { Recipe, Tale } from '../types';
 import { compressImage, uploadImageToSupabase, uploadImageWithStatus } from '../utils/imageCompressor';
