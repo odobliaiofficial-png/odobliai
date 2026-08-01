@@ -2574,6 +2574,124 @@ export const initialLifehacks: Lifehack[] = [
       "Farzandingiz stikerlar va qalamlar bilan bezatishiga imkon bering."
     ],
     holat: 'nashr'
+  },
+  {
+    id: 'lh_kakatlar_solish_vaqti',
+    sarlavha: "Qattiq va yumshoq ko'katlarni solish vaqtini ajrating",
+    tavsif_matni: "Rozmarin, timyan va lavr yaprog'i kabi qattiq poyali ko'katlarning xushbo'yligi issiqqa chidamli bo'lgani uchun ularni pishirishning boshida solish kerak. Kashnich, petrushka, rayhon va yalpiz kabi yumshoq ko'katlarning hidi esa issiqda yo'qoladi, shuning uchun ularni faqat pishish oxirida yoki taomni suzishda qo'shing.",
+    kategoriya: 'pishirish_asoslari',
+    bosqichlar: [
+      "Qattiq poyali ko'katlar (rozmarin, timyan, lavr)ni taom qaynashning boshida yoki dimlashda qo'shing.",
+      "Yumshoq ko'katlar (kashnich, petrushka, rayhon, yalpiz)ni to'g'rab, olovdan olishdan 1-2 daqiqa oldin yoki suzish paytida soling.",
+      "Bu usul taomning barcha efir yog'lari va xushbo'y hidini 100% saqlab qoladi."
+    ],
+    foydali_lahzalar: ["Efir yog'lari yo'qolmaydi", "Ko'katlar rangini va vitaminlarini saqlaydi"],
+    holat: 'nashr'
+  },
+  {
+    id: 'lh_goshtni_dam_oldirish',
+    sarlavha: 'Qovurilgan go\'shtni kesishdan oldin 3–5 daqiqa "dam oldiring"',
+    tavsif_matni: "Go'sht qovurilib yoki duxovkadan olingach, uni darhol kesmang. Biroz kutsangiz, ichidagi qaynoq sharbat (suv) go'sht tolalari bo'ylab qayta teng taqsimlanadi va kesganda taxtaga oqib ketmasdan, go'shtning o'zida saqlanib qoladi.",
+    kategoriya: 'pishirish_asoslari',
+    bosqichlar: [
+      "Go'shtni olovdan yoki duxovkadan olgach, taxtaga qo'yib ustiga zarvaraq (folga)ni bo'shroq yopib qo'ying.",
+      "3–5 daqiqa (yirik bo'laklar uchun 10 daqiqa) kutib turing.",
+      "Toblangan sharbat tolalarga singib, go'sht kesilganda suvli va yumshoq bo'ladi."
+    ],
+    foydali_lahzalar: ["Go'sht suvli bo'lib qoladi", "Sharbat taxtaga oqib ketmaydi"],
+    holat: 'nashr'
+  },
+  {
+    id: 'lh_tuxumni_xona_haroratiga_keltirish',
+    sarlavha: 'Muzday tuxumni tezda xona haroratiga keltirish',
+    tavsif_matni: "Pishiriqlar uchun xona haroratidagi tuxum kerak bo'lsa-yu, tuxum muzlatgichda turgan bo'lsa, ularni issiqroq (iliq) suvli idishga 10 daqiqaga solib qo'ying.",
+    kategoriya: 'tezkor_usullar',
+    bosqichlar: [
+      "Kichik chuqur idishga iliq (40°C atrofida, qaynoq emas) suv quying.",
+      "Muzlatgichdan olingan tuxumlarni ehtiyotkorlik bilan iliq suvga bosing.",
+      "10 daqiqaga qoldiring — tuxumlar xamir ko'pirtirish uchun ideal xona haroratiga keladi."
+    ],
+    foydali_lahzalar: ["Biskvit va piroglar yaxshi ko'tariladi", "10 daqiqada tezkor natija"],
+    holat: 'nashr'
+  },
+  {
+    id: 'lh_gosht_sabzavot_namligini_quritish',
+    sarlavha: 'Qovurishdan oldin go\'sht va sabzavotlar yuzasini qug\'oz sochiqda quritish',
+    tavsif_matni: "Masalliqlar yuzasidagi namlik tovaga tushishi bilan haroratni darhol 60°C gacha tushirib yuboradi. Natijada ovqat qizarmaydi, balki o'z suvida dimlanib (qaynab) qoladi.",
+    kategoriya: 'pishirish_asoslari',
+    bosqichlar: [
+      "Go'sht yoki to'g'ralgan sabzavotlarni qovurishdan oldin qog'oz sochiq bilan artib, yuzasidagi namlikni shimdirib oling.",
+      "Tovadagi yog'ni yaxshilab qizdiring.",
+      "Quruq yuzali masalliq darhol qizarib, chiroyli tillarang qatlam (Mayyar reaksiyasi) hosil qiladi."
+    ],
+    foydali_lahzalar: ["Tillarang qarsillama qatlam", "Tova harorati tushib ketmaydi"],
+    holat: 'nashr'
+  },
+  {
+    id: 'lh_kechagi_guruchdan_foydalanish',
+    sarlavha: 'Qovurilgan guruch va qovurma uchun kechagi guruchdan foydalaning',
+    tavsif_matni: "Kechasi muzlatgichda turgan guruch tarkibidagi namlik kamayadi (18% dan 12% gacha tushadi). Shuning uchun kechagi guruch qovurilganda bir-biriga yopishib bo'tqa bo'lmay, dona-dona bo'lib chiqadi.",
+    kategoriya: 'oshxona_sirlari',
+    bosqichlar: [
+      "Pishgan guruchni xona haroratida sovutib, havosi o'tadigan idishda kechasi muzlatgichga qo'ying.",
+      "Ertasi kuni guruch donalari bir-biridan ajraladigan quruq holatga keladi.",
+      "Yuqori olovda sabzavot va go'sht bilan qovurganda dona-dona va mazali chiqadi."
+    ],
+    foydali_lahzalar: ["Guruch bo'tqa bo'lib ketmaydi", "Restaurant uslubidagi dona-dona qovurma"],
+    holat: 'nashr'
+  },
+  {
+    id: 'lh_sarimsoqni_kuydirmaslik_siri',
+    sarlavha: "Sarimsoqpiyozni kuydirib qo'ymaslik siri",
+    tavsif_matni: "Sarimsoq tarkibida shakar ko'p bo'lgani uchun baland olovda juda tez kuyib, taxir ta'm beradi. Qovurmalarda sarimsoqni eng oxirida yoki suvli sabzavotlar solingandan keyin qo'shish kerak.",
+    kategoriya: 'oshxona_sirlari',
+    bosqichlar: [
+      "Piyoz va go'shtni qovurib bo'lgach, olovni biroz pasaytiring.",
+      "Sarimsoqni to'g'rab yoki ezib, pishish oxiriga 1-2 daqiqa qolganda qo'shing.",
+      "Yoki sarimsoqni tomat/sabzavotlar suv chiqargandan keyin soling."
+    ],
+    foydali_lahzalar: ["Achchiq/taxir ta'm bo'lmaydi", "Sarimsoqning xushbo'yligi to'liq ochiladi"],
+    holat: 'nashr'
+  },
+  {
+    id: 'lh_shokoladga_suv_tushirmaslik',
+    sarlavha: 'Eritilayotgan shokoladga bir tomchi ham suv tushirmang',
+    tavsif_matni: "Shokoladni eritayotganda ichiga hatto bir tomchi suv yoki idish bug'i tushsa ham, u darhol qotib, quyqa (keshtalangan) bo'lib qoladi va qayta erimaydi.",
+    kategoriya: 'pishirish_asoslari',
+    bosqichlar: [
+      "Suv bug'i idishining osti shokolad idishiga tegmasligiga va idishlar quruqligiga ishonch hosil qiling.",
+      "Shokoladni eritayotganda qopqoq yopmang (bug' suvga aylanib tushmasligi uchun).",
+      "Agar tasodifan suv tushsa, 1 osh qoshiq issiq sariyog' yoki qaymoq qo'shib sous holatiga keltiring."
+    ],
+    foydali_lahzalar: ["Silliq yaltiroq shokolad", "Quyqa bo'lib qotib qolmaydi"],
+    holat: 'nashr'
+  },
+  {
+    id: 'lh_kabob_suvini_siqish',
+    sarlavha: 'Qiymali kabob sixdan tushib ketmasligi uchun sabzavot suvini siqing',
+    tavsif_matni: "Qiymaga qo'shiladigan bulg'or qalampiri yoki piyozni maydalagach, suvini doka yoki suzgichda yaxshilab siqib tashlash kerak. Ortiqcha suv pishishda bug' berib, go'sht oqsillari (miozin) yopishqoqligini yo'qotadi va kabob cho'g'ga tushib ketadi.",
+    kategoriya: 'oshxona_sirlari',
+    bosqichlar: [
+      "Piyoz va bulg'or qalampirini blender yoki qirg'ichdan chiqargach, dokaga solib suvini oxirigacha siqib tashlang.",
+      "Faqat quruq sabzavot mag'zini qiymaga qo'shib, go'shtni 10 daqiqa yaxshilab urib qoring.",
+      "Sixga tortgach, kabob cho'g'da oqmay, tekis pishadi."
+    ],
+    foydali_lahzalar: ["Sixdan tushmaydigan mahkam qiymali kabob", "Glavniy chef siri"],
+    holat: 'nashr'
+  },
+  {
+    id: 'lh_yogga_olov_ketganda',
+    sarlavha: 'Tovadagi yog\'ga olov ketganda (Grease fire) hech qachon suv quymang',
+    tavsif_matni: "Yonayotgan yog'ga suv quyilsa, suv darhol bug'ga aylanib, yonayotgan yog'ni butun oshxonaga sachratib yuboradi. Olovni o'chirish uchun tovani metall qopqoq bilan yopib kislorodni bosing yoki ustiga pishirish sodasi sepib tashlang.",
+    kategoriya: 'uy_ishlari',
+    bosqichlar: [
+      "Zarur qoida: Olovli yog'ga HECH QACHON suv quymang!",
+      "Darhol olovni (gaz/plitani) o'chiring.",
+      "Tovaning ustini metall qopqoq yoki patnis bilan to'liq yoping (kislorod kesilib olov o'chadi).",
+      "Yoki ustiga ko'p miqdorda pishirish sodasi (baking soda) sepib tashlang."
+    ],
+    foydali_lahzalar: ["Oshxona xavfsizligi", "Yong'in xavfidan saqlanish"],
+    holat: 'nashr'
   }
 ];
 
