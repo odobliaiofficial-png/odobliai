@@ -43,9 +43,10 @@ const AppContent: React.FC = () => {
     const backButton = tg?.BackButton;
 
     const hasOpenModal = !!selectedRecipeModal || !!selectedLifehackId || showPaymentModal;
-    const hasPazandaSubNav = activeTab === 'pazanda' && (selectedFolderCategory !== null || searchQuery.trim() !== '' || timeFilter !== 'all' || diffFilter !== 'all');
+    const hasPazandaSubNav = activeTab === 'pazanda' && (selectedFolderCategory !== null || (searchQuery && searchQuery.trim() !== '') || (timeFilter && timeFilter !== 'all') || (diffFilter && diffFilter !== 'all'));
     const isNotHome = activeTab !== 'home';
     const shouldShowBack = hasOpenModal || hasPazandaSubNav || isNotHome;
+
 
     const handleBackAction = () => {
       if (selectedRecipeModal) {
