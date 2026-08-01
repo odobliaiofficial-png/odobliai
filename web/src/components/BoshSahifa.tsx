@@ -33,12 +33,26 @@ export const BoshSahifa: React.FC = () => {
   const [showFilterModal, setShowFilterModal] = useState(false);
   const [filterSearch, setFilterSearch] = useState('');
 
+  const triggerHaptic = (type: 'light' | 'medium' | 'heavy' | 'success' = 'light') => {
+    try {
+      const haptic = (window as any).Telegram?.WebApp?.HapticFeedback;
+      if (!haptic) return;
+      if (type === 'success') {
+        haptic.notificationOccurred('success');
+      } else {
+        haptic.impactOccurred(type);
+      }
+    } catch (e) {}
+  };
+
   const toggleFavorite = (id: string, e: React.MouseEvent) => {
     e.stopPropagation();
+    triggerHaptic('medium');
     toggleFavoriteRecipe(id);
   };
 
   const handleBannerClick = () => {
+    triggerHaptic('light');
     const action = bannerConfig?.action_type || 'pazanda';
     if (action === 'external_link' && bannerConfig?.external_url) {
       window.open(bannerConfig.external_url, '_blank');
