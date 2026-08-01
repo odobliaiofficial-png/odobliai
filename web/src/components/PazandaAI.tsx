@@ -623,65 +623,40 @@ export const PazandaAI: React.FC = () => {
         </div>
       </div>
 
-      {/* Main Navigation Modes (4 Tabs) */}
-      <div className="card-pink p-1 rounded-2xl grid grid-cols-4 gap-1 bg-white">
+      {/* Streamlined 2-Pill Navigation Bar (High Ergonomics, Low Cognitive Load) */}
+      <div className="bg-white p-1 rounded-2xl border border-pink-100/90 shadow-2xs grid grid-cols-2 gap-1 max-w-md mx-auto">
         <button
-          onClick={() => setViewMode('catalog')}
-          className={`py-2 rounded-xl text-[11px] font-extrabold transition-all flex flex-col items-center justify-center gap-0.5 min-h-[46px] ${
+          onClick={() => {
+            try {
+              (window as any).Telegram?.WebApp?.HapticFeedback?.impactOccurred('light');
+            } catch (e) {}
+            setViewMode('catalog');
+          }}
+          className={`py-2.5 rounded-xl text-xs font-black transition-all flex items-center justify-center gap-1.5 active:scale-97 ${
             viewMode === 'catalog'
               ? 'bg-[#DB2777] text-white shadow-xs'
               : 'text-[#9D4C6C] hover:bg-pink-50'
           }`}
         >
           <Book className="w-4 h-4" />
-          <span className="truncate">{t("Retseptlar")} ({recipes.length})</span>
+          <span>{t("Retseptlar Katalogi")}</span>
         </button>
 
         <button
-          onClick={() => setViewMode('match')}
-          className={`py-2 rounded-xl text-[11px] font-black transition-all flex flex-col items-center justify-center gap-0.5 min-h-[46px] relative overflow-hidden active:scale-97 ${
+          onClick={() => {
+            try {
+              (window as any).Telegram?.WebApp?.HapticFeedback?.impactOccurred('light');
+            } catch (e) {}
+            setViewMode('match');
+          }}
+          className={`py-2.5 rounded-xl text-xs font-black transition-all flex items-center justify-center gap-1.5 active:scale-97 ${
             viewMode === 'match'
-              ? 'bg-gradient-to-r from-amber-500 via-pink-600 to-rose-600 text-white shadow-md ring-2 ring-pink-300'
-              : 'bg-gradient-to-r from-amber-50 to-pink-50 text-[#DB2777] border border-amber-200 hover:bg-pink-100'
+              ? 'bg-gradient-to-r from-amber-500 via-pink-600 to-rose-600 text-white shadow-md'
+              : 'text-[#DB2777] bg-pink-50/60 hover:bg-pink-100'
           }`}
         >
-          <div className="flex items-center gap-1">
-            <Sparkles className="w-3.5 h-3.5 text-amber-300 animate-pulse" />
-            <span className="truncate">Pazanda AI</span>
-            <span className="text-amber-300 text-xs">👑</span>
-          </div>
-          <span className="text-[8px] bg-amber-400 text-amber-950 px-1.5 py-0.2 rounded-full font-black uppercase tracking-wider">✨ Premium</span>
-        </button>
-
-        <button
-          onClick={() => setViewMode('bozorlik')}
-          className={`py-2 rounded-xl text-[11px] font-bold transition-all flex flex-col items-center justify-center gap-0.5 min-h-[44px] relative ${
-            viewMode === 'bozorlik'
-              ? 'bg-[#DB2777] text-white shadow-xs'
-              : 'text-[#9D4C6C] hover:bg-pink-50'
-          }`}
-        >
-          <div className="relative">
-            <ShoppingCart className="w-4 h-4" />
-            {pendingCount > 0 && (
-              <span className="absolute -top-1.5 -right-2 bg-[#F59E0B] text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
-                {pendingCount}
-              </span>
-            )}
-          </div>
-          <span className="truncate">{t("Bozorlik")}</span>
-        </button>
-
-        <button
-          onClick={() => setViewMode('timer')}
-          className={`py-2 rounded-xl text-[11px] font-bold transition-all flex flex-col items-center justify-center gap-0.5 min-h-[44px] ${
-            viewMode === 'timer'
-              ? 'bg-[#DB2777] text-white shadow-xs'
-              : 'text-[#9D4C6C] hover:bg-pink-50'
-          }`}
-        >
-          <TimerIcon className="w-4 h-4" />
-          <span>{t("Taymer")}</span>
+          <Sparkles className="w-4 h-4 text-amber-300 animate-pulse" />
+          <span>{t("Aqlli Pazanda AI")}</span>
         </button>
       </div>
 

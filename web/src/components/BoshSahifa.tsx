@@ -140,25 +140,7 @@ export const BoshSahifa: React.FC = () => {
         </div>
       </div>
 
-      {/* CATEGORIES ROW */}
-      <div className="grid grid-cols-3 gap-2 pt-1">
-        {categories.map((cat, idx) => (
-          <motion.button
-            key={idx}
-            whileHover={{ y: -2 }}
-            whileTap={{ scale: 0.93 }}
-            onClick={() => setActiveTab(cat.id as any)}
-            className="flex flex-col items-center gap-1.5 p-2 bg-white rounded-2xl border border-[#FCE7F3] shadow-xs hover:shadow-md transition-all group"
-          >
-            <div className={`w-11 h-11 rounded-2xl flex items-center justify-center bg-gradient-to-br ${cat.gradient} border shadow-xs group-hover:scale-105 transition-transform`}>
-              {cat.icon}
-            </div>
-            <span className="text-[11px] font-extrabold text-[#2E121D] truncate w-full text-center tracking-tight">
-              {t(cat.label)}
-            </span>
-          </motion.button>
-        ))}
-      </div>
+
 
       {/* ULTRA-SLEEK 21:9 HERO BANNER WITH CUSTOM IMAGE SUPPORT */}
       <div className="w-full aspect-[21/9] relative overflow-hidden rounded-2xl shadow-lg group border border-pink-200/60">
