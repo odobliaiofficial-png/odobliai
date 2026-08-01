@@ -47,7 +47,6 @@ const AppContent: React.FC = () => {
     const isNotHome = activeTab !== 'home';
     const shouldShowBack = hasOpenModal || hasPazandaSubNav || isNotHome;
 
-
     const handleBackAction = () => {
       if (selectedRecipeModal) {
         setSelectedRecipeModal(null);
@@ -62,29 +61,14 @@ const AppContent: React.FC = () => {
       }
     };
 
-    if (shouldShowBack) {
-      if (backButton && typeof backButton.show === 'function') {
-        backButton.show();
-        if (typeof backButton.onClick === 'function') {
-          backButton.onClick(handleBackAction);
-        }
-      }
-      try {
-        window.history.pushState({ tab: activeTab, modal: hasOpenModal, subNav: hasPazandaSubNav }, '');
-      } catch (err) {}
-    } else {
-      if (backButton && typeof backButton.hide === 'function') {
-        backButton.hide();
+    if (backButton) {
+      if (shouldShowBack) {
+        if (typeof backButton.show === 'function') backButton.show();
+        if (typeof backButton.onClick === 'function') backButton.onClick(handleBackAction);
+      } else {
+        if (typeof backButton.hide === 'function') backButton.hide();
       }
     }
-
-    const handlePopState = (e: PopStateEvent) => {
-      if (shouldShowBack) {
-        handleBackAction();
-      }
-    };
-
-    window.addEventListener('popstate', handlePopState);
 
     return () => {
       if (backButton && typeof backButton.offClick === 'function') {
@@ -92,7 +76,6 @@ const AppContent: React.FC = () => {
           backButton.offClick(handleBackAction);
         } catch (err) {}
       }
-      window.removeEventListener('popstate', handlePopState);
     };
   }, [
     activeTab,
@@ -109,6 +92,7 @@ const AppContent: React.FC = () => {
     setShowPaymentModal,
     resetPazandaFilters
   ]);
+
 
 
   return (
