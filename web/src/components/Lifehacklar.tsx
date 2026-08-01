@@ -54,16 +54,70 @@ export const Lifehacklar: React.FC = () => {
     }
   }, [selectedCat]);
 
-  const categories: { id: LifehackCategory; label: string; icon: string; desc: string }[] = [
-    { id: 'pishirish_asoslari', label: 'Pishirish asoslari', icon: '🍳', desc: "Sautéing, Boiling, Sous Vide, soda bilan go'shtni yumshatish hamda tarozida un tortish" },
-    { id: 'oshxona_sirlari', label: 'Oshxona sirlari', icon: '🧂', desc: "Leidenfrost effekti, Toum, palov damlash, Tahini va yog'dagi piyoz filtri sirlari" },
-    { id: 'mahsulotlarni_saqlash', label: 'Mahsulotlarni saqlash', icon: '🌿', desc: "Nonni saqlash, bulyon uchun paket, ko'katlarni guldasta va nam sochiqda saqlash" },
-    { id: 'tezkor_usullar', label: 'Tezkor usullar', icon: '⚡', desc: "Buttermilk tayyorlash, archilgan sarimsoq va protivenda tezkor pishirish" },
-    { id: 'masalliqlarni_tejash', label: 'Masalliqlarni tejash', icon: '♻️', desc: "Akvafaba, tuxum o'rinbosarlari (zig'ir urug'i, banan), feta suvi va sitrus zest" },
-    { id: 'karving', label: 'Karving', icon: '🎨', desc: "Sabzavot va mevalardan bayramona bezaklar yasash" },
-    { id: 'oyinchoq_yasash', label: "O'yinchoq yasash", icon: '🧸', desc: "Farzandlar bilan qiziqarli o'yinchoqlar yasash" },
-    { id: 'uy_ishlari', label: 'Uy ishlari', icon: '🏠', desc: "Xonani tartiblash, tozalash va ro'zg'or sirlari" },
-    { id: 'boshqa', label: 'Boshqa', icon: '📦', desc: "Boshqa turli xil foydali maslahatlar" },
+  const categories: { id: LifehackCategory; label: string; icon: string; icon3d: string; desc: string }[] = [
+    {
+      id: 'pishirish_asoslari',
+      label: 'Pishirish asoslari',
+      icon: '🍳',
+      icon3d: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Food/Cooking.png',
+      desc: "Sautéing, Boiling, Sous Vide, soda bilan go'shtni yumshatish hamda tarozida un tortish"
+    },
+    {
+      id: 'oshxona_sirlari',
+      label: 'Oshxona sirlari',
+      icon: '🧂',
+      icon3d: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Food/Salt.png',
+      desc: "Leidenfrost effekti, Toum, palov damlash, Tahini va yog'dagi piyoz filtri sirlari"
+    },
+    {
+      id: 'mahsulotlarni_saqlash',
+      label: 'Mahsulotlarni saqlash',
+      icon: '🌿',
+      icon3d: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Food/Herb.png',
+      desc: "Nonni saqlash, bulyon uchun paket, ko'katlarni guldasta va nam sochiqda saqlash"
+    },
+    {
+      id: 'tezkor_usullar',
+      label: 'Tezkor usullar',
+      icon: '⚡',
+      icon3d: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Symbols/High%20Voltage.png',
+      desc: "Buttermilk tayyorlash, archilgan sarimsoq va protivenda tezkor pishirish"
+    },
+    {
+      id: 'masalliqlarni_tejash',
+      label: 'Masalliqlarni tejash',
+      icon: '♻️',
+      icon3d: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Money%20Bag.png',
+      desc: "Akvafaba, tuxum o'rinbosarlari (zig'ir urug'i, banan), feta suvi va sitrus zest"
+    },
+    {
+      id: 'karving',
+      label: 'Karving',
+      icon: '🎨',
+      icon3d: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Activities/Artist%20Palette.png',
+      desc: "Sabzavot va mevalardan bayramona bezaklar yasash"
+    },
+    {
+      id: 'oyinchoq_yasash',
+      label: "O'yinchoq yasash",
+      icon: '🧸',
+      icon3d: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Teddy%20Bear.png',
+      desc: "Farzandlar bilan qiziqarli o'yinchoqlar yasash"
+    },
+    {
+      id: 'uy_ishlari',
+      label: 'Uy ishlari',
+      icon: '🏠',
+      icon3d: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Travel%20and%20places/House.png',
+      desc: "Xonani tartiblash, tozalash va ro'zg'or sirlari"
+    },
+    {
+      id: 'boshqa',
+      label: 'Boshqa',
+      icon: '📦',
+      icon3d: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Package.png',
+      desc: "Boshqa turli xil foydali maslahatlar"
+    },
   ];
 
   const getCategoryCount = (catId: LifehackCategory | 'barchasi') => {
@@ -110,11 +164,11 @@ export const Lifehacklar: React.FC = () => {
                   {t(lifehackBannerConfig?.subtitle || "Oshxona, hunarmandchilik va ro'zg'or papkalari")}
                 </p>
               </div>
-              <div className="w-12 h-12 rounded-xl bg-white/20 border border-white/30 flex items-center justify-center text-2xl shadow-xs backdrop-blur-xs flex-shrink-0">
+              <div className="w-12 h-12 rounded-2xl bg-white/20 border border-white/30 flex items-center justify-center p-1.5 shadow-xs backdrop-blur-xs flex-shrink-0">
                 {lifehackBannerConfig?.icon_or_url && (lifehackBannerConfig.icon_or_url.startsWith('http') || lifehackBannerConfig.icon_or_url.startsWith('/') || lifehackBannerConfig.icon_or_url.startsWith('data:')) ? (
                   <img src={lifehackBannerConfig.icon_or_url} alt="Banner" className="w-full h-full object-cover rounded-xl" />
                 ) : (
-                  <span>{lifehackBannerConfig?.icon_or_url || '📁'}</span>
+                  <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Folder.png" alt="3D Folder" className="w-full h-full object-contain filter drop-shadow-sm" />
                 )}
               </div>
             </div>
@@ -124,11 +178,11 @@ export const Lifehacklar: React.FC = () => {
             <motion.div
               whileTap={{ scale: 0.98 }}
               onClick={() => setSelectedCat('barchasi')}
-              className="card-pink p-3.5 rounded-2xl border border-pink-200 hover:border-[#DB2777] cursor-pointer shadow-2xs transition-all flex items-center justify-between"
+              className="card-pink p-3.5 rounded-2xl border border-pink-200 hover:border-[#DB2777] cursor-pointer shadow-2xs transition-all flex items-center justify-between group"
             >
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#BE185D] via-[#DB2777] to-[#EC4899] text-white flex items-center justify-center text-xl shadow-xs flex-shrink-0">
-                  📁
+              <div className="flex items-center gap-3.5">
+                <div className="w-13 h-13 rounded-2xl bg-gradient-to-br from-[#BE185D] via-[#DB2777] to-[#EC4899] text-white flex items-center justify-center p-2 shadow-sm flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
+                  <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Folder.png" alt="3D All Folder" className="w-full h-full object-contain filter drop-shadow-md" />
                 </div>
                 <div>
                   <h3 className="font-extrabold text-[#2E121D] text-sm leading-tight">
@@ -166,16 +220,20 @@ export const Lifehacklar: React.FC = () => {
                     className="card-pink p-3.5 rounded-2xl border border-pink-200/90 hover:border-[#DB2777] cursor-pointer shadow-2xs transition-all flex items-center justify-between group active:bg-pink-50/60"
                   >
                     <div className="flex items-center gap-3.5 min-w-0">
-                      {/* Folder Cover Image or Icon */}
+                      {/* Folder Cover Image or 3D Icon */}
                       {coverImg && (coverImg.startsWith('http') || coverImg.startsWith('/') || coverImg.startsWith('data:')) ? (
                         <img
                           src={coverImg}
                           alt={cat.label}
-                          className="w-13 h-13 object-cover rounded-xl flex-shrink-0 border border-pink-200 shadow-2xs group-hover:scale-105 transition-transform"
+                          className="w-13 h-13 object-cover rounded-2xl flex-shrink-0 border border-pink-200 shadow-2xs group-hover:scale-105 transition-transform"
                         />
                       ) : (
-                        <div className="w-13 h-13 rounded-xl bg-gradient-to-br from-pink-100 via-rose-50 to-pink-200 border border-pink-200 flex items-center justify-center text-2xl flex-shrink-0 shadow-2xs group-hover:scale-105 transition-transform">
-                          {coverImg || cat.icon}
+                        <div className="w-13 h-13 rounded-2xl bg-gradient-to-br from-pink-100/90 via-white to-rose-100/90 border border-pink-200/80 flex items-center justify-center p-2 flex-shrink-0 shadow-2xs group-hover:scale-110 transition-transform duration-300">
+                          <img
+                            src={cat.icon3d}
+                            alt={cat.label}
+                            className="w-full h-full object-contain filter drop-shadow-xs"
+                          />
                         </div>
                       )}
 
@@ -213,25 +271,30 @@ export const Lifehacklar: React.FC = () => {
             className="space-y-4"
           >
             {/* Top Navigation Bar: Back Button & Folder Title */}
-            <div className="card-burgundy-banner p-3.5 rounded-2xl flex items-center justify-between shadow-xs">
+            <div className="bg-gradient-to-r from-[#BE185D] via-[#DB2777] to-[#E11D48] p-3.5 rounded-2xl flex items-center justify-between shadow-md shadow-pink-500/20 border border-pink-400/30 text-white">
               <button
                 onClick={() => setSelectedCat(null)}
-                className="flex items-center gap-2 text-xs font-extrabold text-white bg-white/20 hover:bg-white/30 px-3 py-1.5 rounded-xl transition-all active:scale-95 border border-white/25"
+                className="flex items-center gap-2 text-xs font-extrabold text-white bg-white/20 hover:bg-white/30 px-3 py-1.5 rounded-xl transition-all active:scale-95 border border-white/25 shadow-2xs"
               >
                 <ArrowLeft className="w-4 h-4 text-amber-200" />
                 <span>{t("Papkalarga Qaytish")}</span>
               </button>
 
-              <div className="text-right">
-                <span className="badge-gold text-[10px] font-extrabold px-2 py-0.5 rounded-full inline-block mb-0.5">
-                  📁 {getCategoryCount(selectedCat)} {t("ta maslahat")}
-                </span>
-                <h3 className="text-sm font-extrabold text-white tracking-tight flex items-center gap-1.5 justify-end">
-                  <span>{activeCategoryObj ? activeCategoryObj.icon : '📁'}</span>
-                  <span>{selectedCat === 'barchasi' ? t("Barcha Maslahatlar") : t(activeCategoryObj?.label || '')}</span>
-                </h3>
+              <div className="flex items-center gap-2 text-right">
+                <div>
+                  <span className="badge-gold text-[10px] font-extrabold px-2 py-0.5 rounded-full inline-block mb-0.5">
+                    📁 {getCategoryCount(selectedCat)} {t("ta maslahat")}
+                  </span>
+                  <h3 className="text-sm font-extrabold text-white tracking-tight flex items-center gap-1.5 justify-end">
+                    <span>{selectedCat === 'barchasi' ? t("Barcha Maslahatlar") : t(activeCategoryObj?.label || '')}</span>
+                  </h3>
+                </div>
+                {activeCategoryObj?.icon3d && (
+                  <img src={activeCategoryObj.icon3d} alt="3D icon" className="w-8 h-8 object-contain filter drop-shadow-sm flex-shrink-0" />
+                )}
               </div>
             </div>
+
 
             {/* Lifehack Cards Inside This Folder */}
             <div className="space-y-3">
