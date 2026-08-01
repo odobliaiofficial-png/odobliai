@@ -1,6 +1,7 @@
 import { compressImage, uploadImageToSupabase } from '../utils/imageCompressor';
 import { fuzzyMatchSearch } from '../utils/searchNormalizer';
 import React, { useState, useMemo, useEffect } from 'react';
+import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 
 import { createPortal } from 'react-dom';
 import { motion } from 'motion/react';
@@ -39,7 +40,9 @@ import {
   Upload,
   Save,
   SlidersHorizontal,
-  Filter
+  Filter,
+  ZoomIn,
+  MoreVertical
 } from 'lucide-react';
 
 
@@ -1920,23 +1923,37 @@ export const PazandaAI: React.FC = () => {
                 <span className="text-7xl filter drop-shadow-md">{activeRecipe.rasm_url}</span>
               </div>
             ) : (
-              <div className="w-full h-56 bg-stone-900/5 rounded-2xl overflow-hidden flex items-center justify-center p-1 border border-[#EFE8DC] relative">
-                <img
-                  src={activeRecipe.rasm_url}
-                  alt={activeRecipe.nomi}
-                  onError={(e) => {
-                    e.currentTarget.style.display = 'none';
-                    const parent = e.currentTarget.parentElement;
-                    if (parent && !parent.querySelector('.emoji-fallback')) {
-                      const fallback = document.createElement('div');
-                      fallback.className = "emoji-fallback w-full h-56 bg-gradient-to-br from-orange-400 via-pink-400 to-purple-500 flex items-center justify-center rounded-2xl shadow-md";
-                      fallback.innerHTML = `<span class="text-7xl">🍲</span>`;
-                      parent.appendChild(fallback);
-                    }
-                  }}
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-contain rounded-xl shadow-xs transition-all"
-                />
+              <div className="w-full h-56 bg-stone-900/5 rounded-2xl overflow-hidden flex items-center justify-center p-1 border border-[#EFE8DC] relative group">
+                <TransformWrapper
+                  initialScale={1}
+                  minScale={1}
+                  maxScale={4}
+                  limitToBounds={true}
+                  doubleTap={{ zoomInScale: 2.5, zoomOutScale: 1 }}
+                >
+                  <TransformComponent wrapperClass="!w-full !h-full" contentClass="!w-full !h-full flex items-center justify-center">
+                    <img
+                      src={activeRecipe.rasm_url}
+                      alt={activeRecipe.nomi}
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                        const parent = e.currentTarget.parentElement;
+                        if (parent && !parent.querySelector('.emoji-fallback')) {
+                          const fallback = document.createElement('div');
+                          fallback.className = "emoji-fallback w-full h-56 bg-gradient-to-br from-orange-400 via-pink-400 to-purple-500 flex items-center justify-center rounded-2xl shadow-md";
+                          fallback.innerHTML = `<span class="text-7xl">🍲</span>`;
+                          parent.appendChild(fallback);
+                        }
+                      }}
+                      referrerPolicy="no-referrer"
+                      className="w-full h-full object-contain rounded-xl shadow-xs transition-all pointer-events-auto"
+                    />
+                  </TransformComponent>
+                </TransformWrapper>
+                <div className="absolute bottom-2.5 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-md text-white text-[9.5px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1.5 shadow-md pointer-events-none opacity-80 group-hover:opacity-100 transition-opacity">
+                  <ZoomIn className="w-3 h-3 text-amber-300" />
+                  <span>{t("Kattalashtirish uchun 2 marta bosing")}</span>
+                </div>
               </div>
             )}
 
@@ -2054,14 +2071,33 @@ export const PazandaAI: React.FC = () => {
                 {t("Bosqichma-bosqich tayyorlanishi")}
               </h4>
               <div className="space-y-2">
-                {activeRecipe.korsatmalari.map((step, idx) => (
-                  <div key={idx} className="flex gap-3 text-xs text-[#2D2A26] bg-white p-3 rounded-2xl border border-[#EFE8DC] shadow-2xs">
-                    <span className="w-6 h-6 rounded-full bg-[#FF6B4A] text-white font-black flex items-center justify-center text-xs flex-shrink-0 shadow-2xs">
-                      {idx + 1}
-                    </span>
-                    <p className="leading-relaxed font-medium">{t(step)}</p>
-                  </div>
-                ))}
+                {activeRecipe.korsatmalari.map((step, idx) => {
+                  const match = step.match(/(\d+)\s*(daqiqa|daq|minut|min)/i);
+                  const stepMins = match ? parseInt(match[1], 10) : 15;
+
+                  return (
+                    <div key={idx} className="flex items-start gap-3 text-xs text-[#2D2A26] bg-white p-3 rounded-2xl border border-[#EFE8DC] shadow-2xs">
+                      <span className="w-6 h-6 rounded-full bg-[#FF6B4A] text-white font-black flex items-center justify-center text-xs flex-shrink-0 shadow-2xs mt-0.5">
+                        {idx + 1}
+                      </span>
+                      <p className="leading-relaxed font-medium flex-1">{t(step)}</p>
+                      <button
+                        onClick={() => {
+                          try {
+                            (window as any).Telegram?.WebApp?.HapticFeedback?.impactOccurred('medium');
+                          } catch (e) {}
+                          startGlobalTimer(stepMins);
+                          showToast(`⏳ ${stepMins} daqiqalik taymer ishga tushirildi!`);
+                        }}
+                        className="p-1.5 rounded-xl bg-pink-50 hover:bg-pink-100 text-[#DB2777] border border-pink-200 shrink-0 flex items-center gap-1 active:scale-90 transition-transform"
+                        title={`${stepMins} daqiqalik taymerni o'rnatish`}
+                      >
+                        <Clock className="w-3.5 h-3.5" />
+                        <span className="text-[10px] font-extrabold">{stepMins}m</span>
+                      </button>
+                    </div>
+                  );
+                })}
               </div>
             </div>
 
