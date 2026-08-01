@@ -182,6 +182,28 @@ export const AdminPanel: React.FC = () => {
   const [isUploadingBanner, setIsUploadingBanner] = useState<boolean>(false);
   const [bannerSuccessToast, setBannerSuccessToast] = useState<string | null>(null);
 
+  useEffect(() => {
+    if (bannerConfig) {
+      setBannerTitleInput(bannerConfig.title || '');
+      setBannerSubtitleInput(bannerConfig.subtitle || '');
+      setBannerBadgeInput(bannerConfig.badge || '');
+      setBannerButtonTextInput(bannerConfig.button_text || '');
+      setBannerActionType(bannerConfig.action_type || 'pazanda');
+      setBannerExternalUrl(bannerConfig.external_url || '');
+      setBannerImageUrl(bannerConfig.image_url || '');
+    }
+  }, [bannerConfig]);
+
+  useEffect(() => {
+    if (lifehackBannerConfig) {
+      setLifehackBannerBadgeInput(lifehackBannerConfig.badge || '💡 Foydali Maslahatlar');
+      setLifehackBannerTitleInput(lifehackBannerConfig.title || "Oila & Ro'zg'or Lifehacklari");
+      setLifehackBannerSubtitleInput(lifehackBannerConfig.subtitle || "Oshxona, hunarmandchilik va ro'zg'or papkalari");
+      setLifehackBannerIconInput(lifehackBannerConfig.icon_or_url || '📁');
+    }
+  }, [lifehackBannerConfig]);
+
+
 
   const processBannerFile = async (file: File) => {
     try {
