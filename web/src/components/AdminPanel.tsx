@@ -1213,6 +1213,17 @@ export const AdminPanel: React.FC = () => {
                   className="w-full px-3 py-2 border rounded-xl"
                 />
               </div>
+              <div>
+                <label className="font-bold text-[#2D2A26] block mb-1">Rasm URL yoki Emoji (ixtiyoriy)</label>
+                <input
+                  type="text"
+                  placeholder="https://... yoki 🍳"
+                  value={lifehackImage}
+                  onChange={e => setLifehackImage(e.target.value)}
+                  className="w-full px-3 py-2 border rounded-xl"
+                />
+              </div>
+
               <button
                 type="submit"
                 className="w-full py-3 bg-amber-500 hover:bg-amber-600 text-white font-extrabold rounded-xl"
