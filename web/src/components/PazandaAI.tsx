@@ -662,6 +662,50 @@ export const PazandaAI: React.FC = () => {
         </button>
       </div>
 
+      {/* Quick Access Tools: Bozorlik & Taymer (Clean Inline Header Actions) */}
+      <div className="flex items-center justify-between gap-2 max-w-md mx-auto px-0.5 pt-0.5">
+        <button
+          onClick={() => {
+            try {
+              (window as any).Telegram?.WebApp?.HapticFeedback?.impactOccurred('light');
+            } catch (e) {}
+            setShowBozorlikModal(true);
+          }}
+          className="flex-1 py-2 px-3 bg-white hover:bg-orange-50/80 border border-pink-200/80 text-[#FF6B4A] rounded-2xl text-xs font-extrabold shadow-2xs flex items-center justify-center gap-1.5 active:scale-97 transition-all"
+        >
+          <ShoppingCart className="w-4 h-4 text-[#FF6B4A]" />
+          <span>{t("Bozorlik Ro'yxati")}</span>
+          {pendingCount > 0 && (
+            <span className="ml-0.5 px-1.5 py-0.2 bg-[#FF6B4A] text-white text-[10px] font-black rounded-full shadow-2xs">
+              {pendingCount}
+            </span>
+          )}
+        </button>
+
+        <button
+          onClick={() => {
+            try {
+              (window as any).Telegram?.WebApp?.HapticFeedback?.impactOccurred('light');
+            } catch (e) {}
+            setShowTimerModal(true);
+          }}
+          className={`flex-1 py-2 px-3 border rounded-2xl text-xs font-extrabold shadow-2xs flex items-center justify-center gap-1.5 active:scale-97 transition-all ${
+            isTimerRunning || timerSeconds > 0
+              ? 'bg-[#2E121D] text-[#FBBF24] border-pink-500/30'
+              : 'bg-white hover:bg-pink-50/80 text-[#DB2777] border-pink-200/80'
+          }`}
+        >
+          <TimerIcon className={`w-4 h-4 ${isTimerRunning ? 'animate-pulse text-[#FBBF24]' : ''}`} />
+          {isTimerRunning || timerSeconds > 0 ? (
+            <span className="font-mono font-black text-xs">
+              {String(Math.floor(timerSeconds / 60)).padStart(2, '0')}:{String(timerSeconds % 60).padStart(2, '0')}
+            </span>
+          ) : (
+            <span>{t("Oshxona Taymeri")}</span>
+          )}
+        </button>
+      </div>
+
       {/* MODE 1: INGREDIENT MATCHMAKING */}
       {viewMode === 'match' && (
         <div className="space-y-4">
@@ -1858,44 +1902,7 @@ export const PazandaAI: React.FC = () => {
         document.body
       )}
 
-      {/* Floating Bozorlik FAB + Mini-Timer Widget (Always visible, non-intrusive) */}
-      <div className="fixed right-3 bottom-[80px] z-40 flex flex-col items-end gap-2.5" style={{ maxWidth: 'calc(100vw - 24px)' }}>
-        
-        {/* Floating Mini-Timer (only shows when timer is running or paused with time left) */}
-        {(isTimerRunning || timerSeconds > 0) && (
-          <motion.button
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            whileTap={{ scale: 0.9 }}
-            onClick={() => setShowTimerModal(true)}
-            className="flex items-center gap-2 bg-[#2E121D] text-white pl-3 pr-4 py-2 rounded-full shadow-xl border border-pink-500/30"
-          >
-            <TimerIcon className={`w-4 h-4 text-[#FBBF24] ${isTimerRunning ? 'animate-pulse' : ''}`} />
-            <span className="text-xs font-black font-mono tracking-wider text-[#FBBF24]">
-              {String(Math.floor(timerSeconds / 60)).padStart(2, '0')}:{String(timerSeconds % 60).padStart(2, '0')}
-            </span>
-          </motion.button>
-        )}
 
-        {/* Floating Bozorlik FAB */}
-        <motion.button
-          whileTap={{ scale: 0.9 }}
-          onClick={() => {
-            try {
-              (window as any).Telegram?.WebApp?.HapticFeedback?.impactOccurred('light');
-            } catch (e) {}
-            setShowBozorlikModal(true);
-          }}
-          className="relative w-12 h-12 bg-[#FF6B4A] text-white rounded-full shadow-xl flex items-center justify-center active:bg-[#E8593A] transition-colors border-2 border-white/30"
-        >
-          <ShoppingCart className="w-5 h-5" />
-          {pendingCount > 0 && (
-            <span className="absolute -top-1 -right-1 w-5 h-5 bg-[#DB2777] text-white text-[10px] font-black rounded-full flex items-center justify-center shadow-md border border-white">
-              {pendingCount}
-            </span>
-          )}
-        </motion.button>
-      </div>
 
       {/* Recipe Detail Modal Mounted via React Portal */}
       {activeRecipe && createPortal(
@@ -1913,7 +1920,31 @@ export const PazandaAI: React.FC = () => {
                 {t("Orqaga")}
               </motion.button>
 
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1.5">
+                {(isTimerRunning || timerSeconds > 0) && (
+                  <button
+                    onClick={() => setShowTimerModal(true)}
+                    className="px-2.5 py-1 bg-[#2E121D] text-[#FBBF24] rounded-xl text-xs font-black font-mono border border-pink-500/30 flex items-center gap-1 shadow-2xs"
+                    title={t("Taymer holati")}
+                  >
+                    <TimerIcon className={`w-3.5 h-3.5 text-[#FBBF24] ${isTimerRunning ? 'animate-pulse' : ''}`} />
+                    <span>{String(Math.floor(timerSeconds / 60)).padStart(2, '0')}:{String(timerSeconds % 60).padStart(2, '0')}</span>
+                  </button>
+                )}
+
+                <button
+                  onClick={() => setShowBozorlikModal(true)}
+                  className="p-1.5 text-[#FF6B4A] hover:bg-orange-50 rounded-xl border border-orange-200 transition-colors relative"
+                  title={t("Bozorlik Ro'yxati")}
+                >
+                  <ShoppingCart className="w-4 h-4" />
+                  {pendingCount > 0 && (
+                    <span className="absolute -top-1 -right-1 w-4 h-4 bg-[#DB2777] text-white text-[9px] font-black rounded-full flex items-center justify-center">
+                      {pendingCount}
+                    </span>
+                  )}
+                </button>
+
                 {isAdmin && (
                   <button
                     onClick={(e) => handleOpenAdminEdit(activeRecipe, e)}

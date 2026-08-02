@@ -25,7 +25,7 @@ export const DynamicIslandTimer: React.FC = () => {
         initial={{ y: -50, opacity: 0, scale: 0.85 }}
         animate={{ y: 0, opacity: 1, scale: 1 }}
         exit={{ y: -50, opacity: 0, scale: 0.85 }}
-        className="fixed top-3 left-1/2 -translate-x-1/2 z-50"
+        className="fixed top-3 left-1/2 -translate-x-1/2 z-[10001]"
       >
         <div className="bg-[#2E121D]/95 text-white p-1.5 px-3.5 rounded-full shadow-xl border border-pink-500/20 backdrop-blur-md flex items-center gap-3.5 min-w-[160px] justify-between">
           
